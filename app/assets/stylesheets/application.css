@@ -63,6 +63,14 @@ The content `<div>` is where all your content goes.
     line-height: 1.6em;
 }
 
+.content-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
 .header {
      margin: 0;
      color: #333;
