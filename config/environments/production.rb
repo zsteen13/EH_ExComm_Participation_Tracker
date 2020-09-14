@@ -58,7 +58,7 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "EH_ExComm_Participation_Tracker_production"
+  # config.active_job.queue_name_prefix = "EH_Member_Point_Tracker_ExCom_production"
 
   config.action_mailer.perform_caching = false
 

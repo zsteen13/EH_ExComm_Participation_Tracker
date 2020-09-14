@@ -1,5 +1,5 @@
 {
-  "name": "EH_ExComm_Participation_Tracker",
+  "name": "EH_Member_Point_Tracker_ExCom",
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^6.0.0",
