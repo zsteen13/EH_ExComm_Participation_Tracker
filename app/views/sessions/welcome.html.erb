@@ -1,8 +1,12 @@
-<h1>Welcome</h1>
+<div id="main">
+    <div class="header">
+        <h1>Welcome to the EH Excom Participation Tracker</h1>
+        <h2>Please sign up or log in below</h2>
+    </div>
 
-<% if logged_in? %>
-    <h1>You are Logged In, <%= current_user.username %></h1>
-<%end%>
+    <div class="content">
+        <%= button_to "Login", '/login', method: :get, :class => "pure-button" %>
+        <%= button_to "Sign Up", '/users/new', method: :get, :class => "pure-button" %>
+    </div>
+</div>
 
-<%= button_to "Login", '/login', method: :get%>
-<%= button_to "Sign Up", '/users/new', method: :get%>
