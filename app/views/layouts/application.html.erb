@@ -10,7 +10,9 @@
   </head>
 
   <body>
-  hi
+  <% if logged_in? %>
+    hi
+  <%end%>
     <%= yield %>
   </body>
 </html>
