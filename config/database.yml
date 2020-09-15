@@ -22,6 +22,7 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
+  <<: *default
   database: EH_Member_Point_Tracker_ExCom_development
 
   # The specified database role being used to connect to postgres.
