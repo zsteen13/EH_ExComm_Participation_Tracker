@@ -10,10 +10,13 @@
             <%= form_tag '/login' do %>
                 <%= label_tag "First Name" %>
                 <%= text_field_tag :username %>
+                <br>
                 <%= label_tag "Last Name" %>
                 <%= password_field_tag :password%>
+                <br>
                 <%= label_tag "UIN" %>
                 <%= password_field_tag :password%>
+                <br>
                 <%= submit_tag "Login"%>
             <%end%>
         </div>
