@@ -16,7 +16,11 @@ class SessionsController < ApplicationController
   end
 
   def login
-    
+    @user = User.find_by(first_name: params[:first_name])
+    if @user && @user.authenticate(params[:uin])
+      sessions[:user_id] = @user.id
+    end
+    redirect_to '/welcome'
   end
 
   def welcome
