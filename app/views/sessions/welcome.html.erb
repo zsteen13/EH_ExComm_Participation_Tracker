@@ -2,14 +2,20 @@
     <div id="main">
         <div class="header">
             <h1>Welcome to the EH Excom Participation Tracker</h1>
-            <h2>Please sign up or log in below</h2>
+            <h2>Please log in below...</h2>
         </div>
 
         <div class="content" style="text-align:center;">
             <br>
-            <%= button_to "Login", '/login', method: :get, :class => "pure-button" %>
-            <br>
-            <%= button_to "Sign Up", '/users/new', method: :get, :class => "pure-button" %>
+            <%= form_tag '/login' do %>
+                <%= label_tag "First Name" %>
+                <%= text_field_tag :username %>
+                <%= label_tag "Last Name" %>
+                <%= password_field_tag :password%>
+                <%= label_tag "UIN" %>
+                <%= password_field_tag :password%>
+                <%= submit_tag "Login"%>
+            <%end%>
         </div>
     </div>
 <%end%>
