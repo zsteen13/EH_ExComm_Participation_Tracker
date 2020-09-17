@@ -15,6 +15,7 @@
   </head>
 
   <body>
+  <div id="layout">
     <% if logged_in? %>
       <a href="#menu" id="menuLink" class="menu-link">
           <!-- Hamburger icon -->
@@ -38,5 +39,6 @@
 
     <%= yield %>
     
+  </div>
   </body>
 </html>
