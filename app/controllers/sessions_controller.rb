@@ -6,21 +6,16 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(username: params[:username])
-    if @user && @user.authenticate(params[:password])
+    @user = User.find_by(last_name: params[:last_name])
+    if @user && @user.authenticate(params[:uin])
       sessions[:user_id] = @user.id
       redirect_to '/welcome'
     else
-      redirect_to '/welcome'
+      redirect_to '/login'
     end
   end
 
   def login
-    @user = User.find_by(first_name: params[:first_name])
-    if @user && @user.authenticate(params[:uin])
-      sessions[:user_id] = @user.id
-    end
-    redirect_to '/welcome'
   end
 
   def welcome
