@@ -7,18 +7,9 @@
 
         <div class="content" style="text-align:center;">
             <br>
-            <%= form_tag '/login' do %>
-                <%= label_tag "First Name" %>
-                <%= text_field_tag :first_name %>
-                <br>
-                <%= label_tag "Last Name" %>
-                <%= text_field_tag :last_name %>
-                <br>
-                <%= label_tag "UIN" %>
-                <%= text_field_tag :uin %>
-                <br>
-                <%= submit_tag "Login"%>
-            <%end%>
+            <%= button_to "Login", '/login', method: :get%>
+            <br>
+            <%= button_to "Sign Up", '/users/new', method: :get%>
         </div>
     </div>
 <%end%>
