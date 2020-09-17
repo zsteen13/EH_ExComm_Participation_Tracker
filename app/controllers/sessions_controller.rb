@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by(last_name: params[:last_name])
-    if @user && @user.uin == params[:uin]
+    if @user
       sessions[:user_id] = @user.id
       redirect_to '/welcome'
     else
