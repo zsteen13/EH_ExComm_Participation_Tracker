@@ -6,8 +6,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(last_name: params[:last_name])
-    if @user
+    @user = User.find_by(uin: params[:uin])
+    if @user && User.last_name == params[:last_name]
       session[:user_id] = @user.id
       redirect_to '/welcome'
     else
