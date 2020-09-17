@@ -6,9 +6,9 @@
 
     <div class="content" style="text-align:center;">
         <br>
-        <%= @user.first_name %>
-        <%= @user.last_name %>
-        <%= @user.email %>
-        <%= @user.committee %>
+        <%= current_user.first_name %>
+        <%= current_user.last_name %>
+        <%= current_user.email %>
+        <%= current_user.committee %>
     </div>
 </div>
