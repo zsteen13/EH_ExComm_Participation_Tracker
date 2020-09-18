@@ -2,14 +2,16 @@
 
 one:
   name: MyString
-  ddate: MyString
+  type: 
+  date: MyString
   point_value: 
   description: MyString
   num_rsvp: 
 
 two:
   name: MyString
-  ddate: MyString
+  type: 
+  date: MyString
   point_value: 
   description: MyString
   num_rsvp: 

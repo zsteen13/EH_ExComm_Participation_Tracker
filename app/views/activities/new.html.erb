@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/grids-responsive-min.css">
+
+</head>
+<body>
+    <div class="content">
+        <h1>Create Activites</h1>
+        <form action="/activities" method="POST" class="pure-form pure-form-stacked" enctype="application/json">
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+            <fieldset>
+                <label for="stacked-email">Activity Name</label>
+                <input name="activity_name" type="text" placeholder="Activity Name" />
+                <label for="stacked-email">Activity Type</label>
+                <input name="activity_type" type="text" placeholder="Activity Type" />
+                <label for="stacked-email">Date</label>
+                <input name="date" type="text" placeholder="Date (mm/dd/yyyy)" />
+                <label for="stacked-email">Point Value</label>
+                <input name="point_value" type="text" placeholder="Point Value" />
+                <label for="stacked-email">Description</label>
+                <textarea name="description" class="pure-input-1-2" placeholder="Description"></textarea>
+                <button type="submit" class="pure-button pure-button-primary">Create</button>
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>

@@ -36,3 +36,5 @@ yarn-debug.log*
 .yarn-integrity
 node_modules
 log/development.log
+
+db/migrate/.DS_Store

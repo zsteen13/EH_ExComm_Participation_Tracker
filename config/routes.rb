@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  get 'activities/activities'
+  resources :activities
   get 'profile/profile'
-  get 'activities/create'
   resources :users, only: [:new, :create]
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'

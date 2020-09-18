@@ -1,2 +1,44 @@
-<h1>Activties#index</h1>
-<p>Find me in app/views/activties/index.html.erb</p>
+<div id="main">
+    <div class="header">
+        <h1>Activities</h1>
+        <h2>Here is where activities can go...</h2>
+    </div>
+
+
+    <div class="content" style="text-align:center;">
+        <h3>Temp Table, so I can see stuff got added correctly (feel free to delete)</h3>
+
+    <table class="pure-table center">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Point Value</th>
+                <th>RSVPS</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @activity.each do |activity| %>
+
+                <tr>
+                    <td><%= activity.name%></td>
+                    <td><%= activity._type%></td>
+                    <td><%= activity.date%></td>
+                    <td><%= activity.point_value%></td>
+                    <td><%= activity.num_rsvp%></td>
+                    <td><%= activity.description%></td>
+
+                </tr>
+            </a>
+            <% end %>
+
+        </tbody>
+    </table>
+        <br>
+        <h3>Button should only be visable on the admin page </h3>
+        <a class="pure-button pure-button-primary" href="activities/new">Create Activity</a>
+
+    </div>
+</div>
