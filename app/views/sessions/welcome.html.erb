@@ -8,10 +8,10 @@
 
         <div class="content" style="text-align:center;">
             <br>
-            <%= button_to "Login", '/login', method: :get, :class => "pure-button" %>
             <%= form_tag '/login' do %>
                 <%= label_tag :first_name%>
                 <%= text_field_tag :first_name %>
+                <br>
                 <%= label_tag :last_name %>
                 <%= text_field_tag :last_name %>
                 <%= label_tag "UIN" %>
