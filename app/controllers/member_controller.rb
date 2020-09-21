@@ -1,5 +1,5 @@
 class MemberController < ApplicationController
-  define member
+  define member0
   end
 
 end
