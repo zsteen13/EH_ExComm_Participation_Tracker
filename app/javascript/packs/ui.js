@@ -1,12 +1,11 @@
-console.log('hello from ui.js')
-(function (window, document) {
+(function(window, document) {
 
-    var layout   = document.getElementById('layout'),
+    let layout   = document.getElementById('layout'),
         menu     = document.getElementById('menu'),
         menuLink = document.getElementById('menuLink');
 
     function toggleClass(element, className) {
-        var classes = element.className.split(/\s+/),
+        let classes = element.className.split(/\s+/),
             length = classes.length,
             i = 0;
 
@@ -25,7 +24,7 @@ console.log('hello from ui.js')
     }
 
     function toggleAll(e) {
-        var active = 'active';
+        let active = 'active';
 
         e.preventDefault();
         toggleClass(layout, active);
