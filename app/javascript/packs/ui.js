@@ -1,3 +1,4 @@
+console.log('hello from ui.js')
 (function (window, document) {
 
     var layout   = document.getElementById('layout'),
