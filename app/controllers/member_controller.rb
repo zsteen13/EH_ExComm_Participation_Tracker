@@ -1,4 +1,4 @@
 class MemberController < ApplicationController
-  define member
+  def member
   end
 end
