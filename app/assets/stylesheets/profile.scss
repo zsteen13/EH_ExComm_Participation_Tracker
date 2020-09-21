@@ -1,3 +1,50 @@
 // Place all the styles related to the profile controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+/*
+ * -- PROFILE BOX WRAPPER --
+ * This element wraps up all the profile box
+ */
+ .profile-boxes,
+ .information {
+    max-width: 980px;
+    margin: 0 auto;
+ }
+.profile-boxes {
+    margin-bottom: 3.125em;
+    text-align: center;
+}
+
+/*
+ * -- PROFILE BOX CLASS  --
+ * All four boxes have a profile box class
+ */
+.profile-box {
+    border: 1px solid #ddd;
+    margin: 0 0.5em 2em;
+    padding: 0 0 3em;
+    background: #500000;
+}
+
+/*
+ * -- PROFILE BOX CLASS COLORS --
+ * Choose a different color based on the type of pricing table.
+
+.profile-box-info .profile-box-header {
+    background: #519251;
+}
+
+.profile-box-committee .profile-box-header {
+    background: #2c4985;
+}
+
+.profile-box-points .profile-box-header {
+    background: #2c4985;
+}
+
+.profile-box-events .profile-box-header {
+    background: #2c4985;
+}
+ */
+
