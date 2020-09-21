@@ -1,7 +1,8 @@
 <% if !logged_in? %>
+
     <div id="main">
         <div class="header">
-            <h1>Welcome to the EH Excom Participation Tracker</h1>
+            <h1>Welcome to the EH Excom Member Point Tracker</h1>
             <h2>Please log in below...</h2>
         </div>
 
@@ -10,9 +11,9 @@
             <%= button_to "Login", '/login', method: :get, :class => "pure-button" %>
         </div>
     </div>
-<%end%>
 
-<% if logged_in? %>
+<% else %>
+
     <div id="main">
         <div class="header">
             <h1>EH Excom Participation Tracker</h1>
@@ -47,5 +48,6 @@
             </p>
         </div>
     </div>
-<%end%>
+
+<% end %>
 
