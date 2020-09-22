@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2020_09_18_040526) do
   create_table "activities", force: :cascade do |t|
     t.string "name"
     t.string "_type"
-    t.string "date"
+    t.datetime "date"
     t.decimal "point_value"
     t.string "description"
     t.decimal "num_rsvp"

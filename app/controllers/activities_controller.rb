@@ -1,16 +1,36 @@
+require_relative "../helpers/activities_helper"
+
 class ActivitiesController < ApplicationController
   def index
     @activity = Activity.all
   end
 
   def new
+    @prev_data = {}
   end
 
   def create
+    if ! ActivitiesHelper.correct_num_field?(params)
+      @error_message = "There were too many parameter or not enough parameters sumbitted"
+      @prev_data = params
+      render('/activities/new')
+      return
+    end
+
+    puts "before check"
+    if ! ActivitiesHelper.datetime_correct?(params)
+      puts "after check"
+      @error_message = "The date or time input was not valid please check your input for date and time"
+      @prev_data = params
+      render('/activities/new')
+      return 
+    end
+
+
     act = Activity.new
     act.name = params["activity_name"]
     act._type = params["activity_type"]
-    act.date = params["date"]
+    act.date = ActivitiesHelper.parse_date(params["date"], params["time"])
     act.point_value = params["point_value"]
     act.description = params["description"]
     act.num_rsvp = 0
