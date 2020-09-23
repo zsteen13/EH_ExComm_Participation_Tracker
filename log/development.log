@@ -16075,3 +16075,287 @@ puma (4.3.6) lib/puma/server.rb:713:in `handle_request'
 puma (4.3.6) lib/puma/server.rb:472:in `process_client'
 puma (4.3.6) lib/puma/server.rb:328:in `block in run'
 puma (4.3.6) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/" for ::1 at 2020-09-23 13:55:14 -0500
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#welcome as HTML
+  Rendering sessions/welcome.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered sessions/welcome.html.erb within layouts/application (Duration: 8.5ms | Allocations: 3197)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 200 OK in 42ms (Views: 31.9ms | ActiveRecord: 1.7ms | Allocations: 13266)
+
+
+Started POST "/login" for ::1 at 2020-09-23 13:55:24 -0500
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"FpIfKkcw3WVvkzzRnWwy05CWR47RNaIQRSodDhgBVtTTEK4tGyHGDK3rTWyKOIf/42Ucw6aO5k/n60E3Q7l0gg==", "first_name"=>"trev", "last_name"=>"moore", "uin"=>"1", "commit"=>"Login"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uin" = $1 LIMIT $2[0m  [["uin", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:9:in `create'
+Redirected to http://localhost:3000/welcome
+Completed 302 Found in 20ms (ActiveRecord: 4.6ms | Allocations: 10013)
+
+
+Started GET "/welcome" for ::1 at 2020-09-23 13:55:24 -0500
+Processing by SessionsController#welcome as HTML
+  Rendering sessions/welcome.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered sessions/welcome.html.erb within layouts/application (Duration: 2.1ms | Allocations: 752)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 200 OK in 27ms (Views: 25.8ms | ActiveRecord: 0.3ms | Allocations: 5389)
+
+
+Started GET "/activities" for ::1 at 2020-09-23 13:55:25 -0500
+Processing by ActivitiesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering activities/index.html.erb within layouts/application
+  [1m[36mActivity Load (0.7ms)[0m  [1m[34mSELECT "activities".* FROM "activities"[0m
+  ↳ app/views/activities/index.html.erb:23
+  Rendered activities/index.html.erb within layouts/application (Duration: 22.7ms | Allocations: 7265)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 200 OK in 39ms (Views: 28.1ms | ActiveRecord: 4.3ms | Allocations: 13346)
+
+
+Started GET "/activities/new" for ::1 at 2020-09-23 13:55:28 -0500
+Processing by ActivitiesController#new as HTML
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering activities/new.html.erb within layouts/application
+  Rendered activities/new.html.erb within layouts/application (Duration: 0.9ms | Allocations: 351)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 200 OK in 19ms (Views: 14.9ms | ActiveRecord: 2.0ms | Allocations: 5748)
+
+
+Started GET "/activities/new" for ::1 at 2020-09-23 14:00:14 -0500
+Processing by ActivitiesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering activities/new.html.erb within layouts/application
+  Rendered activities/new.html.erb within layouts/application (Duration: 219.9ms | Allocations: 147893)
+Completed 500 Internal Server Error in 236ms (ActiveRecord: 2.6ms | Allocations: 159251)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `form' for #<#<Class:0x00007fcb5a4d1430>:0x00007fcb5a4da2d8>
+Did you mean?  for
+               fork):
+    19:                     <input name="activity_type" type="text" placeholder="Activity Type" value="<%= @prev_data["activity_type"]%>" required/>
+    20:                     <!-- <label >Date</label>
+    21:                     <input name="date" type="text" placeholder="Date (mm/dd/yyyy)" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" value="<%= @prev_data["date"]%>" required/>
+    22:                     -->
+    23:                     <%= form.date_field :publish_date, required: true %>
+    24:                     <label >Time</label>
+    25:                     <input name="time" type="text" placeholder="Time (hh:mmAM)" pattern="[0-9]{2}:[0-9]{2}((AM|PM)|(am|pm))" value="<%= @prev_data["time"]%>" required/>
+  
+app/views/activities/new.html.erb:22
+Started GET "/activities/new" for ::1 at 2020-09-23 14:00:50 -0500
+Processing by ActivitiesController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering activities/new.html.erb within layouts/application
+  Rendered activities/new.html.erb within layouts/application (Duration: 230.3ms | Allocations: 147617)
+Completed 500 Internal Server Error in 235ms (ActiveRecord: 0.4ms | Allocations: 149416)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `form' for #<#<Class:0x00007fcb5a469128>:0x00007fcb58ef57b0>
+Did you mean?  for
+               fork):
+    19:                     <input name="activity_type" type="text" placeholder="Activity Type" value="<%= @prev_data["activity_type"]%>" required/>
+    20:                     <%# <label >Date</label>
+    21:                     <input name="date" type="text" placeholder="Date (mm/dd/yyyy)" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" value="<%= @prev_data["date"]%>" required/>
+    22:                     %>
+    23:                     <%= form.date_field :publish_date, required: true %>
+    24:                     <label >Time</label>
+    25:                     <input name="time" type="text" placeholder="Time (hh:mmAM)" pattern="[0-9]{2}:[0-9]{2}((AM|PM)|(am|pm))" value="<%= @prev_data["time"]%>" required/>
+  
+app/views/activities/new.html.erb:22
+Started GET "/activities/new" for ::1 at 2020-09-23 14:00:51 -0500
+Processing by ActivitiesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering activities/new.html.erb within layouts/application
+  Rendered activities/new.html.erb within layouts/application (Duration: 244.5ms | Allocations: 147300)
+Completed 500 Internal Server Error in 246ms (ActiveRecord: 0.2ms | Allocations: 148316)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `form' for #<#<Class:0x00007fcb5a469128>:0x00007fcb5f82df48>
+Did you mean?  for
+               fork):
+    19:                     <input name="activity_type" type="text" placeholder="Activity Type" value="<%= @prev_data["activity_type"]%>" required/>
+    20:                     <%# <label >Date</label>
+    21:                     <input name="date" type="text" placeholder="Date (mm/dd/yyyy)" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" value="<%= @prev_data["date"]%>" required/>
+    22:                     %>
+    23:                     <%= form.date_field :publish_date, required: true %>
+    24:                     <label >Time</label>
+    25:                     <input name="time" type="text" placeholder="Time (hh:mmAM)" pattern="[0-9]{2}:[0-9]{2}((AM|PM)|(am|pm))" value="<%= @prev_data["time"]%>" required/>
+  
+app/views/activities/new.html.erb:22
+Started GET "/activities/new" for ::1 at 2020-09-23 14:00:54 -0500
+Processing by ActivitiesController#new as HTML
+  [1m[36mUser Load (3.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering activities/new.html.erb within layouts/application
+  Rendered activities/new.html.erb within layouts/application (Duration: 252.5ms | Allocations: 147610)
+Completed 500 Internal Server Error in 260ms (ActiveRecord: 3.3ms | Allocations: 149386)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `form' for #<#<Class:0x00007fcb5f891fc0>:0x00007fcb5f890260>
+Did you mean?  for
+               fork):
+    19:                     <input name="activity_type" type="text" placeholder="Activity Type" value="<%= @prev_data["activity_type"]%>" required/>
+    20:                     <%# <label >Date</label>
+    21:                     <input name="date" type="text" placeholder="Date (mm/dd/yyyy)" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" value="<%= @prev_data["date"]%>" required/>
+    22:                     %>
+    23:                     <%= form.date_field :publish_date, required: true %>
+    24:                     <label >Time</label>
+    25:                     <input name="time" type="text" placeholder="Time (hh:mmAM)" pattern="[0-9]{2}:[0-9]{2}((AM|PM)|(am|pm))" value="<%= @prev_data["time"]%>" required/>
+  
+app/views/activities/new.html.erb:22
+Started GET "/activities/new" for ::1 at 2020-09-23 14:01:01 -0500
+Processing by ActivitiesController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering activities/new.html.erb within layouts/application
+  Rendered activities/new.html.erb within layouts/application (Duration: 248.7ms | Allocations: 147300)
+Completed 500 Internal Server Error in 252ms (ActiveRecord: 0.3ms | Allocations: 148315)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `form' for #<#<Class:0x00007fcb5f891fc0>:0x00007fcb5a587960>
+Did you mean?  for
+               fork):
+    19:                     <input name="activity_type" type="text" placeholder="Activity Type" value="<%= @prev_data["activity_type"]%>" required/>
+    20:                     <%# <label >Date</label>
+    21:                     <input name="date" type="text" placeholder="Date (mm/dd/yyyy)" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" value="<%= @prev_data["date"]%>" required/>
+    22:                     %>
+    23:                     <%= form.date_field :publish_date, required: true %>
+    24:                     <label >Time</label>
+    25:                     <input name="time" type="text" placeholder="Time (hh:mmAM)" pattern="[0-9]{2}:[0-9]{2}((AM|PM)|(am|pm))" value="<%= @prev_data["time"]%>" required/>
+  
+app/views/activities/new.html.erb:22
+Started GET "/activities/new" for ::1 at 2020-09-23 14:02:55 -0500
+Processing by ActivitiesController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering activities/new.html.erb within layouts/application
+  Rendered activities/new.html.erb within layouts/application (Duration: 0.6ms | Allocations: 347)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 200 OK in 18ms (Views: 14.9ms | ActiveRecord: 0.3ms | Allocations: 6684)
+
+
+Started GET "/activities/new" for ::1 at 2020-09-23 14:07:03 -0500
+Processing by ActivitiesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering activities/new.html.erb within layouts/application
+  Rendered activities/new.html.erb within layouts/application (Duration: 0.5ms | Allocations: 339)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 200 OK in 18ms (Views: 16.2ms | ActiveRecord: 0.2ms | Allocations: 6646)
+
+
+Started GET "/activities/new" for ::1 at 2020-09-23 14:07:20 -0500
+Processing by ActivitiesController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering activities/new.html.erb within layouts/application
+  Rendered activities/new.html.erb within layouts/application (Duration: 0.8ms | Allocations: 338)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 200 OK in 11ms (Views: 7.9ms | ActiveRecord: 0.3ms | Allocations: 6649)
+
+
+Started POST "/activities" for ::1 at 2020-09-23 14:07:40 -0500
+Processing by ActivitiesController#create as HTML
+  Parameters: {"authenticity_token"=>"hMoZFhsHoI8cFfnyy0GSFcr6IooxOLG3oZ3dSDusy3pBSKgRRxa75t5tiE/cFSc5uQl5x0aD9egDXIFxYBTpLA==", "activity_name"=>"Trevor", "activity_type"=>"Moore", "date"=>"2020-09-25", "time"=>"05:09", "point_value"=>"2", "description"=>"jsdf"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering activities/new.html.erb within layouts/application
+  Rendered activities/new.html.erb within layouts/application (Duration: 0.2ms | Allocations: 71)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 200 OK in 9ms (Views: 6.8ms | ActiveRecord: 0.2ms | Allocations: 5324)
+
+
+Started POST "/activities" for ::1 at 2020-09-23 14:08:38 -0500
+Processing by ActivitiesController#create as HTML
+  Parameters: {"authenticity_token"=>"kx6EcjotdnRco//gZDbsJAi1T5XdZUZ9iJRqqbKNKIRWnDV1ZjxtHZ7bjl1zYlkIe0YU2KreAiIqVTaQ6TUK0g==", "activity_name"=>"Trevor", "activity_type"=>"Moore", "date"=>"2020-09-25", "time"=>"05:09", "point_value"=>"2", "description"=>"jsdf"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering activities/new.html.erb within layouts/application
+  Rendered activities/new.html.erb within layouts/application (Duration: 0.5ms | Allocations: 351)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 200 OK in 11ms (Views: 8.1ms | ActiveRecord: 0.3ms | Allocations: 6684)
+
+
+Started GET "/activities" for ::1 at 2020-09-23 14:09:10 -0500
+Processing by ActivitiesController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering activities/index.html.erb within layouts/application
+  [1m[36mActivity Load (0.4ms)[0m  [1m[34mSELECT "activities".* FROM "activities"[0m
+  ↳ app/views/activities/index.html.erb:23
+  Rendered activities/index.html.erb within layouts/application (Duration: 11.1ms | Allocations: 6935)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 200 OK in 51ms (Views: 29.4ms | ActiveRecord: 6.2ms | Allocations: 22323)
+
+
+Started GET "/activities/new" for ::1 at 2020-09-23 14:09:13 -0500
+Processing by ActivitiesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering activities/new.html.erb within layouts/application
+  Rendered activities/new.html.erb within layouts/application (Duration: 0.6ms | Allocations: 57)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 200 OK in 16ms (Views: 12.3ms | ActiveRecord: 0.2ms | Allocations: 5291)
+
+
+Started POST "/activities" for ::1 at 2020-09-23 14:09:30 -0500
+Processing by ActivitiesController#create as HTML
+  Parameters: {"authenticity_token"=>"HDOgkJvGuA+nc3tpwcwlkKFIbqHYC6kFl73lnGcDyyTZsRGXx9ejZmULCtTWmJC80rs17K+w7Vo1fLmlPLvpcg==", "activity_name"=>"Trevo", "activity_type"=>"moore", "date"=>"2020-09-04", "time"=>"16:11", "point_value"=>"23", "description"=>"aesf"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering activities/new.html.erb within layouts/application
+  Rendered activities/new.html.erb within layouts/application (Duration: 0.3ms | Allocations: 71)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 200 OK in 10ms (Views: 7.0ms | ActiveRecord: 0.3ms | Allocations: 5348)
+
+
+Started POST "/activities" for ::1 at 2020-09-23 14:24:15 -0500
+Processing by ActivitiesController#create as HTML
+  Parameters: {"authenticity_token"=>"f4+dPH1aWgEQfrsXtWnbeCD9K+JURCyTVlw0/DIzIQq6DSw7IUtBaNIGyqqiPW5UUw5wryP/aMz0nWjFaYsDXA==", "activity_name"=>"Trevo", "activity_type"=>"moore", "date"=>"2020-09-04", "time"=>"00:00", "point_value"=>"23", "description"=>"aesf"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendering activities/new.html.erb within layouts/application
+  Rendered activities/new.html.erb within layouts/application (Duration: 0.7ms | Allocations: 357)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+Completed 200 OK in 21ms (Views: 7.9ms | ActiveRecord: 0.6ms | Allocations: 16000)
+
+

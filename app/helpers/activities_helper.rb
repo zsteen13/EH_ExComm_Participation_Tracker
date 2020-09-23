@@ -2,20 +2,15 @@ require "date"
 
 module ActivitiesHelper
     def ActivitiesHelper.parse_date(date, time)
-        date_split = date.split("/", 3)
-        year = date_split[2].to_i()
-        month = date_split[0].to_i()
-        day = date_split[1].to_i()
+        date_split = date.split("-", 3)
+        year = date_split[0].to_i()
+        month = date_split[1].to_i()
+        day = date_split[2].to_i()
 
         time_split = time.split(":", 2)
         hour = time_split[0].to_i()
-        minute = time_split[1][0,2].to_i()
-        time_of_day = time_split[1][2,2]
-        time_of_day = time_of_day.downcase
+        minute = time_split[1].to_i()
 
-        if time_of_day == "pm" 
-            hour = hour + 12
-        end
         return DateTime.new(year, month, day, hour, minute, 0, Rational(-5, 24))        
     end
 
@@ -42,20 +37,18 @@ module ActivitiesHelper
             return false
         end
 
-        if time.length != 7
+        if time.length != 5
             return false
         end
 
-        date_split = date.split("/", 3)
-        year = date_split[2]
-        month = date_split[0]
-        day = date_split[1]
+        date_split = date.split("-", 3)
+        year = date_split[0]
+        month = date_split[1]
+        day = date_split[2]
 
         time_split = time.split(":", 2)
         hour = time_split[0]
-        minute = time_split[1][0,2]
-        time_of_day = time_split[1][2,2]
-        time_of_day = time_of_day.downcase
+        minute = time_split[1]
 
         if !is_number?(year) 
             return false
@@ -77,25 +70,21 @@ module ActivitiesHelper
             return false
         end
 
-        if time_of_day.eql?("am") & time_of_day.eql?("pm")
-            return false
-        end
-
         hour = hour.to_i
         minute = minute.to_i
         month = month.to_i
         day = day.to_i
         year = year.to_i
 
-        if (hour > 12) || (hour < 1)
+        if (hour >= 24) || (hour < 0)
             return false
         end
 
-        if (minute > 59) || (minute <= 0)
-            reutrn false
+        if (minute > 59) || (minute < 0)
+            return false
         end
 
-        if (month > 12) || (month <= 1)
+        if (month > 12) || (month < 1)
             return false
         end
 

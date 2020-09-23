@@ -17,9 +17,10 @@ class ActivitiesController < ApplicationController
       return
     end
 
-    puts "before check"
     if ! ActivitiesHelper.datetime_correct?(params)
-      puts "after check"
+      puts "\n\n"
+      puts params
+      puts "\n\n"
       @error_message = "The date or time input was not valid please check your input for date and time"
       @prev_data = params
       render('/activities/new')

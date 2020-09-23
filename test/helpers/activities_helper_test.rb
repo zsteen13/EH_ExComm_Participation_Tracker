@@ -13,34 +13,28 @@ describe "Activities Helper" do
 	end
   describe "parse date and time" do
       it("should return a value") do
-          value = ActivitiesHelper.parse_date("09/23/2020", "5:30PM")
+          value = ActivitiesHelper.parse_date("2020-09-23", "17:30")
           expect(value).not_to eq(nil)
       end
 
       it("should return an instance of datetime") do
-          value = ActivitiesHelper.parse_date("09/23/2020", "10:00AM")
+          value = ActivitiesHelper.parse_date("2020-09-23", "10:00")
           ans = DateTime.new(2020, 9, 23, 10, 0, 0, Rational(-5, 24))
 
           expect(value).to be_instance_of(DateTime)
       end
 
       it("should be able to be able to parse a AM time") do
-        value = ActivitiesHelper.parse_date("09/23/2020", "10:00AM")
+        value = ActivitiesHelper.parse_date("2020-09-23", "10:00")
 
         ans = DateTime.new(2020, 9, 23, 10, 0, 0, Rational(-5, 24))
         expect(value).to eq(ans)
       end
 
       it("should be able to be able to parse a PM time") do
-          value = ActivitiesHelper.parse_date("09/23/2020", "10:00PM")
+          value = ActivitiesHelper.parse_date("2020-09-23", "17:00")
   
-          ans = DateTime.new(2020, 9, 23, 22, 0, 0, Rational(-5, 24))
-          expect(value).to eq(ans)
-      end
-      it("should be handle weird inputs of date and time") do
-          value = ActivitiesHelper.parse_date("8/3/2020", "4:25PM")
-
-          ans = DateTime.new(2020, 8, 3, 16, 25, 0, Rational(-5, 24))
+          ans = DateTime.new(2020, 9, 23, 17, 0, 0, Rational(-5, 24))
           expect(value).to eq(ans)
       end
 	end
@@ -95,7 +89,7 @@ describe "Activities Helper" do
 
         it("should deterine if the date and time were input correctly") do
           map = {
-            "date" => "09/23/2020",
+            "date" => "2020-09-23",
             "time" => "03:30P"
           }
 
@@ -103,15 +97,23 @@ describe "Activities Helper" do
           expect(res).to be false
 
           map = {
-            "date" => "09/23/2020",
-            "time" => "-3:30PM"
+            "date" => "2020-09-23",
+            "time" => "-3:30"
           }
 
           res = ActivitiesHelper.datetime_correct?(map)
           expect(res).to be false
 
           map = {
-            "date" => "09/-3/2020",
+            "date" => "202--09-23",
+            "time" => "15:00PM"
+          }
+
+          res = ActivitiesHelper.datetime_correct?(map)
+          expect(res).to be false
+
+          map = {
+            "date" => "2020-09-23",
             "time" => "03:30PM"
           }
 
@@ -119,15 +121,7 @@ describe "Activities Helper" do
           expect(res).to be false
 
           map = {
-            "date" => "09/23/220",
-            "time" => "03:30PM"
-          }
-
-          res = ActivitiesHelper.datetime_correct?(map)
-          expect(res).to be false
-
-          map = {
-            "date" => "9/23/2020",
+            "date" => "2020-09-23",
             "time" => "3:30P"
           }
 
@@ -168,12 +162,39 @@ describe "Activities Helper" do
         expect(res).to be false
 
         map = {
-          "date" => "09/23/2020",
-          "time" => "03:30PM"
+          "date" => "2020-09-23",
+          "time" => "15:00"
         }
 
         res = ActivitiesHelper.datetime_correct?(map)
         expect(res).to be true
+
+        # edge case testing
+
+        map = {
+          "date" => "1000-01-01",
+          "time" => "00:00"
+        }
+
+        res = ActivitiesHelper.datetime_correct?(map)
+        expect(res).to be true
+
+        map = {
+          "date" => "9999-12-31",
+          "time" => "23:59"
+        }
+
+        res = ActivitiesHelper.datetime_correct?(map)
+        expect(res).to be true
+
+        map = {
+          "date" => "9999-12-31",
+          "time" => "24:00"
+        }
+
+        res = ActivitiesHelper.datetime_correct?(map)
+        expect(res).to be false
+
     end
   end
 end
