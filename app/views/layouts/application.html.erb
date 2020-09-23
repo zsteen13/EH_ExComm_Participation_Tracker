@@ -41,12 +41,12 @@
     <script>
       (function(window, document) {
 
-        let layout   = document.getElementById('layout'),
+        var layout   = document.getElementById('layout'),
             menu     = document.getElementById('menu'),
             menuLink = document.getElementById('menuLink');
 
         function toggleClass(element, className) {
-            let classes = element.className.split(/\s+/),
+            var classes = element.className.split(/\s+/),
                 length = classes.length,
                 i = 0;
 
@@ -65,7 +65,7 @@
         }
 
         function toggleAll(e) {
-            let active = 'active';
+            var active = 'active';
 
             e.preventDefault();
             toggleClass(layout, active);
