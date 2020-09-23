@@ -12,18 +12,10 @@
                 <div class="profile-box">
                     <h1>Profile</h1>
                     <div class="content" style="text-align:center;">
-                        <br>
                         <%= current_user.first_name %>
-                        <br>
                         <%= current_user.last_name %>
                         <br>
                         <%= current_user.email %>
-                        <br>
-                        <%= current_user.committee %>
-                        <br>
-                        <h1>Committee Information</h1>
-                        <br>
-                        <h2>Here is where committee contact will go</h2>
                     </div>
                 </div>
             </div>
@@ -32,29 +24,32 @@
                 <div class="profile-box">
                     <h1>Point Tracker</h1>
                     <div class="content" style="text-align:center;">
-                        <h2>Here is where points</h2>
+                        <br>
+                        <%= current_user.total_points%>
+                        <br>
                     </div>
                 </div>
             </div>
 
             <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3"> 
                 <div class="profile-box">
-                    <h1>Committee Information</h1>
+                    <h1>Committee Info</h1>
                     <div class="content" style="text-align:center;">
-                        <br>
-                        <h2>Here is where committee contact will go</h2>
+                        <%= current_user.committee %>
+                        <%= current_user.subcommittee %>
                     </div>
                 </div>
             </div>
 
-            div class="pure-u-1 pure-u-lg-2-3"> 
+            <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-2-3"> 
                 <div class="profile-box">
-                    <h1>Upcoming Events</h1>
+                    <h1>RSVP'd Events</h1>
                     <div class="content" style="text-align:center;">
-                        <h2>Here is where events member has rsvp to will go...</h2>
+                        <h2>Here is Events Users Have RSVP'd To</h2>
                     </div>
                 </div>
             </div>
+           
 
         </div>
 
