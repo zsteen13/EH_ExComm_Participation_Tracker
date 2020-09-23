@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  type: 
+  date: MyString
+  point_value: 
+  description: MyString
+  num_rsvp: 
+
+two:
+  name: MyString
+  type: 
+  date: MyString
+  point_value: 
+  description: MyString
+  num_rsvp: 
