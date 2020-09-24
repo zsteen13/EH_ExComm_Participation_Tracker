@@ -12,19 +12,23 @@
                 <div class="profile-box">
                     <h1>Profile</h1>
                     <div class="content" style="text-align:center;">
-                        <label> <strong>Name: </strong></label>
-                        <%= current_user.first_name %>
-                        <%= current_user.last_name %>
-                        <br>
-                        <label> <strong>Email: </strong></label>
-                        <%= current_user.email %>
-                        <br>
-                        <label> <strong>Member Type: </strong></label>
-                        <% if current_user.admin? %>
-                            <label>Admin </label>
-                        <%else%>
-                            <label>Member </label>
-                        <%end%>
+                        <p>
+                            <label> <strong>Name: </strong></label>
+                            <%= current_user.first_name %>
+                            <%= current_user.last_name %>
+                        </p>
+                        <p>
+                            <label> <strong>Email: </strong></label>
+                            <%= current_user.email %>
+                        </p>
+                        <p>
+                            <label> <strong>Member Type: </strong></label>
+                            <% if current_user.admin? %>
+                                <label>Admin </label>
+                            <%else%>
+                                <label>Member </label>
+                            <%end%>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -32,7 +36,6 @@
             <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-2-3"> 
                 <div class="profile-box">
                     <h1>Point Tracker</h1>
-                    <div class="content" style="text-align:center;">
                         <table class="pure-table center">
                             <thead>
                                 <tr>
@@ -52,7 +55,6 @@
                                 </a>
                             </tbody>
                         </table>
-                    </div>
                 </div>
             </div>
 
@@ -60,13 +62,18 @@
                 <div class="profile-box">
                     <h1>Committee Info</h1>
                     <div class="content" style="text-align:center;">
-                        <label> <strong>Committee: </strong></label>
+                        <p>
+                            <label> <strong>Committee: </strong></label>
                             <%= current_user.committee %>
-                        <br>
-                        <label> <strong>Subcommittee: </strong></label>
+                        </p>
+                        <p>
+                            <label> <strong>Subcommittee: </strong></label>
                             <%= current_user.subcommittee %>
-                        <label> <strong>Committee Head Contact: </strong></label>
+                        </p>
+                        <p>
+                            <label> <strong>Committee Head Contact: </strong></label>
                             <label>testingemail@tamu.edu</label>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -75,8 +82,9 @@
                 <div class="profile-box-events profile-box">
                     <h1>RSVP'd Events</h1>
                     <div class="content" style="text-align:center;">
-                        <h2>Here is Events Users Have RSVP'd To</h2>
-                        <br>
+                        <p>
+                            <h2>Here is Events Users Have RSVP'd To</h2>
+                        </p>
                     </div>
                 </div>
             </div>
