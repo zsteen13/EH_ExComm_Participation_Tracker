@@ -6,14 +6,10 @@
  * -- PROFILE BOX WRAPPER --
  * This element wraps up all the profile box
  */
- .profile-boxes,
- .information {
-    max-width: 980px;
-    margin: 0 auto;
- }
 .profile-boxes {
     margin-bottom: 3.125em;
     text-align: center;
+    margin: 0 auto;
 }
 
 /*
@@ -22,8 +18,8 @@
  */
 .profile-box {
     border: 1px solid #ddd;
-    margin: 2em 0.5em 2em;
-    padding: 0 0 3em;
+    margin: 2em 2em 2em;
+    padding: 0.5em 0.5em 3em;
     background: #500000;
 }
 
@@ -42,9 +38,10 @@
 .profile-box-points .profile-box-header {
     background: #2c4985;
 }
-
-.profile-box-events .profile-box-header {
-    background: #2c4985;
-}
  */
+
+.profile-box-events .profile-box {
+    overflow:auto;
+}
+
 
