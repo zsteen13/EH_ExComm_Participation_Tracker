@@ -1,6 +1,9 @@
 require_relative "../helpers/activities_helper"
 
 class ActivitiesController < ApplicationController
+
+  before_action :authorized, only: [:create]
+
   def index
     @activity = Activity.all
   end
@@ -26,7 +29,6 @@ class ActivitiesController < ApplicationController
       render('/activities/new')
       return 
     end
-
 
     act = Activity.new
     act.name = params["activity_name"]
