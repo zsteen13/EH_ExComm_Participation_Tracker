@@ -2,17 +2,17 @@ require_relative "../helpers/activities_helper"
 
 class ActivitiesController < ApplicationController
 
-  before_action :authorized, only: [:create]
-
   def index
     @activity = Activity.all
   end
 
   def new
+    is_admin?
     @prev_data = {}
   end
 
   def create
+    is_admin?
     if ! ActivitiesHelper.correct_num_field?(params)
       @error_message = "There were too many parameter or not enough parameters sumbitted"
       @prev_data = params
