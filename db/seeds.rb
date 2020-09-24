@@ -5,6 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require "date"
 
 users = User.create(uin: 000000000, first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', committee: 'internal', subcommittee: 'something', admin: true)
 users = User.create(uin: 123456789, first_name: 'first', last_name: 'last', email: 'test@gmail.com', committee: 'internal', subcommittee: 'something', total_points: 10, admin: true)
+users = User.create(uin: 1, first_name: 'trev', last_name: 'moore', email: 'zsteen13@gmail.com', committee: 'internal', subcommittee: 'something', admin: true)
+
+Activity.create(name: "Meet and Greet", _type: "Social", date: DateTime.new(2020, 8, 23, 11, 0, 0, Rational(-5, 24)), point_value: 4, description: "Meet and greet for the new members", num_rsvp: 0)

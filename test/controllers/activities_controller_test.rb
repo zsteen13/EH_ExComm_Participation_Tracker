@@ -1,9 +1,4 @@
-require 'test_helper'
+require_relative "../../app/helpers/activities_helper"
 
-class ActivitiesControllerTest < ActionDispatch::IntegrationTest
-  test "should get activities" do
-    get activities_activities_url
-    assert_response :success
-  end
-
+describe "Activities Testing" do
 end
