@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.pure-g {
+    display: flex;
+    grid-auto-flow:dense;
+}
+
 /*
  * -- PROFILE BOX WRAPPER --
  * This element wraps up all the profile box
@@ -14,34 +19,27 @@
 
 /*
  * -- PROFILE BOX CLASS  --
- * All four boxes have a profile box class
+ * All three boxes have a profile box class
  */
 .profile-box {
     border: 1px solid #ddd;
-    margin: 2em 2em 2em;
-    padding: 0.5em 0.5em 3em;
+    margin: 2em 1.5em 2em;
+    padding: 0.5em 0.5em 0.5em;
     background: #500000;
 }
 
+.points-box {
+    border: 1px solid #ddd;
+    margin: 2em 1.5em 2em;
+    padding: 0.5em 0.5em 3em;
+    background: #500000;
+}
 /*
- * -- PROFILE BOX CLASS COLORS --
- * Choose a different color based on the type of pricing table.
-
-.profile-box-info .profile-box-header {
-    background: #519251;
+* --- td -----
+* All table contents style
+*/
+.text-style{
+    padding:10em;
+    color:white;
 }
-
-.profile-box-committee .profile-box-header {
-    background: #2c4985;
-}
-
-.profile-box-points .profile-box-header {
-    background: #2c4985;
-}
- */
-
-.profile-box-events .profile-box {
-    overflow:auto;
-}
-
 
