@@ -1,14 +1,99 @@
+<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/grids-responsive-min.css">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
 <div id="main">
     <div class="header">
-        <h1>Profile</h1>
-        <h2>Here is where user points and what not will go...</h2>
+        <h1>My Profile</h1>
     </div>
+    <div class="l-content">
+        <div class="profile-boxes pure-g">
+            <div class="pure-u-1-2">
+                <div class="profile-box">
+                    <h1 style="color:white;">
+                        <label>Member Info </label>
+                        <% if current_user.admin? %>
+                            <i class='fas fa-edit' style='font-size:25px;color:white'></i>
+                        <%end%>
+                    </h1>
+                    <div class="content" style="text-align:center;font-size:20px;">
+                        <p>
+                        <label> <strong>Name: </strong></label>
+                        <%= current_user.first_name %>
+                        <%= current_user.last_name %>
+                        </p>
+                        <p>
+                        <label> <strong>Email: </strong></label>
+                        <%= current_user.email %>
+                        </p>
+                        <p>
+                        <label> <strong>Member Type: </strong></label>
+                        <% if current_user.admin? %>
+                            <label>Admin </label>
+                        <%else%>
+                            <label>Member </label>
+                        <%end%>
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-    <div class="content" style="text-align:center;">
-        <br>
-        <%= current_user.first_name %>
-        <%= current_user.last_name %>
-        <%= current_user.email %>
-        <%= current_user.committee %>
-    </div>
+            <div class="pure-u-1-2">
+                <div class="profile-box">
+                    <h1 style="color:white;">
+                        <label>Committee Info</label>
+                        <% if current_user.admin? %>
+                                <i class='fas fa-edit' style='font-size:25px;color:white'></i>
+                        <%end%>
+                    </h1>
+                    <div class="content" style="text-align:center;font-size:20px;">
+                        <p>
+                        <label> <strong>Committee: </strong></label>
+                        <%= current_user.committee %>
+                        </p>
+                        <p>
+                        <label> <strong>Subcommittee: </strong></label>
+                        <%= current_user.subcommittee %>
+                        </p>
+                        <p>
+                        <label> <strong>Committee Head Contact: </strong></label>
+                        <label>testingemail@tamu.edu </label>
+                        <i class='fas fa-envelope' style='font-size:20px;color:white'></i>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pure-u-1">
+                <div class="points-box">
+                    <h1 style="color:white;">
+                    <label>Points Tracker </label>
+                    <% if current_user.admin? %>
+                        <i class='fas fa-edit' style='font-size:25px;color:white'></i>
+                    <%end%>
+                    </h1>
+                    <table class="pure-table center" style="width:100%;">
+                        <thead>
+                        <tr>
+                            <th>Meeting Points</th>
+                            <th>Event Points</th>
+                            <th>Misc. Points</th>
+                            <th>Total Points</th>
+                        </tr>
+                        </thead>
+                        <tbody class="text-style" style="font-size:30px;">
+                        <tr >
+                            <td><%= current_user.meeting_points%></td>
+                            <td><%= current_user.event_points%></td>
+                            <td><%= current_user.misc_points%></td>
+                            <td><%= current_user.total_points%></td>
+                        </tr>
+                        </a>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div> 
 </div>
