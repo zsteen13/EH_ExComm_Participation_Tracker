@@ -1,7 +1,8 @@
 <div class = "members index">
   <div id="main">
     <div class="header">
-        <h1>Members</h1>
+      <h1>Members</h1>
+      <h2>Howdy <%= current_user.first_name %>, here you can view and edit members.</h2>
     </div>
 
 <div class = "Member detail show content">
@@ -25,25 +26,25 @@
 
         <tr>
             <th>Event Points</th>
-             <td><%= @member.total_points || "0" %> </tb>
+             <td><%= @member.display_total_points%> </tb>
         </tr>
         <tr>
             <th>Meeting Points</th>
-             <td><%= @member.meeting_points || "0" %> </tb>
+             <td><%= @member.display_meeting_points %> </tb>
         </tr>
         <tr>
             <th>Total Points</th>
-             <td><%= @member.event_points || "0"%> </tb>
+             <td><%= @member.display_event_points%> </tb>
         </tr>
         
         <tr>
             <th>Committee</th>
-             <td><%= @member.committee.blank? ? "No assigned committee" : @member.committee%> </tb>
+             <td><%= @member.display_committee%> </tb>
         </tr>
         
         <tr>
             <th>Subcommittee</th>
-             <td><%= @member.subcommittee.blank? ? "No assigned subcommittee" : @member.subcommittee %> </tb>
+             <td><%= @member.display_subcommittee %> </tb>
         </tr>
         
         <tr>

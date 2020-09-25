@@ -2,7 +2,7 @@
   <div id="main">
     <div class="header">
       <h1>Members</h1>
-      <h3>Howdy <%= current_user.first_name %>, here you can view and edit members.</h3>
+      <h2>Howdy <%= current_user.first_name %>, here you can view and edit members.</h2>
     </div>
 
     <div class="content" style="text-align:center;">
@@ -13,9 +13,10 @@
       <div class="table">
         <table summary="member detail view">
           <tr class = "header">
-            <th><%= sortable "Fist name","first_name" %></th>
+            <th><%= sortable "First name","first_name" %></th>
             <th><%= sortable "Last name","last_name" %> </th>
-            <th><%= sortable "UIN","uin" %></th>
+            <th><%= sortable "Committee","committee" %> </th>
+            <th><%= sortable "Subcommittee","subcommittee" %> </th>
             <th><%= sortable "Email","email" %></th>
             <th><%= sortable "Total points","total_points" %></th>
             <th>Actions </th>
@@ -25,9 +26,10 @@
           <tr>
             <td><%= member.first_name %></td>
             <td><%= member.last_name %></td>
-            <td><%= member.uin %></td>
+            <td><%= member.display_committee %></td>
+            <td><%= member.display_subcommittee %></td>
             <td><%= member.email %></td>
-            <td><%= member.total_points %></td>
+            <td><%= member.display_total_points %></td>
             <td class="actions">
               <%= link_to("Profile", member_path(member), :class => 'action show') %>
               <%= link_to("Edit", edit_member_path(member), :class => 'action edit') %>
