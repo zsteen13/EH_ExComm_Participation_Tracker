@@ -2,42 +2,42 @@
   <div id="main">
     <div class="header">
         <h1>Member</h1>
-        <h2>Here are all memebers in EH member point Tracker</h2>
+        <h2>Here are all members in EH member point Tracker</h2>
     </div>
 
     <div class="content" style="text-align:center;">
         <br>
         Howdy <%= current_user.first_name %>
-    </div>
-    <a class="button" href= members/new> Create new member</a>
-    <%= form_for "", url:members_path, role:"search", method: :get do %>
-    <% end %>
-    <div class="table">
-      <table summary="member detail view">
-        <tr class = "header">
-          <th><%= sortable "Fist name","first_name" %></th>
-          <th><%= sortable "Last name","last_name" %> </th>
-          <th><%= sortable "UIN","uin" %></th>
-          <th><%= sortable "Email","email" %></th>
-          <th><%= sortable "Total points","total_points" %></th>
-          <th>Actions </th>
-        </tr>
+      <a class="button" href= members/new> Create new member</a>
+      <%= form_for "", url:members_path, role:"search", method: :get do %>
+      <% end %>
+      <div class="table">
+        <table summary="member detail view">
+          <tr class = "header">
+            <th><%= sortable "Fist name","first_name" %></th>
+            <th><%= sortable "Last name","last_name" %> </th>
+            <th><%= sortable "UIN","uin" %></th>
+            <th><%= sortable "Email","email" %></th>
+            <th><%= sortable "Total points","total_points" %></th>
+            <th>Actions </th>
+          </tr>
 
-        <% @members.each do |member| %>
+          <% @members.each do |member| %>
           <tr>
-              <td><%= member.first_name %></td>
-              <td><%= member.last_name %></td>
-              <td><%= member.uin %></td>
-              <td><%= member.email %></td>
-              <td><%= member.total_points %></td>
-              <td class="actions">
-                <%= link_to("Profile", member_path(member), :class => 'action show') %>
-                <%= link_to("Edit", edit_member_path(member), :class => 'action edit') %>
-                <%= link_to("Delete",delete_member_path(member), :class => 'action delete') %>
+            <td><%= member.first_name %></td>
+            <td><%= member.last_name %></td>
+            <td><%= member.uin %></td>
+            <td><%= member.email %></td>
+            <td><%= member.total_points %></td>
+            <td class="actions">
+              <%= link_to("Profile", member_path(member), :class => 'action show') %>
+              <%= link_to("Edit", edit_member_path(member), :class => 'action edit') %>
+              <%= link_to("Delete",delete_member_path(member), :class => 'action delete') %>
             </td>
           </tr>
           <% end %>
-      </table>
+        </table>
+      </div>
     </div>
   </div>
 </div>
