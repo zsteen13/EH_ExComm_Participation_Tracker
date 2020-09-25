@@ -35,8 +35,10 @@
                             width: 100%;
                         }
                     </style>
-                <!--Button to creat activities -->
-                <a class="pure-button pure-button-primary" href="/activities/new"> Create Activity </a>
+                <!--Button to create activities -->
+                <% unless is_admin? %>
+                  <a class="pure-button pure-button-primary" href="/activities/new"> Create Activity </a>
+                <% end %>
             </div>
             <!--This is where the info for the events will go-->
             <div id="main" class="pure-u-1">

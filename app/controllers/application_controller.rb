@@ -18,6 +18,10 @@ class ApplicationController < ActionController::Base
     end
 
     def is_admin?
-        redirect_to '/welcome' unless current_user.admin?
+        current_user.admin?
+    end
+
+    def admin_only
+        redirect_to '/welcome' unless is_admin?
     end
 end

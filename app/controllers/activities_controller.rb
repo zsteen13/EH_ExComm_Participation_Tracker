@@ -7,12 +7,12 @@ class ActivitiesController < ApplicationController
   end
 
   def new
-    is_admin?
+    admin_only
     @prev_data = {}
   end
 
   def create
-    is_admin?
+    admin_only
     if ! ActivitiesHelper.correct_num_field?(params)
       @error_message = "There were too many parameter or not enough parameters sumbitted"
       @prev_data = params
