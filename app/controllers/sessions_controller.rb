@@ -3,6 +3,9 @@ class SessionsController < ApplicationController
   skip_before_action :authorized, only: [:new, :create, :welcome]
 
   def new
+    # any get request to /login is a a logout
+    session[:user_id] = nil
+    redirect_to '/welcome'
   end
 
   def create

@@ -1,13 +1,12 @@
 <div class = "members index">
   <div id="main">
     <div class="header">
-        <h1>Member</h1>
-        <h2>Here are all members in EH member point Tracker</h2>
+      <h1>Members</h1>
+      <h3>Howdy <%= current_user.first_name %>, here you can view and edit members.</h3>
     </div>
 
     <div class="content" style="text-align:center;">
-        <br>
-        Howdy <%= current_user.first_name %>
+      <br>
       <a class="button" href= members/new> Create new member</a>
       <%= form_for "", url:members_path, role:"search", method: :get do %>
       <% end %>
