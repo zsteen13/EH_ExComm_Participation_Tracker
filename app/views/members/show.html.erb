@@ -1,0 +1,50 @@
+<div class = "members index">
+  <div id="main">
+    <div class="header">
+        <h1>Member</h1>
+        <h2>Here are all members in EH member point Tracker</h2>
+    </div>
+<%= link_to("<<Back to member page",members_path, :class => 'back-link') %>
+
+<div class = "Member detail show content">
+    <h2> Show Member details </h2>
+    <table summary="member detail view">
+        <tr>
+            <th>First Name</th>
+            <td><%= @member.first_name%> </tb>
+        </tr>
+
+        <tr>
+            <th>Last Name</th>
+            <td><%= @member.last_name %> </tb>
+        </tr>
+
+        <tr>
+            <th>Emails</th>
+            <td><%= @member.email %> </tb>
+        </tr>
+
+        <tr>
+            <th>UIN</th>
+            <td><%= @member.uin %> </tb>
+        </tr>
+
+        <tr>
+            <th>Total points</th>
+             <td><%= @member.total_points %> </tb>
+        </tr>
+        <tr>
+            <th>Committee</th>
+             <td><%= @member.committee %> </tb>
+        </tr>
+        <tr>
+            <th>Subcommittee</th>
+             <td><%= @member.subcommittee%> </tb>
+        </tr>
+        <tr>
+            <th>Admin</th>
+             <td><%= @member.admin %> </tb>
+        </tr>
+    </table>
+</div>
+</div>

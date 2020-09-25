@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :activities
   get 'profile/profile'
+
   resources :users, only: [:new, :create]
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
@@ -12,4 +13,11 @@ Rails.application.routes.draw do
   root 'sessions#welcome'
   get 'profile', to: 'profile#profile'
   get 'activities', to: 'activities#activities'
+
+  resources :members do
+    member do
+      get:delete
+    end
+  end
+
 end
