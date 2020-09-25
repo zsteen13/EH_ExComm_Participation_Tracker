@@ -1,15 +1,18 @@
 require_relative "../helpers/activities_helper"
 
 class ActivitiesController < ApplicationController
+
   def index
     @activity = Activity.all
   end
 
   def new
+    is_admin?
     @prev_data = {}
   end
 
   def create
+    is_admin?
     if ! ActivitiesHelper.correct_num_field?(params)
       @error_message = "There were too many parameter or not enough parameters sumbitted"
       @prev_data = params
@@ -26,7 +29,6 @@ class ActivitiesController < ApplicationController
       render('/activities/new')
       return 
     end
-
 
     act = Activity.new
     act.name = params["activity_name"]

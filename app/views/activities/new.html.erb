@@ -27,7 +27,7 @@
                     <textarea name="description" class="pure-input-1-2" placeholder="Description" required><%= @prev_data["description"]%></textarea>
                     <% if @error_message%>
                         <p class="error-message"><%= @error_message%></p>
-                    <%end%>
+                    <% end %>
                     <button type="submit" class="pure-button pure-button-primary">Create</button>
                 </fieldset>
             </form>

@@ -36,9 +36,10 @@
 
         </tbody>
     </table>
-        <br>
-        <h3>(Note: This button is only visible to admins.)</h3>
-        <a class="pure-button pure-button-primary" href="/activities/new">Create Activity</a>
-
+        <% if current_user.admin? %>
+            <br>
+            <h3>(Note: This button is only visible to admins.)</h3>
+            <a class="pure-button pure-button-primary" href="/activities/new">Create Activity</a>
+        <% end %>
     </div>
 </div>
