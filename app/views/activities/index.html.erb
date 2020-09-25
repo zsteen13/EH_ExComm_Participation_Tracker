@@ -1,72 +1,60 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/css/pure/pure-min.css">
-        <!--Pulls jquery from google's services, might be better to download it though -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    </head>
-    <body>
-
-        <div id="layout" class="content pure-g">
-            <!-- Establishes the left side of the view page. It'll be a scrolling section of events-->
-            <div id="list" class="pure-u-1">
-                <!--Loops through the activity data and creates new event-item objects for each set of info -->
-                <% @activity.each do |activity| %>
-                    <div class="event-item pure-g">
-                        <div class="pure-u-3-4"> 
-                            <h5 class="event-type"> <%= activity._type%></h5> 
-                            <h5 class="event-date"><a> <span> <%= activity.date%> </span></a></h5> 
-                            <h4 class="event-name"> <%= activity.name%> </h4> 
-                            <p class="event-desc">
-                                <%= activity.description%>
-                            </p> 
-                            <h5 class="event-points"> Available points: <%= activity.point_value%> </h5>
-                        </div>
-                    </div>
-                <% end %>
-
-                    <style scoped="">
-                        .pure-button {
-                            color: white;
-                            border-radius: 4px;
-                            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-                            width: 100%;
-                        }
-                    </style>
-                <!--Button to create activities -->
-                <% unless is_admin? %>
-                  <a class="pure-button pure-button-primary" href="/activities/new"> Create Activity </a>
-                <% end %>
-            </div>
-            <!--This is where the info for the events will go-->
-            <div id="main" class="pure-u-1">
-                <div class="event-content">
-                    
+<div id="layout" class="content pure-g">
+    <!-- Establishes the left side of the view page. It'll be a scrolling section of events-->
+    <div id="list" class="pure-u-1">
+        <!--Loops through the activity data and creates new event-item objects for each set of info -->
+        <% @activity.each do |activity| %>
+            <div class="event-item pure-g">
+                <div class="pure-u-3-4"> 
+                    <h5 class="event-type"> <%= activity._type%></h5> 
+                    <h5 class="event-date"><a> <span> <%= activity.date%> </span></a></h5> 
+                    <h4 class="event-name"> <%= activity.name%> </h4> 
+                    <p class="event-desc">
+                        <%= activity.description%>
+                    </p> 
+                    <h5 class="event-points"> Available points: <%= activity.point_value%> </h5>
                 </div>
             </div>
+        <% end %>
+
+            <style scoped="">
+                .pure-button {
+                    color: white;
+                    border-radius: 4px;
+                    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+                    width: 100%;
+                }
+            </style>
+        <!--Button to create activities -->
+        <% unless is_admin? %>
+          <a class="pure-button pure-button-primary" href="/activities/new"> Create Activity </a>
+        <% end %>
+    </div>
+    <!--This is where the info for the events will go-->
+    <div id="main" class="pure-u-1">
+        <div class="event-content">
+            
         </div>
-    <script>
-        /*
-            Activates when an event-item object is clicked. It will then generate the html in the main body
-            containing the data of the event-item object clicked.
-        */
-        $('.event-item').on("click", function(){
-            //var dataId = $(this).attr("h5");
-            //$(this).css("background","#eee");
-            var container = $(this).find(".pure-u-3-4");
-            var name = container.find(".event-name");
-            var type = container.find(".event-type");
-            var date = container.find(".event-date");
-            var desc = container.find(".event-desc");
-            $("div.event-content").html(function(){
-                return '<div class="event-content-header pure-g"> <div class="pure-u-1-2"> <h1 class="event-content-title">'+ name.text() + '</h1> <p class="event-content-subtitle"> <span> ' + type.text() +'</span> </p> <p class="event-content-subtitle"> <span> ' + date.text() +'</span> </p> </div> </div> <div class="event-content-body"> ' + desc.text() + '</div>';
-            });
+    </div>
+</div>
+<script>
+    /*
+        Activates when an event-item object is clicked. It will then generate the html in the main body
+        containing the data of the event-item object clicked.
+    */
+    $('.event-item').on("click", function(){
+        //var dataId = $(this).attr("h5");
+        //$(this).css("background","#eee");
+        var container = $(this).find(".pure-u-3-4");
+        var name = container.find(".event-name");
+        var type = container.find(".event-type");
+        var date = container.find(".event-date");
+        var desc = container.find(".event-desc");
+        $("div.event-content").html(function(){
+            return '<div class="event-content-header pure-g"> <div class="pure-u-1-2"> <h1 class="event-content-title">'+ name.text() + '</h1> <p class="event-content-subtitle"> <span> ' + type.text() +'</span> </p> <p class="event-content-subtitle"> <span> ' + date.text() +'</span> </p> </div> </div> <div class="event-content-body"> ' + desc.text() + '</div>';
         });
-    </script>
-    </body>
-</html>
+    });
+</script>
+
 <style>
 /*
  * -- BASE STYLES --
