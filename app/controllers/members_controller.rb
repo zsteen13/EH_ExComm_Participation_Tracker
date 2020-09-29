@@ -1,5 +1,8 @@
 class MembersController < ApplicationController
+  before_action :admin_only
+
   helper_method :sort_column , :sort_direction
+  
   def index
     @members = User.order(sort_column + " " + sort_direction)
   end
@@ -31,6 +34,8 @@ class MembersController < ApplicationController
     if @member.update(member_params)
       redirect_to(member_path(@member))
     else
+      flash.alert = "An Error occured. Please check your inputs and try again.\n"
+      @member.errors.each{|attr,msg| flash.alert += "#{attr} \t\t #{msg}\n" }
       render('edit')
     end
   end

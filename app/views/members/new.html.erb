@@ -1,7 +1,7 @@
 <div id="main">
   <div class="header">
-      <h1>Member</h1>
-      <h2>Here are all members in EH member point Tracker</h2>
+      <h1>Members</h1>
+      <h2>Howdy <%= current_user.first_name %>, here you can view and edit members.</h2>
   </div>
   <%= link_to("<< Back to List", members_path, :class => 'back-link') %>
     <div class="new member content">
@@ -11,36 +11,39 @@
         <table summary="Subject form fields">
             <tr>
                 <th>First Name</th>
-                <td><%= f.text_field(:first_name) %></td>
+                <td><%= f.text_field :first_name %></td>
             </tr>
 
             <tr>
                 <th>Last Name</th>
-                <td><%= f.text_field(:last_name) %></td>
+                <td><%= f.text_field :last_name %></td>
+            </tr>
+            
+            <tr>
+                <th>UIN</th>
+                <td><%= f.text_field :uin %></td>
             </tr>
 
             <tr>
                 <th>Email</th>
-                <td><%= f.text_field(:email) %></td>
+                <td><%= f.text_field :email %></td>
             </tr>
 
             <tr>
                 <th>Committee</th>
-                <td><%= f.text_field(:committee) %></td>
+                <!--This should be a dropdown in the future-->
+                <td><%= f.text_field :committee %></td>
             </tr>
 
             <tr>
                 <th>Subcommittee</th>
-                <td><%= f.text_field(:subcommittee) %></td>
+                <!--This should be a dropdown in the future-->
+                <td><%= f.text_field :subcommittee %></td>
             </tr>
 
             <tr>
-                <th>Total Points</th>
-                <td><%= f.text_field(:total_points) %></td>
-            </tr>
-            <tr>
                 <th>Admin</th>
-                <td><%= f.text_field(:admin) %></td>
+                <td><%= f.check_box :admin %></td>
             </tr>
 
         </table>

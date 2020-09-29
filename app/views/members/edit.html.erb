@@ -1,8 +1,14 @@
 <div id="main">
   <div class="header">
-      <h1>Member</h1>
-      <h2>Here are all members in EH member point Tracker</h2>
+      <h1>Members</h1>
+      <h2>Howdy <%= current_user.first_name %>, here you can view and edit members.</h2>
   </div>
+  <% flash.each do |type, msg| %>
+    <div style="color: red">
+        <%= msg %>
+      </div>
+      <%flash.alert = ""%>
+    <% end %>
     <div class="content new member">
       <%= link_to("<< Back to List", members_path, :class => 'back-link') %>
       <h2>Edit Member information </h2>
@@ -10,38 +16,39 @@
       <%= form_for(@member, :url => member_path(@member), :method =>'patch') do |f| %>
         <table summary="Subject form fields">
             <tr>
+                <th>UIN</th>
+                <td><%= @member.uin %></td>
+            </tr>
+
+            <tr>
                 <th>First Name</th>
-                <td><%= f.text_field(:first_name) %></td>
+                <td><%= f.text_field :first_name %></td>
             </tr>
 
             <tr>
                 <th>Last Name</th>
-                <td><%= f.text_field(:last_name) %></td>
+                <td><%= f.text_field :last_name %></td>
             </tr>
 
             <tr>
                 <th>Email</th>
-                <td><%= f.text_field(:email) %></td>
+                <td><%= f.text_field :email %></td>
             </tr>
 
             <tr>
                 <th>Committee</th>
-                <td><%= f.text_field(:committee) %></td>
+                <td><%= f.text_field :committee %></td>
             </tr>
 
             <tr>
                 <th>Subcommittee</th>
-                <td><%= f.text_field(:subcommittee) %></td>
+                <td><%= f.text_field :subcommittee %></td>
             </tr>
 
             <tr>
-                <th>Total Points</th>
-                <td><%= f.text_field(:total_points) %></td>
-            </tr>
-            
-            <tr>
                 <th>Admin</th>
-                <td><%= f.text_field(:admin) %></td>
+                <% # An admin can't undo their admin status%>
+                <td><%= f.check_box :admin, disabled: (@member.id == session[:user_id] ? true : nil) %></td>
             </tr>
 
         </table>
