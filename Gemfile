@@ -24,6 +24,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Used to create datetime objects for the activity table
 gem 'date'
+# Used to validate all emails are valid
+gem 'email_validator'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

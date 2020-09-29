@@ -4,3 +4,8 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+
+# rails db:reset does not apply new migrations
+task :resetdb do
+  sh "rails db:drop && rails db:create && rails db:migrate && rails db:seed"
+end
