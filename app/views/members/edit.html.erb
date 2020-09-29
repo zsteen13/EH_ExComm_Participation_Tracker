@@ -16,13 +16,18 @@
       <%= form_for(@member, :url => member_path(@member), :method =>'patch') do |f| %>
         <table summary="Subject form fields">
             <tr>
+                <th>UIN</th>
+                <td><%= @member.uin %></td>
+            </tr>
+
+            <tr>
                 <th>First Name</th>
-                <td><%= f.text_field :first_name, disabled: true %></td>
+                <td><%= f.text_field :first_name %></td>
             </tr>
 
             <tr>
                 <th>Last Name</th>
-                <td><%= f.text_field :last_name, disabled: true  %></td>
+                <td><%= f.text_field :last_name %></td>
             </tr>
 
             <tr>
