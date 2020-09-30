@@ -40,3 +40,5 @@ log/development.log
 db/migrate/.DS_Store
 public/.DS_Store
 public/uploads/*
+spec/.DS_Store
+spec/data/.DS_Store

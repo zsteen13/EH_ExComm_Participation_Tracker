@@ -9,11 +9,9 @@
 </head>
 <body>
 
-
 <%= form_with(url: {action: :create}, multipart: true) do %>
   <%= file_field_tag 'new_users' %>
   <%= submit_tag("Upload") %>
-
 <% end %>
     
 </body>

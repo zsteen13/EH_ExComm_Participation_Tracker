@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :activities
+  resources :activities, :bulk_add_users
+  get "bulk_add_users/confirm", to: "bulk_add_users#show"
   get 'profile/profile'
 
   resources :users, only: [:new, :create]
