@@ -45,7 +45,21 @@
             </tbody>
         </table>
     <a class="pure-button" href="/bulk_add_users/confirmed">Confirm</a>
+    <% else %>
+        <h1>Parsing Error</h1>
+        <% @users.each  do |user| %>
+            <% if user.errors.messages != {}%>
+                <p>For member with the UIN: <b><%= user.uin %></b> the first name: <b><%= user.first_name %></b> and the last name: <b><%= user.last_name%></b> the following errors occured: </p> 
+                <ul>
+                    <% user.errors.messages.each do |error|%>
+                        <li> the field <%= error[0] %> <%= error[1][0] %> </li>
+                    <% end %>
+                </ul>
+            <% end %>
+        <% end %>
+        <p>Please find this user in the table and ensure that there info is input correctly</p>
     <% end %>
+
     
 </body>
 </html>
