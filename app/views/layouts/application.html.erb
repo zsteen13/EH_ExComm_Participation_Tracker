@@ -29,10 +29,8 @@
             <a class="pure-menu-heading" href="/">EH</a>
             <% if logged_in? %>
             <ul class="pure-menu-list">
-                <li class="pure-menu-item"><a href="/welcome" class="pure-menu-link">Home</a></li>
                 <li class="pure-menu-item"><a href="/profile" class="pure-menu-link">Profile</a></li>
                 <li class="pure-menu-item"><a href="/activities" class="pure-menu-link">Activities</a></li>
-                <li class="pure-menu-item"><a href="/contact" class="pure-menu-link">Contact</a></li>
                 <% if current_user.admin? %>
                   <li class="pure-menu-item"><a href="/members" class="pure-menu-link">Members</a></li>
                 <% end %>
