@@ -7,6 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require "date"
 
+# Admin and non Admin users for rspec and capybara testing
+users = User.create(uin: 11111111, first_name: 'Non Admin', last_name: 'Test', email: 'nonadmintest@gmail.com', committee: 'internal', subcommittee: 'None', admin: false)
+users = User.create(uin: 22222222, first_name: 'Admin', last_name: 'Test', email: 'admintest@gmail.com', committee: 'internal', subcommittee: 'None', admin: true)
+
+
 users = User.create(uin: 000000000, first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', committee: 'internal', subcommittee: 'something', admin: true)
 users = User.create(uin: 123456789, first_name: 'first', last_name: 'last', email: 'test@gmail.com', committee: 'internal', subcommittee: 'something', total_points: 10, admin: true)
 users = User.create(uin: 1, first_name: 'trev', last_name: 'moore', email: 'zsteen13@gmail.com', committee: 'internal', subcommittee: 'something', admin: true)

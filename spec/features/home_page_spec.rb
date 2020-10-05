@@ -1,7 +1,11 @@
-feature 'Home Page' do
+require 'rails_helper'
+require 'pp' # pretty printer, outputs to console
 
-  scenario 'visit not logged in' do
-    visit "/"
-    expect(page.current_path).to have_title "Welcome to the EH Excom Member Point Tracker"
+feature 'Home Page'  do 
+  include_context 'when authenticated as member' # support context to log in a user
+  
+  scenario 'visit logged in' do
+    expect(page).to have_current_path '/welcome'
+    expect(page).to have_content "Let's Speak Some Latin"
   end
 end
