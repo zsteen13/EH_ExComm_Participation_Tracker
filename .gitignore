@@ -42,3 +42,6 @@ public/.DS_Store
 public/uploads/*
 spec/.DS_Store
 spec/data/.DS_Store
+app/javascript/.DS_Store
+.DS_Store
+app/.DS_Store

@@ -12,10 +12,22 @@ class BulkAddUsersController < ApplicationController
   end
 
   def show
-    filename = Rails.root.join('public', 'uploads', params[:filename])
+    @file = params[:filename]
+
+    filename = Rails.root.join('public', 'uploads', @file)
     puts "\n\n#{filename}\n\n"
+    @numCols = 11
+    @correct_num_cols, @row, @col = BulkAddUsersHelper.checkNumColumns(filename, @numCols)
     @users, @valid = BulkAddUsersHelper.parseData(filename)
   end
 
+  def confirmed
+    @file = params[:filename]
+    filename = Rails.root.join('public', 'uploads', @file)
+    users, valid = BulkAddUsersHelper.parseData(filename)
+    BulkAddUsersHelper.saveUsers(users)
+    @users = User.all
+
+    redirect_to('/members')
   end
-  
+end

@@ -23,6 +23,8 @@ module BulkAddUsersHelper
         csv = CSV.read(filename)        
         users = []
 
+        valid = true
+
         upperBound = csv.count - 1
         lowerBound = 1 # loses the title info
         for i in lowerBound..upperBound
@@ -43,25 +45,31 @@ module BulkAddUsersHelper
             users.append(user)
 
             if user.invalid?
-                return users, false
+                valid = false
             end
         end
 
-        return users, true
+        return users, valid
 
     end
 
-    def BulkAddUsersHelper.checkNumColumns(filename)
+    def BulkAddUsersHelper.checkNumColumns(filename, numCols = 11)
         csv = CSV.read(filename)        
 
-        numCols = 11
         upperBound = csv.count - 1
         retval = true
         for i in 0..upperBound
-            value = csv[i].count == numCols
-            retval = value & retval
+            if csv[i].count != numCols
+                return false, i, csv[i].count 
+            end
         end
 
-        return retval
+        return retval, 0, 0
+    end
+    
+    def BulkAddUsersHelper.saveUsers(users)
+        users.each do |user|
+            user.save()
+        end
     end
 end

@@ -1,13 +1,9 @@
 class User < ApplicationRecord
   # supplied by email_validator gem
-  validates_inclusion_of:admin, in: [true, false]  # TODO this does not validate whether admin is a bool or not
+
   validates :email, email: true
   validates :uin, :total_points, :event_points, :meeting_points, :misc_points, numericality: { only_integer: true }
   validates :first_name, :last_name, :committee, :subcommittee, presence: true
-
-  def admin_is_bool?
-    false
-  end
 
   def email=(e)
     e = e.strip if e

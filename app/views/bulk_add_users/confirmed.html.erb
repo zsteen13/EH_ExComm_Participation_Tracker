@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+</head>
+<body>
+    <h2>Current Data in Table</h2>
+    <table class="pure-table">
+        <thead>
+            <tr>
+                <th>UIN</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Committee</th>
+                <th>Subcommittee</th>
+                <th>Point Total</th>
+                <th>Meeting Points</th>
+                <th>Event Points</th>
+                <th>Misc Points</th>
+                <th>Admin</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% @users.each  do |user| %>
+            <tr>
+                <td><%= user.uin %></td>
+                <td><%= user.first_name %></td>
+                <td><%= user.last_name %></td>
+                <td><%= user.email %></td>
+                <td><%= user.committee %></td>
+                <td><%= user.subcommittee %></td>
+                <td><%= user.total_points %></td>
+                <td><%= user.meeting_points %></td>
+                <td><%= user.event_points %></td>
+                <td><%= user.misc_points %></td>
+                <td><%= user.admin %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+    <a class="button" href= /members> Create new member</a>
+
+       
+</body>
+</html>
