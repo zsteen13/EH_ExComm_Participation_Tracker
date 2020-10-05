@@ -8,17 +8,17 @@ module BulkAddUsersHelper
     end
 
     def BulkAddUsersHelper.parseData(filename)
-        uin_col = 0
-        first_name_col = 1
-        last_name_col = 2
-        email_col = 3
-        committee_col = 4
-        subcommittee_col = 5
-        total_point_col = 6
-        meeting_point_col = 7 
-        event_point_col = 8 
-        misc_point_col = 9 
-        admin_col = 10
+        UIN_COL = 0
+        FIRST_NAME_COL = 1
+        LAST_NAME_COL = 2
+        EMAIL_COL = 3
+        COMMITTEE_COL = 4
+        SUBCOMMITTE_COL = 5
+        TOTAL_POINTS_COL = 6
+        MEETING_POINTS_COL = 7 
+        EVENT_POINTS_COL = 8 
+        MISC_POINTS_COL = 9 
+        ADMIN_COL = 10
         
         csv = CSV.read(filename)        
         users = []
@@ -29,17 +29,17 @@ module BulkAddUsersHelper
         lowerBound = 1 # loses the title info
         for i in lowerBound..upperBound
             user = User.new(
-                uin:csv[i][uin_col],
-                first_name:csv[i][first_name_col],
-                last_name:csv[i][last_name_col],
-                email:csv[i][email_col],
-                committee:csv[i][committee_col],
+                uin:csv[i][UIN_COL],
+                first_name:csv[i][FIRST_NAME_COL],
+                last_name:csv[i][LAST_NAME_COL],
+                email:csv[i][EMAIL_COL],
+                committee:csv[i][COMMITTEE_COL],
                 subcommittee:csv[i][subcommittee_col],
-                total_points:csv[i][total_point_col],
-                meeting_points:csv[i][meeting_point_col],
-                event_points:csv[i][event_point_col],
-                misc_points:csv[i][misc_point_col],
-                admin:csv[i][admin_col]
+                total_points:csv[i][TOTAL_POINTS_COL],
+                meeting_points:csv[i][MEETING_POINTS_COL],
+                event_points:csv[i][EVENT_POINTS_COL],
+                misc_points:csv[i][MISC_POINTS_COL],
+                admin:csv[i][ADMIN_COL]
             )
 
             users.append(user)

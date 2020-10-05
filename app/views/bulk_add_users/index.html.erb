@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/grids-responsive-min.css">
-
-</head>
-<body>
 <div class='center'>
   <h1>Bulk File Upload</h1>
   <p>Attach CSV file with new users.</p>
@@ -30,14 +20,5 @@
     <%= file_field_tag 'new_users' %>
     <%= submit_tag "Upload", :class => 'pure-button' %>
   <% end %>
-
   <%= javascript_pack_tag 'dropzone.js' %>
-
-  
 </div>
-
-    
-</body>
-</html>
-
-

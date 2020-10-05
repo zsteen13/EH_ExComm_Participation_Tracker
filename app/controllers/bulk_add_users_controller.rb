@@ -15,7 +15,6 @@ class BulkAddUsersController < ApplicationController
     @file = params[:filename]
 
     filename = Rails.root.join('public', 'uploads', @file)
-    puts "\n\n#{filename}\n\n"
     @numCols = 11
     @correct_num_cols, @row, @col = BulkAddUsersHelper.checkNumColumns(filename, @numCols)
     @users, @valid = BulkAddUsersHelper.parseData(filename)
