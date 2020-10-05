@@ -38,8 +38,3 @@ node_modules
 log/development.log
 
 db/migrate/.DS_Store
-
-# Ignore Zac's local config
-Gemfile
-Genfile.lock
-config/database.yml
