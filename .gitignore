@@ -37,6 +37,6 @@ yarn-debug.log*
 node_modules
 log/development.log
 
-db/migrate/.DS_Store
-
 coverage
+**/.DS_Store
+public/uploads/*.csv
