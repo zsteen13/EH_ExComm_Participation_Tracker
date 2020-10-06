@@ -8,7 +8,7 @@
     <div class="content" style="text-align:center;">
       <br>
       <a class="button" href= members/new> Create new member</a>
-      <% if !is_admin? %>
+      <% if is_admin? %>
             <a class="button" href= /bulk_add_users>Bulk Add Users</a>
         <% end %>
 
