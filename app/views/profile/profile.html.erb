@@ -24,6 +24,10 @@
                         <%= current_user.last_name %>
                         </p>
                         <p>
+                        <label> <strong>UIN: </strong></label>
+                        <%= current_user.uin %>
+                        </p>
+                        <p>
                         <label> <strong>Email: </strong></label>
                         <%= current_user.email %>
                         </p>
@@ -58,6 +62,8 @@
                         </p>
                         <p>
                         <label> <strong>Committee Head Contact: </strong></label>
+                        </p>
+                        <p>
                         <label>testingemail@tamu.edu </label>
                         <i class='fas fa-envelope' style='font-size:20px;color:white'></i>
                         </p>
@@ -67,12 +73,13 @@
 
             <div class="pure-u-1">
                 <div class="points-box">
-                    <h1 style="color:white;">
-                    <label>Points Tracker </label>
-                    <% if current_user.admin? %>
+                        <h1 style="color:white;">
+                        <label>Points Tracker </label>
+                        <% if current_user.admin? %>
                         <i class='fas fa-edit' style='font-size:25px;color:white'></i>
-                    <%end%>
-                    </h1>
+                        <%end%>
+                        </h1>
+                        <a class="pure-button pure-button-primary" href="/profile/attendance" style="margin-bottom: 20px;"> View Activities Attended </a>
                     <table class="pure-table center" style="width:100%;">
                         <thead>
                         <tr>
