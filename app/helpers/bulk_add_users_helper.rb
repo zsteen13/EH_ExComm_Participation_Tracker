@@ -39,14 +39,14 @@ module BulkAddUsersHelper
         meeting_points: csv[i][MEETING_POINTS_COL_CONST],
         event_points: csv[i][EVENT_POINTS_COL_CONST],
         misc_points: csv[i][MISC_POINTS_COL_CONST],
-        admin: csv[i][ADMIN_COL_CONST],
+        admin: csv[i][ADMIN_COL_CONST]
       )
-
-      users.append(user)
 
       if user.invalid?
         valid = false
       end
+
+      users.append(user)
     end
 
     return users, valid
