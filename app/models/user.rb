@@ -4,6 +4,11 @@ class User < ApplicationRecord
   validates :uin, :total_points, :event_points, :meeting_points, :misc_points, numericality: { only_integer: true }
   validates :first_name, :last_name, :committee, :subcommittee, presence: true
 
+  def initialize(args = nil)
+    args[:admin] = (args[:admin] == "true" || args[:admin] == true) ? true : false
+    super
+  end
+
   def email=(e)
     e = e.strip if e
     super(e)
