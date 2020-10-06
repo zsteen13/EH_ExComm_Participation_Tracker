@@ -9,7 +9,7 @@ module BulkAddUsersHelper
 
   UIN_COL_CONST = 0
   FIRST_NAME_COL_CONST = 1
-  LAST_NAME_CO_CONST = 2
+  LAST_NAME_COL_CONST = 2
   EMAIL_COL_CONST = 3
   COMMITTEE_COL_CONST = 4
   SUBCOMMITTE_COL_CONST = 5
@@ -29,7 +29,7 @@ module BulkAddUsersHelper
     lowerBound = 1 # loses the title info
     for i in lowerBound..upperBound
       user = User.new(
-        uin: csv[i][UIN_COL],
+        uin: csv[i][UIN_COL_CONST],
         first_name: csv[i][FIRST_NAME_COL_CONST],
         last_name: csv[i][LAST_NAME_COL_CONST],
         email: csv[i][EMAIL_COL_CONST],
