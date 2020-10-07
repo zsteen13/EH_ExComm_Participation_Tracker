@@ -4,7 +4,7 @@
         <h1>Activities</h1>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <div id="layout" class="content pure-g">
+    <div id="base" class="contents pure-g">
         <!-- Establishes the left side of the view page. It'll be a scrolling section of events-->
         <div id="list" class="pure-u-1">
             <!--Loops through the activity data and creates new event-item objects for each set of info -->
@@ -29,7 +29,7 @@
             <% end%>
         </div>
         <!--This is where the info for the events will go-->
-        <div id="main" class="pure-u-1 pure-u-lg" style="width:100%;">
+        <div id="main" class="pure-u-1 pure-u-lg pure-u-xl" style="width:100%;">
             <div class="event-content">
                 <!--Not sure exactly how this works and .first didn't but well I have this.-->
                 <% @activity.find() do |activity| %>
@@ -95,15 +95,22 @@ a {
 
 
 /*
- * -- LAYOUT STYLES --
- * This layout consists of three main elements, `#nav` (navigation bar), `#list` (email list), and `#main` (email content). All 3 elements are within `#layout`
+ * -- base STYLES --
+ * This base consists of three main elements, `#nav` (navigation bar), `#list` (email list), and `#main` (email content). All 3 elements are within `#base`
  */
-#layout, #nav, #list, #main {
+#base, #nav, #list, #main {
     margin: 0;
     margin-right:auto;
     padding: 0;
 
 }
+.contents{
+    margin: 0 auto;
+    padding: 0 2em;
+    margin-bottom: 50px;
+    line-height: 1.6em;
+}
+
 /* Event Item Styles */
 .event-item {
     padding: 0.9em 1em;
@@ -218,13 +225,13 @@ Might want this for some other thing
  */
 @media (min-width: 768px) {
 
-    /* Move the layout over so we can fit the nav + list in on the left */
-    #layout {
+    /* Move the base over so we can fit the nav + list in on the left */
+    #base {
         padding-left:250px; /* "left col (nav + list)" width */
         position: relative;
     }
 
-    #layout .header{
+    #base .header{
         margin-left: -250px;
         padding-left: 182px;
         padding-top: 20px;
@@ -243,8 +250,8 @@ Might want this for some other thing
 
     #list {
         margin-top: 115px;
-        margin-left: -350px;
-        width: 83%;
+        margin-left: -250px;
+        width: 84%;
         height: 28%;
         bottom: 90%;
         border-bottom: 1px solid #ddd;
@@ -277,8 +284,6 @@ Might want this for some other thing
 
     /* This will take up the entire height, and be a little thinner */
     #list {
-        margin-left: -350px;
-        margin-top: 115px;
         width:350px;
         height: auto;
         bottom: 0;
@@ -289,18 +294,13 @@ Might want this for some other thing
     #main {
         position: static;
         margin: 0;
+        margin-left:100px;
         padding: 0;
         right:0;
         width:auto;
     }
 
-    #layout .header{
-        margin-left: -250px;
-        padding-left: 182px;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        justify-content: center;
-    }
+    
     .pure-button{
         width: 100%;
     }
