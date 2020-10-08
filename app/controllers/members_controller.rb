@@ -1,7 +1,7 @@
 class MembersController < ApplicationController
   before_action :admin_only
 
-  helper_method :sort_column , :sort_direction, :threshold_point
+  helper_method :sort_column , :sort_direction 
 
   def index
     @members = User.order(sort_column + " " + sort_direction)
