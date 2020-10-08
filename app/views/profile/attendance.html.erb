@@ -27,7 +27,6 @@
                                 <td>October 18, 2020</td>
                                 <td>15</td>
                             </tr>
-                            
                         <% @attended.each do |attended| %>
                             <tr>
                                 <td><%= Activity.find(attended.activity_id).name %></td>
@@ -65,3 +64,4 @@
         background:#f6f6f6;
     }
 </style>
+
