@@ -31,7 +31,7 @@
             <ul class="pure-menu-list">
                 <li class="pure-menu-item"><a href="/profile" class="pure-menu-link">Profile</a></li>
                 <li class="pure-menu-item"><a href="/activities" class="pure-menu-link">Activities</a></li>
-                <% if current_user.admin? %>
+                <% if is_admin? %>
                   <li class="pure-menu-item"><a href="/members" class="pure-menu-link">Members</a></li>
                 <% end %>
             </ul>

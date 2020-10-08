@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe MembersController do
+RSpec.describe MembersController, type: :controller do
 
   describe 'logout' do
     
@@ -40,7 +40,12 @@ describe MembersController do
   describe 'Not logged in' do
     it 'Sends the user to the login screen' do
       visit '/members'
-
     end
   end
+
+  it "index should call appropriate method" do
+    # get :index
+    # assigns(:members).should_not be_nil
+  end
+
 end

@@ -6,6 +6,12 @@ require File.expand_path('../config/environment', __dir__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+# Coverage report generator
+require 'simplecov'
+SimpleCov.start
+# filter out support specs
+SimpleCov.add_filter 'spec/support'
+
 require 'capybara/rails'
 
 require 'rails/test_help'
@@ -37,11 +43,11 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
-
   # This file is pretty intimidating.
   # this line makes SpecTestHelper methods available within all controller specs
   # specs in the controller directory have type controller.
   config.include SpecTestHelper, :type => :controller
+  
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

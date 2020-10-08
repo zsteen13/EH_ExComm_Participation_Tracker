@@ -7,6 +7,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'rails', '~> 6.0.3', '>= 6.0.3.3'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
+# Use SQL for local dev, Zac's machine
+#gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
@@ -22,10 +24,16 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# For testing
+gem 'rails-controller-testing'
+
 # Used to create datetime objects for the activity table
 gem 'date'
 # Used to validate all emails are valid
 gem 'email_validator'
+
+# Used for test coverage reporting
+gem 'simplecov', require: false, group: :test
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -36,8 +44,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'rspec-rails'
-
 end
 
 group :development do
