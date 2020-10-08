@@ -46,6 +46,13 @@
             </tr>
 
             <tr>
+                <th>Total_points</th>
+                <td><%= f.text_field :total_points %></td>
+            </tr>
+
+
+
+            <tr>
                 <th>Admin</th>
                 <% # An admin can't undo their admin status%>
                 <td><%= f.check_box :admin, disabled: (@member.id == session[:user_id] ? true : nil) %></td>

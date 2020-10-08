@@ -1,14 +1,20 @@
 class MembersController < ApplicationController
   before_action :admin_only
 
-  helper_method :sort_column , :sort_direction
-  
+  helper_method :sort_column , :sort_direction, :threshold_point
+
   def index
     @members = User.order(sort_column + " " + sort_direction)
   end
 
+  def show_threshold_points
+    @members = User.where("total_points >= ?", params[:search])
+  end
+
+
   def show
     @member = User.find(params[:id])
+
   end
 
   def new
@@ -53,12 +59,13 @@ class MembersController < ApplicationController
 
     private
     def member_params
-        params.require(:user).permit(:first_name, :last_name, :uin, :email, :total_points, :committee, :subcommittee,:admin)
+        params.require(:user).permit(:first_name, :last_name, :uin, :email, :total_points, :committee, :subcommittee,:admin,)
     end
 
     def sort_column
       User.column_names.include?(params[:sort]) ? params[:sort] : "first_name"
     end
+
 
     def sort_direction
       %w[asc desc].include?(params[:direction]) ? params[:direction] :"asc"

@@ -16,8 +16,15 @@ Rails.application.routes.draw do
 
   resources :members do
     member do
+
       get:delete
     end
+    collection do
+      get 'show_threshold_points'
+    end
   end
+
+
+
 
 end
