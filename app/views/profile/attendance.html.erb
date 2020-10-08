@@ -13,7 +13,7 @@
             <div class="pure-u-1">
                 <a class="pure-button pure-button-primary" href="/profile/" > Return to Profile </a>
                 <div class="profile-box">
-                <table class="pure-table center" style="width:100%;background-color:white;">
+                <table class="pure-table" style="width:100%;background-color:white;">
                         <thead>
                         <tr>
                             <th>Event Name</th>
@@ -22,13 +22,12 @@
                         </tr>
                         </thead>
                         <tbody class="text-style" style="font-size:30px;color:black;">
-                            <!--
                             <tr>
                                 <td>Club Meeting</td>
                                 <td>October 18, 2020</td>
                                 <td>15</td>
                             </tr>
-                            -->
+                            
                         <% @attended.each do |attended| %>
                             <tr>
                                 <td><%= Activity.find(attended.activity_id).name %></td>
