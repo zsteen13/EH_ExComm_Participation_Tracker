@@ -14,7 +14,6 @@ users = User.create!(uin: 22222222, first_name: 'Admin', last_name: 'Test', emai
 
 users = User.create!(uin: 000000000, first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', committee: 'internal', subcommittee: 'something', total_points:0, event_points:0, meeting_points:0, misc_points:0, admin: true)
 
-
 users = User.create!(uin: 123456789, first_name: 'first', last_name: 'last', email: 'test@gmail.com', committee: 'internal', subcommittee: 'something', total_points:0, event_points:0, meeting_points:0, misc_points:0, admin: true)
 
 users = User.create!(uin: 1, first_name: 'trev', last_name: 'moore', email: 'zsteen13@gmail.com', committee: 'internal', subcommittee: 'something', total_points:0, event_points:0, meeting_points:0, misc_points:0, admin: true)
@@ -35,3 +34,4 @@ UserToActivity.create(uin: 111111111, activity_id: activity2.id)
 UserToActivity.create(uin: 123456789, activity_id: activity3.id)
 UserToActivity.create(uin: 111111111, activity_id: activity3.id)
 UserToActivity.create(uin: 222222222, activity_id: activity2.id)
+
