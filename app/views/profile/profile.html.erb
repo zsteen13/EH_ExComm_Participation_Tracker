@@ -29,6 +29,10 @@
                         </div>
                         <div class="content">
                             <p>
+                            <label> <strong>UIN: </strong></label>
+                                <%= current_user.uin %>
+                            </p>
+                            <p>
                             <label> <strong>Email: </strong></label>
                             <a><%= current_user.email %></a>
                             </p>
@@ -56,9 +60,10 @@
                         </div>
                     </div>
 
-                    <div class="profile-points">
-                      <h2 style="font-size:30px;font-family: 'Roboto', Sans-Serif;color:#003C71;margin:0;padding:.5em;text-align: left;"> Points </h2>
+                    <div id="points" class="profile-points">
                         <div class="point-title">
+                            <h2 class="lefto"> Points </h2>
+                            <a class="pure-button pure-button-primary righto" href="/profile/attendance" > View Activities Attended </a>
                             <div class="left">
                                 <h2>Total points</h2>
                                 <p style="text-align: center;font-size: 25px"> <%= current_user.total_points%></p>
@@ -83,7 +88,6 @@
                             <%= current_user.misc_points%>
                             </p>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -92,6 +96,16 @@
 
         </div>
     </div> 
+    <script>
+        function view_activities(){
+            document.getElementById("points").innerHTML = '<div class="point-title"> <h2 class="lefto" style="font-size:30px;font-family: "Roboto", Sans-Serif;color:#003C71;margin:0;padding:.5em;text-align: left;"> Activities </h2> <a class="pure-button pure-button-primary righto" onclick="view_points()" > View Points </a></div> <div class="pure-g">';
+           
+        };
+
+        function view_points(){
+            document.getElementById("points").innerHTML = '<div class="point-title"> <h2 class="lefto" style="font-size:30px;font-family: "Roboto", Sans-Serif;color:#003C71;margin:0;padding:.5em;text-align: left;"> Points </h2> <a class="pure-button pure-button-primary righto" onclick="view_activities()" > View Activities Attended </a> <div class="left"> <h2>Total points</h2> <p style="text-align: center;font-size: 25px"> <%= current_user.total_points%></p> </div> <div class="right"> <h2> Goal </h2> <p style="text-align: center;font-size: 25px"> 200 </p> </div> </div> <div class="meter"> <span style="width: 50%">50%</span> </div> <div class="content"> <h3> Points Breakdown </h3> <p><label> <strong>Meeting points: </strong></label> <%= current_user.meeting_points%> </p> <p><label> <strong>Event points: </strong></label> <%= current_user.event_points%> </p> <p><label> <strong>Miscellaneous points: </strong></label> <%= current_user.misc_points%> </p> </div>';
+        };
+    </script>
 </div>
 
 <style>
@@ -108,6 +122,13 @@
     .fas .fa-envelope{
         font-size:20px;
         color:white
+    }
+    .pure-button {
+        color: white;
+        border-radius: 4px;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        font-size:1.2vw;
     }
     .profile-boxes{
         margin-right:2em;
@@ -165,17 +186,31 @@
             width:100%;
         }
         .point-title h2{
-            font-family: 'Roboto', Sans-Serif;
+            font-family: "Roboto", Sans-Serif;
         }
             .left{
                 float: left;
                 width: 50%;
                 text-align:center;
             }
+            .lefto{
+                float: left;
+                width: 50%;
+                font-size:30px;
+                font-family: "Roboto", Sans-Serif;
+                color:#003C71;
+                margin:0;
+                padding:.5em;
+                text-align: left;
+            }
             .right{
                 float: right;
                 width: 50%;
                 text-align:center;
+            }
+            .righto{
+                float:right;
+                width: 40%;
             }
             .group:after {
                 content:"";
@@ -228,8 +263,8 @@
        position: relative;
        overflow: hidden;
     }
-    @media only screen and (max-width: 565px) {
-      /* for widths less than or equal to 629 pixels */
+    @media only screen and (max-width: 660px) {
+      /* for widths less than or equal to 565 pixels */
       .profile-info{
         float: none ;
         width: 100% ;
@@ -239,28 +274,9 @@
         float: none ;
         width: 100% ;
       }
+      .pure-button {
+        font-size:2vw;
+        }
     }
-/*
-<table class="pure-table center" >
-                        <thead>
-                        <tr>
-                            <th>Meeting Points</th>
-                            <th>Event Points</th>
-                            <th>Misc. Points</th>
-                            <th>Total Points</th>
-                        </tr>
-                        </thead>
-                        <tbody class="text-style">
-                        <tr >
-                            <td><%= current_user.meeting_points%></td>
-                            <td><%= current_user.event_points%></td>
-                            <td><%= current_user.misc_points%></td>
-                            <td><%= current_user.total_points%></td>
-                        </tr>
-                        </a>
-                        </tbody>
-                    </table>
-
-*/
 
 </style>

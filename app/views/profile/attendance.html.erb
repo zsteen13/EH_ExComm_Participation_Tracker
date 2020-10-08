@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/grids-responsive-min.css">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+<div id="main">
+    <div class="header">
+        <h1>Activities Attended</h1>
+    </div>
+
+    <div class="l-content">
+        <div class="profile-boxes pure-g">
+            <div class="pure-u-1">
+                <a class="pure-button pure-button-primary" href="/profile/" > Return to Profile </a>
+                <div class="profile-box">
+                <table class="pure-table center" style="width:100%;background-color:white;">
+                        <thead>
+                        <tr>
+                            <th>Event Name</th>
+                            <th>Date</th>
+                            <th>Points</th>
+                        </tr>
+                        </thead>
+                        <tbody class="text-style" style="font-size:30px;color:black;">
+                            <!--
+                            <tr>
+                                <td>Club Meeting</td>
+                                <td>October 18, 2020</td>
+                                <td>15</td>
+                            </tr>
+                            -->
+                        <% @attended.each do |attended| %>
+                            <tr>
+                                <td><%= Activity.find(attended.activity_id).name %></td>
+                                <td><%= Activity.find(attended.activity_id).date[0,10]%></td>
+                                <td><%= Activity.find(attended.activity_id).point_value%></td>
+                            </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+<style>
+    .profile-box{
+        background:white;
+        border:none;
+    }
+    .pure-table {
+        border: 2px solid #a7a7a7;
+    }
+    .pure-button {
+        color: white;
+        border-radius: 4px;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        font-size:1.2vw;
+        left:0;
+    }
+    .pure-table th{
+        background:#500000;
+        border-right: 2px solid #a7a7a7;
+    }
+    .pure-table td{
+        background:#f6f6f6;
+    }
+</style>

@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(version: 2020_09_18_040526) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "user_to_activities", force: :cascade do |t|
+    t.integer "uin"
+    t.integer "activity_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.integer "uin"
     t.string "first_name"
