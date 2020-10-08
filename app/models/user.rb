@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :userkeys
   # supplied by email_validator gem
   validates :email, email: true
   validates :uin, :total_points, :event_points, :meeting_points, :misc_points, numericality: { only_integer: true }
