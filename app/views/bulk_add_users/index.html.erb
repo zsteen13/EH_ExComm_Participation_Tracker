@@ -1,0 +1,23 @@
+<div class='center'>
+  <h1>Bulk File Upload</h1>
+  <p>Attach CSV file with new users.</p>
+  <p>This CSV file should be in the following format to ensure no parsing errors occur.</p>
+  <p>
+    UIN | First Name | Last Name | Email | Committee | Subcommittee | Point Total | Meeting Point | Event Points | Misc Points | Admin
+  </p>
+  <%# Not sure if we want to put this in %>
+  <%# <p>
+    Here is an example.
+  </p>
+  <p>
+    uin,first name,last name,email,committee,subcommittee,point total,meeting point,event points,misc points,admin
+    <br>
+    431454,john,doe,john.doe@tamu.edu,admin,super user,0,0,0,0,false
+    <br>
+    431455,user,name,user.name@tamu.edu,project owner,point of contact,0,0,0,0,false
+  </p> %>
+  <%= form_with(url: {action: :create}, multipart: true) do %>
+    <%= file_field_tag 'new_users' %>
+    <%= submit_tag "Upload", :class => 'pure-button' %>
+  <% end %>
+</div>

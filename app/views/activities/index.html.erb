@@ -29,7 +29,7 @@
                 }
             </style>
         <!--Button to create activities -->
-        <% unless !is_admin? %>
+        <% if current_user.admin? %>
           <a class="pure-button pure-button-primary" href="/activities/new"> Create Activity </a>
         <% end %>
     </div>

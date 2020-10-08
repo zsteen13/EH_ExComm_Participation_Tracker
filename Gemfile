@@ -7,6 +7,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'rails', '~> 6.0.3', '>= 6.0.3.3'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
+# Use SQL for local dev, Zac's machine
+#gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
@@ -26,6 +28,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'date'
 # Used to validate all emails are valid
 gem 'email_validator'
+
+# Used for test coverage reporting
+gem 'simplecov', require: false, group: :test
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -47,12 +52,15 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-group :test do
+group :development, :test do
+  # Add Rspec testing
+  gem 'rspec'
+  gem 'rspec-rails'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
+  gem 'webdrivers', '~> 4.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
