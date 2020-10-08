@@ -7,13 +7,14 @@
 
     <div class="content" style="text-align:center;">
       <br>
-      <a class="button" href= members/new> Create new member</a>
+      <a class="pure-button pure-button-primary" href= members/new> Create new member</a>
       <% if is_admin? %>
-            <a class="button" href= /bulk_add_users>Bulk Add Users</a>
+            <a class="pure-button pure-button-primary" href= /bulk_add_users>Bulk Add Users</a>
         <% end %>
 
       <%= form_for "", url:members_path, role:"search", method: :get do %>
       <% end %>
+
       <div class="table">
         <table summary="member detail view">
           <tr class = "header">
@@ -43,6 +44,46 @@
           <% end %>
         </table>
       </div>
+
     </div>
   </div>
 </div>
+<script>
+
+</script>
+
+<style>
+  a{
+    text-decoration: none;
+    color: #1b98f8;
+  }
+  .header a{
+    color: white;
+  }
+  th{
+    background:#500000;
+  }
+  .table{
+    border:2px solid black;
+  }
+  .table td a{
+    background-color: #0078E7;
+    color: white;
+    padding:.3em;
+    border-radius:10px;
+    text-decoration: none;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  }
+  .content {
+    max-width: 90%;
+  }
+  .pure-button {
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  }
+
+</style>
+
+
+

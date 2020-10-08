@@ -1,3 +1,10 @@
+<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/grids-responsive-min.css">
+<link href="https://fonts.googleapis.com/css?family=Lora|Roboto:400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" rel="stylesheet">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
 <div class = "members index">
   <div id="main">
     <div class="header">
@@ -5,56 +12,238 @@
       <h2>Howdy <%= current_user.first_name %>, here you can view and edit members.</h2>
     </div>
 
-<div class = "Member detail show content">
-<%= link_to("<<Back to member page",members_path, :class => 'back-link') %>
-    <h2>Member Details </h2>
-    <table summary="member detail view">
-        <tr>
-            <th>UIN</th>
-            <td><%= @member.uin %> </tb>
-        </tr>
-        <tr>
-            <th>First Name</th>
-            <td><%= @member.first_name%> </tb>
-        </tr>
+  <div class = "Member detail show">
+  <%= link_to("<<Back to member page",members_path, :class => 'back-link') %>
+      <h2 style="margin-left:2em;">Member Details </h2>
+       <div class="profile-boxes pure-g">
+          <div class="pure-u-1">
+            <div class="profile-card">
+                <h1>
+                  <%= @member.first_name %>
+                  <%= @member.last_name %> 
+                </h1>
 
-        <tr>
-            <th>Last Name</th>
-            <td><%= @member.last_name %> </tb>
-        </tr>
+                <div class="profile-info">
+                  <h2 style="font-size:30px;font-family: 'Roboto', Sans-Serif;color:#003C71;margin:0;padding:.5em;text-align: left;"> General Info </h2>
 
-        <tr>
-            <th>Email</th>
-            <td><%= @member.email %> </tb>
-        </tr>
+                  <div class="content" style="padding-top: 20px;padding-left: 20px">
+                    <i class="fa fa-user fa-5x"></i>
+                  </div>
 
-        <tr>
-            <th>Event Points</th>
-             <td><%= @member.display_total_points%> </tb>
-        </tr>
-        <tr>
-            <th>Meeting Points</th>
-             <td><%= @member.display_meeting_points %> </tb>
-        </tr>
-        <tr>
-            <th>Total Points</th>
-             <td><%= @member.display_event_points%> </tb>
-        </tr>
-        
-        <tr>
-            <th>Committee</th>
-             <td><%= @member.display_committee%> </tb>
-        </tr>
-        
-        <tr>
-            <th>Subcommittee</th>
-             <td><%= @member.display_subcommittee %> </tb>
-        </tr>
-        
-        <tr>
-            <th>Admin</th>
-             <td><%= @member.admin %> </tb>
-        </tr>
-    </table>
+                  <div class="content">
+                    <p>
+                      <label> <strong>UIN: </strong></label>
+                      <%= @member.uin %>
+                    </p>
+                    <p>
+                      <label> <strong>Email: </strong></label>
+                      <a><%= @member.email %></a>
+                    </p>
+                    <p>
+                      <label> <strong>Member Type: </strong></label>
+                      <% if @member.admin? %>
+                        <label>Admin </label>
+                      <%else%>
+                        <label>Member </label>
+                      <%end%>
+                    </p>
+                    <p>
+                      <label> <strong>Committee: </strong></label>
+                      <%= @member.committee %>
+                    </p>
+                    <p>
+                      <label> <strong>Subcommittee: </strong></label>
+                      <%= @member.subcommittee %>
+                    </p>
+                    <p>
+                      <label> <strong>Committee Head Contact: </strong></label>
+                      <a> testingemail@tamu.edu </a> 
+                      <i class='fas fa-envelope'></i>
+                    </p>
+                  </div>
+
+                </div>
+
+                <div id="points" class="profile-points">
+
+                <div class="point-title">
+                  <h2 class="lefto"> Points </h2>
+                  <div class="left">
+                    <h2>Total points</h2>
+                    <p style="text-align: center;font-size: 25px"> <%= @member.total_points%></p>
+                  </div>
+                  <div class="right">
+                    <h2> Goal </h2>
+                    <p style="text-align: center;font-size: 25px"> 200 </p>
+                  </div>
+                </div>
+
+                <div class="meter">
+                  <span id="progress" style="width: 50%"></span>
+                </div>
+
+                <div class="content">
+                  <h3> Points Breakdown </h3>
+                  <p><label> <strong>Meeting points: </strong></label>
+                    <%= @member.meeting_points%>
+                  </p>
+                  <p><label> <strong>Event points: </strong></label>
+                    <%= @member.event_points%>
+                  </p>
+                  <p><label> <strong>Miscellaneous points: </strong></label>
+                    <%= @member.misc_points%>
+                  </p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 </div>
-</div>
+
+<script>
+  const progressBar = document.getElementById('progress');
+  progressBar.style.width = '${(@member.total_points / 200) * 100}%';
+
+</script>
+
+<style>
+  a{
+    text-decoration: none;
+    color: #1b98f8;
+  }
+  .content {
+    max-width: 90%;
+  }
+  .profile-boxes{
+        margin-right:4em;
+    }
+    .profile-card{
+        padding:0;
+        background:#f6f6f6;
+        margin:1em;
+        margin-left:2em;
+        border: 3px solid #333333;
+        border-radius: 25px;
+        color:black;
+        content: "";
+        display: table;
+        clear: both;
+        width:100%;
+        box-shadow:
+          0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+          0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+          0 12.5px 10px rgba(0, 0, 0, 0.06),
+          0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+          0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+          0 100px 80px rgba(0, 0, 0, 0.12)
+        ;
+    }
+        .profile-card h1{
+            font-family: 'Roboto', Sans-Serif;
+            color:white;
+            background:#500000;
+            margin:0;
+            padding:.5em;
+            text-align: left;
+            border-radius: 20px 20px 0px 0px;
+            border-bottom: 2px solid #a7a7a7;
+        }
+        
+        .profile-info{
+            float: left;
+            width: 50%;
+            border-right: 2px solid #a7a7a7;
+        }
+        .profile-points{
+            float: right;
+            width: 48%;
+        }
+
+        .point-title{
+            content: "";
+            display: table;
+            clear: both;
+            width:100%;
+        }
+        .point-title h2{
+            font-family: "Roboto", Sans-Serif;
+        }
+            .left{
+                float: left;
+                width: 50%;
+                text-align:center;
+            }
+            .lefto{
+                float: left;
+                width: 50%;
+                font-size:30px;
+                font-family: "Roboto", Sans-Serif;
+                color:#003C71;
+                margin:0;
+                padding:.5em;
+                text-align: left;
+            }
+            .right{
+                float: right;
+                width: 50%;
+                text-align:center;
+            }
+            .righto{
+                float:right;
+                width: 40%;
+            }
+            .group:after {
+                content:"";
+                display: table;
+                clear: both;
+            }
+    .content{
+        text-align:left;
+        font-size:20px;
+
+        color:black;
+        margin-left:1rem;
+        padding:0;
+        font-family:'Lora', Serif;
+    }
+        .content a{
+            color:#006483;
+            text-decoration: none;
+        }
+        .content label{
+            font-family: 'Roboto', Sans-Serif;
+        }
+        .content h3{
+            color:#003C71;
+            border-bottom: 2px solid #a7a7a7;
+            margin-right:1em;
+            font-family: 'Roboto', Sans-Serif;
+
+        }
+    .meter { 
+        height: 20px;  /* Can be anything */
+        position: relative;
+        background: #a7a7a7;
+        color:white;
+        -moz-border-radius: 25px;
+        -webkit-border-radius: 25px;
+        border-radius: 25px;
+        padding: 8px;
+        margin:1rem;
+        box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
+    }
+    .meter > span {
+       display: block;
+       height: 100%;
+       border-top-right-radius: 8px;
+       border-bottom-right-radius: 8px;
+       border-top-left-radius: 20px;
+       border-bottom-left-radius: 20px;
+       background-color: rgb(115,47,47);
+       position: relative;
+       overflow: hidden;
+       text-align:center;
+    }
+</style>
