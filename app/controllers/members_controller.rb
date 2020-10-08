@@ -63,7 +63,7 @@ class MembersController < ApplicationController
 
     private
     def member_params
-        params.require(:user).permit(:first_name, :last_name, :uin, :email, :total_points, :committee, :subcommittee,:admin,)
+        params.require(:user).permit(:first_name, :last_name, :uin, :email, :total_points, :committee, :subcommittee,:admin)
     end
 
     def sort_column
