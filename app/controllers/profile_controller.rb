@@ -3,7 +3,6 @@ class ProfileController < ApplicationController
 
     ## Generates the User's Points Based on the UserToActivites Point Count
     @attended = UserToActivity.where(uin: current_user.uin)
-    user = User.find_by(uin: current_user.uin)
     sumTotalPoints = 0
     sumMeetingPoints = 0
     sumEventPoints = 0;
@@ -21,11 +20,10 @@ class ProfileController < ApplicationController
       end      
     end
 
-    user.update(total_points: sumTotalPoints)
-    user.update(meeting_points: sumMeetingPoints)
-    user.update(event_points: sumEventPoints)
-    user.update(misc_points: sumMiscPoints)
-
+    current_user.update(total_points: sumTotalPoints.to_i)
+    current_user.update(meeting_points: sumMeetingPoints.to_i)
+    current_user.update(event_points: sumEventPoints.to_i)
+    current_user.update(misc_points: sumMiscPoints.to_i)
   end
 
   def attendance
