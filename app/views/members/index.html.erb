@@ -9,7 +9,7 @@
       <br>
       <a class="button" href= members/new> Create new member</a>
       <% if is_admin? %>
-            <a class="button" href= /bulk_add_users>Bulk Add Users</a>
+            <a id="bulk_add_users_btn" class="button" href= /bulk_add_users>Bulk Add Users</a>
         <% end %>
 
       <%= form_for "", url:members_path, role:"search", method: :get do %>
