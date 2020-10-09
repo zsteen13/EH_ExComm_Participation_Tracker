@@ -11,6 +11,11 @@ class ActivitiesController < ApplicationController
     @prev_data = {}
   end
 
+  def show
+    @activity = Activity.find(params[:id])
+    @members_attended = UserToActivity.where(activity_id: @activity.id)
+  end
+
   def create
     admin_only
     if ! ActivitiesHelper.correct_num_field?(params)

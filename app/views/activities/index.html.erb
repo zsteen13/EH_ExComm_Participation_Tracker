@@ -1,63 +1,82 @@
-<div class="header">
-  <h1>Activties</h1>
-  <h2>Activities in the EH Member Point Tracker</h2>
-</div>
-<div id="layout" class="content pure-g">
-    <!-- Establishes the left side of the view page. It'll be a scrolling section of events-->
-    <div id="list" class="pure-u-1">
-        <!--Loops through the activity data and creates new event-item objects for each set of info -->
-        <% @activity.each do |activity| %>
-            <div class="event-item pure-g">
-                <div class="pure-u-3-4"> 
-                    <h5 class="event-type"> <%= activity._type%></h5> 
-                    <h5 class="event-date"><a> <span> <%= activity.date%> </span></a></h5> 
-                    <h4 class="event-name"> <%= activity.name%> </h4> 
-                    <p class="event-desc">
-                        <%= activity.description%>
-                    </p> 
-                    <h5 class="event-points"> Available points: <%= activity.point_value%> </h5>
-                </div>
-            </div>
-        <% end %>
 
-            <style scoped="">
-                .pure-button {
-                    color: white;
-                    border-radius: 4px;
-                    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-                    width: 100%;
-                }
-            </style>
-        <!--Button to create activities -->
-        <% if current_user.admin? %>
-          <a class="pure-button pure-button-primary" href="/activities/new"> Create Activity </a>
-        <% end %>
+<body>
+    <div class="header">
+        <h1>Activities</h1>
     </div>
-    <!--This is where the info for the events will go-->
-    <div id="main" class="pure-u-1">
-        <div class="event-content">
-            
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <div id="base" class="contents pure-g">
+        <!-- Establishes the left side of the view page. It'll be a scrolling section of events-->
+        <div id="list" class="pure-u-1">
+            <!--Loops through the activity data and creates new event-item objects for each set of info -->
+            <% @activity.each do |activity| %>
+                <div class="event-item pure-g">
+                    <div class="pure-u-3-4"> 
+                        <h5 class="event-type"> <%= activity._type%></h5> 
+                        <h5 class="event-date"><a> <span> <%= activity.date%> </span></a></h5> 
+                        <h4 class="event-name"> <%= activity.name%> </h4> 
+                        <p class="event-desc">
+                            <%= activity.description%>
+                        </p> 
+                        <h5 class="event-points"> Available points: <%= activity.point_value%> </h5>
+                        <%= link_to("View Attendance", activity_path(activity), :class => 'action show', class: "pure-button pure-button-primary") %>
+                    </div>
+                </div>
+            <% end %>
+
+                
+            <!--Button to create activities -->
+            <% if current_user.admin? %>
+                <a class="pure-button pure-button-primary" href="/activities/new"> Create Activity </a>
+            <% end%>
+        </div>
+        <!--This is where the info for the events will go-->
+        <div id="main" class="pure-u-1 pure-u-lg pure-u-xl" style="width:100%;">
+            <div class="event-content">
+                <!--Not sure exactly how this works and .first didn't but well I have this.-->
+                <% @activity.find() do |activity| %>
+                    <div class="event-content-header pure-g">
+                        <div class="pure-u-1-2"> 
+                            <h1 class="event-content-title">
+                                <%= activity.name%>
+                            </h1>
+                            <p class="event-content-subtitle">
+                                <span> <%= activity._type%> </span> 
+                            </p> 
+                            <p class="event-content-subtitle">
+                                <span> <a><%= activity.date%></a> </span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="event-content-body">
+                        <%= activity.description%>
+                    </div>
+                <% end %>
+                    
+            </div>
         </div>
     </div>
-</div>
-<script>
-    /*
-        Activates when an event-item object is clicked. It will then generate the html in the main body
-        containing the data of the event-item object clicked.
-    */
-    $('.event-item').on("click", function(){
-        //var dataId = $(this).attr("h5");
-        //$(this).css("background","#eee");
-        var container = $(this).find(".pure-u-3-4");
-        var name = container.find(".event-name");
-        var type = container.find(".event-type");
-        var date = container.find(".event-date");
-        var desc = container.find(".event-desc");
-        $("div.event-content").html(function(){
-            return '<div class="event-content-header pure-g"> <div class="pure-u-1-2"> <h1 class="event-content-title">'+ name.text() + '</h1> <p class="event-content-subtitle"> <span> ' + type.text() +'</span> </p> <p class="event-content-subtitle"> <span> ' + date.text() +'</span> </p> </div> </div> <div class="event-content-body"> ' + desc.text() + '</div>';
+
+    <script>
+        /*
+            Activates when an event-item object is clicked. It will then generate the html in the main body
+            containing the data of the event-item object clicked.
+        */
+        $('.event-item').on("click", function(){
+            //var dataId = $(this).attr("h5");
+            //$(this).css("background","#eee");
+            var container = $(this).find(".pure-u-3-4");
+            var name = container.find(".event-name");
+            var type = container.find(".event-type");
+            var date = container.find(".event-date");
+            var desc = container.find(".event-desc");
+            $("div.event-content").html(function(){
+                return '<div class="event-content-header pure-g"> <div class="pure-u-1-2"> <h1 class="event-content-title">'+ name.text() + '</h1> <p class="event-content-subtitle"> <span> ' + type.text() +'</span> </p> <p class="event-content-subtitle"> <span><a> ' + date.text() +'</a></span> </p> </div> </div> <div class="event-content-body"> ' + desc.text() + '</div>';
+            });
         });
-    });
-</script>
+    </script>
+
+</body>
+
 
 <style>
 /*
@@ -77,19 +96,33 @@ a {
 
 
 /*
- * -- LAYOUT STYLES --
- * This layout consists of three main elements, `#nav` (navigation bar), `#list` (email list), and `#main` (email content). All 3 elements are within `#layout`
+ * -- base STYLES --
+ * This base consists of three main elements, `#nav` (navigation bar), `#list` (email list), and `#main` (email content). All 3 elements are within `#base`
  */
-#layout, #nav, #list, #main {
+#base, #nav, #list, #main {
     margin: 0;
+    margin-right:auto;
     padding: 0;
 
 }
+.contents{
+    margin: 0 auto;
+    padding: 0 2em;
+    margin-bottom: 50px;
+    line-height: 1.6em;
+}
+
 /* Event Item Styles */
 .event-item {
     padding: 0.9em 1em;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #a7a7a7;
     border-left: 6px solid transparent;
+}
+.pure-button {
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    width: 100%;
 }
 /*
 Might want this for some other thing
@@ -105,9 +138,15 @@ Might want this for some other thing
 .event-item h4{
     margin: 0;
 }
+.event-item .pure-u-3-4{
+    width:90%;
+}
 .event-item p{
     font-size: 80%;
     margin: 0.4em 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .event-item .pure-u h5{
     text-transform: uppercase;
@@ -144,6 +183,15 @@ Might want this for some other thing
 }
     .event-content-header {
         border-bottom: 1px solid #ddd;
+        background:#500000;
+        color:white;
+    }
+    .event-content-header a{
+        color:#72C2FE;
+        text-decoration: none;
+    }
+    .event-content-body{
+        
     }
 
     .event-content-title {
@@ -155,7 +203,7 @@ Might want this for some other thing
         font-weight: normal;
     }
         .event-content-subtitle span {
-            color: #999;
+            color: #d1d1d1;
         }
     .event-content-controls {
         margin-top: 2em;
@@ -176,12 +224,20 @@ Might want this for some other thing
  * On tablets and other medium-sized devices, we want to customize some
  * of the mobile styles.
  */
-@media (min-width: 40em) {
+@media (min-width: 768px) {
 
-    /* Move the layout over so we can fit the nav + list in on the left */
-    #layout {
+    /* Move the base over so we can fit the nav + list in on the left */
+    #base {
         padding-left:250px; /* "left col (nav + list)" width */
         position: relative;
+    }
+
+    #base .header{
+        margin-left: -250px;
+        padding-left: 182px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        justify-content: center;
     }
 
     /* These are position:fixed; elements that will be in the left 500px of the screen */
@@ -191,36 +247,26 @@ Might want this for some other thing
         bottom: 0;
         overflow: auto;
     }
-    //*
-    #nav {
-        margin-left:-500px; /* "left col (nav + list)" width */
-       /* width:150px;
-        height: 100%;
-    }
 
-    /* Show the menu items on the larger screen */
-    /*
-    .nav-inner {
-        display: block;
-        padding: 2em 0;
-    }
-
-    /* Hide the "Menu" button on larger screens */
-    /*
-    #nav .nav-menu-button {
-        display: none;
-    }*/
 
     #list {
-        margin-left: -350px;
-        width: 100%;
-        height: 33%;
+        margin-top: 115px;
+        margin-left: -250px;
+        width: 84%;
+        height: 28%;
+        bottom: 90%;
         border-bottom: 1px solid #ddd;
+    }
+    .pure-button {
+        color: white;
+        border-radius: 4px;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        width: 100%;
     }
 
     #main {
         position: fixed;
-        top: 33%;
+        top: 45%;
         right: 0;
         bottom: 0;
         left: 150px;
@@ -239,17 +285,26 @@ Might want this for some other thing
 
     /* This will take up the entire height, and be a little thinner */
     #list {
-        margin-left: -350px;
         width:350px;
-        height: 100%;
-        border-right: 1px solid #ddd;
+        height: auto;
+        bottom: 0;
+        border-right: 1px solid #a7a7a7;
     }
 
     /* This will now take up it's own column, so don't need position: fixed; */
     #main {
         position: static;
         margin: 0;
+        margin-left:100px;
         padding: 0;
+        right:0;
+        width:auto;
+    }
+
+    
+    .pure-button{
+        width: 100%;
     }
 }
 </style>
+

@@ -53,9 +53,56 @@
             </tr>
 
         </table>
-          <div class="form-buttons">
+          <div class="pure-button">
             <%= f.submit 'Create New Member', :class => '' %>
             <% end %>
           </div>
       </div>
 </div>
+<style>
+  a{
+    text-decoration: none;
+    color: #1b98f8;
+  }
+  .header a{
+    color: white;
+  }
+  th{
+    background:#500000;
+  }
+  .table{
+    border:2px solid black;
+  }
+  .table td a{
+    background-color: #0078E7;
+    color: white;
+    padding:.3em;
+    border-radius:10px;
+    text-decoration: none;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  }
+  .content {
+    max-width: 90%;
+  }
+  .pure-button {
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  }
+  .input[type="submit" i] {
+    appearance: push-button;
+    user-select: none;
+    white-space: pre;
+    align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    color: -internal-light-dark(buttontext, rgb(170, 170, 170));
+    background-color: #0078E7;
+    box-sizing: border-box;
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(195, 195, 195));
+    border-image: initial;
+}
+</style>

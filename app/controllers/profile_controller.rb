@@ -30,4 +30,10 @@ class ProfileController < ApplicationController
     @attended = UserToActivity.where(uin: current_user.uin)
     @activities = Activity.all
   end
+
+  def attendance
+    @attended = UserToActivity.where(uin: current_user.uin)
+    @activities = Activity.all
+  end
+  
 end
