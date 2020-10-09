@@ -20,5 +20,18 @@ RSpec.shared_context 'when authenticated as admin' do
   background do
     authenticate 'Admin', 'Test', 22222222
   end
+end
 
+
+RSpec.shared_context 'before when authenticated as member' do
+  before do
+    authenticate 'Non Admin', 'Test', 11111111
+  end
+end
+
+
+RSpec.shared_context 'before when authenticated as admin' do
+  before do
+    authenticate 'Admin', 'Test', 22222222
+  end
 end
