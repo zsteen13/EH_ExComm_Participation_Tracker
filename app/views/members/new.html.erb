@@ -8,44 +8,48 @@
       <br>
       <%= form_for(@member, :url => members_path, :method =>'post') do |f| %>
         <table id="formTable" summary="Subject form fields">
-          <th>First Name</th>
             <tr>
+                <th>First Name</th>
                 <td><%= f.text_field :first_name  %></td>
             </tr>
-          <th>Last Name</th>
             <tr>
+                <th>Last Name</th>
                 <td><%= f.text_field :last_name %></td>
             </tr>
-          <th>UIN</th>
             <tr>
+                <th>UIN</th>
                 <td><%= f.text_field :uin %></td>
             </tr>
-          <th>Email</th>
+          
             <tr>
+                <th>Email</th>
                 <td><%= f.text_field :email %></td>
             </tr>
-          <th>Committee</th>
+          
             <tr>
                 <!--This should be a dropdown in the future-->
+                <th>Committee</th>
                 <td><%= f.text_field :committee %></td>
             </tr>
-          <th>Subcommittee</th>
+          
             <tr>
                 <!--This should be a dropdown in the future-->
+                <th>Subcommittee</th>
                 <td><%= f.text_field :subcommittee %></td>
             </tr>
-          <th>Admin</th>
+          
             <tr>
+                <th>Admin</th>
                 <td><%= f.check_box :admin %></td>
             </tr>
 
         </table>
 
-          <div class="pure-button">
+          
 
             <%= f.submit 'Create New Member', :class => '' %>
             <% end %>
-      </div>
+      
 </div>
 <style>
   a{
@@ -60,9 +64,6 @@
     background:none;
     color:#777;
     height:20%;
-
-    background:#500000;
-
   }
   .table{
     border:2px solid black;

@@ -3,33 +3,22 @@
   <div id="main">
     <div class="header">
       <h1>Members</h1>
+      <h2>Howdy <%= current_user.first_name %>, here you can view and edit members.</h2>
     </div>
 
     <div class="content" style="text-align:center;">
       <br>
-
       <div class="pure-button-group" role="group" aria-label="...">
-        <a class="pure-button pure-button-primary" href= members/new> Create new member</a>
-        <% if is_admin? %>
-              <a class="pure-button pure-button-primary" href= /bulk_add_users>Bulk Add Users</a>
-
       <a class="pure-button pure-button-primary" href= members/new> Create new member</a>
       <% if is_admin? %>
             <a class="pure-button pure-button-primary" href= /bulk_add_users>Bulk Add Users</a>
-
         <% end %>
-     </div>
-
+      </div>
       <%= form_for "", url:members_path, role:"search", method: :get do %>
       <% end %>
 
-
-      
-        <table class="table" summary="member detail view">
-
       <div class="table">
         <table summary="member detail view">
-
           <tr class = "header">
             <th><%= sortable "First name","first_name" %></th>
             <th><%= sortable "Last name","last_name" %> </th>
@@ -56,11 +45,7 @@
           </tr>
           <% end %>
         </table>
-
-     
-
       </div>
-
 
     </div>
   </div>
@@ -79,19 +64,14 @@
   }
   th{
     background:#500000;
-
     padding:8px;
   }
   .table{
     border:2px solid black;
   }
-
   #table{
     border-collapse: collapse;
     width:100%;
-  }
-  #table tr:nth-child(even){
-    background-color: #f2f2f2;
   }
   .table td a{
     background-color: #0078E7;
@@ -101,6 +81,7 @@
     text-decoration: none;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   }
+
   .content {
     max-width: 90%;
   }
@@ -111,5 +92,3 @@
   }
 
 </style>
-
-
