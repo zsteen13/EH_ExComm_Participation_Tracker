@@ -1,7 +1,6 @@
 <div id="main">
   <div class="header">
       <h1>Members</h1>
-      <h2>Howdy <%= current_user.first_name %>, here you can view and edit members.</h2>
   </div>
   <% flash.each do |type, msg| %>
     <div style="color: red">
@@ -9,8 +8,8 @@
       </div>
       <%flash.alert = ""%>
     <% end %>
+    <%= link_to("<< Back to Member page", members_path, :class => 'back-link') %>
     <div class="content new member">
-      <%= link_to("<< Back to List", members_path, :class => 'back-link') %>
       <h2>Edit Member information </h2>
 
       <%= form_for(@member, :url => member_path(@member), :method =>'patch') do |f| %>
@@ -50,6 +49,7 @@
                 <% # An admin can't undo their admin status%>
                 <td><%= f.check_box :admin, disabled: (@member.id == session[:user_id] ? true : nil) %></td>
             </tr>
+
         </table>
         <div class="form-buttons">
             <%= f.submit("Update Member") %>
@@ -67,10 +67,22 @@
     color: white;
   }
   th{
+
+    background:none;
+    color:#777;
+    height:20%;
+    width:20%;
+    padding-left:1em;
+    padding-right:1em;
+  }
+  table{
+    width:auto;
+
     background:#500000;
   }
   .table{
     border:2px solid black;
+
   }
   .table td a{
     background-color: #0078E7;
@@ -81,11 +93,43 @@
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   }
   .content {
+
+    margin: 0 auto;
+    padding: 0 2em;
+    max-width: 70%;
+    margin-bottom: 50px;
+    line-height: 1.6em;
+
     max-width: 90%;
+
   }
   .pure-button {
     color: white;
     border-radius: 4px;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   }
-  </style>
+
+  
+  input{
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0;
+    padding: .5em .6em;
+    display: inline-block;
+    border: 1px solid #ccc;
+    -webkit-box-shadow: inset 0 1px 3px #ddd;
+    box-shadow: inset 0 1px 3px #ddd;
+    border-radius: 4px;
+    vertical-align: middle;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    line-height: .5em;
+
+  }
+  button{
+    cursor:pointer;
+
+  }
+</style>
+
+

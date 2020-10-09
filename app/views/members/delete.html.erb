@@ -1,13 +1,10 @@
-
-  <div id="main">
+<div id="main">
     <div class="header">
       <h1>Members</h1>
       <h2>Howdy <%= current_user.first_name %>, here you can view and edit members.</h2>
     </div>
-
+    <%= link_to("<< Back to Member page", members_path, :class => 'back-link') %>
     <div class="content" style="text-align:center;">
-
-      <%= link_to("<< Back to List", members_path, :class => 'back-link') %>
       <div class="member delete">
           <h2>Delete a member</h2>
           <%= form_for(@member, :url => member_path(@member), :method => 'delete') do |f| %>
@@ -49,7 +46,13 @@
   }
   th{
     background:#500000;
+
+    padding:8px;
   }
+
+
+  }
+
   .table{
     border:2px solid black;
   }
