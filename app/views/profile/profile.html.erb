@@ -1,100 +1,280 @@
 <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/grids-responsive-min.css">
+<link href="https://fonts.googleapis.com/css?family=Lora|Roboto:400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" rel="stylesheet">
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
 <div id="main">
     <div class="header">
         <h1>My Profile</h1>
     </div>
-    <div class="l-content">
+
+    <div class="l-content" style="bottom:0;">
         <div class="profile-boxes pure-g">
-            <div class="pure-u-1-2">
-                <div class="profile-box">
-                    <h1 style="color:white;">
-                        <label>Member Info </label>
-                        <% if current_user.admin? %>
-                            <i class='fas fa-edit' style='font-size:25px;color:white'></i>
-                        <%end%>
-                    </h1>
-                    <div class="content" style="text-align:center;font-size:20px;">
-                        <p>
-                        <label> <strong>Name: </strong></label>
-                        <%= current_user.first_name %>
-                        <%= current_user.last_name %>
-                        </p>
-                        <p>
-                        <label> <strong>Email: </strong></label>
-                        <%= current_user.email %>
-                        </p>
-                        <p>
-                        <label> <strong>Member Type: </strong></label>
-                        <% if current_user.admin? %>
-                            <label>Admin </label>
-                        <%else%>
-                            <label>Member </label>
-                        <%end%>
-                        </p>
-                    </div>
-                    <a class="pure-button pure-button-primary" href="/profile/change_password" style="margin-bottom: 20px;">Change Password</a>
-                </div>
-            </div>
-
-            <div class="pure-u-1-2">
-                <div class="profile-box">
-                    <h1 style="color:white;">
-                        <label>Committee Info</label>
-                        <% if current_user.admin? %>
-                                <i class='fas fa-edit' style='font-size:25px;color:white'></i>
-                        <%end%>
-                    </h1>
-                    <div class="content" style="text-align:center;font-size:20px;">
-                        <p>
-                        <label> <strong>Committee: </strong></label>
-                        <%= current_user.committee %>
-                        </p>
-                        <p>
-                        <label> <strong>Subcommittee: </strong></label>
-                        <%= current_user.subcommittee %>
-                        </p>
-                        <p>
-                        <label> <strong>Committee Head Contact: </strong></label>
-                        <label>testingemail@tamu.edu </label>
-                        <i class='fas fa-envelope' style='font-size:20px;color:white'></i>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
             <div class="pure-u-1">
-                <div class="points-box">
-                    <h1 style="color:white;">
-                    <label>Points Tracker </label>
-                    <% if current_user.admin? %>
-                        <i class='fas fa-edit' style='font-size:25px;color:white'></i>
-                    <%end%>
+                <div class="profile-card">
+                    <h1>
+                        <%= current_user.first_name %>
+                        <%= current_user.last_name %> 
+                        <% if current_user.admin? %>
+                            <i class='fas fa-edit'></i>
+                        <%end%>
                     </h1>
-                    <table class="pure-table center" style="width:100%;">
-                        <thead>
-                        <tr>
-                            <th>Meeting Points</th>
-                            <th>Event Points</th>
-                            <th>Misc. Points</th>
-                            <th>Total Points</th>
-                        </tr>
-                        </thead>
-                        <tbody class="text-style" style="font-size:30px;">
-                        <tr >
-                            <td><%= current_user.meeting_points%></td>
-                            <td><%= current_user.event_points%></td>
-                            <td><%= current_user.misc_points%></td>
-                            <td><%= current_user.total_points%></td>
-                        </tr>
-                        </a>
-                        </tbody>
-                    </table>
+
+                    <div class="profile-info">
+                        <h2 style="font-size:30px;font-family: 'Roboto', Sans-Serif;color:#003C71;margin:0;padding:.5em;text-align: left;"> General Info </h2>
+                        <div class="content" style="padding-top: 20px;padding-left: 20px">
+                            <i class="fa fa-user fa-5x"></i>
+                        </div>
+                        <div class="content">
+                            <p>
+                            <label> <strong>UIN: </strong></label>
+                                <%= current_user.uin %>
+                            </p>
+                            <p>
+                            <label> <strong>Email: </strong></label>
+                            <a><%= current_user.email %></a>
+                            </p>
+                            <p>
+                            <label> <strong>Member Type: </strong></label>
+                            <% if current_user.admin? %>
+                                <label>Admin </label>
+                            <%else%>
+                                <label>Member </label>
+                            <%end%>
+                            </p>
+                            <p>
+                            <label> <strong>Committee: </strong></label>
+                            <%= current_user.committee %>
+                            </p>
+                            <p>
+                            <label> <strong>Subcommittee: </strong></label>
+                            <%= current_user.subcommittee %>
+                            </p>
+                            <p>
+                            <label> <strong>Committee Head Contact: </strong></label>
+                            <a> testingemail@tamu.edu </a> 
+                            <i class='fas fa-envelope'></i>
+                            </p>
+                            <a class="pure-button pure-button-primary" href="/profile/change_password" style="margin-bottom: 20px; color: white; font-size: 12pt">Change Password</a>
+                        </div>
+                    </div>
+
+                    <div id="points" class="profile-points">
+                        <div class="point-title">
+                            <h2 class="lefto"> Points </h2>
+                            <a class="pure-button pure-button-primary righto" href="/profile/attendance" > View Activities Attended </a>
+                            <div class="left">
+                                <h2>Total points</h2>
+                                <p style="text-align: center;font-size: 25px"> <%= current_user.total_points%></p>
+                            </div>
+                            <div class="right">
+                                <h2> Goal </h2>
+                                <p style="text-align: center;font-size: 25px"> 200 </p>
+                            </div>
+                        </div>
+                        <div class="meter">
+                            <span style="width: 50%">50%</span>
+                        </div>
+                        <div class="content">
+                            <h3> Points Breakdown </h3>
+                            <p><label> <strong>Meeting points: </strong></label>
+                            <%= current_user.meeting_points%>
+                            </p>
+                            <p><label> <strong>Event points: </strong></label>
+                            <%= current_user.event_points%>
+                            </p>
+                            <p><label> <strong>Miscellaneous points: </strong></label>
+                            <%= current_user.misc_points%>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div> 
+    <script>
+        function view_activities(){
+            document.getElementById("points").innerHTML = '<div class="point-title"> <h2 class="lefto" style="font-size:30px;font-family: "Roboto", Sans-Serif;color:#003C71;margin:0;padding:.5em;text-align: left;"> Activities </h2> <a class="pure-button pure-button-primary righto" onclick="view_points()" > View Points </a></div> <div class="pure-g">';
+           
+        };
+
+        function view_points(){
+            document.getElementById("points").innerHTML = '<div class="point-title"> <h2 class="lefto" style="font-size:30px;font-family: "Roboto", Sans-Serif;color:#003C71;margin:0;padding:.5em;text-align: left;"> Points </h2> <a class="pure-button pure-button-primary righto" onclick="view_activities()" > View Activities Attended </a> <div class="left"> <h2>Total points</h2> <p style="text-align: center;font-size: 25px"> <%= current_user.total_points%></p> </div> <div class="right"> <h2> Goal </h2> <p style="text-align: center;font-size: 25px"> 200 </p> </div> </div> <div class="meter"> <span style="width: 50%">50%</span> </div> <div class="content"> <h3> Points Breakdown </h3> <p><label> <strong>Meeting points: </strong></label> <%= current_user.meeting_points%> </p> <p><label> <strong>Event points: </strong></label> <%= current_user.event_points%> </p> <p><label> <strong>Miscellaneous points: </strong></label> <%= current_user.misc_points%> </p> </div>';
+        };
+    </script>
 </div>
+
+<style>
+    .text-style{
+        font-size:30px;
+    }
+    .pure-table .center{
+        width:100%;
+    }
+    .fas .fa-edit{
+        font-size: 20px;
+        color:white;
+    }
+    .fas .fa-envelope{
+        font-size:20px;
+        color:white
+    }
+    .pure-button {
+        color: white;
+        border-radius: 4px;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        font-size:1.2vw;
+    }
+    .profile-boxes{
+        margin-right:2em;
+    }
+    .profile-card{
+        padding:0;
+        background:#f6f6f6;
+        margin:1em;
+        border: 3px solid #333333;
+        border-radius: 25px;
+        color:black;
+        content: "";
+        display: table;
+        clear: both;
+        width:100%;
+        box-shadow:
+          0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+          0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+          0 12.5px 10px rgba(0, 0, 0, 0.06),
+          0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+          0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+          0 100px 80px rgba(0, 0, 0, 0.12)
+        ;
+    }
+        .profile-card h1{
+            /*font-family: 'Roboto', Sans-Serif;*/
+            /*Font-Family: 'Lora', Serif;*/
+            /*font-family: 'Ruda', Sans-Serif;*/
+            /*font-family:'Arvo', Serif;*/
+            /*font-family:'Merriweather', Serif;*/
+            font-family: 'Roboto', Sans-Serif;
+            color:white;
+            background:#500000;
+            margin:0;
+            padding:.5em;
+            text-align: left;
+            border-radius: 20px 20px 0px 0px;
+            border-bottom: 2px solid #a7a7a7;
+        }
+        
+        .profile-info{
+            float: left;
+            width: 50%;
+            border-right: 2px solid #a7a7a7;
+        }
+        .profile-points{
+            float: right;
+            width: 48%;
+        }
+
+        .point-title{
+            content: "";
+            display: table;
+            clear: both;
+            width:100%;
+        }
+        .point-title h2{
+            font-family: "Roboto", Sans-Serif;
+        }
+            .left{
+                float: left;
+                width: 50%;
+                text-align:center;
+            }
+            .lefto{
+                float: left;
+                width: 50%;
+                font-size:30px;
+                font-family: "Roboto", Sans-Serif;
+                color:#003C71;
+                margin:0;
+                padding:.5em;
+                text-align: left;
+            }
+            .right{
+                float: right;
+                width: 50%;
+                text-align:center;
+            }
+            .righto{
+                float:right;
+                width: 40%;
+            }
+            .group:after {
+                content:"";
+                display: table;
+                clear: both;
+            }
+    .content{
+        text-align:left;
+        font-size:20px;
+
+        color:black;
+        margin-left:1rem;
+        padding:0;
+        font-family:'Lora', Serif;
+    }
+        .content a{
+            color:#006483;
+            text-decoration: none;
+        }
+        .content label{
+            font-family: 'Roboto', Sans-Serif;
+        }
+        .content h3{
+            color:#003C71;
+            border-bottom: 2px solid #a7a7a7;
+            margin-right:1em;
+            font-family: 'Roboto', Sans-Serif;
+
+        }
+    .meter { 
+        height: 20px;  /* Can be anything */
+        position: relative;
+        background: #a7a7a7;
+        color:white;
+        -moz-border-radius: 25px;
+        -webkit-border-radius: 25px;
+        border-radius: 25px;
+        padding: 8px;
+        margin:1rem;
+        box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
+    }
+    .meter > span {
+       display: block;
+       height: 100%;
+       border-top-right-radius: 8px;
+       border-bottom-right-radius: 8px;
+       border-top-left-radius: 20px;
+       border-bottom-left-radius: 20px;
+       background-color: rgb(115,47,47);
+       position: relative;
+       overflow: hidden;
+    }
+    @media only screen and (max-width: 660px) {
+      /* for widths less than or equal to 565 pixels */
+      .profile-info{
+        float: none ;
+        width: 100% ;
+        border-right:none;
+      }
+      .profile-points {
+        float: none ;
+        width: 100% ;
+      }
+      .pure-button {
+        font-size:2vw;
+        }
+    }
+
+</style>

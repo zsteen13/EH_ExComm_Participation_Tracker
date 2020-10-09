@@ -1,24 +1,36 @@
 # https://stackoverflow.com/questions/32479612/rspec-capybara-loginuser-not-working
-def authenticate(first, last, uin)
+def authenticate(uin, password)
   visit '/welcome'
   within(:id, 'login') do
-    fill_in 'First name', :with => first
-    fill_in 'Last name', :with => last
     fill_in 'uin', :with => uin
+    fill_in 'password', :with => password
   end
   click_button 'Login'
 end
 
 RSpec.shared_context 'when authenticated as member' do
   background do
-    authenticate 'Non Admin', 'Test', 11111111
+    authenticate 11111111, 'Test'
   end
 end
 
 
 RSpec.shared_context 'when authenticated as admin' do
   background do
-    authenticate 'Admin', 'Test', 22222222
+    authenticate 22222222, 'Test'
   end
+end
 
+
+RSpec.shared_context 'before when authenticated as member' do
+  before do
+    authenticate 11111111, 'Test'
+  end
+end
+
+
+RSpec.shared_context 'before when authenticated as admin' do
+  before do
+    authenticate 22222222, 'Test'
+  end
 end

@@ -9,14 +9,11 @@
         <div class="content" style="text-align:center;">
             <br>
             <%= form_tag '/login', :id => 'login' do %>
-                <%= label_tag :first_name%>
-                <%= text_field_tag :first_name %>
-                <br>
-                <%= label_tag :last_name %>
-                <%= text_field_tag :last_name %>
-                <br>
                 <%= label_tag "UIN" %>
                 <%= text_field_tag :uin %>
+                <br>
+                <%= label_tag "Password" %>
+                <%= text_field_tag :password, '', :type => 'password' %>
                 <br>
                 <%= submit_tag "Login", :class => "pure-button" %>
             <% end %>

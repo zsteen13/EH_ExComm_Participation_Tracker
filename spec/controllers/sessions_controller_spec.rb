@@ -8,6 +8,12 @@ RSpec.describe SessionsController do
       expect(subject).to redirect_to('/welcome')
       expect(session[:user_id]) == User.find_by(uin: 22222222).id
     end
+
+    subject {post :create, params: { uin: 22222220, last_name: 'Test_fail'}}
+    it 'redirects to /welcome without logged in user' do
+      expect(subject).to redirect_to('/welcome')
+      expect(session[:user_id]) == nil
+    end
   end
   describe '#new' do
     subject {post :new}

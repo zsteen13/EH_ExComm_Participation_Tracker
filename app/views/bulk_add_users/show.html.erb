@@ -38,7 +38,7 @@
         <% end %>
       </tbody>
     </table>
-    <a class="button" href="/bulk_add_users/confirmed?filename=<%= @file %>"> Confirm</a>
+    <a id="confirm_btn" class="button" href="/bulk_add_users/confirmed?filename=<%= @file %>"> Confirm</a>
   <% else %>
     <h1>Parsing Error</h1>
     <% @users.each  do |user| %>
