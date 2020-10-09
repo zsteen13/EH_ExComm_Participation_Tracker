@@ -9,13 +9,14 @@ class SessionsController < ApplicationController
   end
 
   def create
+    redirect_to welcome_path and return if !params[:uin].present?
+    redirect_to welcome_path and return if !params[:password].present?
     @user = User.find_by(uin: params[:uin])
-    if @user && @user.last_name == params[:last_name]
+    redirect_to welcome_path and return if @user.nil?
+    if BCrypt::Password.new(@user.password_digest) == params[:password]
       session[:user_id] = @user.id
-      redirect_to '/welcome'
-    else
-      redirect_to '/welcome'
     end
+    redirect_to '/welcome'
   end
 
   def login
