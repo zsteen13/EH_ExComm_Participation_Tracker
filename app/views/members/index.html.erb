@@ -7,12 +7,12 @@
 
     <div class="content" style="text-align:center;">
       <br>
-      <a class="pure-button pure-button-primary" href= members/new> Create new member</a>
+      <a class="pure-button pure-button-primary" href= members/new>Create New Member</a>
       <% if is_admin? %>
             <a class="pure-button pure-button-primary" href= /bulk_add_users>Bulk Add Users</a>
 
         <% end %>
-      <a class="button" href= members/show_threshold_points> Search By Threshold Point</a>
+      <a class="pure-button pure-button-primary" href= members/show_threshold_points>Search By Threshold Point</a>
 
       <%= form_for "", url:members_path, role:"search", method: :get do %>
       <% end %>
