@@ -8,7 +8,7 @@ class MembersController < ApplicationController
   end
 
   def show_threshold_points
-    @members = User.where("total_points <= ?", params[:search])
+    @members = User.where("total_points >= ?", params[:search])
   end
 
 
