@@ -1,14 +1,13 @@
 require 'rails_helper'
 require 'pp' # pretty printer, outputs to console
 
-describe ActivitiesController, type: :system do
+feature ActivitiesController, type: :system do
   feature 'create activities admin' do
     include_context 'when authenticated as admin' # support context to log in a user
 
     scenario 'admin should be able to create activites' do
       visit 'activities'
       expect(page).to have_current_path '/activities'
-      expect(page).to have_content 'Activties'
 
       click_link 'Create Activity'
 
