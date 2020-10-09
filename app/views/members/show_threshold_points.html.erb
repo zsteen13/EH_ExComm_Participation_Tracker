@@ -10,7 +10,7 @@
       <%= link_to("<<Back to member page",members_path, :class => 'back-link') %>
 
       <%= form_tag href='show_threshold_points', :class => "pure-form pure-form-stacked", method: :get  do %>
-        <%= text_field_tag :search, params[:search], :pattern => "[0-9]+", required %>
+        <%= text_field_tag :search, params[:search], :pattern => "[0-9]+", :required => true %>
         <%= submit_tag 'Set Threshold Points', :class => "pure-button pure-button-primary", :id => "set_threshold" %>
       <% end %>
 
