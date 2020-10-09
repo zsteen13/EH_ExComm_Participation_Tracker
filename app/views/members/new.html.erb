@@ -1,47 +1,56 @@
 <div id="main">
   <div class="header">
       <h1>Members</h1>
+      <h2>Howdy <%= current_user.first_name %>, here you can view and edit members.</h2>
   </div>
-  <%= link_to("<< Back to Member page", members_path, :class => 'back-link') %>
+  <%= link_to("<< Back to List", members_path, :class => 'back-link') %>
     <div class="new member content">
-      <h1>Create members</h1>
-      <br>
+      <h2>Create members</h2>
+
       <%= form_for(@member, :url => members_path, :method =>'post') do |f| %>
-        <table id="formTable" summary="Subject form fields">
-          <th>First Name</th>
+        <table summary="Subject form fields">
             <tr>
-                <td><%= f.text_field :first_name  %></td>
+                <th>First Name</th>
+                <td><%= f.text_field :first_name %></td>
             </tr>
-          <th>Last Name</th>
+
             <tr>
+                <th>Last Name</th>
                 <td><%= f.text_field :last_name %></td>
             </tr>
-          <th>UIN</th>
+            
             <tr>
+                <th>UIN</th>
                 <td><%= f.text_field :uin %></td>
             </tr>
-          <th>Email</th>
+
             <tr>
+                <th>Email</th>
                 <td><%= f.text_field :email %></td>
             </tr>
-          <th>Committee</th>
+
             <tr>
+                <th>Committee</th>
                 <!--This should be a dropdown in the future-->
                 <td><%= f.text_field :committee %></td>
             </tr>
-          <th>Subcommittee</th>
+
             <tr>
+                <th>Subcommittee</th>
                 <!--This should be a dropdown in the future-->
                 <td><%= f.text_field :subcommittee %></td>
             </tr>
-          <th>Admin</th>
+
             <tr>
+                <th>Admin</th>
                 <td><%= f.check_box :admin %></td>
             </tr>
 
         </table>
+          <div class="pure-button">
             <%= f.submit 'Create New Member', :class => '' %>
             <% end %>
+          </div>
       </div>
 </div>
 <style>
@@ -53,9 +62,7 @@
     color: white;
   }
   th{
-    background:none;
-    color:#777;
-    height:20%;
+    background:#500000;
   }
   .table{
     border:2px solid black;
@@ -69,41 +76,27 @@
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   }
   .content {
-    margin: 0 auto;
-    padding: 0 2em;
-    max-width: 70%;
-    margin-bottom: 50px;
-    line-height: 1.6em;
+    max-width: 90%;
   }
   .pure-button {
     color: white;
     border-radius: 4px;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   }
-  
-  input{
-    font-family: inherit;
-    font-size: 100%;
-    margin: 0;
-    padding: .5em .6em;
-    display: inline-block;
-    border: 1px solid #ccc;
-    -webkit-box-shadow: inset 0 1px 3px #ddd;
-    box-shadow: inset 0 1px 3px #ddd;
-    border-radius: 4px;
-    vertical-align: middle;
-    -webkit-box-sizing: border-box;
+  .input[type="submit" i] {
+    appearance: push-button;
+    user-select: none;
+    white-space: pre;
+    align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    color: -internal-light-dark(buttontext, rgb(170, 170, 170));
+    background-color: #0078E7;
     box-sizing: border-box;
-    line-height: .5em;
-
-  }
-  button{
-    cursor:pointer;
-
-  }
-  #formTable{
-    width:70%;
-    justify-content: center;
-
-  }
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(195, 195, 195));
+    border-image: initial;
+}
 </style>
