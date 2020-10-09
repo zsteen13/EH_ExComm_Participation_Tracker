@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2020_10_08_053010) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "activities", force: :cascade do |t|
     t.string "name"
     t.string "_type"
@@ -33,6 +36,7 @@ ActiveRecord::Schema.define(version: 2020_10_08_053010) do
 
   create_table "users", force: :cascade do |t|
     t.string "uin"
+    t.string "password_digest"
     t.string "first_name"
     t.string "last_name"
     t.string "email"
