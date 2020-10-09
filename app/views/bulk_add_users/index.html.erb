@@ -17,7 +17,7 @@
     431455,user,name,user.name@tamu.edu,project owner,point of contact,0,0,0,0,false
   </p> %>
   <%= form_with(url: {action: :create}, multipart: true) do %>
-    <%= file_field_tag 'new_users', :class => "pure-button", :id => "upload_btn" %>
+    <%= file_field_tag 'new_users' %>
     <%= submit_tag "Upload", :class => "pure-button", :id => "upload_btn" %>
   <% end %>
 </div>
