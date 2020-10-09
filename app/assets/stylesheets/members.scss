@@ -4,19 +4,20 @@
 
 table {
   border-collapse: collapse;
-  width: 100%;
+  width:100%;
 }
 
-th, td {
+td {
   text-align: left;
-  padding: 8px;
+  padding-bottom: 10px;
+  padding-left:10px;
 }
 
-tr:nth-child(even){background-color: #f2f2f2}
 
 th {
   background-color: #4CAF50;
   color: white;
+  text-align: left;
 }
 
 

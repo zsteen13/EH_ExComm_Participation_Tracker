@@ -5,7 +5,9 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :committee, :subcommittee, presence: true
 
   def initialize(args = nil)
-    args[:admin] = (args[:admin] == "true" || args[:admin] == true) ? true : false
+    if !args.nil?
+      args[:admin] = (args[:admin] == "true" || args[:admin] == true) ? true : false
+    end
     super
   end
 
