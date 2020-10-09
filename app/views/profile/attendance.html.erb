@@ -22,11 +22,14 @@
                         </tr>
                         </thead>
                         <tbody class="text-style" style="font-size:30px;color:black;">
+                            <!--
                             <tr>
                                 <td>Club Meeting</td>
                                 <td>October 18, 2020</td>
                                 <td>15</td>
                             </tr>
+                            -->
+                            
                         <% @attended.each do |attended| %>
                             <tr>
                                 <td><%= Activity.find(attended.activity_id).name %></td>
