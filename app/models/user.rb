@@ -1,5 +1,7 @@
 require 'pp'
 class User < ApplicationRecord
+  has_secure_password
+
   # supplied by email_validator gem
   validates :email, email: true
   validates :total_points, :event_points, :meeting_points, :misc_points, numericality: { only_integer: true }
