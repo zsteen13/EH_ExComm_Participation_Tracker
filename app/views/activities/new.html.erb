@@ -1,33 +1,32 @@
 
 <div id="main">
     <div class="header">
-      <h1>Members</h1>
+      <h1>Activities</h1>
     </div>
 
     <div class="content" style="text-align:center;">
-        <div class="content">
-            <h1>Create Activites</h1>
-            <form action="/activities" method="POST" class="pure-form pure-form-stacked" enctype="application/json" onsubmit="return onSubmit">
-                <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
-                <fieldset>
-                    <label>Activity Name</label>
-                    <input id="name" name="activity_name" type="text" placeholder="Activity Name" value="<%= @prev_data["activity_name"]%>" required/>
-                    <label >Activity Type</label>
-                    <input name="activity_type" type="text" placeholder="Activity Type" value="<%= @prev_data["activity_type"]%>" required/>
-                    <label >Date</label>
-                    <input id='date_input' type="date" name="date" type="text" placeholder="Date (mm/dd/yyyy)" value="<%= @prev_data["date"]%>" required/>
-                    <label >Time</label>
-                    <input id='time_input' type="time" name="time" type="text" placeholder="Time (hh:mmAM)" value="<%= @prev_data["time"]%>" required/>
-                    <label >Point Value</label>
-                    <input name="point_value" type="text" placeholder="Point Value" pattern="[0-9]+" value="<%= @prev_data["point_value"]%>" required/>
-                    <label >Description</label>
-                    <textarea name="description" class="pure-input-1-2" placeholder="Description" required><%= @prev_data["description"]%></textarea>
-                    <% if @error_message%>
-                        <p class="error-message"><%= @error_message%></p>
-                    <% end %>
-                    <button type="submit" class="pure-button pure-button-primary">Create</button>
-                </fieldset>
-            </form>
-        </div>
+        <a class="pure-button pure-button-primary" href="/profile/" > Return to Activities </a>
+        <h1>Create Activites</h1>
+        <form action="/activities" method="POST" class="pure-form pure-form-stacked" enctype="application/json" onsubmit="return onSubmit">
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+            <fieldset>
+                <label>Activity Name</label>
+                <input id="name" name="activity_name" type="text" placeholder="Activity Name" value="<%= @prev_data["activity_name"]%>" required/>
+                <label >Activity Type</label>
+                <input name="activity_type" type="text" placeholder="Activity Type" value="<%= @prev_data["activity_type"]%>" required/>
+                <label >Date</label>
+                <input id='date_input' type="date" name="date" type="text" placeholder="Date (mm/dd/yyyy)" value="<%= @prev_data["date"]%>" required/>
+                <label >Time</label>
+                <input id='time_input' type="time" name="time" type="text" placeholder="Time (hh:mmAM)" value="<%= @prev_data["time"]%>" required/>
+                <label >Point Value</label>
+                <input name="point_value" type="text" placeholder="Point Value" pattern="[0-9]+" value="<%= @prev_data["point_value"]%>" required/>
+                <label >Description</label>
+                <textarea name="description" class="pure-input-1-2" placeholder="Description" required><%= @prev_data["description"]%></textarea>
+                <% if @error_message%>
+                    <p class="error-message"><%= @error_message%></p>
+                <% end %>
+                <button type="submit" class="pure-button pure-button-primary">Create</button>
+            </fieldset>
+        </form>
     </div>
 </div>
