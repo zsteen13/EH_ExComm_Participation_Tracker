@@ -1,3 +1,4 @@
+require 'pp'
 class ProfileController < ApplicationController
   skip_before_action :authorized, only: [:will_change_password, :change_password, :error]
   
@@ -44,27 +45,22 @@ class ProfileController < ApplicationController
   end
 
   def change_password
-    pp params
-=begin
-    if !(params[:first_password].present? && params[:second_password].present?)
+    @user = User.find(params[:user][:id])
+    if !(params[:user][:first_password].present? && params[:user][:second_password].present?)
       flash.now[:notice] = 'Please fill out both passwords'
-      render :will_change_password
+      render :will_change_password and return
     end
-    if params[:first_password] != params[:second_password]
+    if params[:user][:first_password] != params[:user][:second_password]
       flash.now[:notice] = 'Passwords are not the same'
-      render :will_change_password
+      render :will_change_password and return
     end
-    if logged_in?
-      
-    else
-      begin
-        @user.update!(password: params[:first_password])
-      rescue ActiveRecord::RecordInvalid
-        pp @user
-        render :error
-      end
+    
+    begin
+      @user.update!(password: params[:user][:first_password])
+    rescue ActiveRecord::RecordInvalid
+      render :error and return
     end
-=end
+    redirect_to welcome_path
   end
 
   def error
