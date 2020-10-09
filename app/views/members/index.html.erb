@@ -8,17 +8,16 @@
     <div class="content" style="text-align:center;">
       <br>
       <div class="pure-button-group" role="group" aria-label="...">
-      <a class="pure-button pure-button-primary" href= members/new> Create new member</a>
+        <a class="pure-button pure-button-primary" href= members/new> Create new member</a>
 
       <% if is_admin? %>
             <a id="bulk_add_users_btn" class="pure-button pure-button-primary" href= /bulk_add_users>Bulk Add Users</a>
 
         <% end %>
+        <a class="pure-button pure-button-primary" href= members/show_threshold_points>Search By Threshold Point</a>
       </div>
       
       <br>
-      
-      <a class="pure-button pure-button-primary" href= members/show_threshold_points>Search By Threshold Point</a>
 
       <%= form_for "", url:members_path, role:"search", method: :get do %>
       <% end %>
