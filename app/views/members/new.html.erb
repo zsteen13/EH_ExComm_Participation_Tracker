@@ -11,14 +11,14 @@
         <table summary="Subject form fields">
             <tr>
                 <th>First Name</th>
-                <td><%= f.text_field :first_name %></td>
+                <td><%= f.text_field :first_name , style: 'text-transform: capitalize;'%></td>
             </tr>
 
             <tr>
                 <th>Last Name</th>
-                <td><%= f.text_field :last_name %></td>
+                <td><%= f.text_field :last_name, style: 'text-transform: capitalize;' %></td>
             </tr>
-            
+
             <tr>
                 <th>UIN</th>
                 <td><%= f.text_field :uin %></td>
@@ -39,6 +39,12 @@
                 <th>Subcommittee</th>
                 <!--This should be a dropdown in the future-->
                 <td><%= f.text_field :subcommittee %></td>
+            </tr>
+
+            <tr>
+                <th>Total_points</th>
+                <!--This should be a dropdown in the future-->
+                <td><%= f.text_field :total_points %></td>
             </tr>
 
             <tr>
