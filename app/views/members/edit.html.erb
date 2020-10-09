@@ -21,12 +21,12 @@
 
             <tr>
                 <th>First Name</th>
-                <td><%= f.text_field :first_name %></td>
+                <td><%= f.text_field :first_name ,style: 'text-transform: capitalize;'%></td>
             </tr>
 
             <tr>
                 <th>Last Name</th>
-                <td><%= f.text_field :last_name %></td>
+                <td><%= f.text_field :last_name,style: 'text-transform: capitalize;' %></td>
             </tr>
 
             <tr>
@@ -43,6 +43,13 @@
                 <th>Subcommittee</th>
                 <td><%= f.text_field :subcommittee %></td>
             </tr>
+
+            <tr>
+                <th>Total_points</th>
+                <td><%= f.text_field :total_points %></td>
+            </tr>
+
+
 
             <tr>
                 <th>Admin</th>

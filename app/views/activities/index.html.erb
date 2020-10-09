@@ -18,6 +18,7 @@
                             <%= activity.description%>
                         </p> 
                         <h5 class="event-points"> Available points: <%= activity.point_value%> </h5>
+                        <%= link_to("View Attendance", activity_path(activity), :class => 'action show', class: "pure-button pure-button-primary") %>
                     </div>
                 </div>
             <% end %>

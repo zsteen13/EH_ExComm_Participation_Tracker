@@ -1,5 +1,5 @@
 
-<div class = "members index">
+<div class = "members show_threshold_points">
   <div id="main">
     <div class="header">
       <h1>Members</h1>
@@ -8,29 +8,25 @@
 
     <div class="content" style="text-align:center;">
       <br>
-      <div class="pure-button-group" role="group" aria-label="...">
-      <a class="pure-button pure-button-primary" href= members/new> Create new member</a>
+      <%= link_to("<<Back to member page",members_path, :class => 'back-link') %>
 
-      <% if is_admin? %>
-            <a class="pure-button pure-button-primary" href= /bulk_add_users>Bulk Add Users</a>
+      <%= form_tag href='show_threshold_points', method: :get  do %>
+        <%= text_field_tag :search ,params[:search] %>
+        <%= submit_tag 'Set Threshold Points', :class => "pure-button", :id => "set_threshold" %>
+      <% end %>
 
-        <% end %>
-      </div>
-      
-      <a class="pure-button pure-button-primary" href= members/show_threshold_points>Search By Threshold Point</a>
 
       <%= form_for "", url:members_path, role:"search", method: :get do %>
       <% end %>
-      
       <div class="table">
         <table summary="member detail view">
           <tr class = "header">
-            <th><%= sortable "First name","first_name" %></th>
-            <th><%= sortable "Last name","last_name" %> </th>
-            <th><%= sortable "Committee","committee" %> </th>
-            <th><%= sortable "Subcommittee","subcommittee" %> </th>
-            <th><%= sortable "Email","email" %></th>
-            <th><%= sortable "Total points","total_points" %></th>
+            <th><%=  "First name" %></th>
+            <th><%=  "Last name" %> </th>
+            <th><%=  "Committee" %> </th>
+            <th><%=  "Subcommittee" %> </th>
+            <th><%=  "Email" %></th>
+            <th><%=  "Total points" %></th>
             <th>Actions </th>
           </tr>
 
@@ -51,13 +47,9 @@
           <% end %>
         </table>
       </div>
-
     </div>
   </div>
 </div>
-<script>
-
-</script>
 
 <style>
   a{
@@ -69,14 +61,9 @@
   }
   th{
     background:#500000;
-    padding:8px;
   }
   .table{
     border:2px solid black;
-  }
-  #table{
-    border-collapse: collapse;
-    width:100%;
   }
   .table td a{
     background-color: #0078E7;
@@ -86,7 +73,6 @@
     text-decoration: none;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   }
-
   .content {
     max-width: 90%;
   }
