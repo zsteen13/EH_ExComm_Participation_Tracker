@@ -4,7 +4,7 @@
   </div>
   <%= link_to("<< Back to Member page", members_path, :class => 'back-link') %>
     <div class="new member content">
-      <h1>Create members</h1>
+      <h1>Create a Member</h1>
       <br>
       <%= form_for(@member, :url => members_path, :method =>'post') do |f| %>
         <table id="formTable" summary="Subject form fields">
@@ -41,7 +41,7 @@
             </tr>
           
             <tr>
-                <th>Total_points</th>
+                <th>Total Points</th>
                 <!--This should be a dropdown in the future-->
                 <td><%= f.text_field :total_points %></td>
             </tr>
@@ -55,7 +55,7 @@
 
           
 
-            <%= f.submit 'Create New Member', :class => '' %>
+            <%= f.submit 'Create New Member', :class => 'pure-button pure-button-primary' %>
             <% end %>
       
 </div>

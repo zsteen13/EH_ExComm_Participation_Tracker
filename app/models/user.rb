@@ -19,15 +19,19 @@ class User < ApplicationRecord
   end
 
   def display_total_points
-    self[:total_points] || "0"
+    self[:total_points] || 0
   end
 
   def display_meeting_points
-    self[:meeting_points] || "0"
+    self[:meeting_points] || 0
   end
 
   def display_event_points
-    self[:event_points] || "0"
+    self[:event_points] || 0
+  end
+
+  def display_misc_points
+    self[:misc_points] || 0
   end
 
   def display_committee
@@ -35,7 +39,7 @@ class User < ApplicationRecord
   end
 
   def display_subcommittee
-    self[:subcommittee].blank? ? "No assigned committee" : self[:subcommittee]
+    self[:subcommittee].blank? ? "No assigned subcommittee" : self[:subcommittee]
   end
 
   def to_s

@@ -9,6 +9,9 @@ require 'rspec/rails'
 # Coverage report generator
 require 'simplecov'
 SimpleCov.start
+# filter out support specs, tests
+SimpleCov.add_filter 'spec/support'
+
 require 'capybara/rails'
 
 require 'rails/test_help'
