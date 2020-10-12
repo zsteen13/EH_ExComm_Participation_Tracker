@@ -6,12 +6,12 @@ describe MembersController, type: :system do
     include_context 'when authenticated as admin' # support context to log in a user
 
     scenario 'admin should be able to view members' do
-      visit 'members'
+      visit '/members'
       expect(page).to have_current_path '/members'
     end
 
     scenario 'admin should be able to create a member' do
-      visit 'members'
+      visit '/members'
       click_link 'Create New Member'
 
       fill_in 'user_first_name', :with => 'test first'
