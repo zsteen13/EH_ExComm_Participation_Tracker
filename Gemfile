@@ -31,6 +31,8 @@ gem 'email_validator'
 
 # Used for test coverage reporting
 gem 'simplecov', require: false, group: :test
+# Used for style checking
+gem 'rubocop', require: false
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
