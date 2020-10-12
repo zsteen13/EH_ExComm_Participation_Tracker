@@ -6,7 +6,7 @@ feature 'Log in correctly'  do
   
   scenario 'shows welcome page' do
     expect(page).to have_current_path '/welcome'
-    expect(page).to have_content "Let's Speak Some Latin"
+    expect(page).to have_content "Welcome to the Texas A&M EH Excom Member Point Tracker"
   end
 end
 

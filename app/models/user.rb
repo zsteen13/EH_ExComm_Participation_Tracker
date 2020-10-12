@@ -1,5 +1,7 @@
 require 'pp'
 class User < ApplicationRecord
+  has_many :userkeys
+  
   has_secure_password
 
   # supplied by email_validator gem
