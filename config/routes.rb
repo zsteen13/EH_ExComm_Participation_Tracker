@@ -1,3 +1,19 @@
+# provides a redirected route while preserving query parameters
+class QueryRedirector
+  def call(params, request)
+    uri = URI.parse(request.original_url)
+    if uri.query
+      "#{@destination}?#{uri.query}"
+    else
+      @destination
+    end
+  end
+
+  def initialize(destination)
+    @destination = destination
+  end
+end
+
 Rails.application.routes.draw do
   resources :activities
   get 'activities', to: 'activities#activities'
@@ -19,6 +35,7 @@ Rails.application.routes.draw do
   root 'sessions#welcome'
   get 'profile', to: 'profile#profile'
   
+  get 'signup', to: redirect(QueryRedirector.new("/profile/change_password")) # looks nicer for first time users
   get 'profile/change_password', to: 'profile#will_change_password'
   patch 'profile/change_password', to: 'profile#change_password'
   get 'profile/error', to: 'profile#error'
@@ -36,8 +53,4 @@ Rails.application.routes.draw do
       get 'show_threshold_points'
     end
   end
-
-
-
-
 end
