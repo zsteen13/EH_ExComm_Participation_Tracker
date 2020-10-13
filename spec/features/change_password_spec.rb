@@ -18,7 +18,7 @@ feature 'change password'  do
       fill_in 'uin', :with => '11111111'
       fill_in 'password', :with => '123'
       click_button 'Login'
-      expect(page).to have_content 'Welcome to the Texas A&M EH Excom Member Point Tracker'
+      expect(page).to have_content 'Welcome to the Texas A&M EH ExCom Member Point Tracker'
 =end
     end
     scenario 'passwords dont match' do
