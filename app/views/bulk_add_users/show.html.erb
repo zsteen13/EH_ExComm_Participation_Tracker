@@ -1,7 +1,7 @@
 <div class="center">
   <% if !@correct_num_cols %>
     <h1>Parsing Error</h1>
-    <p>The number columns in the uploaded table is incorrect. Please check row <b><%= @row %></b> it has <%= @col %> columns in your table. It is supposed to have <%= @numCols %> columns.</p>
+    <p>The number columns in the uploaded table is incorrect. Please check row <b><%= @row %></b> it has <%= @col %> columns in your table. It is supposed to have <%= @num_cols %> columns.</p>
   <% elsif @valid %>
     <h2>Please confirm this info</h2>
     <table class="pure-table">
