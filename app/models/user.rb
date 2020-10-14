@@ -1,5 +1,9 @@
 require 'pp'
 class User < ApplicationRecord
+  has_many :userkeys
+  
+  has_secure_password
+
   # supplied by email_validator gem
   validates :email, email: true
   validates :total_points, :event_points, :meeting_points, :misc_points, numericality: { only_integer: true }
@@ -19,15 +23,19 @@ class User < ApplicationRecord
   end
 
   def display_total_points
-    self[:total_points] || "0"
+    self[:total_points] || 0
   end
 
   def display_meeting_points
-    self[:meeting_points] || "0"
+    self[:meeting_points] || 0
   end
 
   def display_event_points
-    self[:event_points] || "0"
+    self[:event_points] || 0
+  end
+
+  def display_misc_points
+    self[:misc_points] || 0
   end
 
   def display_committee
@@ -35,7 +43,7 @@ class User < ApplicationRecord
   end
 
   def display_subcommittee
-    self[:subcommittee].blank? ? "No assigned committee" : self[:subcommittee]
+    self[:subcommittee].blank? ? "No assigned subcommittee" : self[:subcommittee]
   end
 
   def to_s

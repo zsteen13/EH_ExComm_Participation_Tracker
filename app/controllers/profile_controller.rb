@@ -1,4 +1,7 @@
+require 'pp'
 class ProfileController < ApplicationController
+  skip_before_action :authorized, only: [:will_change_password, :change_password, :error]
+  
   def profile
 
     ## Generates the User's Points Based on the UserToActivites Point Count
@@ -24,6 +27,44 @@ class ProfileController < ApplicationController
     current_user.update(meeting_points: sumMeetingPoints.to_i)
     current_user.update(event_points: sumEventPoints.to_i)
     current_user.update(misc_points: sumMiscPoints.to_i)
+  end
+
+  def will_change_password
+    if logged_in?
+      @user = current_user
+    else
+      key = request.query_parameters['key']
+      redirect_to profile_error_path and return if key.nil?
+
+      # Does this key exist in any row?
+      user_key = UserKey.where(:key => key).find {|user_key| user_key.key == key} # could also be ...where().first.user_key
+      redirect_to profile_error_path and return if user_key.nil?
+
+      @user = User.find(user_key.user_id)
+    end
+  end
+
+  def change_password
+    @user = User.find(params[:user][:id])
+    if !(params[:user][:first_password].present? && params[:user][:second_password].present?)
+      flash.now[:notice] = 'Please fill out both passwords'
+      render :will_change_password and return
+    end
+    if params[:user][:first_password] != params[:user][:second_password]
+      flash.now[:notice] = 'Passwords are not the same'
+      render :will_change_password and return
+    end
+    
+    begin
+      @user.update!(password: params[:user][:first_password])
+    rescue ActiveRecord::RecordInvalid
+      render :error and return
+    end
+    if not logged_in? then UserKey.where(user_id: @user.id).delete_all end # different than destroy_all 
+    redirect_to welcome_path
+  end
+
+  def error
   end
 
   def attendance

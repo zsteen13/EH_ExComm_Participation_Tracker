@@ -8,15 +8,15 @@
 require "date"
 
 # Admin and non Admin users for rspec and capybara testing
-users1 = User.create!(uin: '11111111', first_name: 'Non Admin', last_name: 'Test', email: 'nonadmintest@gmail.com', committee: 'internal', subcommittee: 'None', admin: false, total_points:0, event_points:0, meeting_points:0, misc_points:0)
+users1 = User.create!(uin: '11111111', password_digest: BCrypt::Password.create('Test'), first_name: 'Non Admin', last_name: 'Test', email: 'nonadmintest@gmail.com', committee: 'internal', subcommittee: 'None', admin: false, total_points:0, event_points:0, meeting_points:0, misc_points:0)
 
-users2 = User.create!(uin: '22222222', first_name: 'Admin', last_name: 'Test', email: 'admintest@gmail.com', committee: 'internal', subcommittee: 'None', admin: true, total_points:0, event_points:0, meeting_points:0, misc_points:0)
+users2 = User.create!(uin: '22222222',  password_digest: BCrypt::Password.create('Test'), first_name: 'Admin', last_name: 'Test', email: 'admintest@gmail.com', committee: 'internal', subcommittee: 'None', admin: true, total_points:0, event_points:0, meeting_points:0, misc_points:0)
 
-users3 = User.create!(uin: '000000000', first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', committee: 'internal', subcommittee: 'something', total_points:0, event_points:0, meeting_points:0, misc_points:0, admin: true)
+users3 = User.create!(uin: '000000000', password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', committee: 'internal', subcommittee: 'something', total_points:0, event_points:0, meeting_points:0, misc_points:0, admin: true)
 
-users4 = User.create!(uin: '123456789', first_name: 'first', last_name: 'last', email: 'test@gmail.com', committee: 'internal', subcommittee: 'something', total_points:0, event_points:0, meeting_points:0, misc_points:0, admin: true)
+users4 = User.create!(uin: '123456789', password_digest: BCrypt::Password.create('Test'), first_name: 'first', last_name: 'last', email: 'test@gmail.com', committee: 'internal', subcommittee: 'something', total_points:0, event_points:0, meeting_points:0, misc_points:0, admin: true)
 
-users5 = User.create!(uin: '000000001', first_name: 'trev', last_name: 'moore', email: 'zsteen13@gmail.com', committee: 'internal', subcommittee: 'something', total_points:0, event_points:0, meeting_points:0, misc_points:0, admin: true)
+users5 = User.create!(uin: '000000001', password_digest: BCrypt::Password.create('Test'), first_name: 'trev', last_name: 'moore', email: 'zsteen13@gmail.com', committee: 'internal', subcommittee: 'something', total_points:0, event_points:0, meeting_points:0, misc_points:0, admin: true)
 
 activity1 = Activity.create(name: "Meet and Greet", _type: "Event", date: DateTime.new(2020, 8, 23, 11, 0, 0, Rational(-5, 24)), point_value: 4, description: "Meet and greet for the new members", num_rsvp: 0)
 
@@ -35,3 +35,4 @@ UserToActivity.create(uin: users2.uin, activity_id: activity3.id)
 UserToActivity.create(uin: users3.uin, activity_id: activity3.id)
 UserToActivity.create(uin: users5.uin, activity_id: activity2.id)
 
+UserKey.create!(user_id: 1, key: 'testkey')
