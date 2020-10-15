@@ -26,6 +26,12 @@ ActiveRecord::Schema.define(version: 2020_10_08_053010) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "user_keys", id: false, force: :cascade do |t|
+    t.string "key", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_user_keys_on_user_id"
+  end
+
   create_table "user_to_activities", force: :cascade do |t|
     t.string "uin"
     t.integer "activity_id"

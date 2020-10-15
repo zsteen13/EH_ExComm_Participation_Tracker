@@ -35,3 +35,4 @@ UserToActivity.create(uin: users2.uin, activity_id: activity3.id)
 UserToActivity.create(uin: users3.uin, activity_id: activity3.id)
 UserToActivity.create(uin: users5.uin, activity_id: activity2.id)
 
+UserKey.create!(user_id: 1, key: 'testkey')
