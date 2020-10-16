@@ -40,7 +40,7 @@ module BulkAddUsersHelper
         event_points: csv[i][EVENT_POINTS_COL_CONST],
         misc_points: csv[i][MISC_POINTS_COL_CONST],
         admin: (csv[i][ADMIN_COL_CONST]&.downcase == 'true'),
-        password_digest: BCrypt::Password.create(Random.new.rand(100.0).to_s)
+        encrypted_password: BCrypt::Password.create(Random.new.rand(100.0).to_s)
       )
 
       if user.invalid?
