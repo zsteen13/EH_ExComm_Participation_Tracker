@@ -18,21 +18,12 @@ feature 'Members Page'  do
   scenario 'edit a member' do
     visit('/members')
     find("a[href='/members/1/edit']").click
-    sleep 1
-    expect(page).to have_content 'Update Member'
-  end
-
-  scenario 'edit a member' do
-    visit('/members')
-    find("a[href='/members/1/edit']").click
-    sleep 1
-    expect(page).to have_content 'Update Member'
+    expect(page).to have_content 'Edit Member'
   end
 
   scenario 'delete a member' do
     visit('/members')
     find("a[href='/members/1/delete']").click
-    sleep 1
     expect(page).to have_content 'Are you sure you want to permanently delete this member from the system?'
     click_button 'commit'
   end
