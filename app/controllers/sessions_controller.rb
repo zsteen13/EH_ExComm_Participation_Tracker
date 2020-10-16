@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
     redirect_to welcome_path and return if !params[:password].present?
     @user = User.find_by(uin: params[:uin])
     redirect_to welcome_path and return if @user.nil?
-    if BCrypt::Password.new(@user.encrypted_password) == params[:password]
+    if BCrypt::Password.new(@user.password_digest) == params[:password]
       session[:user_id] = @user.id
     end
     redirect_to '/welcome'

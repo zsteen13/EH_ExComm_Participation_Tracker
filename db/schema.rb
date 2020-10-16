@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_08_053010) do
+ActiveRecord::Schema.define(version: 2020_10_16_193718) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
@@ -19,6 +19,32 @@ ActiveRecord::Schema.define(version: 2020_10_08_053010) do
     t.decimal "point_value"
     t.string "description"
     t.decimal "num_rsvp"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "committees", force: :cascade do |t|
+    t.integer "committee_id"
+    t.string "committee"
+    t.integer "point_threshold"
+    t.string "head_first_name"
+    t.string "head_last_name"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "privledges", force: :cascade do |t|
+    t.integer "privledge_id"
+    t.string "privledge"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "subcommittees", force: :cascade do |t|
+    t.integer "subcommittee_id"
+    t.string "subcommittee"
+    t.integer "point_threshold"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -39,7 +65,7 @@ ActiveRecord::Schema.define(version: 2020_10_08_053010) do
 
   create_table "users", force: :cascade do |t|
     t.string "uin"
-    t.string "encrypted_password"
+    t.string "password_digest"
     t.string "first_name"
     t.string "last_name"
     t.string "email"

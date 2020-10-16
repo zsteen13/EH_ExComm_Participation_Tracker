@@ -1,0 +1,2 @@
+class Privledge < ApplicationRecord
+end
