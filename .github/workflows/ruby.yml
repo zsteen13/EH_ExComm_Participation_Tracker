@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     services:
       postgres:
@@ -44,9 +44,6 @@ jobs:
         bundle exec rake app:update:bin
         bin/rails db:setup
         bundle exec rails webpacker:install
-        sudo ln /usr/bin/chromedriver /usr/bin/chrome-driver
-        sudo ln /usr/bin/google-chrome-stable /usr/bin/google-chrome
-        ls /usr/bin
 
     - name: Run Tests
       env:
