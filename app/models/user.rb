@@ -7,12 +7,24 @@ class User < ApplicationRecord
   # supplied by email_validator gem
   validates :email, email: true
   validates :total_points, :event_points, :meeting_points, :misc_points, numericality: { only_integer: true }
-  validates :uin, :first_name, :last_name, :committee, :subcommittee, presence: true
+  validates :uin, :first_name, :last_name, presence: true
   validate :valid_uin
 
   def initialize(args = nil)
     if !args.nil?
       args[:admin] = (args[:admin] == "true" || args[:admin] == true) ? true : false
+    end
+    if !args.nil?
+      if Committee.where(committee: args[:committee]).take
+        args[:committee] =  Committee.where(committee: args[:committee]).take.committee_id
+      else
+        args[:committee] = nil
+      end
+      if Subcommittee.where(subcommittee: args[:subcommittee], committee: args[:committee]).take
+        args[:subcommittee] = Subcommittee.where(subcommittee: args[:subcommittee]).take.subcommittee_id
+      else
+        args[:subcommittee] = nil
+      end
     end
     super
   end
@@ -39,20 +51,24 @@ class User < ApplicationRecord
   end
 
   def display_committee
-    self[:committee].blank? ? "No assigned committee" : self[:committee]
+    self[:committee].blank? ? "No assigned committee" : Committee.where(committee_id: self[:committee]).take.committee
   end
 
   def display_subcommittee
-    self[:subcommittee].blank? ? "No assigned subcommittee" : self[:subcommittee]
+    self[:subcommittee].blank? ? "No assigned subcommittee" : Subcommittee.where(subcommittee_id: self[:subcommittee]).take.subcommittee
+  end
+
+  def display_committee_email
+    self[:committee].blank? ? "None" : Committee.where(committee_id: self[:committee]).take.email
   end
 
   def to_s
-    return "uin: " + self[:uin].to_s + " first_name: " + self[:first_name] + " last_name " + self[:last_name] + " email: " + self[:email] + " committee: " + self[:committee] + " subcommittee: " + self[:subcommittee] + " total_point: " + self[:total_points].to_s + " meeting_points: " + self[:meeting_points].to_s + " event_points: " + self[:event_points].to_s + " misc_points " + self[:misc_points].to_s + " admin: " + self[:admin].to_s + "\n"
+    return "uin: " + self[:uin].to_s + " first_name: " + self[:first_name] + " last_name " + self[:last_name] + " email: " + self[:email] + " committee: " + self.display_committee + " subcommittee: " + self.display_subcommittee + " total_point: " + self[:total_points].to_s + " meeting_points: " + self[:meeting_points].to_s + " event_points: " + self[:event_points].to_s + " misc_points " + self[:misc_points].to_s + " admin: " + self[:admin].to_s + "\n"
   end
   
   private
   
-  def valid_uin
+  def valid_uin # should make this confirm that uin in 9 digits
     if uin.nil?
       return # dont report uin validity if its nil, thats another validators job
     elsif !uin.split('').all? {|c| /^[0-9]$/.match?(c)}

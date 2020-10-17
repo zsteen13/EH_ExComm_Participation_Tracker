@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_16_193842) do
+ActiveRecord::Schema.define(version: 2020_10_17_003337) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2020_10_16_193842) do
     t.integer "point_threshold"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "committee"
   end
 
   create_table "user_keys", id: false, force: :cascade do |t|
@@ -69,8 +70,8 @@ ActiveRecord::Schema.define(version: 2020_10_16_193842) do
     t.string "first_name"
     t.string "last_name"
     t.string "email"
-    t.string "committee"
-    t.string "subcommittee"
+    t.integer "committee"
+    t.integer "subcommittee"
     t.integer "total_points"
     t.integer "meeting_points"
     t.integer "event_points"
