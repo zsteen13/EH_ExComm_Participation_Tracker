@@ -13,8 +13,6 @@ class User < ApplicationRecord
   def initialize(args = nil)
     if !args.nil?
       args[:admin] = (args[:admin] == "true" || args[:admin] == true) ? true : false
-    end
-    if !args.nil?
       if Committee.where(committee: args[:committee]).take
         args[:committee] =  Committee.where(committee: args[:committee]).take.committee_id
       else

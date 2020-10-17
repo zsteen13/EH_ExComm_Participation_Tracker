@@ -66,11 +66,11 @@
                             <a class="pure-button pure-button-primary righto" href="/profile/attendance" > View Activities Attended </a>
                             <div class="left">
                                 <h2>Total points</h2>
-                                <p style="text-align: center;font-size: 25px"> <%= current_user.total_points%></p>
+                                <p style="text-align: center;font-size: 25px"> <%= current_user.total_points %></p>
                             </div>
                             <div class="right">
                                 <h2> Goal </h2>
-                                <p style="text-align: center;font-size: 25px"> 50 </p>
+                                <p style="text-align: center;font-size: 25px"> <%= current_user.point_threshold %></p>
                             </div>
                         </div>
                         <div class="meter">
