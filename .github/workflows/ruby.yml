@@ -41,6 +41,7 @@ jobs:
         bundle exec rake app:update:bin
         bin/rails db:setup
         bundle exec rails webpacker:install
+        ln -s /usr/bin/chromedriver /usr/bin/chrome-driver
 
     - name: Run Tests
       env:
