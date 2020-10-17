@@ -45,6 +45,7 @@ jobs:
         bin/rails db:setup
         bundle exec rails webpacker:install
         sudo ln /usr/bin/chromedriver /usr/bin/chrome-driver
+        ls /usr/bin
 
     - name: Run Tests
       env:
