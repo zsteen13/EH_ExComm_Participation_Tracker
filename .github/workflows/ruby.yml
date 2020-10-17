@@ -30,6 +30,9 @@ jobs:
       run: |
         sudo apt-get -yqq install libpq-dev
 
+    - name: setup-chromedriver
+      uses: nanasess/setup-chromedriver@v1.0.1
+
     - name: Build App
       env:
         PGHOST: localhost
