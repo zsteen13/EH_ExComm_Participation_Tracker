@@ -15,9 +15,9 @@ feature BulkAddUsersController do
       expect(page).to have_content 'Attach CSV file with new users.'
 
       filepath = Rails.root.join "spec", "data", "bulk_add_users_correct.csv" 
-      attach_file 'new_users', filepath
+      attach_file 'new_users', filepath, visible: false
       click_button 'upload_btn'
-      expect(page).to have_content 'Please confirm this info'
+      expect(page).to have_content 'Is this correct'
 
       click_link "confirm_btn"
       expect(page).to have_current_path '/members'
@@ -35,7 +35,7 @@ feature BulkAddUsersController do
       expect(page).to have_content 'Attach CSV file with new users.'
 
       filepath = Rails.root.join "spec", "data", "bulk_add_users_wrong_2.csv" 
-      attach_file 'new_users', filepath
+      attach_file 'new_users', filepath, visible: false
       click_button 'upload_btn'
       expect(page).to have_content 'Parsing Error'
       expect(page).to have_content 'the field email is invalid'

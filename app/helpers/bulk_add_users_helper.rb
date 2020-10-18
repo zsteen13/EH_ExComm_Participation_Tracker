@@ -27,7 +27,7 @@ module BulkAddUsersHelper
 
     upperBound = csv.count - 1
     lowerBound = 1 # loses the title info
-    for i in lowerBound..upperBound
+    for i in lowerBound..upperBound 
       user = User.new(
         uin: csv[i][UIN_COL_CONST],
         first_name: csv[i][FIRST_NAME_COL_CONST],
@@ -53,13 +53,13 @@ module BulkAddUsersHelper
     return users, valid
   end
 
-  def BulkAddUsersHelper.checkNumColumns(filename, numCols = 11)
+  def BulkAddUsersHelper.checkNumColumns(filename, numCols = 4)
     csv = CSV.read(filename)
 
     upperBound = csv.count - 1
     retval = true
     for i in 0..upperBound
-      if csv[i].count != numCols
+      if csv[i].count < numCols
         return false, i, csv[i].count
       end
     end

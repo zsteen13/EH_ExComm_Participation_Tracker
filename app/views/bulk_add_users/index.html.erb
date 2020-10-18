@@ -1,35 +1,55 @@
-
-<div class = "members show_threshold_points">
+<div class>
   <div id="main">
     <div class="header">
       <h1>Members</h1>
     </div>
-
     <div class="content" style="text-align:center;">
-    <br>
-    <%= link_to("<< Back to Member page", members_path, :class => 'back-link') %>
-    <div class='center'>
-      <h1>Bulk File Upload</h1>
-      <p>Attach CSV file with new users.</p>
-      <p>This CSV file should be in the following format to ensure no parsing errors occur.</p>
+      <br>
+      <%= link_to("<< Back to Member page", members_path, :class => 'back-link') %>
       <p>
+        Attach CSV file with new users.
+        <br>
+        <br>
+        This CSV file should be in the following format to ensure no parsing errors occur.
+        <br>
+        <br>
         UIN | First Name | Last Name | Email | Committee | Subcommittee | Point Total | Meeting Point | Event Points | Misc Points | Admin
-      </p>
-      <%# Not sure if we want to put this in %>
-      <%# <p>
-        Here is an example.
-      </p>
-      <p>
-        uin,first name,last name,email,committee,subcommittee,point total,meeting point,event points,misc points,admin
         <br>
-        431454,john,doe,john.doe@tamu.edu,admin,super user,0,0,0,0,false
         <br>
-        431455,user,name,user.name@tamu.edu,project owner,point of contact,0,0,0,0,false
-      </p> %>
+        All fields after email are optional.
+      </p>
       <%= form_with(url: {action: :create}, multipart: true) do %>
-        <%= file_field_tag 'new_users' %>
-        <%= submit_tag "Upload", :class => "pure-button", :id => "upload_btn" %>
+        <div class="horz">
+          <label class="custom-file-upload">
+            <input class="file" type="file" name="new_users" id="new_users">
+            <a class="pure-button" >A Pure Button</a>
+          </label>
+          <p id="file_name" style="margin:5px"></p>
+          <%= submit_tag "Upload", :class => "pure-button", :id => "upload_btn" %>
+        </div>
       <% end %>
     </div>
   </div>
-</div>
+  <style>
+    .horz{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+    input[type="file"] {
+    display: none;
+    }
+    .custom-file-upload {
+    /* border: 1px solid #ccc; */
+    display: inline-block;
+    cursor: pointer;
+    }
+  </style>
+  <script>
+    var file_input = document.getElementById('new_users')
+    var file_name = document.getElementById('file_name')
+    file_input.addEventListener('input', function (evt){
+    var list = this.value.split('\\')
+    file_name.innerText = list[list.length - 1]
+    })
+  </script>

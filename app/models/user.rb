@@ -7,12 +7,18 @@ class User < ApplicationRecord
   # supplied by email_validator gem
   validates :email, email: true
   validates :total_points, :event_points, :meeting_points, :misc_points, numericality: { only_integer: true }
-  validates :uin, :first_name, :last_name, :committee, :subcommittee, presence: true
+  validates :uin, :first_name, :last_name, presence: true
   validate :valid_uin
 
   def initialize(args = nil)
     if !args.nil?
       args[:admin] = (args[:admin] == "true" || args[:admin] == true) ? true : false
+      args[:committee] = args[:committee] != nil ? args[:committee] : "No assigned committee"
+      args[:subcommittee] = args[:subcommittee] != nil ? args[:subcommittee] : "No assigned subcommittee"
+      args[:total_points] = args[:total_points] != nil ? args[:total_points] : 0
+      args[:meeting_points] = args[:meeting_points] != nil ? args[:meeting_points] : 0
+      args[:event_points] = args[:event_points] != nil ? args[:event_points] : 0
+      args[:misc_points] = args[:misc_points] != nil ? args[:misc_points] : 0
     end
     super
   end
@@ -55,8 +61,12 @@ class User < ApplicationRecord
   def valid_uin
     if uin.nil?
       return # dont report uin validity if its nil, thats another validators job
-    elsif !uin.split('').all? {|c| /^[0-9]$/.match?(c)}
-      errors.add(:uin, 'UIN must only contain numbers')
+    end
+    if !uin.split('').all? {|c| /^[0-9]$/.match?(c)}
+      errors.add(:uin, 'must only contain numbers')
+    end
+    if uin.length != 9
+      errors.add(:uin, "must be a length of 9")
     end
   end
 
