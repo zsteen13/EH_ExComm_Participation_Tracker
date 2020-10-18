@@ -10,6 +10,9 @@ class User < ApplicationRecord
   validates :uin, :first_name, :last_name, presence: true
   validate :valid_uin
 
+  # hardcoded for now
+  @@default_point_threshold = 100
+
   def initialize(args = nil)
     if !args.nil?
       args[:admin] = (args[:admin] == "true" || args[:admin] == true) ? true : false
@@ -22,6 +25,19 @@ class User < ApplicationRecord
         args[:subcommittee] = Subcommittee.where(subcommittee: args[:subcommittee]).take.subcommittee_id
       else
         args[:subcommittee] = nil
+      end
+      # sets threshold by priority, default > committee > subcommittee
+      if !args[:point_threshold]
+        args[:point_threshold] = @@default_point_threshold
+        puts @@default_point_threshold
+      end
+      if args[:committee]
+        puts "-------------------35"
+        args[:point_threshold] = Committee.where(committee_id: args[:committee]).take.point_threshold || @@default_point_threshold
+      end
+      if args[:subcommittee]
+        puts "-------------------39"
+        args[:point_threshold] = Subcommittee.where(subcommittee_id: args[:subcommittee]).take.point_threshold || @@default_point_threshold
       end
     end
     super
