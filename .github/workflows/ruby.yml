@@ -122,7 +122,6 @@ jobs:
           sudo apt-get install -y xvfb
           sudo apt-get -y install xorg xvfb gtk2-engines-pixbuf
           sudo apt-get -y install dbus-x11 xfonts-base xfonts-100dpi xfonts-75dpi xfonts-cyrillic xfonts-scalable
-          Xvfb -ac :99 -screen 0 1280x1024x16 & export DISPLAY=:99
           # /usr/bin/google-chrome
 
       - name: Checkout code
@@ -180,4 +179,6 @@ jobs:
           PGHOST: localhost
           PGUSER: postgres
           RAILS_ENV: test
-        run: bundle exec rspec
+        run: |
+          Xvfb -ac :99 -screen 0 1280x1024x16 & export DISPLAY=:99
+          bundle exec rspec
