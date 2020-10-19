@@ -119,7 +119,7 @@ jobs:
     steps:
       - name: start Chrome
         run: |
-          /usr/bin/google-chrome
+          $$CHROMEWEBDRIVER/chromedriver &
 
       - name: Checkout code
         uses: actions/checkout@v2
