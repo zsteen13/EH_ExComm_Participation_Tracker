@@ -157,9 +157,9 @@ jobs:
 
       - name: Setup test database
         env:
-          RAILS_ENV: test
           PGHOST: localhost
-          PGUSER: myapp
+          PGUSER: postgres
+          RAILS_ENV: test
         run: |
           bundle exec rails db:setup
 
