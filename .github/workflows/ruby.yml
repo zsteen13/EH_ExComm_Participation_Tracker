@@ -162,6 +162,11 @@ jobs:
           RAILS_ENV: test
         run: |
           bundle exec rails db:setup
+          bundle exec rake db:reset
 
       - name: Run tests
+        env:
+            PGHOST: localhost
+            PGUSER: postgres
+            RAILS_ENV: test
         run: bundle exec rspec
