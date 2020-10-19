@@ -150,10 +150,13 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-              
+
       - name: Install packages
         run: |
           yarn install --pure-lockfile
+
+      - name: setup-chromedriver
+        uses: nanasess/setup-chromedriver@v1.0.1
 
       - name: Setup test database
         env:
@@ -166,7 +169,7 @@ jobs:
 
       - name: Run tests
         env:
-            PGHOST: localhost
-            PGUSER: postgres
-            RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: postgres
+          RAILS_ENV: test
         run: bundle exec rspec
