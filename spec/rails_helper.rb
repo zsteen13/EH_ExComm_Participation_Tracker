@@ -17,7 +17,7 @@ Capybara.register_driver :selenium do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome, executable_path: "/usr/bin/chromedriver")
 end
 
-Capybara.javascript_driver = :selenium
+Capybara.default_driver= :selenium
 Capybara.javascript_driver = :selenium
 
 Rails.application.load_seed
