@@ -13,15 +13,24 @@ require "rails/test_help"
 require "selenium-webdriver"
 
 Capybara.register_driver :chrome do |app|
-  options = Selenium::WebDriver::Chrome::Options.new
-  
-  options.add_argument('--no-sandbox')
-  options.add_argument("--headless")
-  options.add_argument("--disable-gpu")
-  Capybara::Selenium::Driver.new(app, options, browser: :chrome)
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
 
-Capybara.javascript_driver = :chrome
+Capybara.register_driver :headless_chrome do |app|
+  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+    chromeOptions: {
+      args: %w[headless enable-features=NetworkService,NetworkServiceInProcess]
+    }
+  )
+
+  Capybara::Selenium::Driver.new app,
+    browser: :chrome,
+    desired_capabilities: capabilities
+end
+
+Capybara.default_driver = :headless_chrome
+Capybara.javascript_driver = :headless_chrome
+
 Capybara.default_max_wait_time = 10
 
 Rails.application.load_seed
