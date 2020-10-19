@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-10.15
+    runs-on: ubuntu-16.04
 
     services:
       postgres:
@@ -20,7 +20,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    
+
     - name: Set up Ruby 2.6
       uses: actions/setup-ruby@v1
       with:
