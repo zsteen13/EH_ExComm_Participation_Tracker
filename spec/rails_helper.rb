@@ -14,6 +14,7 @@ require "selenium-webdriver"
 
 Capybara.register_driver :chrome do |app|
   options = Selenium::WebDriver::Chrome::Options.new
+  options.binary_location = "/usr/bin/google-chrome-stable"
   options.add_argument("--headless")
   options.add_argument("--disable-gpu")
   Capybara::Selenium::Driver.new(app, options, browser: :chrome)
