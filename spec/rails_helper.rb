@@ -1,31 +1,32 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-require 'spec_helper'
-ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../config/environment', __dir__)
+require "spec_helper"
+ENV["RAILS_ENV"] ||= "test"
+require File.expand_path("../config/environment", __dir__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
-require 'rspec/rails'
-require 'simplecov'
+require "rspec/rails"
+require "simplecov"
 SimpleCov.start
-SimpleCov.add_filter 'spec/support'
-require 'capybara/rails'
-require 'rails/test_help'
+SimpleCov.add_filter "spec/support"
+require "capybara/rails"
+require "rails/test_help"
 
-require 'selenium-webdriver'
-
+require "selenium-webdriver"
 
 Capybara.register_driver :firefox do |app|
-  Capybara::Selenium::Driver.new(app, browser: :firefox)
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument("--headless")
+  options.add_argument("--disable-gpu")
+  Capybara::Selenium::Driver.new(app, options, browser: :firefox)
 end
 
 # Capybara.default_driver = :firefox
 Capybara.javascript_driver = :firefox
-Capybara.app_host = 'http://127.0.0.1:3005'
+Capybara.app_host = "http://127.0.0.1:3005"
 Capybara.default_max_wait_time = 10
-
 
 Rails.application.load_seed
 
-Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
+Dir[Rails.root.join("spec", "support", "**", "*.rb")].sort.each { |f| require f }
 
 begin
   ActiveRecord::Migration.maintain_test_schema!
@@ -34,12 +35,11 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
-    config.include SpecTestHelper, :type => :controller
-    config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.include SpecTestHelper, :type => :controller
+  config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   config.use_transactional_fixtures = true
 
-  
   config.before(:each) do
     config.include Capybara::DSL
   end
