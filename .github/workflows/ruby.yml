@@ -119,7 +119,7 @@ jobs:
     steps:
       - name: start Chrome
         run: |
-          ls /usr/bin/google-chrome-stable/
+          ls /usr/bin/
 
       - name: Checkout code
         uses: actions/checkout@v2
