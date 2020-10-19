@@ -12,16 +12,14 @@ require "rails/test_help"
 
 require "selenium-webdriver"
 
-Capybara.register_driver :firefox do |app|
+Capybara.register_driver :chrome do |app|
   options = Selenium::WebDriver::Chrome::Options.new
   options.add_argument("--headless")
   options.add_argument("--disable-gpu")
-  Capybara::Selenium::Driver.new(app, options, browser: :firefox)
+  Capybara::Selenium::Driver.new(app, options, browser: :chrome)
 end
 
-# Capybara.default_driver = :firefox
-Capybara.javascript_driver = :firefox
-Capybara.app_host = "http://127.0.0.1:3005"
+Capybara.javascript_driver = :chrome
 Capybara.default_max_wait_time = 10
 
 Rails.application.load_seed
