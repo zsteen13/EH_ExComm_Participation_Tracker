@@ -161,7 +161,7 @@ jobs:
           PGHOST: localhost
           PGUSER: myapp
         run: |
-          sudo bin/rails db:setup
+          rails db:setup
 
       - name: Run tests
-        run: bin/rspec
+        run: rspec
