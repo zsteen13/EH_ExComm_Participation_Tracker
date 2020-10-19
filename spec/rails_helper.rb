@@ -17,7 +17,7 @@ Capybara.register_driver :firefox do |app|
   Capybara::Selenium::Driver.new(app, browser: :firefox)
 end
 
-Capybara.default_driver = :firefox
+# Capybara.default_driver = :firefox
 Capybara.javascript_driver = :firefox
 Capybara.app_host = 'http://127.0.0.1:3005'
 Capybara.default_max_wait_time = 10
