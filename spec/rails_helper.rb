@@ -13,12 +13,20 @@ require 'rails/test_help'
 require 'selenium-webdriver'
 
 
-Capybara.register_driver :selenium do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome, executable_path: "/usr/bin/chromedriver")
+Capybara.register_driver :firefox do |app|
+  Capybara::Selenium::Driver.new(app, browser: :firefox)
 end
 
-Capybara.default_driver= :selenium
-Capybara.javascript_driver = :selenium
+Capybara.default_driver = :firefox
+Capybara.javascript_driver = :firefox
+Capybara.app_host = 'http://127.0.0.1:3005'
+Capybara.default_max_wait_time = 10
+
+RSpec.configure do |config|
+  config.before(:each) do
+    config.include Capybara::DSL
+  end
+end
 
 Rails.application.load_seed
 
