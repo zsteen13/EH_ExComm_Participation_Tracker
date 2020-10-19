@@ -22,11 +22,6 @@ Capybara.javascript_driver = :firefox
 Capybara.app_host = 'http://127.0.0.1:3005'
 Capybara.default_max_wait_time = 10
 
-RSpec.configure do |config|
-  config.before(:each) do
-    config.include Capybara::DSL
-  end
-end
 
 Rails.application.load_seed
 
@@ -45,7 +40,9 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
   
-  config.include Capybara::DSL
+  config.before(:each) do
+    config.include Capybara::DSL
+  end
 
   config.infer_spec_type_from_file_location!
 
