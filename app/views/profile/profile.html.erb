@@ -57,14 +57,14 @@
                             <a> testingemail@tamu.edu </a> 
                             <i class='fas fa-envelope'></i>
                             </p>
-                            <a class="pure-button pure-button-primary" href="/profile/change_password" style="margin-bottom: 20px; color: white; font-size: 12pt">Change Password</a>
+                            <a class="pure-button pure-button-primary" href="/profile/change_password" style="margin-bottom: 20px; color: white; font-size: 12pt;width:97%">Change Password</a>
                         </div>
                     </div>
 
                     <div id="points" class="profile-points">
                         <div class="point-title">
                             <h2 class="lefto"> Points </h2>
-                            <a class="pure-button pure-button-primary righto" href="/profile/attendance" > View Activities Attended </a>
+                            <a class="pure-button pure-button-primary righto" href="/profile/attendance" > Activities Attended </a>
                             <div class="left">
                                 <h2>Total points</h2>
                                 <p style="text-align: center;font-size: 25px"> <%= current_user.total_points%></p>
@@ -126,7 +126,7 @@
         border-radius: 4px;
         text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
         width: 100%;
-        font-size:1.2vw;
+        font-size:12pt;
     }
     .profile-boxes{
         margin-right:2em;
@@ -272,9 +272,7 @@
         float: none ;
         width: 100% ;
       }
-      .pure-button {
-        font-size:2vw;
-        }
+      
     }
 
 </style>
