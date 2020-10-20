@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_17_003337) do
+ActiveRecord::Schema.define(version: 2020_10_20_225454) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
@@ -34,9 +34,9 @@ ActiveRecord::Schema.define(version: 2020_10_17_003337) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "privledges", force: :cascade do |t|
-    t.integer "privledge_id"
-    t.string "privledge"
+  create_table "privleges", force: :cascade do |t|
+    t.integer "privlege_id"
+    t.string "privlege"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2020_10_17_003337) do
     t.boolean "admin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "privledge_id"
+    t.integer "privlege_id"
     t.integer "class_year"
     t.integer "point_threshold"
   end

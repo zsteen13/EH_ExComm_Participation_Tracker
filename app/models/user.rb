@@ -27,18 +27,16 @@ class User < ApplicationRecord
         args[:subcommittee] = nil
       end
       # sets threshold by priority, default > committee > subcommittee
-      if !args[:point_threshold]
-        args[:point_threshold] = @@default_point_threshold
-        puts @@default_point_threshold
-      end
-      if args[:committee]
-        puts "-------------------35"
-        args[:point_threshold] = Committee.where(committee_id: args[:committee]).take.point_threshold || @@default_point_threshold
-      end
-      if args[:subcommittee]
-        puts "-------------------39"
-        args[:point_threshold] = Subcommittee.where(subcommittee_id: args[:subcommittee]).take.point_threshold || @@default_point_threshold
-      end
+      # this logic does not work yet
+      # if !args[:point_threshold]
+      #   args[:point_threshold] = @@default_point_threshold
+      # end
+      # if args[:committee]
+      #   args[:point_threshold] = Committee.where(committee_id: args[:committee]).take.point_threshold || @@default_point_threshold
+      # end
+      # if args[:subcommittee]
+      #   args[:point_threshold] = Subcommittee.where(subcommittee_id: args[:subcommittee]).take.point_threshold || @@default_point_threshold
+      # end
     end
     super
   end

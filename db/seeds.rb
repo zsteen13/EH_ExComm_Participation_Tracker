@@ -38,9 +38,9 @@ UserToActivity.create(uin: users5.uin, activity_id: activity2.id)
 UserKey.create!(user_id: 1, key: 'testkey')
 
 # These seeds cannot be deleted/modified, they are necessary for reference operations
-Privledge.create(privledge_id: 0, privledge: 'User')
-Privledge.create(privledge_id: 1, privledge: 'Admin')
-Privledge.create(privledge_id: 2, privledge: 'Super-Admin')
+Privlege.create(privlege_id: 0, privlege: 'User')
+Privlege.create(privlege_id: 1, privlege: 'Admin')
+Privlege.create(privlege_id: 2, privlege: 'Super-Admin')
 
 Committee.create(committee_id: 0, committee: 'Internal', email: 'None', point_threshold: 101)
 Committee.create(committee_id: 1, committee: 'External', email: 'None', point_threshold: 101)
