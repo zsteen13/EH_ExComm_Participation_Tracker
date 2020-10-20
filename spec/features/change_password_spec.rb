@@ -3,11 +3,7 @@
 require 'rails_helper'
 require 'pp' # pretty printer, outputs to console
 
-<<<<<<< HEAD
 feature 'change password'  do
-=======
-feature 'change password' do
->>>>>>> c32442fa... fix rubocop issues
   feature 'while logged in as member' do
     include_context 'when authenticated as member'
     scenario 'passwords match' do
@@ -38,11 +34,7 @@ feature 'change password' do
     end
   end
 
-<<<<<<< HEAD
   feature 'while logged in as admin'  do
-=======
-  feature 'while logged in as admin' do
->>>>>>> c32442fa... fix rubocop issues
     include_context 'when authenticated as admin'
     scenario 'passwords match' do
       visit '/profile/change_password'
@@ -66,11 +58,7 @@ feature 'change password' do
   end
 
   feature 'while not logged in' do
-<<<<<<< HEAD
     scenario 'query param "key" is invalid' do
-=======
-    scenario 'query param key is invalid' do
->>>>>>> c32442fa... fix rubocop issues
       visit '/profile/change_password?key=abadtestkey'
       expect(page).to have_current_path '/profile/error'
     end
