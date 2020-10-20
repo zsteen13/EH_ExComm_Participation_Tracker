@@ -1,4 +1,4 @@
-name: Run Rspec and Rubocop Tests
+name: Run Rspec Tests
 on: [push]
 
 jobs:
