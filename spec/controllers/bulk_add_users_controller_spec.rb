@@ -21,8 +21,8 @@ feature BulkAddUsersController do
 
       click_link "confirm_btn"
       expect(page).to have_current_path '/members'
-      expect(page).to have_content "scrum master"
-      expect(page).to have_content "project owner"
+      expect(page).to have_content "Internal"
+      expect(page).to have_content "External"
     end
 
     scenario 'admin uploads a incorrect csv' do
