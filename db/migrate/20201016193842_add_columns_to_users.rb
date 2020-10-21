@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# adding new columns to users
 class AddColumnsToUsers < ActiveRecord::Migration[6.0]
   def change
     add_column :users, :privledge_id, :integer

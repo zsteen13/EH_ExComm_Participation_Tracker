@@ -14,7 +14,7 @@ class User < ApplicationRecord
   validate :valid_uin
 
   # hardcoded for now
-  @@default_point_threshold = 100
+  @default_point_threshold = 100
 
   def initialize(args = nil)
     unless args.nil?
@@ -79,7 +79,8 @@ class User < ApplicationRecord
 
   private
 
-  def valid_uin # should make this confirm that uin in 9 digits
+  # should make this confirm that uin in 9 digits
+  def valid_uin
     if uin.nil?
       return # dont report uin validity if its nil, thats another validators job
     end
