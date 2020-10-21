@@ -57,8 +57,8 @@ RSpec.describe BulkAddUsersHelper, :type => :helper do
     users, valid = BulkAddUsersHelper.parseData(filename)
     expect(valid).to be true
 
-    expect(users[0].committee).to eq "admin"
-    expect(users[0].subcommittee).to eq "super user"
+    expect(users[0].committee).to eq nil
+    expect(users[0].subcommittee).to eq nil
 
     expect(users[2].total_points).to eq 10
 
