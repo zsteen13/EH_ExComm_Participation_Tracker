@@ -54,13 +54,17 @@ module BulkAddUsersHelper
     [users, valid]
   end
 
-  def self.check_num_cols(filename, num_cols = 11)
+
+  def BulkAddUsersHelper.checkNumColumns(filename, numCols = 4)
     csv = CSV.read(filename)
 
     upper_bound = csv.count - 1
     retval = true
-    (0..upper_bound).each do |i|
-      return false, i, csv[i].count if csv[i].count != num_cols
+
+    for i in 0..upperBound
+      if csv[i].count < numCols
+        return false, i, csv[i].count
+      end
     end
 
     [retval, 0, 0]

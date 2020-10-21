@@ -4,10 +4,10 @@ require 'rails_helper'
 
 RSpec.describe SessionsController do
   describe '#create' do
-    subject { post :create, params: { uin: 22_222_222, last_name: 'Test' } }
+    subject {post :create, params: { uin: 222222222, last_name: 'Test'}}
     it 'redirects to /welcome' do
       expect(subject).to redirect_to('/welcome')
-      expect(session[:user_id]) == User.find_by(uin: 22_222_222).id
+      expect(session[:user_id]) == User.find_by(uin: 222222222).id
     end
 
     subject { post :create, params: { uin: 22_222_220, last_name: 'Test_fail' } }
