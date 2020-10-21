@@ -1,26 +1,26 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe SessionsController do 
-  
+RSpec.describe SessionsController do
   describe '#create' do
-    subject {post :create, params: { uin: 222222222, last_name: 'Test'}}
+    subject { post :create, params: { uin: 222_222_222, last_name: 'Test' } }
     it 'redirects to /welcome' do
       expect(subject).to redirect_to('/welcome')
-      expect(session[:user_id]) == User.find_by(uin: 222222222).id
+      expect(session[:user_id]) == User.find_by(uin: 222_222_222).id
     end
 
-    subject {post :create, params: { uin: 22222220, last_name: 'Test_fail'}}
+    subject { post :create, params: { uin: 22_222_220, last_name: 'Test_fail' } }
     it 'redirects to /welcome without logged in user' do
       expect(subject).to redirect_to('/welcome')
-      expect(session[:user_id]) == nil
+      expect(session[:user_id]).nil?
     end
   end
   describe '#new' do
-    subject {post :new}
+    subject { post :new }
     it 'redirects to /welcome' do
       expect(subject).to redirect_to('/welcome')
-      expect(session[:user_id]) == nil
+      expect(session[:user_id]).nil?
     end
   end
-
 end
