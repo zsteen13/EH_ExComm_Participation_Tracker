@@ -43,8 +43,8 @@ RSpec.describe BulkAddUsersHelper, :type => :helper do
     expect(user.first_name).to eq "trevor"
     expect(user.last_name).to eq "moore"
     expect(user.email).to eq "moore.trev@tamu.edu"
-    expect(user.committee).to eq "No assigned committee"
-    expect(user.subcommittee).to eq "No assigned subcommittee"
+    expect(user.committee).to eq nil
+    expect(user.subcommittee).to eq nil
     expect(user.total_points).to be 0
     expect(user.meeting_points).to be 0
     expect(user.event_points).to be 0
