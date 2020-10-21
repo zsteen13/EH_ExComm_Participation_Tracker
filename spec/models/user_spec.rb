@@ -7,14 +7,6 @@ RSpec.describe User, :type => :model do
 
     expect(users.valid?).to be false
 
-    users = User.new(uin: '000000000', password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', committee: 'internal', subcommittee: 'something', total_points: nil, meeting_points: 0, event_points: 0, misc_points: 0, admin: true)
-
-    expect(users.valid?).to be false
-
-    users = User.new(uin: '000000000', password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', committee: 'internal', subcommittee: 'something', total_points: nil, meeting_points: 0, event_points: 0, misc_points: 0, admin: true)
-
-    expect(users.valid?).to be false
-
     users = User.new(uin: '000000000', password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', committee: 'internal', subcommittee: 'something', total_points: 0, meeting_points: "a", event_points: 0, misc_points: 0, admin: true)
 
     expect(users.valid?).to be false
@@ -118,6 +110,20 @@ RSpec.describe User, :type => :model do
       expect(users.admin).to be true  
     end
 
+  end
+  describe 'uin should be 9 digits' do
+    it 'should expect user with uin eql to 9 digits' do
+      user = User.new(uin: "000000000",  password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com')
+      expect(user.valid?).to eq true
+    end
+
+    it 'should not expect user with uin not eql to 9 digits' do
+      user = User.new(uin: "0000000000",  password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com')
+      expect(user.valid?).to eq false
+
+      user = User.new(uin: "000000",  password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com')
+      expect(user.valid?).to eq false
+    end
   end
 
   describe 'display points' do

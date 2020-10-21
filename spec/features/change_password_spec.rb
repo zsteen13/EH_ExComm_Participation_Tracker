@@ -1,9 +1,9 @@
 require 'rails_helper'
 require 'pp' # pretty printer, outputs to console
 
-feature 'change password'  do 
+feature 'change password' do 
 
-  feature 'while logged in as member'  do 
+  feature 'while logged in as member' do 
     include_context 'when authenticated as member'
     scenario 'passwords match' do
       visit '/profile/change_password'

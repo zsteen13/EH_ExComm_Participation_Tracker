@@ -16,6 +16,10 @@ class User < ApplicationRecord
   def initialize(args = nil)
     if !args.nil?
       args[:admin] = (args[:admin] == "true" || args[:admin] == true) ? true : false
+      args[:total_points] = args[:total_points] != nil ? args[:total_points] : 0
+      args[:meeting_points] = args[:meeting_points] != nil ? args[:meeting_points] : 0
+      args[:event_points] = args[:event_points] != nil ? args[:event_points] : 0
+      args[:misc_points] = args[:misc_points] != nil ? args[:misc_points] : 0
       if Committee.where(committee: args[:committee]).take
         args[:committee] =  Committee.where(committee: args[:committee]).take.committee_id
       else
@@ -83,8 +87,12 @@ class User < ApplicationRecord
   def valid_uin # should make this confirm that uin in 9 digits
     if uin.nil?
       return # dont report uin validity if its nil, thats another validators job
-    elsif !uin.split('').all? {|c| /^[0-9]$/.match?(c)}
-      errors.add(:uin, 'UIN must only contain numbers')
+    end
+    if !uin.split('').all? {|c| /^[0-9]$/.match?(c)}
+      errors.add(:uin, 'must only contain numbers')
+    end
+    if uin.length != 9
+      errors.add(:uin, "must be a length of 9")
     end
   end
 
