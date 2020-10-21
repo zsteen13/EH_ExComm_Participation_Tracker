@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_08_053010) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 2020_10_20_225454) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
@@ -24,6 +21,33 @@ ActiveRecord::Schema.define(version: 2020_10_08_053010) do
     t.decimal "num_rsvp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "committees", force: :cascade do |t|
+    t.integer "committee_id"
+    t.string "committee"
+    t.integer "point_threshold"
+    t.string "head_first_name"
+    t.string "head_last_name"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "privleges", force: :cascade do |t|
+    t.integer "privlege_id"
+    t.string "privlege"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "subcommittees", force: :cascade do |t|
+    t.integer "subcommittee_id"
+    t.string "subcommittee"
+    t.integer "point_threshold"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "committee"
   end
 
   create_table "user_keys", id: false, force: :cascade do |t|
@@ -46,8 +70,8 @@ ActiveRecord::Schema.define(version: 2020_10_08_053010) do
     t.string "first_name"
     t.string "last_name"
     t.string "email"
-    t.string "committee"
-    t.string "subcommittee"
+    t.integer "committee"
+    t.integer "subcommittee"
     t.integer "total_points"
     t.integer "meeting_points"
     t.integer "event_points"
@@ -55,6 +79,9 @@ ActiveRecord::Schema.define(version: 2020_10_08_053010) do
     t.boolean "admin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "privlege_id"
+    t.integer "class_year"
+    t.integer "point_threshold"
   end
 
 end

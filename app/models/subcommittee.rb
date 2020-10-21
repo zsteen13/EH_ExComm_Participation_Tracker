@@ -1,0 +1,2 @@
+class Subcommittee < ApplicationRecord
+end
