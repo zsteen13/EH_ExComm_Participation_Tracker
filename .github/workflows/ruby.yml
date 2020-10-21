@@ -70,6 +70,12 @@ jobs:
           bundle exec rails db:setup
           bundle exec rake db:reset
 
+      - name: Security Test
+        run: |
+          gem environment
+          brakeman
+          bundler-audit
+
       - name: Robocop
         run: |
           rubocop
