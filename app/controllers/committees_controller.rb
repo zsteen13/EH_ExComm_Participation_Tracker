@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class CommitteesController < ApplicationController
-    def index
-        @committees = Committee.all
-    end
+  def index
+    @committees = Committee.all
+  end
 end

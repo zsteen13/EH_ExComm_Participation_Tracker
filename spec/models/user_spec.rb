@@ -8,8 +8,7 @@ RSpec.describe User, type: :model do
 
     expect(users.valid?).to be false
 
-
-    users = User.new(uin: '000000000', password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', committee: 'internal', subcommittee: 'something', total_points: 0, meeting_points: "a", event_points: 0, misc_points: 0, admin: true)
+    users = User.new(uin: '000000000', password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', committee: 'internal', subcommittee: 'something', total_points: 0, meeting_points: 'a', event_points: 0, misc_points: 0, admin: true)
 
     expect(users.valid?).to be false
 
@@ -112,15 +111,15 @@ RSpec.describe User, type: :model do
   end
   describe 'uin should be 9 digits' do
     it 'should expect user with uin eql to 9 digits' do
-      user = User.new(uin: "000000000",  password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com')
+      user = User.new(uin: '000000000', password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com')
       expect(user.valid?).to eq true
     end
 
     it 'should not expect user with uin not eql to 9 digits' do
-      user = User.new(uin: "0000000000",  password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com')
+      user = User.new(uin: '0000000000', password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com')
       expect(user.valid?).to eq false
 
-      user = User.new(uin: "000000",  password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com')
+      user = User.new(uin: '000000', password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com')
       expect(user.valid?).to eq false
     end
   end
@@ -160,7 +159,7 @@ RSpec.describe User, type: :model do
   describe '#to_s' do
     it 'returns a string version of a users profile' do
       user = User.new(uin: '000000000', first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', committee: 'Internal', subcommittee: 'Community Building', total_points: 0, meeting_points: 0, event_points: 0, misc_points: 0, admin: true)
-      expect(user.to_s).to eq('uin: 000000000 first_name: Zachary last_name Steen email: zsteen13@gmail.com committee: Internal subcommittee: Community Building total_point: 0 meeting_points: 0 event_points: 0 misc_points 0 admin: true'+"\n")
+      expect(user.to_s).to eq("uin: 000000000 first_name: Zachary last_name Steen email: zsteen13@gmail.com committee: Internal subcommittee: Community Building total_point: 0 meeting_points: 0 event_points: 0 misc_points 0 admin: true\n")
     end
   end
 end

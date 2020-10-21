@@ -46,7 +46,6 @@ Rails.application.routes.draw do
   get 'activities', to: 'activities#activities'
 
   get 'committees', to: 'committees#index'
- 
 
   resources :members do
     member do

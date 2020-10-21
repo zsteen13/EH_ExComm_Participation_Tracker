@@ -38,13 +38,13 @@ RSpec.describe BulkAddUsersHelper, type: :helper do
     expect(users[0].admin).to be false
   end
   it 'should be able handle a csv without optional values' do
-    filename = Rails.root.join("spec", "data", "bulk_add_users_correct_2.csv")
+    filename = Rails.root.join('spec', 'data', 'bulk_add_users_correct_2.csv')
     users, valid = BulkAddUsersHelper.parseData(filename)
     user = users[0]
-    expect(user.uin).to eq "958285839"
-    expect(user.first_name).to eq "trevor"
-    expect(user.last_name).to eq "moore"
-    expect(user.email).to eq "moore.trev@tamu.edu"
+    expect(user.uin).to eq '958285839'
+    expect(user.first_name).to eq 'trevor'
+    expect(user.last_name).to eq 'moore'
+    expect(user.email).to eq 'moore.trev@tamu.edu'
     expect(user.committee).to eq nil
     expect(user.subcommittee).to eq nil
     expect(user.total_points).to be 0
@@ -55,7 +55,7 @@ RSpec.describe BulkAddUsersHelper, type: :helper do
     expect(valid).to be true
   end
   it 'should be able to handle a csv with some optional values' do
-    filename = Rails.root.join("spec", "data", "bulk_add_users_correct_3.csv")
+    filename = Rails.root.join('spec', 'data', 'bulk_add_users_correct_3.csv')
     users, valid = BulkAddUsersHelper.parseData(filename)
     expect(valid).to be true
 
@@ -63,6 +63,5 @@ RSpec.describe BulkAddUsersHelper, type: :helper do
     expect(users[0].subcommittee).to eq nil
 
     expect(users[2].total_points).to eq 10
-
   end
 end

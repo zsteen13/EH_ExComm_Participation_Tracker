@@ -16,11 +16,12 @@ class ProfileController < ApplicationController
     @attended.each do |attended|
       sum_total_points += Activity.find(attended.activity_id).point_value
 
-      if Activity.find(attended.activity_id)._type == 'Meeting'
+      case Activity.find(attended.activity_id)._type
+      when 'Meeting'
         sum_meeting_points += Activity.find(attended.activity_id).point_value
-      elsif Activity.find(attended.activity_id)._type == 'Event'
+      when 'Event'
         sum_event_points += Activity.find(attended.activity_id).point_value
-      elsif Activity.find(attended.activity_id)._type == 'Misc'
+      when 'Misc'
         sum_misc_points += Activity.find(attended.activity_id).point_value
       end
     end
