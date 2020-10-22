@@ -19,6 +19,9 @@
       "user_input": ":admin",
       "confidence": "High",
       "note": "This option is used during the automated creation of a user, and its inclusion is both by design and specified by the customer."
+    },
+    {
+      "file": "app/controllers/members_controller.rb"
     }
   ],
   "updated": "2020-10-19 20:45:10 -0500",
