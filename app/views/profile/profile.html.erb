@@ -5,6 +5,7 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" rel="stylesheet">
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
+
 <div id="main">
     <div class="header">
         <h1>My Profile</h1>
@@ -17,9 +18,6 @@
                     <h1>
                         <%= current_user.first_name %>
                         <%= current_user.last_name %> 
-                        <% if current_user.admin? %>
-                            <i class='fas fa-edit'></i>
-                        <%end%>
                     </h1>
 
                     <div class="profile-info">
@@ -64,29 +62,35 @@
                         <div class="point-title">
                             <h2 class="lefto"> Points </h2>
                             <a class="pure-button pure-button-primary righto" href="/profile/attendance" > Activities Attended </a>
-                            <div class="left">
-                                <h2>Total points</h2>
-                                <p style="text-align: center;font-size: 25px"> <%= current_user.total_points %></p>
+
+                            <div class="point-title" style="padding-top:20px;padding-bottom:20px;">
+                                <div class="left">
+                                    <h2>Total points</h2>
+                                    <p style="text-align: center;font-size: 25px"> <%= current_user.total_points%></p>
+                                </div>
+                                <div class="right">
+                                    <h2> Goal </h2>
+                                    <p style="text-align: center;font-size: 25px"> 100 </p>
+                                </div>
                             </div>
-                            <div class="right">
-                                <h2> Goal </h2>
-                                <p style="text-align: center;font-size: 25px"> <%= current_user.point_threshold %></p>
-                            </div>
+                            
                         </div>
                         <div class="meter">
-                            <span style="width: 20%">20%</span>
+                            <div class="progress"> 
+                                <div id="mePts" class="progress-bar" style="border-top-left-radius: 20px;border-bottom-left-radius: 20px;"> </div> 
+                                <div id="evPts" class="progress-bar" style="background-color: #bf892d;"> </div> 
+                                <div id="miPts" class="progress-bar" style="background-color: #bf402d;"> </div> 
+                            </div>
                         </div>
+
                         <div class="content">
                             <h3> Points Breakdown </h3>
-                            <p><label> <strong>Meeting points: </strong></label>
-                            <%= current_user.meeting_points%>
-                            </p>
-                            <p><label> <strong>Event points: </strong></label>
-                            <%= current_user.event_points%>
-                            </p>
-                            <p><label> <strong>Miscellaneous points: </strong></label>
-                            <%= current_user.misc_points%>
-                            </p>
+                            <p id="meeting" hidden><%= current_user.meeting_points%></p>
+                            <p class="mPoints"><label> <strong>Meeting points: </strong></label> <%= current_user.meeting_points%> </p>
+                            <p id="event" hidden><%= current_user.event_points%></p>
+                            <p class="ePoints"><label> <strong>Event points: </strong></label> <%= current_user.event_points%> </p>
+                            <p id="misc" hidden><%= current_user.misc_points%></p>
+                            <p class="miPoints"><label> <strong>Miscellaneous points: </strong></label> <%= current_user.misc_points%> </p> 
                         </div>
                     </div>
                 </div>
@@ -102,6 +106,30 @@
         function view_points(){
             document.getElementById("points").innerHTML = '<div class="point-title"> <h2 class="lefto" style="font-size:30px;font-family: "Roboto", Sans-Serif;color:#003C71;margin:0;padding:.5em;text-align: left;"> Points </h2> <a class="pure-button pure-button-primary righto" onclick="view_activities()" > View Activities Attended </a> <div class="left"> <h2>Total points</h2> <p style="text-align: center;font-size: 25px"> <%= current_user.total_points%></p> </div> <div class="right"> <h2> Goal </h2> <p style="text-align: center;font-size: 25px"> 200 </p> </div> </div> <div class="meter"> <span style="width: 50%">50%</span> </div> <div class="content"> <h3> Points Breakdown </h3> <p><label> <strong>Meeting points: </strong></label> <%= current_user.meeting_points%> </p> <p><label> <strong>Event points: </strong></label> <%= current_user.event_points%> </p> <p><label> <strong>Miscellaneous points: </strong></label> <%= current_user.misc_points%> </p> </div>';
         };
+
+        $(document).ready(function(){
+            var meeting = document.getElementById("meeting");
+            var containMPoints = meeting.innerHTML;
+            var mmeter = document.getElementById("mePts");
+            mmeter.style.width=containMPoints+'%';
+            $("#mePts").html(function(){
+                return String(containMPoints);
+            });
+            var event = document.getElementById("event");
+            var containEPoints = event.innerHTML;
+            var emeter = document.getElementById("evPts");
+            emeter.style.width=containEPoints+'%';
+            $("#evPts").html(function(){
+                return String(containEPoints);
+            });
+            var misc = document.getElementById("misc");
+            var containMiPoints = misc.innerHTML;
+            var mimeter = document.getElementById("miPts");
+            mimeter.style.width=containMiPoints+'%';
+            $("#miPts").html(function(){
+                return String(containMiPoints);
+            });
+        });
     </script>
 </div>
 
@@ -237,8 +265,34 @@
             font-family: 'Roboto', Sans-Serif;
 
         }
+    .progress {
+        height: 20px;
+        margin-bottom: 20px;
+        overflow: hidden;
+        background-color: #f5f5f5;
+        border-top-left-radius: 20px;border-bottom-left-radius: 20px;
+        border-top-right-radius: 8px;border-bottom-right-radius: 8px;
+        -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+        box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+    }
+    .progress-bar {
+        float: left;
+        width: 0%;
+        height: 100%;
+        font-size: 12px;
+        line-height: 20px;
+        color: #fff;
+        text-align: center;
+        background-color: #2d76bf;
+        -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
+        box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
+        -webkit-transition: width .6s ease;
+        -o-transition: width .6s ease;
+        transition: width .6s ease;
+    }
+    
     .meter { 
-        height: 20px;  /* Can be anything */
+        height: 20px;  
         position: relative;
         background: #a7a7a7;
         color:white;
@@ -249,17 +303,7 @@
         margin:1rem;
         box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
     }
-    .meter > span {
-       display: block;
-       height: 100%;
-       border-top-right-radius: 8px;
-       border-bottom-right-radius: 8px;
-       border-top-left-radius: 20px;
-       border-bottom-left-radius: 20px;
-       background-color: rgb(115,47,47);
-       position: relative;
-       overflow: hidden;
-    }
+
     @media only screen and (max-width: 660px) {
       /* for widths less than or equal to 565 pixels */
       .profile-info{
