@@ -73,6 +73,8 @@ jobs:
       - name: Security Test
         run: |
           gem environment
+          sudo gem install bundler-audit
+          sudo gem install brakeman
           export PATH=/home/runner/.rubies/ruby-2.7.1/bin:/home/runner/.rubies/ruby-2.7.1/lib/ruby/gems/2.7.0:/home/runner/.gem/ruby/2.7.0:$PATH
           echo $PATH
           brakeman
