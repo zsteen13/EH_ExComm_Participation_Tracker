@@ -1,15 +1,18 @@
 class MembersController < ApplicationController
   before_action :admin_only
 
-  helper_method :sort_column , :sort_direction 
+  helper_method :sort_column , :sort_direction
 
   def index
-    @members = User.order(sort_column + " " + sort_direction)
+    if params[:below]
+    @members = User.where("total_points <= ?", params[:search]).order(sort_column + " " + sort_direction)
+    elsif params[:above]
+    @members = User.where("total_points >= ?", params[:search]).order(sort_column + " " + sort_direction)
+    else
+   @members = User.order(sort_column + " " + sort_direction)
+    end
   end
 
-  def show_threshold_points
-    @members = User.where("total_points <= ?", params[:search])
-  end
 
 
   def show
