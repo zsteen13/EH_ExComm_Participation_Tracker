@@ -1,8 +1,11 @@
-require "csv"
+# frozen_string_literal: true
 
+require 'csv'
+
+# BulkAddUsersHelper
 module BulkAddUsersHelper
-  def BulkAddUsersHelper.createFile(uploaded_file, filename)
-    File.open(filename, "wb") do |file|
+  def self.create_file(uploaded_file, filename)
+    File.open(filename, 'wb') do |file|
       file.write(uploaded_file.read)
     end
   end
@@ -19,15 +22,15 @@ module BulkAddUsersHelper
   MISC_POINTS_COL_CONST = 9
   ADMIN_COL_CONST = 10
 
-  def BulkAddUsersHelper.parseData(filename)
+  def self.parse_data(filename)
     csv = CSV.read(filename)
     users = []
 
     valid = true
 
-    upperBound = csv.count - 1
-    lowerBound = 1 # loses the title info
-    for i in lowerBound..upperBound
+    upper_bound = csv.count - 1
+    lower_bound = 1 # loses the title info
+    (lower_bound..upper_bound).each do |i|
       user = User.new(
         uin: csv[i][UIN_COL_CONST],
         first_name: csv[i][FIRST_NAME_COL_CONST],
@@ -43,33 +46,28 @@ module BulkAddUsersHelper
         password_digest: BCrypt::Password.create(Random.new.rand(100.0).to_s)
       )
 
-      if user.invalid?
-        valid = false
-      end
+      valid = false if user.invalid?
 
       users.append(user)
     end
 
-    return users, valid
+    [users, valid]
   end
 
-  def BulkAddUsersHelper.checkNumColumns(filename, numCols = 11)
+  def self.check_num_columns(filename, num_cols = 4)
     csv = CSV.read(filename)
 
-    upperBound = csv.count - 1
+    upper_bound = csv.count - 1
     retval = true
-    for i in 0..upperBound
-      if csv[i].count != numCols
-        return false, i, csv[i].count
-      end
+
+    (0..upper_bound).each do |i|
+      return false, i, csv[i].count if csv[i].count < num_cols
     end
 
-    return retval, 0, 0
+    [retval, 0, 0]
   end
 
-  def BulkAddUsersHelper.saveUsers(users)
-    users.each do |user|
-      user.save()
-    end
+  def self.save_users(users)
+    users.each(&:save)
   end
 end

@@ -1,6 +1,8 @@
-class SessionsController < ApplicationController
+# frozen_string_literal: true
 
-  skip_before_action :authorized, only: [:new, :create, :welcome]
+# SessionsController
+class SessionsController < ApplicationController
+  skip_before_action :authorized, only: %i[new create welcome]
 
   def new
     # any get request to /login is a a logout
@@ -9,22 +11,19 @@ class SessionsController < ApplicationController
   end
 
   def create
-    redirect_to welcome_path and return if !params[:uin].present?
-    redirect_to welcome_path and return if !params[:password].present?
+    redirect_to welcome_path and return unless params[:uin].present?
+    redirect_to welcome_path and return unless params[:password].present?
+
     @user = User.find_by(uin: params[:uin])
     redirect_to welcome_path and return if @user.nil?
-    if BCrypt::Password.new(@user.password_digest) == params[:password]
-      session[:user_id] = @user.id
-    end
+
+    session[:user_id] = @user.id if BCrypt::Password.new(@user.password_digest) == params[:password]
     redirect_to '/welcome'
   end
 
-  def login
-  end
+  def login; end
 
-  def welcome
-  end
+  def welcome; end
 
-  def page_requires_login
-  end
+  def page_requires_login; end
 end
