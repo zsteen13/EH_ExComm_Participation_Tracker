@@ -1,4 +1,4 @@
 uin,first name,last name,email,committee,subcommittee,point total,meeting point,event points,misc points,admin
-431454,trevor,moore,moore.trev@tamu.edu,admin,super user,0,0,0,0,false
-431455,zac,steen,zac.steen@tamu.edu,project owner,point of contact,0,0,0,0,false
-431456,matt,coming,matt@tamu.edu,scrum master,offical jira user,0,0,0,0,false
+123456781,trevor,moore,moore.trev@tamu.edu,Internal,super user,0,0,0,0,false
+123456782,zac,steen,zac.steen@tamu.edu,Internal,point of contact,0,0,0,0,false
+123456783,matt,coming,matt@tamu.edu,External,offical jira user,0,0,0,0,false

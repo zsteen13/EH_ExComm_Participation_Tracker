@@ -1,56 +1,106 @@
-<div class="center">
-  <% if !@correct_num_cols %>
-    <h1>Parsing Error</h1>
-    <p>The number columns in the uploaded table is incorrect. Please check row <b><%= @row %></b> it has <%= @col %> columns in your table. It is supposed to have <%= @numCols %> columns.</p>
-  <% elsif @valid %>
-    <h2>Please confirm this info</h2>
-    <table class="pure-table">
-      <thead>
-        <tr>
-          <th>UIN</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-          <th>Committee</th>
-          <th>Subcommittee</th>
-          <th>Point Total</th>
-          <th>Meeting Points</th>
-          <th>Event Points</th>
-          <th>Misc Points</th>
-          <th>Admin</th>
-        </tr>
-      </thead>
-      <tbody>
+<div class="members index ">
+  <div class="main">
+    <div class="header">
+      <h1>Members</h1>
+    </div>
+    <div class="content">
+      <div style="text-align:center;">
+        <%= link_to("<< Back to Member page", members_path, :class => 'back-link') %>
+      </div>
+      <% if !@correct_num_cols %>
+        <h1>Parsing Error</h1>
+        <p>The number columns in the uploaded table is incorrect. Please check row <b><%= @row %></b> it has <%= @col %> columns in your table. It is supposed to have more than <%= @num_cols %> columns.</p>
+      <% elsif @valid %>
+        <h2 style="text-align:center;" >Is this correct?</h2>
+        <table class="table">
+          <thead>
+            <tr class = "header">
+              <th>UIN</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Committee</th>
+              <th>Subcommittee</th>
+              <th>Point Total</th>
+              <th>Meeting Points</th>
+              <th>Event Points</th>
+              <th>Misc Points</th>
+              <th>Admin</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each  do |user| %>
+              <tr>
+                <td><%= user.uin %></td>
+                <td><%= user.first_name %></td>
+                <td><%= user.last_name %></td>
+                <td><%= user.email %></td>
+                <td><%= user.committee %></td>
+                <td><%= user.subcommittee %></td>
+                <td><%= user.total_points %></td>
+                <td><%= user.meeting_points %></td>
+                <td><%= user.event_points %></td>
+                <td><%= user.misc_points %></td>
+                <td><%= user.admin %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="pure-button-group" role="group" aria-label="..." style="text-align:center;">
+          <a id="cancel_btn" class="pure-button pure-button-primary" href="/bulk_add_users"> Cancel</a>
+          <a id="confirm_btn" class="pure-button pure-button-primary" href="/bulk_add_users/confirmed?filename=<%= @file %>"> Confirm</a>
+        </div>
+      <% else %>
+        <h1>Parsing Error</h1>
         <% @users.each  do |user| %>
-          <tr>
-            <td><%= user.uin %></td>
-            <td><%= user.first_name %></td>
-            <td><%= user.last_name %></td>
-            <td><%= user.email %></td>
-            <td><%= user.committee %></td>
-            <td><%= user.subcommittee %></td>
-            <td><%= user.total_points %></td>
-            <td><%= user.meeting_points %></td>
-            <td><%= user.event_points %></td>
-            <td><%= user.misc_points %></td>
-            <td><%= user.admin %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <a id="confirm_btn" class="button" href="/bulk_add_users/confirmed?filename=<%= @file %>"> Confirm</a>
-  <% else %>
-    <h1>Parsing Error</h1>
-    <% @users.each  do |user| %>
-      <% if user.errors.messages != {}%>
-        <p>For member with the UIN: <b><%= user.uin %></b> the first name: <b><%= user.first_name %></b> and the last name: <b><%= user.last_name%></b> the following errors occured: </p>
-        <ul>
-          <% user.errors.messages.each do |error|%>
-            <li> the field <%= error[0] %> <%= error[1][0] %> </li>
+          <% if user.errors.messages != {}%>
+            <p>For member with the UIN: <b><%= user.uin %></b> the first name: <b><%= user.first_name %></b> and the last name: <b><%= user.last_name%></b> the following errors occured: </p>
+            <ul>
+              <% user.errors.messages.each do |error|%>
+                <li> the field <%= error[0] %> <%= error[1][0] %> </li>
+              <% end %>
+            </ul>
           <% end %>
-        </ul>
+        <% end %>
+        <p>Please find this user in the table and ensure that their info is inputted correctly.</p>
       <% end %>
-    <% end %>
-    <p>Please find this user in the table and ensure that there info is input correctly</p>
-  <% end %>
+    </div>
+  </div>
 </div>
+<style>
+  a{
+    text-decoration: none;
+    color: #1b98f8;
+  }
+  .header a{
+    color: white;
+  }
+  th{
+    background:#500000;
+    padding:8px;
+  }
+  .table{
+    border:2px solid black;
+  }
+  #table{
+    border-collapse: collapse;
+    width:100%;
+  }
+  .table td a{
+    background-color: #0078E7;
+    color: white;
+    padding:.3em;
+    border-radius:10px;
+    text-decoration: none;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  }
+  
+  .content {
+    max-width: 90%;
+  }
+  .pure-button {
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  }
+</style>

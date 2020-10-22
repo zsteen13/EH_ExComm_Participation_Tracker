@@ -46,16 +46,15 @@
                             </p>
                             <p>
                             <label> <strong>Committee: </strong></label>
-                            <%= current_user.committee %>
+                            <%= current_user.display_committee %>
                             </p>
                             <p>
                             <label> <strong>Subcommittee: </strong></label>
-                            <%= current_user.subcommittee %>
+                            <%= current_user.display_subcommittee %>
                             </p>
                             <p>
-                            <label> <strong>Committee Head Contact: </strong></label>
-                            <a> testingemail@tamu.edu </a> 
-                            <i class='fas fa-envelope'></i>
+                            <label> <strong>Committee Head Contact <i class='fas fa-envelope'></i>: </strong></label>
+                            <%= current_user.display_committee_email %>
                             </p>
                             <a class="pure-button pure-button-primary" href="/profile/change_password" style="margin-bottom: 20px; color: white; font-size: 12pt;width:97%">Change Password</a>
                         </div>
@@ -67,11 +66,11 @@
                             <a class="pure-button pure-button-primary righto" href="/profile/attendance" > Activities Attended </a>
                             <div class="left">
                                 <h2>Total points</h2>
-                                <p style="text-align: center;font-size: 25px"> <%= current_user.total_points%></p>
+                                <p style="text-align: center;font-size: 25px"> <%= current_user.total_points %></p>
                             </div>
                             <div class="right">
                                 <h2> Goal </h2>
-                                <p style="text-align: center;font-size: 25px"> 50 </p>
+                                <p style="text-align: center;font-size: 25px"> <%= current_user.point_threshold %></p>
                             </div>
                         </div>
                         <div class="meter">
