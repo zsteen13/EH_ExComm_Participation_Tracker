@@ -3,7 +3,6 @@
 require 'rails_helper'
 require 'pp' # pretty printer, outputs to console
 
-
 feature 'change password'  do
   feature 'while logged in as member' do
     include_context 'when authenticated as member'
