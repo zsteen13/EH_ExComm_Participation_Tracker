@@ -45,9 +45,9 @@ Privlege.create(privlege_id: 0, privlege: 'User')
 Privlege.create(privlege_id: 1, privlege: 'Admin')
 Privlege.create(privlege_id: 2, privlege: 'Super-Admin')
 
-Committee.create(committee_id: 0, committee: 'Internal', head_first_name: 'Admin', head_last_name: 'Test', email: 'admin.test@tamu.edu', point_threshold: 101)
-Committee.create(committee_id: 1, committee: 'External', head_first_name: 'Test First', head_last_name: 'Test Last', email: 'first.last@tamu.edu', point_threshold: 101)
-Committee.create(committee_id: 2, committee: 'Operations', head_first_name: 'John', head_last_name: 'Smith', email: 'john.smith@tamu.edu', point_threshold: 101)
+Committee.create(committee_id: 0, committee: 'Internal', head_first_name: 'Sample_First', head_last_name: 'Sample_Last', email: 'example_email@tamu.edu', point_threshold: 101)
+Committee.create(committee_id: 1, committee: 'External', head_first_name: 'Sample_First', head_last_name: 'Sample_Last', email: 'example_email@tamu.edu', point_threshold: 101)
+Committee.create(committee_id: 2, committee: 'Operations', head_first_name: 'Sample_First', head_last_name: 'Sample_Last', email: 'example_email@tamu.edu', point_threshold: 101)
 
 Subcommittee.create(subcommittee_id: 0, subcommittee: 'Community Building', committee: 0, point_threshold: 102)
 Subcommittee.create(subcommittee_id: 1, subcommittee: 'Research and Technology', committee: 0, point_threshold: 102)
