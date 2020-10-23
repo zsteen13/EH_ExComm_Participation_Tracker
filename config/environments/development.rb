@@ -39,10 +39,10 @@ Rails.application.configure do
   config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
 
   config.action_mailer.delivery_method = :smtp
-  
+
   config.active_job.queue_adapter = :inline
-  
-  config.action_mailer.default_url_options = {:host => 'localhost:3000'}
+
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
 
   config.action_mailer.perform_deliveries = false
 

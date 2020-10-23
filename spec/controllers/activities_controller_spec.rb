@@ -21,15 +21,15 @@ feature ActivitiesController, type: :system do
       point_value = 3
       description = 'Social for new members'
 
-      fill_in 'Activity Name', :with => activity_name
-      fill_in 'Activity Type', :with => activity_type
-      fill_in 'date', :with => date
-      fill_in 'time_input', :with => time
-      fill_in 'Point Value', :with => point_value
-      fill_in 'Description', :with => description
+      fill_in 'Activity Name', with: activity_name
+      fill_in 'Activity Type', with: activity_type
+      fill_in 'date', with: date
+      fill_in 'time_input', with: time
+      fill_in 'Point Value', with: point_value
+      fill_in 'Description', with: description
 
       click_button 'Create'
-       
+
       expect(page).to have_content activity_name
       expect(page).to have_content activity_type
       expect(page).to have_content point_value

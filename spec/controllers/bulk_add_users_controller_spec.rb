@@ -8,21 +8,21 @@ feature BulkAddUsersController do
     scenario 'admin uploads a correct csv' do
       visit '/members'
       expect(page).to have_current_path '/members'
-      expect(page).to have_content "Bulk Add Users"
+      expect(page).to have_content 'Bulk Add Users'
 
-      click_link "bulk_add_users_btn"
+      click_link 'bulk_add_users_btn'
       expect(page).to have_current_path '/bulk_add_users'
       expect(page).to have_content 'Attach CSV file with new users.'
 
-      filepath = Rails.root.join "spec", "data", "bulk_add_users_correct.csv" 
+      filepath = Rails.root.join 'spec', 'data', 'bulk_add_users_correct.csv'
       attach_file 'new_users', filepath
       click_button 'upload_btn'
       expect(page).to have_content 'Please confirm this info'
 
-      click_link "confirm_btn"
+      click_link 'confirm_btn'
       expect(page).to have_current_path '/members'
-      expect(page).to have_content "scrum master"
-      expect(page).to have_content "project owner"
+      expect(page).to have_content 'scrum master'
+      expect(page).to have_content 'project owner'
       open_email('moore.trev@tamu.edu')
       expect(current_email).to have_content 'Howdy'
     end
@@ -30,13 +30,13 @@ feature BulkAddUsersController do
     scenario 'admin uploads a incorrect csv' do
       visit '/members'
       expect(page).to have_current_path '/members'
-      expect(page).to have_content "Bulk Add Users"
+      expect(page).to have_content 'Bulk Add Users'
 
-      click_link "bulk_add_users_btn"
+      click_link 'bulk_add_users_btn'
       expect(page).to have_current_path '/bulk_add_users'
       expect(page).to have_content 'Attach CSV file with new users.'
 
-      filepath = Rails.root.join "spec", "data", "bulk_add_users_wrong_2.csv" 
+      filepath = Rails.root.join 'spec', 'data', 'bulk_add_users_wrong_2.csv'
       attach_file 'new_users', filepath
       click_button 'upload_btn'
       expect(page).to have_content 'Parsing Error'
@@ -44,7 +44,7 @@ feature BulkAddUsersController do
     end
   end
 
-  feature "Bulk Add User without auth" do
+  feature 'Bulk Add User without auth' do
     include_context 'when authenticated as member' # support context to log in a user
 
     scenario 'the user should not see the bulk add users button' do
@@ -62,6 +62,5 @@ feature BulkAddUsersController do
       visit path
       expect(page).not_to have_current_path path
     end
-
   end
 end
