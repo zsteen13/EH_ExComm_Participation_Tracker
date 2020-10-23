@@ -1,16 +1,15 @@
 class MembersController < ApplicationController
   before_action :admin_only
 
-  helper_method :sort_column , :sort_direction 
+  helper_method :sort_column, :sort_direction
 
   def index
-    @members = User.order(sort_column + " " + sort_direction)
+    @members = User.order(sort_column + ' ' + sort_direction)
   end
 
   def show_threshold_points
-    @members = User.where("total_points <= ?", params[:search])
+    @members = User.where('total_points <= ?', params[:search])
   end
-
 
   def show
     @member = User.find(params[:id])
@@ -46,14 +45,13 @@ class MembersController < ApplicationController
       redirect_to(member_path(@member))
     else
       flash.alert = "An Error occured. Please check your inputs and try again.\n"
-      @member.errors.each{|attr,msg| flash.alert += "#{attr} \t\t #{msg}\n" }
+      @member.errors.each { |attr, msg| flash.alert += "#{attr} \t\t #{msg}\n" }
       render('edit')
     end
   end
 
   def delete
     @member = User.find(params[:id])
-
   end
 
   def destroy
@@ -62,17 +60,17 @@ class MembersController < ApplicationController
     redirect_to(members_path)
   end
 
-    private
-    def member_params
-        params.require(:user).permit(:first_name, :last_name, :uin, :email, :total_points, :committee, :subcommittee,:admin)
-    end
+  private
 
-    def sort_column
-      User.column_names.include?(params[:sort]) ? params[:sort] : "first_name"
-    end
+  def member_params
+    params.require(:user).permit(:first_name, :last_name, :uin, :email, :total_points, :committee, :subcommittee, :admin)
+  end
 
+  def sort_column
+    User.column_names.include?(params[:sort]) ? params[:sort] : 'first_name'
+  end
 
-    def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] :"asc"
-    end
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+  end
 end

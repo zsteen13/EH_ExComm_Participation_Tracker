@@ -1,9 +1,9 @@
 require 'rails_helper'
 require 'pp' # pretty printer, outputs to console
 
-feature 'Members Page'  do 
+feature 'Members Page'  do
   include_context 'when authenticated as admin' # support context to log in a user
-  
+
   scenario 'visit members' do
     visit('/members')
     expect(page).to have_content 'Bulk Add Users'

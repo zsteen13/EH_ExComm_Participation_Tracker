@@ -3,7 +3,7 @@ require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 # Coverage report generator
@@ -46,8 +46,8 @@ RSpec.configure do |config|
   # This file is pretty intimidating.
   # this line makes SpecTestHelper methods available within all controller specs
   # specs in the controller directory have type controller.
-  config.include SpecTestHelper, :type => :controller
-  
+  config.include SpecTestHelper, type: :controller
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
@@ -58,7 +58,7 @@ RSpec.configure do |config|
 
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
-  
+
   # This allows the use fo Capybara Domain Specific Languge within Rspec describes
   config.include Capybara::DSL
 

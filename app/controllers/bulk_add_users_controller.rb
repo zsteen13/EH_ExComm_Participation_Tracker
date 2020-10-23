@@ -1,9 +1,8 @@
 class BulkAddUsersController < ApplicationController
   before_action :admin_only
 
-  def index
-  end
-  
+  def index; end
+
   def create
     uploaded_file = params[:new_users]
     filename = Rails.root.join('public', 'uploads', uploaded_file.original_filename)
