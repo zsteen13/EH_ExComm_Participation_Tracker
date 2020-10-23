@@ -76,7 +76,7 @@
                   </div>
                   <div class="right">
                     <h2> Goal </h2>
-                    <p style="text-align: center;font-size: 25px"> 200 </p>
+                    <p id="thresh" style="text-align: center;font-size: 25px"> 200 </p>
                   </div>
                 </div>
 
@@ -112,11 +112,14 @@
     Searches for the points of the user in the html and converts them into the width of the progress bar components
   */
   $(document).ready(function(){
+    var pthresh =document.getElementById("thresh");
+    var pointTsh = pthresh.innerHTML;
+
     /*Meeting points*/
     var meeting = document.getElementById("meeting");
     var containMPoints = meeting.innerHTML;
     var mmeter = document.getElementById("mePts");
-    mmeter.style.width=containMPoints+'%';
+    mmeter.style.width=(containMPoints/pointTsh)*100+'%';
     $("#mePts").html(function(){
       return String(containMPoints);
     });
@@ -125,7 +128,7 @@
     var event = document.getElementById("event");
     var containEPoints = event.innerHTML;
     var emeter = document.getElementById("evPts");
-    emeter.style.width=containEPoints+'%';
+    emeter.style.width=(containEPoints/pointTsh)*100+'%';
     $("#evPts").html(function(){
       return String(containEPoints);
     });
@@ -134,7 +137,7 @@
     var misc = document.getElementById("misc");
     var containMiPoints = misc.innerHTML;
     var mimeter = document.getElementById("miPts");
-    mimeter.style.width=containMiPoints+'%';
+    mimeter.style.width=(containMiPoints/pointTsh)*100+'%';
     $("#miPts").html(function(){
       return String(containMiPoints);
     });
