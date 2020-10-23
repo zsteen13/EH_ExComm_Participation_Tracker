@@ -28,95 +28,149 @@
 
       <br>
 
+      <div id="card">
+        <div class="table">
+          <table class="center" width="100%" summary="member detail view">
+            <tr class = "head">
+              <th class = "lhead"><%= sortable "First name  ","first_name" %></th>
+              <th class = "rhead"><%= sortable "Last name  ","last_name" %> </th>
+              <th class = "lhead"><%= sortable "Committee  ","committee" %> </th>
+              <th class = "rhead"><%= sortable "Subcommittee  ","subcommittee" %> </th>
+              <th class = "lhead"><%= sortable "Email  ","email" %></th>
+              <th class = "rhead"><%= sortable "Total points  ","total_points" %></th>
+              <th class="act">Actions </th>
+            </tr>
 
-      <div class="table">
-        <table summary="member detail view">
-          <tr class = "header">
-            <th><%= sortable "First name  ","first_name" %></th>
-            <th><%= sortable "Last name  ","last_name" %> </th>
-            <th><%= sortable "Committee  ","committee" %> </th>
-            <th><%= sortable "Subcommittee  ","subcommittee" %> </th>
-            <th><%= sortable "Email  ","email" %></th>
-            <th><%= sortable "Total points  ","total_points" %></th>
-            <th>Actions </th>
-          </tr>
-
-          <% @members.each do |member| %>
-          <tr>
-            <td><%= member.first_name %></td>
-            <td><%= member.last_name %></td>
-            <td><%= member.display_committee %></td>
-            <td><%= member.display_subcommittee %></td>
-            <td><%= member.email %></td>
-            <td><%= member.display_total_points %></td>
-            <td class="actions">
-              <%= link_to("Profile", member_path(member), :class => 'action show') %>
-              <%= link_to("Edit", edit_member_path(member), :class => 'action edit') %>
-              <%= link_to("Delete",delete_member_path(member), :class => 'action delete') %>
-            </td>
-          </tr>
-          <% end %>
-        </table>
+            <% @members.each do |member| %>
+            <tr>
+              <td data-label="First Name"><%= member.first_name %></td>
+              <td data-label="Last Name"><%= member.last_name %></td>
+              <td data-label="Committee"><%= member.display_committee %></td>
+              <td data-label="Subcommittee"><%= member.display_subcommittee %></td>
+              <td data-label="Email"><%= member.email %></td>
+              <td data-label="Total Points"><%= member.display_total_points %></td>
+              <td class="actions">
+                <%= link_to("Profile", member_path(member), :class => 'action show') %>
+                <%= link_to("Edit", edit_member_path(member), :class => 'action edit') %>
+                <%= link_to("Delete",delete_member_path(member), :class => 'action delete') %>
+              </td>
+            </tr>
+            <% end %>
+          </table>
+        </div>
       </div>
 
     </div>
   </div>
 </div>
 
+<script>
+  /*
+  $(window).on('resize', function(event){
+    var windowSize = $(window).width(); // Could've done $(this).width()
+      if(windowSize < 760){
+        $('#head').css('background-color', 'red');
+      }
+  });*/
+</script>
+
 <style>
   a{
     text-decoration: none;
     color: #1b98f8;
   }
-  .header a{
+  .head a{
     color: white;
   }
-  th{
-    background:#500000;
-    padding:8px;
+  .center {
+    margin-left: auto;
+    margin-right: auto;
   }
-  .table{
-    border:2px solid black;
+  table { 
+  width: 100%; 
+  border-collapse: collapse; 
+}
+/* Zebra striping */
+tr:nth-of-type(odd) { 
+  background: #eee; 
+}
+th { 
+  background: #500000; 
+  color: white; 
+  font-weight: bold; 
+}
+td, th { 
+  padding: 6px; 
+  border: 1px solid #ccc; 
+  text-align: left; 
+}
+@media 
+only screen and (max-width: 760px)  {
+
+  /* Force table to not be like tables anymore */
+  table, thead, tbody, th, td, tr { 
+    display: block; 
   }
-  #table{
-    border-collapse: collapse;
+  
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr { 
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  .act{
+    display:none;
+  }
+  .head{
     width:100%;
+    content: "";
+    display: table;
+    clear: both;
   }
-  .table td a{
-    background-color: #0078E7;
-    color: white;
-    padding:.3em;
-    border-radius:10px;
-    text-decoration: none;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-  }
-  .table th .current{
-    padding-right: 0;
-    background-repeat: no-repeat;
-    background-position: right;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    .lhead{
+      float: left;
+      width: 46%;
+      text-align:center;
+      
+    }
+    .rhead{
+      float: right;
+      width: 46%;
+      text-align:center;
+    }
 
-
+  
+  tr { border: 1px solid #ccc; }
+  
+  td { 
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee; 
+    position: relative;
+    padding-left: 50%; 
   }
-  .table th .asc{
-    background-image: url(up_arrow.gif);
-    background-size: 10px 10px;
+  
+  td:before { 
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%; 
+    padding-right: 10px; 
+    white-space: nowrap;
+    color:#500000;
+    font-weight: bold;
   }
-
-  .table th .desc{
-    background-image: url(down_arrow.gif);
-    background-size: 10px 10px;
-  }
-
-  .content {
-    max-width: 80%;
-  }
-  .pure-button {
-    color: white;
-    border-radius: 4px;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-  }
-
+  
+  /*
+  Label the data
+  */
+  td:nth-of-type(1):before { content: "First Name"; }
+  td:nth-of-type(2):before { content: "Last Name"; }
+  td:nth-of-type(3):before { content: "Committee"; }
+  td:nth-of-type(4):before { content: "Subcommittee"; }
+  td:nth-of-type(5):before { content: "Email"; }
+  td:nth-of-type(6):before { content: "Total Points"; }
+}
 </style>
