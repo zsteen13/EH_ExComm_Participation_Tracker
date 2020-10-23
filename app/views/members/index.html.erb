@@ -28,7 +28,7 @@
 
       <br>
 
-      <div id="card">
+      
         <div class="table">
           <table class="center" width="100%" summary="member detail view">
             <tr class = "head">
@@ -58,7 +58,7 @@
             <% end %>
           </table>
         </div>
-      </div>
+      
 
     </div>
   </div>
@@ -88,7 +88,9 @@
   }
   table { 
   width: 100%; 
-  border-collapse: collapse; 
+  border-collapse: collapse;
+  border: 2px solid black; 
+  border-radius: 10px;
 }
 /* Zebra striping */
 tr:nth-of-type(odd) { 
@@ -104,6 +106,24 @@ td, th {
   border: 1px solid #ccc; 
   text-align: left; 
 }
+table th .current{
+    padding-right: 0;
+    background-repeat: no-repeat;
+    background-position: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .table th .asc{
+    background-image: url(up_arrow.gif);
+    background-size: 10px 10px;
+  }
+
+  .table th .desc{
+    background-image: url(down_arrow.gif);
+    background-size: 10px 10px;
+  }
+
 @media 
 only screen and (max-width: 760px)  {
 
@@ -126,6 +146,9 @@ only screen and (max-width: 760px)  {
     content: "";
     display: table;
     clear: both;
+    border:none;
+    border-top-right-radius: 10px;
+    border-top-left-radius:10px;
   }
     .lhead{
       float: left;
@@ -139,7 +162,9 @@ only screen and (max-width: 760px)  {
       text-align:center;
     }
 
-  
+  th { border:none; border-bottom:1px solid #ccc; }
+  th:nth-of-type(1){ border-top-left-radius:8px; }
+  th:nth-of-type(2){ border-top-right-radius:8px; }
   tr { border: 1px solid #ccc; }
   
   td { 
