@@ -18,7 +18,7 @@ class User < ApplicationRecord
     UserKey.create(user_id: id, key: SecureRandom.base64(20))
     MemberMailer.with(user: self).signup_email.deliver_later
   end
-  
+
   # hardcoded for now
   @default_point_threshold = 100
 

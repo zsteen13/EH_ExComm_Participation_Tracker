@@ -31,5 +31,5 @@ end
 RSpec.shared_context 'before when authenticated as admin' do
   before do
     authenticate 222_222_222, 'Test'
- end
+  end
 end

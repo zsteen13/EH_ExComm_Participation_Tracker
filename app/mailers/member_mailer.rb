@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'pp'
+
+# The Member Mailer
 class MemberMailer < ApplicationMailer
   default from: 'EHExComMemberPointTracker@gmail.com'
 
