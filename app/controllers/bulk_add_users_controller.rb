@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BulkAddUsersController < ApplicationController
   before_action :admin_only
 

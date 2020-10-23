@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'securerandom'
 require 'pp'
 class MembersController < ApplicationController
@@ -6,7 +8,7 @@ class MembersController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @members = User.order(sort_column + ' ' + sort_direction)
+    @members = User.order("#{sort_column} #{sort_direction}")
   end
 
   def show_threshold_points

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'pp'
 class ProfileController < ApplicationController
   skip_before_action :authorized, only: %i[will_change_password change_password error]
@@ -13,11 +15,12 @@ class ProfileController < ApplicationController
     @attended.each do |attended|
       sumTotalPoints += Activity.find(attended.activity_id).point_value
 
-      if Activity.find(attended.activity_id)._type == 'Meeting'
+      case Activity.find(attended.activity_id)._type
+      when 'Meeting'
         sumMeetingPoints += Activity.find(attended.activity_id).point_value
-      elsif Activity.find(attended.activity_id)._type == 'Event'
+      when 'Event'
         sumEventPoints += Activity.find(attended.activity_id).point_value
-      elsif Activity.find(attended.activity_id)._type == 'Misc'
+      when 'Misc'
         sumMiscPoints += Activity.find(attended.activity_id).point_value
       end
     end

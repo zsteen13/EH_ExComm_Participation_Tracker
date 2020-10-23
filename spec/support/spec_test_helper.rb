@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # https://stackoverflow.com/questions/10121835/how-do-i-simulate-a-login-with-rspec
 module SpecTestHelper
   def self.login_admin

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # https://stackoverflow.com/questions/32479612/rspec-capybara-loginuser-not-working
 def authenticate(uin, password)
   visit '/welcome'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'pp'
 class User < ApplicationRecord
   has_many :userkeys
@@ -53,7 +55,7 @@ class User < ApplicationRecord
   end
 
   def to_s
-    'uin: ' + self[:uin].to_s + ' first_name: ' + self[:first_name] + ' last_name ' + self[:last_name] + ' email: ' + self[:email] + ' committee: ' + self[:committee] + ' subcommittee: ' + self[:subcommittee] + ' total_point: ' + self[:total_points].to_s + ' meeting_points: ' + self[:meeting_points].to_s + ' event_points: ' + self[:event_points].to_s + ' misc_points ' + self[:misc_points].to_s + ' admin: ' + self[:admin].to_s + "\n"
+    "uin: #{self[:uin]} first_name: #{self[:first_name]} last_name #{self[:last_name]} email: #{self[:email]} committee: #{self[:committee]} subcommittee: #{self[:subcommittee]} total_point: #{self[:total_points]} meeting_points: #{self[:meeting_points]} event_points: #{self[:event_points]} misc_points #{self[:misc_points]} admin: #{self[:admin]}\n"
   end
 
   private

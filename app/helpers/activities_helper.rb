@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'date'
 
 module ActivitiesHelper
@@ -19,7 +21,7 @@ module ActivitiesHelper
     has_all_keys = true
 
     keys.each do |key|
-      has_key = map.has_key?(key)
+      has_key = map.key?(key)
       has_all_keys &= has_key
     end
     has_all_keys
@@ -64,9 +66,9 @@ module ActivitiesHelper
     day = day.to_i
     year = year.to_i
 
-    return false if (hour >= 24) || (hour < 0)
+    return false if (hour >= 24) || hour.negative?
 
-    return false if (minute > 59) || (minute < 0)
+    return false if (minute > 59) || minute.negative?
 
     return false if (month > 12) || (month < 1)
 

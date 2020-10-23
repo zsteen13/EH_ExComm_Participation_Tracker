@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateUserKeys < ActiveRecord::Migration[6.0]
   def change
     create_table :user_keys do |t|
