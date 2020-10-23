@@ -11,7 +11,6 @@ feature BulkAddUsersController do
       visit '/members'
       expect(page).to have_current_path '/members'
       expect(page).to have_content 'Bulk Add Users'
-
       click_on('Bulk Add Users')
       expect(page).to have_current_path '/bulk_add_users'
       expect(page).to have_content 'Attach CSV file with new users.'
@@ -39,6 +38,7 @@ feature BulkAddUsersController do
       expect(page).to have_content 'Attach CSV file with new users.'
 
       filepath = Rails.root.join 'spec', 'data', 'bulk_add_users_wrong_2.csv'
+
       attach_file('new_users', filepath, make_visible: true)
 
       click_button 'upload_btn'
