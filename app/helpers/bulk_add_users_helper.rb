@@ -4,7 +4,6 @@ require 'csv'
 
 # BulkAddUsersHelper
 module BulkAddUsersHelper
-  
   def self.create_file(uploaded_file, filename)
     File.open(filename, 'wb') do |file|
       file.write(uploaded_file.read)
