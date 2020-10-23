@@ -6,17 +6,18 @@
 <div id="base" class="contents pure-g">
     <!-- Establishes the left side of the view page. It'll be a scrolling section of events-->
     <div id="list" class="pure-u-1">
-        <!--Loops through the activity data and creates new event-item objects for each set of info -->
-        <% @activity.each do |activity| %>
+        <!--Loops through the activity data and creates a new unique event-item object for each set of info -->
+        <% @activity.uniq.each_with_index do |activity,index| %>
             <div class="event-item pure-g">
                 <div class="pure-u-3-4"> 
-                    <h5 class="event-type"> <%= activity._type%></h5> 
-                    <h5 class="event-date"><a> <span> <%= activity.date%> </span></a></h5> 
-                    <h4 class="event-name"> <%= activity.name%> </h4> 
+                    <h5 class="event-type"><%= activity._type%></h5>
+                    <h4 class="event-name"> <%= activity.name%> </h4>
+                    <h5 hidden class="event-date"> <%= activity.date%> </h5>
+                    <h5 id="<%= index%>"class="datef"></h5> 
                     <p class="event-desc">
                         <%= activity.description%>
                     </p> 
-                    <h5 class="event-points"> Available points: <%= activity.point_value%> </h5>
+                    <h5 class="event-points"> Available Points: <%= activity.point_value%> </h5>
                     <% if current_user.admin? %>
                         <div class="compress">
                             <%= link_to("View Attendance", activity_path(activity), :class => 'action show', class: "pure-button button-secondary") %>
@@ -35,7 +36,7 @@
     <!--This is where the info for the events will go-->
     <div id="main" class="pure-u-1 pure-u-lg pure-u-xl" style="width:100%;">
         <div class="event-content">
-            <!--Not sure exactly how this works and .first didn't but well I have this.-->
+            <!--Finds the first activity-->
             <% @activity.find() do |activity| %>
                 <div class="event-content-header pure-g">
                     <div class="pure-u-1-2"> 
@@ -43,16 +44,11 @@
                             <%= activity.name%>
                         </h1>
                         <p class="event-content-subtitle">
-                            <span> <%= activity._type%> </span> 
-                        </p> 
-                        <p class="event-content-date">
-                            <span> <a><%=activity.date%> 
-                                <script>
-                                    var d = $(this).text();
-                                    writeDate(d);
-                                </script> 
-                            </a> </span>
+                            <span> Activity Type: <%= activity._type%> </span> 
                         </p>
+                        <p class="event-content-points"><span> Available Points: <%= activity.point_value%> </span> </p>
+                        <p id="ddate" hidden class="event-content-date"> <%=activity.date%> </p>
+                        <p class="event-content-date"></p><!--<p class="event-content-time"></p>-->
                     </div>
                 </div>
                 <div class="event-content-body">
@@ -70,43 +66,87 @@
         containing the data of the event-item object clicked.
     */
     $('.event-item').on("click", function(){
-        //var dataId = $(this).attr("h5");
-        //$(this).css("background","#eee");
         var container = $(this).find(".pure-u-3-4");
         var name = container.find(".event-name");
         var type = container.find(".event-type");
         var date = container.find(".event-date");
         var dat = date.text();
-        var dateF = compareDate(dat);
+        var dateF = formatDate(dat);
+        var hours = formatHours(dateF.getHours());
+        var minutes = formatMinutes(dateF.getMinutes());
+        var point = container.find(".event-points");
         var desc = container.find(".event-desc");
         $("div.event-content").html(function(){
-            return '<div class="event-content-header pure-g"> <div class="pure-u-1-2"> <h1 class="event-content-title">'+ name.text() + '</h1> <p class="event-content-subtitle"> <span> ' + type.text() +'</span> </p> <p class="event-content-subtitle"> <span><a> ' + dateF +'</a></span> </p> </div> </div> <div class="event-content-body"> ' + desc.text() + '</div>';
+            return '<div class="event-content-header pure-g"> <div class="pure-u-1-2"> <h1 class="event-content-title">'+ name.text() + '</h1> <p class="event-content-subtitle"> <span> Activity Type: ' + type.text() +'</span> </p>  <p class="event-content-points"><span>' +point.text()+' </span> </p><p class="event-content-subtitle"> <span><a> On ' + dateF.toDateString() +' at ' + hours +':'+minutes+append+'</a></span> </p> </div> </div> <div class="event-content-body"> ' + desc.text() + '</div>';
         });
     });
-    /*2020-09-26T19:30:00-05:00*/
-    function compareDate(str1){
+    /*
+        Takes the output of activity.date, parses it and then makes a date object out of it
+        EX: 2020-08-23T11:00:00-05:00 => MON AUG 03 2020
+    */
+    function formatDate(str1){
         // str1 format should be yyyy/mm/dd. Separator can be anything e.g. / or -. It wont effect
-        var yr1   = parseInt(str1.substring(0,7));
-        var mon1  = parseInt(str1.substring(7,10));
-        var dt1   = parseInt(str1.substring(10,13));
-        var ti1   = parseInt(str1.substring(13,15));
-        var ti2   = parseInt(str1.substring(16,18));
-        //var ti3   = parseInt(str1.substring(19,21));
-        //if(ti1>12){ti1 = ti1 - 12;};
+        var yr1   = parseInt(str1.substring(0,6));
+        var mon1  = parseInt(str1.substring(6,9));
+        var dt1   = parseInt(str1.substring(9,12));
+        var ti1   = parseInt(str1.substring(12,15));
+        var ti2   = parseInt(str1.substring(15,18));
         var date1 = new Date(yr1, mon1-1, dt1, ti1, ti2);
         return date1;
     };
-    function writeDate(str){
-        var yr2   = parseInt(str.substring(0,7));
-        var mon2  = parseInt(str.substring(7,10));
-        var dt2   = parseInt(str.substring(10,13));
-        var ti3   = parseInt(str.substring(13,15));
-        var ti4   = parseInt(str.substring(16,18));
-        var date2 = new Date(yr2, mon2-1, dt2, ti3, ti4);
-        $("div.event-content-date").html(function(){
-            return '<p class="event-content-subtitle"> <span><a> ' + date2 +'</a></span> </p>';
+    /*
+        Converts the hours into the 12 hr system and alters the global variable append
+    */
+    function formatHours(hrs){
+        if(hrs>12){
+            hrs -= 12;
+            append =" PM";
+        }
+        else{append =" AM";}
+        return hrs;
+    };
+    /*
+        Adds a leading 0 to the minutes if the minutes are single digit
+    */
+    function formatMinutes(min){
+        if(min-10<0){
+            min = "0"+String(min);
+        }
+        return String(min);
+    };
+    
+    /*
+        Runs once the page is loaded. It searches for all of the event-date objects and then sends the innerHTML
+        to my function formatDate, where the date is then formatted. It then sends the date to it's respective event-item object.
+    */
+    $(document).ready(function(){
+        var Dates = document.getElementsByClassName('event-date');
+        for (var i=0; i<Dates.length; i++) {
+            var containDate = Dates[i].innerHTML;
+            var strDate = String(containDate);
+            var formDate = formatDate(strDate);
+            $("#"+i).html(function(){
+                return '<span><a> ' + formDate.toDateString() +'</a></span>';
+            });
+        };
     });
-    }
+
+    /*
+        Runs once the page is loaded. It works similarly to the function above, but it alters the event-content-header areas.
+    */
+    var append = "";
+    $(document).ready(function(){
+        var fDate = document.getElementById("ddate");
+        var containDate = fDate.innerHTML;
+        var strDate = containDate;
+        var formDate = formatDate(strDate);
+        var hours = formatHours(formDate.getHours());
+        var minutes = formatMinutes(formDate.getMinutes());
+        $("p.event-content-date").html(function(){
+            return '<span><a> On ' + formDate.toDateString() +' at ' + hours +':'+minutes+append+'</a></span>';
+        });
+        
+    });
 </script>
 
 
@@ -167,6 +207,7 @@ a {
 }
 .button-secondary{
     background: #500000; 
+
 }
 /*
 .button-secondary:hover{
@@ -238,7 +279,7 @@ Might want this for some other thing
         text-decoration: none;
     }
     .event-content-body{
-        
+        min-height: 30vh;
     }
 
     .event-content-title {
@@ -252,12 +293,28 @@ Might want this for some other thing
         .event-content-subtitle span {
             color: #d1d1d1;
         }
+    .event-content-points {
+        font-size: 1em;
+        margin: 0;
+        font-weight: normal;
+    }
+        .event-content-points span {
+            color: #d1d1d1;
+        }
     .event-content-date {
         font-size: 1em;
         margin: 0;
         font-weight: normal;
     }
         .event-content-date span {
+            color: #d1d1d1;
+        }
+    .event-content-time {
+        font-size: 1em;
+        margin: 0;
+        font-weight: normal;
+    }
+        .event-content-time span {
             color: #d1d1d1;
         }
     .event-content-controls {

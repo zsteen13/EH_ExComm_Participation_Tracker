@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 require 'pp'
+# User
 class User < ApplicationRecord
   has_many :userkeys
 
@@ -11,7 +14,7 @@ class User < ApplicationRecord
   validate :valid_uin
 
   # hardcoded for now
-  @@default_point_threshold = 100
+  @default_point_threshold = 100
 
   def initialize(args = nil)
     unless args.nil?
@@ -20,12 +23,8 @@ class User < ApplicationRecord
       args[:meeting_points] = !args[:meeting_points].nil? ? args[:meeting_points] : 0
       args[:event_points] = !args[:event_points].nil? ? args[:event_points] : 0
       args[:misc_points] = !args[:misc_points].nil? ? args[:misc_points] : 0
-      args[:committee] = if Committee.where(committee: args[:committee]).take
-                           Committee.where(committee: args[:committee]).take.committee_id
-                         end
-      args[:subcommittee] = if Subcommittee.where(subcommittee: args[:subcommittee], committee: args[:committee]).take
-                              Subcommittee.where(subcommittee: args[:subcommittee]).take.subcommittee_id
-                            end
+      args[:committee] = (Committee.where(committee: args[:committee]).take.committee_id if Committee.where(committee: args[:committee]).take)
+      args[:subcommittee] = (Subcommittee.where(subcommittee: args[:subcommittee]).take.subcommittee_id if Subcommittee.where(subcommittee: args[:subcommittee], committee: args[:committee]).take)
       # sets threshold by priority, default > committee > subcommittee
       # this logic does not work yet
       # if !args[:point_threshold]
@@ -41,9 +40,9 @@ class User < ApplicationRecord
     super
   end
 
-  def email=(e)
-    e = e.strip if e
-    super(e)
+  def email=(field)
+    field = field.strip if field
+    super(field)
   end
 
   def display_total_points
@@ -75,12 +74,13 @@ class User < ApplicationRecord
   end
 
   def to_s
-    'uin: ' + self[:uin].to_s + ' first_name: ' + self[:first_name] + ' last_name ' + self[:last_name] + ' email: ' + self[:email] + ' committee: ' + display_committee + ' subcommittee: ' + display_subcommittee + ' total_point: ' + self[:total_points].to_s + ' meeting_points: ' + self[:meeting_points].to_s + ' event_points: ' + self[:event_points].to_s + ' misc_points ' + self[:misc_points].to_s + ' admin: ' + self[:admin].to_s + "\n"
+    "uin: #{self[:uin]} first_name: #{self[:first_name]} last_name #{self[:last_name]} email: #{self[:email]} committee: #{display_committee} subcommittee: #{display_subcommittee} total_point: #{self[:total_points]} meeting_points: #{self[:meeting_points]} event_points: #{self[:event_points]} misc_points #{self[:misc_points]} admin: #{self[:admin]}\n"
   end
 
   private
 
-  def valid_uin # should make this confirm that uin in 9 digits
+  # should make this confirm that uin in 9 digits
+  def valid_uin
     if uin.nil?
       return # dont report uin validity if its nil, thats another validators job
     end

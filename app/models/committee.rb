@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Committee < ApplicationRecord
   validates :committee, :head_first_name, :head_last_name, :email, presence: true
 

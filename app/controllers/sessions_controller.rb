@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# SessionsController
 class SessionsController < ApplicationController
   skip_before_action :authorized, only: %i[new create welcome]
 

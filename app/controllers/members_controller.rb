@@ -1,10 +1,13 @@
+# frozen_string_literal: true
+
+# MembersController
 class MembersController < ApplicationController
   before_action :admin_only
 
   helper_method :sort_column, :sort_direction
 
   def index
-    @members = User.order(sort_column + ' ' + sort_direction)
+    @members = User.order("#{sort_column} #{sort_direction}")
   end
 
   def show_threshold_points

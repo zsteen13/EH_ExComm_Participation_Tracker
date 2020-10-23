@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'pp' # pretty printer, outputs to console
 
-feature 'change password' do
+
+feature 'change password'  do
   feature 'while logged in as member' do
     include_context 'when authenticated as member'
     scenario 'passwords match' do
@@ -16,7 +19,7 @@ feature 'change password' do
       #       fill_in 'uin', :with => '11111111'
       #       fill_in 'password', :with => '123'
       #       click_button 'Login'
-      #       expect(page).to have_content 'Welcome to the Texas A&M EH ExCom Member Point Tracker'
+      #       expect(page).to have_content 'Welcome to the Texas A&M EH Excom Member Point Tracker'
     end
     scenario 'passwords dont match' do
       visit '/profile/change_password'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
@@ -157,7 +159,7 @@ RSpec.describe User, type: :model do
   describe '#to_s' do
     it 'returns a string version of a users profile' do
       user = User.new(uin: '000000000', first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', committee: 'Internal', subcommittee: 'Community Building', total_points: 0, meeting_points: 0, event_points: 0, misc_points: 0, admin: true)
-      expect(user.to_s).to eq('uin: 000000000 first_name: Zachary last_name Steen email: zsteen13@gmail.com committee: Internal subcommittee: Community Building total_point: 0 meeting_points: 0 event_points: 0 misc_points 0 admin: true' + "\n")
+      expect(user.to_s).to eq("uin: 000000000 first_name: Zachary last_name Steen email: zsteen13@gmail.com committee: Internal subcommittee: Community Building total_point: 0 meeting_points: 0 event_points: 0 misc_points 0 admin: true\n")
     end
   end
 end

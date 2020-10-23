@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # provides a redirected route while preserving query parameters
 class QueryRedirector
   def call(_params, request)

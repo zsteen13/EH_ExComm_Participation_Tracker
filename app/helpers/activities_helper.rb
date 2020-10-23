@@ -1,5 +1,9 @@
+
+# frozen_string_literal: true
+
 require 'date'
 
+# ActivitiesHelper
 module ActivitiesHelper
   def self.parse_date(date, time)
     date_split = date.split('-', 3)
@@ -19,13 +23,13 @@ module ActivitiesHelper
     has_all_keys = true
 
     keys.each do |key|
-      has_key = map.has_key?(key)
+      has_key = map.key?(key)
       has_all_keys &= has_key
     end
     has_all_keys
   end
 
-  def self.is_number?(string)
+  def self.number?(string)
     true if Float(string)
   rescue StandardError
     false
@@ -48,15 +52,15 @@ module ActivitiesHelper
     hour = time_split[0]
     minute = time_split[1]
 
-    return false unless is_number?(year)
+    return false unless number?(year)
 
-    return false unless is_number?(month)
+    return false unless number?(month)
 
-    return false unless is_number?(day)
+    return false unless number?(day)
 
-    return false unless is_number?(hour)
+    return false unless number?(hour)
 
-    return false unless is_number?(minute)
+    return false unless number?(minute)
 
     hour = hour.to_i
     minute = minute.to_i
@@ -64,9 +68,9 @@ module ActivitiesHelper
     day = day.to_i
     year = year.to_i
 
-    return false if (hour >= 24) || (hour < 0)
+    return false if (hour >= 24) || hour.negative?
 
-    return false if (minute > 59) || (minute < 0)
+    return false if (minute > 59) || minute.negative?
 
     return false if (month > 12) || (month < 1)
 

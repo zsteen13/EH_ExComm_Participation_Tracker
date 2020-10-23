@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# ApplicationHelper
 module ApplicationHelper
   def sortable(column, title)
     direction = title == sort_column && sort_direction == 'asc' ? 'desc' : 'asc'

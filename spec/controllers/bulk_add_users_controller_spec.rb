@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'pp' # pretty printer, outputs to console
 
@@ -9,18 +11,19 @@ feature BulkAddUsersController do
       visit '/members'
       expect(page).to have_current_path '/members'
       expect(page).to have_content 'Bulk Add Users'
-
-      click_link 'bulk_add_users_btn'
+      click_on('Bulk Add Users')
       expect(page).to have_current_path '/bulk_add_users'
       expect(page).to have_content 'Attach CSV file with new users.'
 
       filepath = Rails.root.join 'spec', 'data', 'bulk_add_users_correct.csv'
-      attach_file 'new_users', filepath, visible: false
+      attach_file('new_users', filepath, make_visible: true)
+
       click_button 'upload_btn'
       expect(page).to have_content 'Is this correct'
 
       click_link 'confirm_btn'
       expect(page).to have_current_path '/members'
+
       expect(page).to have_content 'Internal'
       expect(page).to have_content 'External'
     end
@@ -35,7 +38,9 @@ feature BulkAddUsersController do
       expect(page).to have_content 'Attach CSV file with new users.'
 
       filepath = Rails.root.join 'spec', 'data', 'bulk_add_users_wrong_2.csv'
-      attach_file 'new_users', filepath, visible: false
+
+      attach_file('new_users', filepath, make_visible: true)
+
       click_button 'upload_btn'
       expect(page).to have_content 'Parsing Error'
       expect(page).to have_content 'the field email is invalid'
