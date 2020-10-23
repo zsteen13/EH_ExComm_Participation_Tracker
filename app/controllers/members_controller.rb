@@ -4,19 +4,17 @@
 class MembersController < ApplicationController
   before_action :admin_only
 
-
-  helper_method :sort_column , :sort_direction
+  helper_method :sort_column, :sort_direction
 
   def index
-    if params[:below]
-    @members = User.where("total_points <= ?", params[:search]).order(sort_column + " " + sort_direction)
-    elsif params[:above]
-    @members = User.where("total_points >= ?", params[:search]).order(sort_column + " " + sort_direction)
-    else
-    @members = User.order(sort_column + " " + sort_direction)
-    end
+    @members = if params[:below]
+                 User.where('total_points <= ?', params[:search]).order("#{sort_column} #{sort_direction}")
+               elsif params[:above]
+                 User.where('total_points >= ?', params[:search]).order("#{sort_column} #{sort_direction}")
+               else
+                 User.order("#{sort_column} #{sort_direction}")
+               end
   end
-
 
   def show
     @member = User.find(params[:id])
