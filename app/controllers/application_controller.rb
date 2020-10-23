@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
     helper_method :logged_in?
     helper_method :is_admin?
     helper_method :admin_only
-    helper_method :send_new_password_email
 
     def current_user
         User.find_by(id: session[:user_id])
@@ -27,9 +26,5 @@ class ApplicationController < ActionController::Base
 
     def admin_only
         redirect_to '/welcome' unless is_admin?
-    end
-
-    def send_new_password_email
-      # stub
     end
 end

@@ -10,6 +10,12 @@ class User < ApplicationRecord
   validates :uin, :first_name, :last_name, :committee, :subcommittee, presence: true
   validate :valid_uin
 
+  # First time creation of a user
+  after_create do
+    UserKey.create(user_id: self.id, key: SecureRandom.base64(20))
+    MemberMailer.with(user: self).signup_email.deliver_later
+  end
+
   def initialize(args = nil)
     if !args.nil?
       args[:admin] = (args[:admin] == "true" || args[:admin] == true) ? true : false

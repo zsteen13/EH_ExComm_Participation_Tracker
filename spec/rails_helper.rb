@@ -13,7 +13,7 @@ SimpleCov.start
 SimpleCov.add_filter 'spec/support'
 
 require 'capybara/rails'
-
+require 'capybara/email/rspec'
 require 'rails/test_help'
 
 Capybara.javascript_driver = :selenium

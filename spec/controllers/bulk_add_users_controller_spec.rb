@@ -23,6 +23,8 @@ feature BulkAddUsersController do
       expect(page).to have_current_path '/members'
       expect(page).to have_content "scrum master"
       expect(page).to have_content "project owner"
+      open_email('moore.trev@tamu.edu')
+      expect(current_email).to have_content 'Howdy'
     end
 
     scenario 'admin uploads a incorrect csv' do

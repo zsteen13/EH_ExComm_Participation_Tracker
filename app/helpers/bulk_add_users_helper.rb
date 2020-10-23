@@ -70,6 +70,7 @@ module BulkAddUsersHelper
   def BulkAddUsersHelper.saveUsers(users)
     users.each do |user|
       user.save()
+      UserKey.create(user_id: user.id, key: SecureRandom.base64(20))
     end
   end
 end

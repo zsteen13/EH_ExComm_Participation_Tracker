@@ -1,3 +1,5 @@
+require 'securerandom'
+require 'pp'
 class MembersController < ApplicationController
   before_action :admin_only
 
@@ -28,11 +30,11 @@ class MembersController < ApplicationController
     @member.event_points = 0
     @member.misc_points = 0
     @member.password_digest = BCrypt::Password.create(Random.new.rand(100.0).to_s)
-    send_new_password_email
+    
     if @member.save
+      pp @member
       redirect_to(members_path)
     else
-      puts @member.valid?
       render('new')
     end
   end
