@@ -9,60 +9,67 @@
       <%flash.alert = ""%>
     <% end %>
     <%= link_to("<< Back to Member page", members_path, :class => 'back-link') %>
-    <div class="content new member">
-      <h2>Edit Member information </h2>
+    <div class="content" style="background:#500000;padding:0;width:60%;border:2px solid black">
+        <div class="content" style="background:white;padding:0 2em;margin:20px;border:1px solid black">
+          <div class=" new member">
+            <h1 style="text-align: center;color:#500000">Edit Member Information</h1>
+            <br>
+            <%= form_for(@member, :url => member_path(@member), :method =>'patch') do |f| %>
+              <table summary="Subject form fields">
+                  <tr>
+                      <th>UIN</th>
+                      <td><%= @member.uin %></td>
+                  </tr>
 
-      <%= form_for(@member, :url => member_path(@member), :method =>'patch') do |f| %>
-        <table summary="Subject form fields">
-            <tr>
-                <th>UIN</th>
-                <td><%= @member.uin %></td>
-            </tr>
+                  <tr>
+                      <th>First Name</th>
+                      <td><%= f.text_field :first_name ,style: 'text-transform: capitalize;'%></td>
+                  </tr>
 
-            <tr>
-                <th>First Name</th>
-                <td><%= f.text_field :first_name ,style: 'text-transform: capitalize;'%></td>
-            </tr>
+                  <tr>
+                      <th>Last Name</th>
+                      <td><%= f.text_field :last_name,style: 'text-transform: capitalize;' %></td>
+                  </tr>
 
-            <tr>
-                <th>Last Name</th>
-                <td><%= f.text_field :last_name,style: 'text-transform: capitalize;' %></td>
-            </tr>
+                  <tr>
+                      <th>Email</th>
+                      <td><%= f.text_field :email %></td>
+                  </tr>
 
-            <tr>
-                <th>Email</th>
-                <td><%= f.text_field :email %></td>
-            </tr>
+                  <tr>
+                      <th>Committee</th>
+                      <td><%= f.text_field :committee %></td>
+                  </tr>
 
-            <tr>
-                <th>Committee</th>
-                <td><%= f.text_field :committee %></td>
-            </tr>
+                  <tr>
+                      <th>Subcommittee</th>
+                      <td><%= f.text_field :subcommittee %></td>
+                  </tr>
 
-            <tr>
-                <th>Subcommittee</th>
-                <td><%= f.text_field :subcommittee %></td>
-            </tr>
-
-            <tr>
-                <th>Total_points</th>
-                <td><%= f.text_field :total_points %></td>
-            </tr>
+                  <tr>
+                      <th>Total_points</th>
+                      <td><%= f.text_field :total_points %></td>
+                  </tr>
 
 
 
-            <tr>
-                <th>Admin</th>
-                <% # An admin can't undo their admin status%>
-                <td><%= f.check_box :admin, disabled: (@member.id == session[:user_id] ? true : nil) %></td>
-            </tr>
+                  <tr>
+                      <th>Admin</th>
+                      <% # An admin can't undo their admin status%>
+                      <td><%= f.check_box :admin, disabled: (@member.id == session[:user_id] ? true : nil) %></td>
+                  </tr>
 
-        </table>
-        <div class="form-buttons">
-            <%= f.submit("Update Member") %>
-         </div>
-        <% end %>
-      </div>
+              </table>
+
+              <div class="form-buttons" style="margin-bottom:1em;">
+                  <%= f.submit("Update Member") %>
+               </div>
+              <% end %>
+
+          </div>
+        </div>
+    </div>
+
 </div>
 
 <style>
@@ -106,14 +113,15 @@
     max-width: 70%;
     margin-bottom: 50px;
     line-height: 1.6em;
-
     max-width: 90%;
-
+    box-shadow: 0px 0px 38px -1px rgba(0,0,0,0.3);
+    border-radius: 20px;
   }
   .pure-button {
     color: white;
     border-radius: 4px;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
   }
 
   

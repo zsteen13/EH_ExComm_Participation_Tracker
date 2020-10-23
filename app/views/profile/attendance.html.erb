@@ -7,16 +7,16 @@
     <div class="header">
         <h1>Activities Attended</h1>
     </div>
-
+    <a class="pure-button pure-button-primary" href="/profile/" > Return to Profile </a>
     <div class="l-content">
         <div class="profile-boxes pure-g">
             <div class="pure-u-1">
-                <a class="pure-button pure-button-primary" href="/profile/" > Return to Profile </a>
                 <div class="profile-box">
                 <table class="pure-table" style="width:100%;background-color:white;">
                         <thead>
                         <tr>
                             <th>Event Name</th>
+                            <th>Event Type</th>
                             <th>Date</th>
                             <th>Points</th>
                         </tr>
@@ -33,6 +33,7 @@
                         <% @attended.each do |attended| %>
                             <tr>
                                 <td><%= Activity.find(attended.activity_id).name %></td>
+                                <td><%= Activity.find(attended.activity_id)._type %></td>
                                 <td><%= Activity.find(attended.activity_id).date[0,10]%></td>
                                 <td><%= Activity.find(attended.activity_id).point_value%></td>
                             </tr>
