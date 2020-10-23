@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# UsersController
 class UsersController < ApplicationController
   skip_before_action :authorized, only: %i[new create]
 

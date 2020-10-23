@@ -3,34 +3,41 @@
   <div id="main">
     <div class="header">
       <h1>Members</h1>
+      <br>
+
     </div>
 
     <div class="content" style="text-align:center;">
       <br>
+
       <div class="pure-button-group" role="group" aria-label="...">
         <a class="pure-button pure-button-primary" href= members/new> Create New Member</a>
 
-      <% if is_admin? %>
-            <a id="bulk_add_users_btn" class="pure-button pure-button-primary" href= /bulk_add_users>Bulk Add Users</a>
+        <% if admin? %>
+          <a id="bulk_add_users_btn" class="pure-button pure-button-primary" href= /bulk_add_users>Bulk Add Users</a>
 
         <% end %>
-        <a class="pure-button pure-button-primary" href= members/show_threshold_points>Search By Threshold Point</a>
+
+        <%= form_tag href='members', :class => "pure-form pure-form-stacked", method: :get  do %>
+          <%= text_field_tag :search, params[:search], :value=> params[:search],:pattern => "[0-9]+", :required => true %>
+
+          <%= submit_tag 'Set Threshold Points Below', :class => "pure-button pure-button-primary", :name=>'below' %>
+          <%= submit_tag 'Set Threshold Points Above', :class => "pure-button pure-button-primary", :name=>'above' %>
+        <% end %>
       </div>
-      
+
       <br>
 
-      <%= form_for "", url:members_path, role:"search", method: :get do %>
-      <% end %>
-      
+
       <div class="table">
         <table summary="member detail view">
           <tr class = "header">
-            <th><%= sortable "First name","first_name" %></th>
-            <th><%= sortable "Last name","last_name" %> </th>
-            <th><%= sortable "Committee","committee" %> </th>
-            <th><%= sortable "Subcommittee","subcommittee" %> </th>
-            <th><%= sortable "Email","email" %></th>
-            <th><%= sortable "Total points","total_points" %></th>
+            <th><%= sortable "First name  ","first_name" %></th>
+            <th><%= sortable "Last name  ","last_name" %> </th>
+            <th><%= sortable "Committee  ","committee" %> </th>
+            <th><%= sortable "Subcommittee  ","subcommittee" %> </th>
+            <th><%= sortable "Email  ","email" %></th>
+            <th><%= sortable "Total points  ","total_points" %></th>
             <th>Actions </th>
           </tr>
 
@@ -55,9 +62,6 @@
     </div>
   </div>
 </div>
-<script>
-
-</script>
 
 <style>
   a{
@@ -86,9 +90,28 @@
     text-decoration: none;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   }
+  .table th .current{
+    padding-right: 0;
+    background-repeat: no-repeat;
+    background-position: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+
+  }
+  .table th .asc{
+    background-image: url(up_arrow.gif);
+    background-size: 10px 10px;
+  }
+
+  .table th .desc{
+    background-image: url(down_arrow.gif);
+    background-size: 10px 10px;
+  }
 
   .content {
-    max-width: 90%;
+    max-width: 80%;
   }
   .pure-button {
     color: white;

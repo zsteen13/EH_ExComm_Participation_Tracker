@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
+# ApplicationController
 class ApplicationController < ActionController::Base
   protect_from_forgery unless: -> { request.format.json? }
 
   before_action :authorized
   helper_method :current_user
   helper_method :logged_in?
-  helper_method :is_admin?
+  helper_method :admin?
   helper_method :admin_only
 
   def current_user
@@ -21,11 +22,11 @@ class ApplicationController < ActionController::Base
     redirect_to '/welcome' unless logged_in?
   end
 
-  def is_admin?
+  def admin?
     current_user.admin?
   end
 
   def admin_only
-    redirect_to '/welcome' unless is_admin?
+    redirect_to '/welcome' unless admin?
   end
 end

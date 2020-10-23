@@ -65,6 +65,10 @@ group :development, :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers', '~> 4.0'
+  # bundler-audit Audits our Gems for security advisory updates
+  gem 'bundler-audit'
+  # Brakeman is a static code analysis tool that looks for security bugs and lets us know what might need to be fixed
+  gem 'brakeman'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

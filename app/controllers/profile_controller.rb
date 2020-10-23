@@ -1,34 +1,35 @@
 # frozen_string_literal: true
 
 require 'pp'
+# ProfileController
 class ProfileController < ApplicationController
   skip_before_action :authorized, only: %i[will_change_password change_password error]
 
   def profile
     ## Generates the User's Points Based on the UserToActivites Point Count
     @attended = UserToActivity.where(uin: current_user.uin)
-    sumTotalPoints = 0
-    sumMeetingPoints = 0
-    sumEventPoints = 0
-    sumMiscPoints = 0
+    sum_total_points = 0
+    sum_meeting_points = 0
+    sum_event_points = 0
+    sum_misc_points = 0
 
     @attended.each do |attended|
-      sumTotalPoints += Activity.find(attended.activity_id).point_value
+      sum_total_points += Activity.find(attended.activity_id).point_value
 
       case Activity.find(attended.activity_id)._type
       when 'Meeting'
-        sumMeetingPoints += Activity.find(attended.activity_id).point_value
+        sum_meeting_points += Activity.find(attended.activity_id).point_value
       when 'Event'
-        sumEventPoints += Activity.find(attended.activity_id).point_value
+        sum_event_points += Activity.find(attended.activity_id).point_value
       when 'Misc'
-        sumMiscPoints += Activity.find(attended.activity_id).point_value
+        sum_misc_points += Activity.find(attended.activity_id).point_value
       end
     end
 
-    current_user.update(total_points: sumTotalPoints.to_i)
-    current_user.update(meeting_points: sumMeetingPoints.to_i)
-    current_user.update(event_points: sumEventPoints.to_i)
-    current_user.update(misc_points: sumMiscPoints.to_i)
+    current_user.update(total_points: sum_total_points.to_i)
+    current_user.update(meeting_points: sum_meeting_points.to_i)
+    current_user.update(event_points: sum_event_points.to_i)
+    current_user.update(misc_points: sum_misc_points.to_i)
   end
 
   def will_change_password
@@ -67,11 +68,6 @@ class ProfileController < ApplicationController
   end
 
   def error; end
-
-  def attendance
-    @attended = UserToActivity.where(uin: current_user.uin)
-    @activities = Activity.all
-  end
 
   def attendance
     @attended = UserToActivity.where(uin: current_user.uin)

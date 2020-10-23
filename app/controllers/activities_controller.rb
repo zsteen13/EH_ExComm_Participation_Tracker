@@ -2,6 +2,7 @@
 
 require_relative '../helpers/activities_helper'
 
+# ActivitiesController
 class ActivitiesController < ApplicationController
   def index
     @activity = Activity.all

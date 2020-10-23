@@ -2,17 +2,21 @@
 
 require 'securerandom'
 require 'pp'
+
+# MembersController
 class MembersController < ApplicationController
   before_action :admin_only
 
   helper_method :sort_column, :sort_direction
 
   def index
-    @members = User.order("#{sort_column} #{sort_direction}")
-  end
-
-  def show_threshold_points
-    @members = User.where('total_points <= ?', params[:search])
+    @members = if params[:below]
+                 User.where('total_points <= ?', params[:search]).order("#{sort_column} #{sort_direction}")
+               elsif params[:above]
+                 User.where('total_points >= ?', params[:search]).order("#{sort_column} #{sort_direction}")
+               else
+                 User.order("#{sort_column} #{sort_direction}")
+               end
   end
 
   def show
@@ -32,7 +36,6 @@ class MembersController < ApplicationController
     @member.password_digest = BCrypt::Password.create(Random.new.rand(100.0).to_s)
 
     if @member.save
-      pp @member
       redirect_to(members_path)
     else
       render('new')

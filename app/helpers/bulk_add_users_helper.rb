@@ -2,8 +2,9 @@
 
 require 'csv'
 
+# BulkAddUsersHelper
 module BulkAddUsersHelper
-  def self.createFile(uploaded_file, filename)
+  def self.create_file(uploaded_file, filename)
     File.open(filename, 'wb') do |file|
       file.write(uploaded_file.read)
     end
@@ -21,15 +22,15 @@ module BulkAddUsersHelper
   MISC_POINTS_COL_CONST = 9
   ADMIN_COL_CONST = 10
 
-  def self.parseData(filename)
+  def self.parse_data(filename)
     csv = CSV.read(filename)
     users = []
 
     valid = true
 
-    upperBound = csv.count - 1
-    lowerBound = 1 # loses the title info
-    (lowerBound..upperBound).each do |i|
+    upper_bound = csv.count - 1
+    lower_bound = 1 # loses the title info
+    (lower_bound..upper_bound).each do |i|
       user = User.new(
         uin: csv[i][UIN_COL_CONST],
         first_name: csv[i][FIRST_NAME_COL_CONST],
@@ -53,22 +54,22 @@ module BulkAddUsersHelper
     [users, valid]
   end
 
-  def self.checkNumColumns(filename, numCols = 11)
+  def self.check_num_columns(filename, num_cols = 4)
     csv = CSV.read(filename)
 
-    upperBound = csv.count - 1
+    upper_bound = csv.count - 1
     retval = true
-    (0..upperBound).each do |i|
-      return false, i, csv[i].count if csv[i].count != numCols
+
+    (0..upper_bound).each do |i|
+      return false, i, csv[i].count if csv[i].count < num_cols
     end
 
     [retval, 0, 0]
   end
 
-  def self.saveUsers(users)
+  def self.save_users(users)
     users.each do |user|
-      user.save
-      UserKey.create(user_id: user.id, key: SecureRandom.base64(20))
+      if user.save then UserKey.create(user_id: user.id, key: SecureRandom.base64(20)) end
     end
   end
 end

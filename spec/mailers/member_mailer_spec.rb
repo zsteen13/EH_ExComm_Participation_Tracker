@@ -6,7 +6,7 @@ RSpec.describe MemberMailer, type: :mailer do
   feature 'Emailer' do
     background do
       clear_emails
-      MemberMailer.with(user: User.find(UserKey.first!.user_id)).signup_email.deliver_now
+      MemberMailer.with(user: User.find(1)).signup_email.deliver_now
       open_email('nonadmintest@gmail.com')
     end
 
@@ -16,7 +16,7 @@ RSpec.describe MemberMailer, type: :mailer do
 
     scenario 'following link' do
       current_email.click_link 'this link'
-      expect(page).to have_current_path(profile_change_password_path(key: UserKey.first!.key))
+      expect(page).to have_current_path(profile_change_password_path(key: UserKey.find_by(user_id: 1).key))
       expect(page).to have_content 'Please enter a password'
     end
   end

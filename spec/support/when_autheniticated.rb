@@ -12,24 +12,24 @@ end
 
 RSpec.shared_context 'when authenticated as member' do
   background do
-    authenticate 11_111_111, 'Test'
+    authenticate 111_111_111, 'Test'
   end
 end
 
 RSpec.shared_context 'when authenticated as admin' do
   background do
-    authenticate 22_222_222, 'Test'
+    authenticate 222_222_222, 'Test'
   end
 end
 
 RSpec.shared_context 'before when authenticated as member' do
   before do
-    authenticate 11_111_111, 'Test'
+    authenticate 111_111_111, 'Test'
   end
 end
 
 RSpec.shared_context 'before when authenticated as admin' do
   before do
-    authenticate 22_222_222, 'Test'
-  end
+    authenticate 222_222_222, 'Test'
+ end
 end

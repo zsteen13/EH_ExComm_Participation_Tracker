@@ -8,14 +8,6 @@ RSpec.describe User, type: :model do
 
     expect(users.valid?).to be false
 
-    users = User.new(uin: '000000000', password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', committee: 'internal', subcommittee: 'something', total_points: nil, meeting_points: 0, event_points: 0, misc_points: 0, admin: true)
-
-    expect(users.valid?).to be false
-
-    users = User.new(uin: '000000000', password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', committee: 'internal', subcommittee: 'something', total_points: nil, meeting_points: 0, event_points: 0, misc_points: 0, admin: true)
-
-    expect(users.valid?).to be false
-
     users = User.new(uin: '000000000', password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', committee: 'internal', subcommittee: 'something', total_points: 0, meeting_points: 'a', event_points: 0, misc_points: 0, admin: true)
 
     expect(users.valid?).to be false
@@ -57,10 +49,6 @@ RSpec.describe User, type: :model do
     expect(users.valid?).to be false
 
     users = User.new(uin: '000000000', password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', committee: 'internal', subcommittee: 'something', total_points: 0, meeting_points: 0, event_points: 0, misc_points: 0, admin: true)
-
-    expect(users.valid?).to be false
-
-    users = User.new(uin: '000000000', password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', committee: 'internal', total_points: 0, meeting_points: 0, event_points: 0, misc_points: 0, admin: true)
 
     expect(users.valid?).to be false
 
@@ -121,6 +109,20 @@ RSpec.describe User, type: :model do
       expect(users.admin).to be true
     end
   end
+  describe 'uin should be 9 digits' do
+    it 'should expect user with uin eql to 9 digits' do
+      user = User.new(uin: '000000000', password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com')
+      expect(user.valid?).to eq true
+    end
+
+    it 'should not expect user with uin not eql to 9 digits' do
+      user = User.new(uin: '0000000000', password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com')
+      expect(user.valid?).to eq false
+
+      user = User.new(uin: '000000', password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com')
+      expect(user.valid?).to eq false
+    end
+  end
 
   describe 'display points' do
     it 'returns value for all point types when methods called' do
@@ -142,9 +144,9 @@ RSpec.describe User, type: :model do
 
   describe 'properly display committee/subcommittee' do
     it 'returns correct committee/subcommittee name for a user' do
-      user = User.new(uin: '000000000', first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', committee: 'test1', subcommittee: 'test2', admin: true)
-      expect(user.display_committee).to eq('test1')
-      expect(user.display_subcommittee).to eq('test2')
+      user = User.new(uin: '000000000', first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', committee: 'Internal', subcommittee: 'Community Building', admin: true)
+      expect(user.display_committee).to eq('Internal')
+      expect(user.display_subcommittee).to eq('Community Building')
     end
 
     it 'returns explanation for committee/subcommittee name for a user if unassigned' do
@@ -156,8 +158,8 @@ RSpec.describe User, type: :model do
 
   describe '#to_s' do
     it 'returns a string version of a users profile' do
-      user = User.new(uin: '000000000', first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', committee: 'internal', subcommittee: 'something', total_points: 0, meeting_points: 0, event_points: 0, misc_points: 0, admin: true)
-      expect(user.to_s).to eq("uin: 000000000 first_name: Zachary last_name Steen email: zsteen13@gmail.com committee: internal subcommittee: something total_point: 0 meeting_points: 0 event_points: 0 misc_points 0 admin: true\n")
+      user = User.new(uin: '000000000', first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', committee: 'Internal', subcommittee: 'Community Building', total_points: 0, meeting_points: 0, event_points: 0, misc_points: 0, admin: true)
+      expect(user.to_s).to eq("uin: 000000000 first_name: Zachary last_name Steen email: zsteen13@gmail.com committee: Internal subcommittee: Community Building total_point: 0 meeting_points: 0 event_points: 0 misc_points 0 admin: true\n")
     end
   end
 end

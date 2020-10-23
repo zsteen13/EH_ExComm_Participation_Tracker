@@ -45,6 +45,10 @@ Rails.application.routes.draw do
   get 'profile/attendance'
   get 'activities', to: 'activities#activities'
 
+  resources :committees do
+    get :delete
+  end
+
   resources :members do
     member do
       get :delete
