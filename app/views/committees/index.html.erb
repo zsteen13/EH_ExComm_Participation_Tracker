@@ -27,7 +27,7 @@
                     <td><%= committee.point_threshold || 'None' %></td>
                     <td class="actions">
                         <%= link_to "Edit", edit_committee_path(committee), class: "pure-button pure-button-primary"%>
-                        <%= link_to "Delete", committee_delete_url(committee), class: "pure-button pure-button-primary" %>
+                        <%= link_to "Delete", committee_delete_url(committee), class: "pure-button pure-button-primary", id: committee.id.to_s+"_delete"%>
                         <%= link_to "Subcommittee", committee, class: "pure-button pure-button-primary"%>
                     </td>
                 </tr>
