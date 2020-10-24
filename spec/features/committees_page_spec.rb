@@ -79,12 +79,12 @@ feature 'Delete Committee Information' do
 
   scenario 'delete a committee' do
     visit('committees')
-    find("a[id='3_delete']").click
-    expect(page).to have_content 'Operations'
+    find("a[id='2_delete']").click
     expect(page).to have_content 'Delete Committee Information'
 
     click_button 'Delete Committee'
 
     expect(page).to have_current_path '/committees'
+    expect(page).not_to have_current_path 'Operations'
   end
 end
