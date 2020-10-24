@@ -25,7 +25,7 @@ feature 'View Attendance' do
     expect(page).to have_current_path '/activities/'
   end
 
-  scenario 'checks attendance for Meet and Greet' do
+  scenario 'checks attendance for General Meeting' do
     visit 'activities'
     expect(page).to have_current_path '/activities'
     find_link('View Attendance', href: '/activities/2').click

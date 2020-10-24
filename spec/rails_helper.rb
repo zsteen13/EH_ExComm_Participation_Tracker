@@ -24,7 +24,7 @@ Capybara.javascript_driver = :chrome
 
 Capybara.default_max_wait_time = 10
 
-Rails.application.load_seed
+# Rails.application.load_seed
 
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
