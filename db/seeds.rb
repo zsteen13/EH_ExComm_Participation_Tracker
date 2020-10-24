@@ -10,7 +10,6 @@
 require 'date'
 
 # Admin and non Admin users for rspec and capybara testing
-
 users1 = User.create!(uin: '111111111', password_digest: BCrypt::Password.create('Test'), first_name: 'Non Admin', last_name: 'Test', email: 'nonadmintest@gmail.com', committee: 'Internal', admin: false, total_points: 0, event_points: 0, meeting_points: 0, misc_points: 0)
 
 users2 = User.create!(uin: '222222222', password_digest: BCrypt::Password.create('Test'), first_name: 'Admin', last_name: 'Test', email: 'admintest@gmail.com', committee: 'Internal', subcommittee: 'Community Building', admin: true, total_points: 0, event_points: 0, meeting_points: 0, misc_points: 0)

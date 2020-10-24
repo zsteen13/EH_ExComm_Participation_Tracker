@@ -68,6 +68,8 @@ module BulkAddUsersHelper
   end
 
   def self.save_users(users)
-    users.each(&:save)
+    users.each do |user|
+      UserKey.create(user_id: user.id, key: SecureRandom.base64(20)) if user.save
+    end
   end
 end

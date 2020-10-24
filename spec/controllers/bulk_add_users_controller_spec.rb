@@ -26,6 +26,9 @@ feature BulkAddUsersController do
 
       expect(page).to have_content 'Internal'
       expect(page).to have_content 'External'
+
+      open_email('moore.trev@tamu.edu')
+      expect(current_email).to have_content 'Howdy'
     end
 
     scenario 'admin uploads a incorrect csv' do
