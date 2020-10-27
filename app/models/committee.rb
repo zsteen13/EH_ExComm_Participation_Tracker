@@ -2,7 +2,7 @@
 
 # Committee Model
 class Committee < ApplicationRecord
-  self.primary_key = "committee_id"
+  self.primary_key = 'committee_id'
   validates :committee, :head_first_name, :head_last_name, :email, presence: true
 
   before_save :point_threshold_validate

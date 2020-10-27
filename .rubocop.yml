@@ -1,3 +1,8 @@
+AllCops:
+  Exclude:
+    - db/schema.rb
+    - node_modules/**/*
+    - vendor/**/*
 Metrics/LineLength:
   Max: 500
 Metrics/BlockLength:
