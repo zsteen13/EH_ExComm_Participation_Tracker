@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'securerandom'
+require 'pp'
+
 # MembersController
 class MembersController < ApplicationController
   before_action :admin_only
@@ -7,11 +10,13 @@ class MembersController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @members = User.order("#{sort_column} #{sort_direction}")
-  end
-
-  def show_threshold_points
-    @members = User.where('total_points <= ?', params[:search])
+    @members = if params[:below]
+                 User.where('total_points <= ?', params[:search]).order("#{sort_column} #{sort_direction}")
+               elsif params[:above]
+                 User.where('total_points >= ?', params[:search]).order("#{sort_column} #{sort_direction}")
+               else
+                 User.order("#{sort_column} #{sort_direction}")
+               end
   end
 
   def show
@@ -29,11 +34,10 @@ class MembersController < ApplicationController
     @member.event_points = 0
     @member.misc_points = 0
     @member.password_digest = BCrypt::Password.create(Random.new.rand(100.0).to_s)
-    send_new_password_email
+
     if @member.save
       redirect_to(members_path)
     else
-      puts @member.valid?
       render('new')
     end
   end

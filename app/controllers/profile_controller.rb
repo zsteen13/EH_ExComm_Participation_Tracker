@@ -40,10 +40,10 @@ class ProfileController < ApplicationController
       redirect_to profile_error_path and return if key.nil?
 
       # Does this key exist in any row?
-      user_key = UserKey.where(key: key).find { |user_k| user_k.key == key } # could also be ...where().first.user_key
-      redirect_to profile_error_path and return if user_key.nil?
+      user = UserKey.where(key: key).first
+      redirect_to profile_error_path and return if user.nil?
 
-      @user = User.find(user_key.user_id)
+      @user = User.find(user.user_id)
     end
   end
 

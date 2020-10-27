@@ -10,7 +10,6 @@
 require 'date'
 
 # Admin and non Admin users for rspec and capybara testing
-
 users1 = User.create!(uin: '111111111', password_digest: BCrypt::Password.create('Test'), first_name: 'Non Admin', last_name: 'Test', email: 'nonadmintest@gmail.com', committee: 'Internal', admin: false, total_points: 0, event_points: 0, meeting_points: 0, misc_points: 0)
 
 users2 = User.create!(uin: '222222222', password_digest: BCrypt::Password.create('Test'), first_name: 'Admin', last_name: 'Test', email: 'admintest@gmail.com', committee: 'Internal', subcommittee: 'Community Building', admin: true, total_points: 0, event_points: 0, meeting_points: 0, misc_points: 0)
@@ -20,6 +19,8 @@ users3 = User.create!(uin: '000000000', password_digest: BCrypt::Password.create
 users4 = User.create!(uin: '123456789', password_digest: BCrypt::Password.create('Test'), first_name: 'first', last_name: 'last', email: 'test@gmail.com', committee: 'Operations', total_points: 0, event_points: 0, meeting_points: 0, misc_points: 0, admin: true)
 
 users5 = User.create!(uin: '000000001', password_digest: BCrypt::Password.create('Test'), first_name: 'trev', last_name: 'moore', email: 'zsteen13@gmail.com', committee: 'Internal', total_points: 0, event_points: 0, meeting_points: 0, misc_points: 0, admin: true)
+
+users6 = User.create!(uin: '777777777', password_digest: BCrypt::Password.create('Test'), first_name: 'David', last_name: 'Acosta', email: 'yoyoyo@aol.com', committee: 'internal', subcommittee: 'something', total_points: 50, event_points: 10, meeting_points: 20, misc_points: 20, admin: true)
 
 activity1 = Activity.create(name: 'Meet and Greet', _type: 'Event', date: DateTime.new(2020, 8, 23, 11, 0, 0, Rational(-5, 24)), point_value: 4, description: 'Meet and greet for the new members', num_rsvp: 0)
 
@@ -33,10 +34,12 @@ UserToActivity.create(uin: users2.uin, activity_id: activity1.id)
 UserToActivity.create(uin: users1.uin, activity_id: activity2.id)
 UserToActivity.create(uin: users3.uin, activity_id: activity2.id)
 UserToActivity.create(uin: users4.uin, activity_id: activity2.id)
+UserToActivity.create(uin: users6.uin, activity_id: activity2.id)
 
 UserToActivity.create(uin: users2.uin, activity_id: activity3.id)
 UserToActivity.create(uin: users3.uin, activity_id: activity3.id)
-UserToActivity.create(uin: users5.uin, activity_id: activity2.id)
+UserToActivity.create(uin: users5.uin, activity_id: activity3.id)
+UserToActivity.create(uin: users6.uin, activity_id: activity3.id)
 
 UserKey.create!(user_id: 1, key: 'testkey')
 
@@ -45,9 +48,9 @@ Privlege.create(privlege_id: 0, privlege: 'User')
 Privlege.create(privlege_id: 1, privlege: 'Admin')
 Privlege.create(privlege_id: 2, privlege: 'Super-Admin')
 
-Committee.create(committee_id: 0, committee: 'Internal', email: 'None', point_threshold: 101)
-Committee.create(committee_id: 1, committee: 'External', email: 'None', point_threshold: 101)
-Committee.create(committee_id: 2, committee: 'Operations', email: 'None', point_threshold: 101)
+Committee.create(committee_id: 0, committee: 'Internal', head_first_name: 'Sample_First', head_last_name: 'Sample_Last', email: 'example_email@tamu.edu', point_threshold: 101)
+Committee.create(committee_id: 1, committee: 'External', head_first_name: 'Sample_First', head_last_name: 'Sample_Last', email: 'example_email@tamu.edu', point_threshold: 101)
+Committee.create(committee_id: 2, committee: 'Operations', head_first_name: 'Sample_First', head_last_name: 'Sample_Last', email: 'example_email@tamu.edu', point_threshold: 101)
 
 Subcommittee.create(subcommittee_id: 0, subcommittee: 'Community Building', committee: 0, point_threshold: 102)
 Subcommittee.create(subcommittee_id: 1, subcommittee: 'Research and Technology', committee: 0, point_threshold: 102)

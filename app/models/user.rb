@@ -13,6 +13,12 @@ class User < ApplicationRecord
   validates :uin, :first_name, :last_name, presence: true
   validate :valid_uin
 
+  # First time creation of a user
+  after_create do
+    UserKey.create(user_id: id, key: SecureRandom.base64(20))
+    MemberMailer.with(user: self).signup_email.deliver_later
+  end
+
   # hardcoded for now
   @default_point_threshold = 100
 
@@ -86,6 +92,7 @@ class User < ApplicationRecord
     end
 
     errors.add(:uin, 'must only contain numbers') unless uin.split('').all? { |c| /^[0-9]$/.match?(c) }
+    # uncomment in the future, I know this is a messy change but i'm worried its having cascading effects
     errors.add(:uin, 'must be a length of 9') if uin.length != 9
   end
 end
