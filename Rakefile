@@ -7,7 +7,11 @@ require_relative 'config/application'
 
 Rails.application.load_tasks
 
-# rails db:reset does not apply new migrations
-task :resetdb do
-  sh 'rails db:drop && rails db:create && rails db:migrate && rails db:seed'
+# rake db:reset does not apply new migrations
+task :resetdevdb do
+  sh 'rake db:drop RAILS_ENV=development && rake db:create  RAILS_ENV=development && rake db:migrate RAILS_ENV=development && rake db:seed RAILS_ENV=development'
+end
+
+task :resettestdb do
+  'rake db:drop RAILS_ENV=test && rake db:create RAILS_ENV=test && rake db:migrate RAILS_ENV=test && rake db:seed RAILS_ENV=test'
 end

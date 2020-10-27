@@ -3,8 +3,8 @@
 # creating committees table
 class CreateCommittees < ActiveRecord::Migration[6.0]
   def change
-    create_table :committees do |t|
-      t.integer :committee_id
+    create_table :committees, id:false, primary_key: :committee_id do |t|
+      t.primary_key :committee_id
       t.string :committee
       t.integer :point_threshold
       t.string :head_first_name

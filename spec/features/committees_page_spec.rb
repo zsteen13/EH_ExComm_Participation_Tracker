@@ -18,7 +18,7 @@ feature 'View Subcommittee' do
 
   scenario 'view subcommittee for Internal' do
     visit('committees')
-    find("a[href='/committees/1']").click
+    find("a[href='/committees/0']").click
     expect(page).to have_content 'Internal Subcommittees'
     expect(page).to have_content 'Community Building'
     expect(page).to have_content 'Research and Technology'
@@ -26,7 +26,7 @@ feature 'View Subcommittee' do
 
   scenario 'view subcommittee for External' do
     visit('committees')
-    find("a[href='/committees/2']").click
+    find("a[href='/committees/1']").click
     expect(page).to have_content 'External Subcommittees'
     expect(page).to have_content 'Professional Development'
     expect(page).to have_content 'Service'
