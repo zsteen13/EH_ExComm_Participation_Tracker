@@ -25,6 +25,8 @@ class MembersController < ApplicationController
 
   def new
     @member = User.new
+    @committees = Committee.all
+    @subcommittees = Subcommittee.all
   end
 
   def create
@@ -44,6 +46,8 @@ class MembersController < ApplicationController
 
   def edit
     @member = User.find(params[:id])
+    @committees = Committee.all
+    @subcommittees = Subcommittee.all
   end
 
   def update

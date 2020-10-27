@@ -144,21 +144,21 @@ RSpec.describe User, type: :model do
 
   describe 'properly display committee/subcommittee' do
     it 'returns correct committee/subcommittee name for a user' do
-      user = User.new(uin: '000000000', first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', committee: 'Internal', subcommittee: 'Community Building', admin: true)
+      user = User.new(uin: '000000000', first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', committee: 0, subcommittee: 0, admin: true)
       expect(user.display_committee).to eq('Internal')
       expect(user.display_subcommittee).to eq('Community Building')
     end
 
     it 'returns explanation for committee/subcommittee name for a user if unassigned' do
       user = User.new(uin: '000000000', first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', admin: true)
-      expect(user.display_committee).to eq('No assigned committee')
-      expect(user.display_subcommittee).to eq('No assigned subcommittee')
+      expect(user.display_committee).to eq('None')
+      expect(user.display_subcommittee).to eq('None')
     end
   end
 
   describe '#to_s' do
     it 'returns a string version of a users profile' do
-      user = User.new(uin: '000000000', first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', committee: 'Internal', subcommittee: 'Community Building', total_points: 0, meeting_points: 0, event_points: 0, misc_points: 0, admin: true)
+      user = User.new(uin: '000000000', first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', committee: 0, subcommittee: 0, total_points: 0, meeting_points: 0, event_points: 0, misc_points: 0, admin: true)
       expect(user.to_s).to eq("uin: 000000000 first_name: Zachary last_name Steen email: zsteen13@gmail.com committee: Internal subcommittee: Community Building total_point: 0 meeting_points: 0 event_points: 0 misc_points 0 admin: true\n")
     end
   end

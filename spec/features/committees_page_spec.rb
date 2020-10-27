@@ -18,7 +18,7 @@ feature 'View Subcommittee' do
 
   scenario 'view subcommittee for Internal' do
     visit('committees')
-    find("a[href='/committees/1']").click
+    find("a[href='/committees/0']").click
     expect(page).to have_content 'Internal Subcommittees'
     expect(page).to have_content 'Community Building'
     expect(page).to have_content 'Research and Technology'
@@ -26,7 +26,7 @@ feature 'View Subcommittee' do
 
   scenario 'view subcommittee for External' do
     visit('committees')
-    find("a[href='/committees/2']").click
+    find("a[href='/committees/1']").click
     expect(page).to have_content 'External Subcommittees'
     expect(page).to have_content 'Professional Development'
     expect(page).to have_content 'Service'
@@ -60,7 +60,7 @@ feature 'Edit Committee Information' do
 
   scenario 'edit a committee' do
     visit('committees')
-    find("a[href='/committees/2/edit']").click
+    find("a[href='/committees/0/edit']").click
     expect(page).to have_content 'Edit Committee Information'
 
     fill_in 'committee_head_first_name', with: 'Rspec Testing First Name'
@@ -79,7 +79,7 @@ feature 'Delete Committee Information' do
 
   scenario 'delete a committee' do
     visit('committees')
-    find("a[id='2_delete']").click
+    find("a[id='0_delete']").click
     expect(page).to have_content 'Delete Committee Information'
 
     click_button 'Delete Committee'

@@ -36,12 +36,14 @@
 
             <tr>
                 <th>Committee</th>
-                <td><%= f.text_field :committee %></td>
+                <% committee_options = options_from_collection_for_select(@committees, 'id', 'committee') %>
+                <td><%= f.select :committee, committee_options %></td>
             </tr>
 
             <tr>
                 <th>Subcommittee</th>
-                <td><%= f.text_field :subcommittee %></td>
+                <% subcommittee_options = options_from_collection_for_select(@subcommittees, 'id', 'subcommittee') %>
+                <td><%= f.select :subcommittee, subcommittee_options %></td>
             </tr>
 
             <tr>

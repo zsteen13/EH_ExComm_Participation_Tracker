@@ -8,7 +8,7 @@ class CommitteesController < ApplicationController
 
   def show
     @committee = Committee.find(params[:id])
-    @subcommittees = Subcommittee.where(committee: @committee.committee_id)
+    @subcommittees = Subcommittee.where(committee: @committee.id)
   end
 
   def new
@@ -33,8 +33,8 @@ class CommitteesController < ApplicationController
   def create
     @committee = Committee.new(committee_params)
     @committee_prev = Committee.last
-    @committee.committee_id = if !@committee_prev.nil?
-                                @committee_prev.committee_id + 1
+    @committee.id = if !@committee_prev.nil?
+                                @committee_prev.id + 1
                               else
                                 0
                               end
@@ -48,7 +48,7 @@ class CommitteesController < ApplicationController
   end
 
   def delete
-    @committee = Committee.find(params[:committee_id])
+    @committee = Committee.find(params[:id])
   end
 
   def destroy

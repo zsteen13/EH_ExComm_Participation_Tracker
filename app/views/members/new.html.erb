@@ -30,15 +30,15 @@
                   </tr>
                 
                   <tr>
-                      <!--This should be a dropdown in the future-->
-                      <th>Committee</th>
-                      <td><%= f.text_field :committee %></td>
+                    <th>Committee</th>
+                    <% committee_options = options_from_collection_for_select(@committees, 'id', 'committee') %>
+                    <td><%= f.select :committee, committee_options %></td>
                   </tr>
-                
+
                   <tr>
-                      <!--This should be a dropdown in the future-->
-                      <th>Subcommittee</th>
-                      <td><%= f.text_field :subcommittee %></td>
+                    <th>Subcommittee</th>
+                    <% subcommittee_options = options_from_collection_for_select(@subcommittees, 'id', 'subcommittee') %>
+                    <td><%= f.select :subcommittee, subcommittee_options %></td>
                   </tr>
                 
                   <tr>
