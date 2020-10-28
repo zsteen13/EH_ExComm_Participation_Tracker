@@ -59,15 +59,15 @@ class User < ApplicationRecord
   end
 
   def display_committee
-    self[:committee].nil? ? 'None' : Committee.where(id: self[:committee]).take.committee
+    self[:committee].blank? ? 'None' : Committee.where(id: self[:committee]).take.committee
   end
 
   def display_subcommittee
-    self[:subcommittee].nil? ? 'None' : Subcommittee.where(id: self[:subcommittee]).take.subcommittee
+    self[:subcommittee].blank? ? 'None' : Subcommittee.where(id: self[:subcommittee]).take.subcommittee
   end
 
   def display_committee_email
-    self[:committee].nil? ? 'None' : Committee.where(id: self[:committee]).take.email
+    self[:committee].blank? ? 'None' : Committee.where(id: self[:committee]).take.email
   end
 
   def to_s

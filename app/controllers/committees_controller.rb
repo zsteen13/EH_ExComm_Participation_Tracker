@@ -48,7 +48,7 @@ class CommitteesController < ApplicationController
   end
 
   def delete
-    @committee = Committee.find(params[:id])
+    @committee = Committee.find(params[:committee_id])
   end
 
   def destroy

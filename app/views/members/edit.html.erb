@@ -1,125 +1,125 @@
 <div id="main">
   <div class="header">
-      <h1>Members</h1>
+    <h1>Members</h1>
   </div>
   <% flash.each do |type, msg| %>
     <div style="color: red">
-        <%= msg %>
-      </div>
-      <%flash.alert = ""%>
-    <% end %>
-    <%= link_to("<< Back to Member page", members_path, :class => 'back-link') %>
-    <div class="content new member">
-      <h2>Edit Member information </h2>
+      <%= msg %>
+    </div>
+    <%flash.alert = ""%>
+  <% end %>
+  <%= link_to("<< Back to Member page", members_path, :class => 'back-link') %>
+  <div class="content" style="background:#500000;padding:0;width:60%;border:2px solid black">
+    <div class="content" style="background:white;padding:0 2em;margin:20px;border:1px solid black">
+
+      <h1 style="text-align: center;color:#500000">Create a Member</h1>
 
       <%= form_for(@member, :url => member_path(@member), :method =>'patch') do |f| %>
-        <table summary="Subject form fields">
-            <tr>
-                <th>UIN</th>
-                <td><%= @member.uin %></td>
-            </tr>
+        <table id="formTable summary=" Subject form fields">
+          <tr>
+            <th>UIN</th>
+            <td><%= @member.uin %></td>
+          </tr>
 
-            <tr>
-                <th>First Name</th>
-                <td><%= f.text_field :first_name ,style: 'text-transform: capitalize;'%></td>
-            </tr>
+          <tr>
+            <th>First Name</th>
+            <td><%= f.text_field :first_name, style: 'text-transform: capitalize;'%></td>
+          </tr>
 
-            <tr>
-                <th>Last Name</th>
-                <td><%= f.text_field :last_name,style: 'text-transform: capitalize;' %></td>
-            </tr>
+          <tr>
+            <th>Last Name</th>
+            <td><%= f.text_field :last_name, style: 'text-transform: capitalize;' %></td>
+          </tr>
 
-            <tr>
-                <th>Email</th>
-                <td><%= f.text_field :email %></td>
-            </tr>
+          <tr>
+            <th>Email</th>
+            <td><%= f.text_field :email %></td>
+          </tr>
 
-            <tr>
-                <th>Committee</th>
-                <% committee_options = options_from_collection_for_select(@committees, 'id', 'committee') %>
-                <td><%= f.select :committee, committee_options %></td>
-            </tr>
+          <tr>
+            <th>Committee</th>
+            <% committee_options = options_from_collection_for_select(@committees, 'id', 'committee', @member.committee) %>
+            <td><%= f.select :committee, committee_options, :include_blank => true %></td>
+          </tr>
 
-            <tr>
-                <th>Subcommittee</th>
-                <% subcommittee_options = options_from_collection_for_select(@subcommittees, 'id', 'subcommittee') %>
-                <td><%= f.select :subcommittee, subcommittee_options %></td>
-            </tr>
+          <tr>
+            <th>Subcommittee</th>
+            <% subcommittee_options = options_from_collection_for_select(@subcommittees, 'id', 'subcommittee', @member.subcommittee) %>
+            <td><%= f.select :subcommittee, subcommittee_options, :include_blank => true %></td>
+          </tr>
 
-            <tr>
-                <th>Total_points</th>
-                <td><%= f.text_field :total_points %></td>
-            </tr>
+          <tr>
+            <th>Total_points</th>
+            <td><%= f.text_field :total_points %></td>
+          </tr>
 
 
 
-            <tr>
-                <th>Admin</th>
-                <% # An admin can't undo their admin status%>
-                <td><%= f.check_box :admin, disabled: (@member.id == session[:user_id] ? true : nil) %></td>
-            </tr>
+          <tr>
+            <th>Admin</th>
+            <% # An admin can't undo their admin status%>
+            <td><%= f.check_box :admin, disabled: (@member.id == session[:user_id] ? true : nil) %></td>
+          </tr>
 
         </table>
         <div class="form-buttons">
-            <%= f.submit("Update Member") %>
-         </div>
-        <% end %>
+          <%= f.submit "Update Member", :class => 'pure-button pure-button-primary' %>
+        </div>
       </div>
+    <% end %>
+  </div>
 </div>
 
 <style>
-  a{
+  a {
     text-decoration: none;
     color: #1b98f8;
   }
-  .header a{
+
+  .header a {
     color: white;
   }
-  th{
 
-    background:none;
-    color:#777;
-    height:20%;
-    width:20%;
-    padding-left:1em;
-    padding-right:1em;
+  th {
+
+    background: none;
+    color: #777;
+    height: 20%;
   }
-  table{
-    width:auto;
 
-
+  .table {
+    border: 2px solid black;
   }
-  .table{
-    border:2px solid black;
 
-  }
-  .table td a{
+  .table td a {
     background-color: #0078E7;
     color: white;
-    padding:.3em;
-    border-radius:10px;
+    padding: .3em;
+    border-radius: 10px;
     text-decoration: none;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   }
-  .content {
 
+  .content {
     margin: 0 auto;
     padding: 0 2em;
     max-width: 70%;
     margin-bottom: 50px;
     line-height: 1.6em;
-
     max-width: 90%;
-
+    box-shadow: 0px 0px 38px -1px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
   }
+
   .pure-button {
     color: white;
     border-radius: 4px;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
   }
 
-  
-  input{
+
+  input, select {
     font-family: inherit;
     font-size: 100%;
     margin: 0;
@@ -133,12 +133,33 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     line-height: .5em;
+  }
+
+  button {
+    cursor: pointer;
 
   }
-  button{
-    cursor:pointer;
 
+  #formTable {
+    width: 70%;
+    justify-content: center;
+
+  }
+
+  .input[type="submit"i] {
+    appearance: push-button;
+    user-select: none;
+    white-space: pre;
+    align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    color: -internal-light-dark(buttontext, rgb(170, 170, 170));
+    background-color: #0078E7;
+    box-sizing: border-box;
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(195, 195, 195));
+    border-image: initial;
   }
 </style>
-
-
