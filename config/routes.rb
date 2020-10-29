@@ -58,6 +58,6 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'get_subcommittees_by_committee/:committee_id', to: 'members#get_subcommittees_by_committee' 
+  get 'subcommittees_by_committee/:committee_id', to: 'members#subcommittees_by_committee'
   get '/subcommittee_search' => 'members#subcommittee_search'
 end

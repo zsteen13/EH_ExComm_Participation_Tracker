@@ -28,7 +28,6 @@ feature 'View Subcommittee' do
     visit('committees')
     find("a[href='/committees/1']").click
     expect(page).to have_content 'External Subcommittees'
-    expect(page).to have_content 'Professional Development'
     expect(page).to have_content 'Service'
   end
 end

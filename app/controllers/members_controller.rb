@@ -67,19 +67,19 @@ class MembersController < ApplicationController
     redirect_to(members_path)
   end
 
-  def get_subcommittees_by_committee
+  def subcommittees_by_committee
     @subcommittees = Subcommittee.where(committee: params[:committee_id])
     respond_to do |format|
-      format.json { render :json => @subcommittees }
+      format.json { render json: @subcommittees }
     end
-  end 
+  end
 
   def subcommittee_search
-    if params[:committee_id].present? && params[:committee_id].strip != ""
-      @subcommittees = Subcommittee.where("committee = ?", params[:committee_id])
-    else
-      @subcommittees = Subcommittee.all
-    end
+    @subcommittees = if params[:committee_id].present? && params[:committee_id].strip != ''
+                       Subcommittee.where('committee = ?', params[:committee_id])
+                     else
+                       Subcommittee.all
+                     end
   end
 
   private
@@ -95,5 +95,4 @@ class MembersController < ApplicationController
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
   end
-
 end

@@ -30,9 +30,9 @@ class User < ApplicationRecord
       args[:event_points] = !args[:event_points].nil? ? args[:event_points] : 0
       args[:misc_points] = !args[:misc_points].nil? ? args[:misc_points] : 0
       # check that committee exists
-      args[:committee] = (!args[:committee].nil? & Committee.where(id: args[:committee]).take) ? args[:committee] : nil
+      args[:committee] = !args[:committee].nil? & Committee.where(id: args[:committee]).take ? args[:committee] : nil
       # checks that subcommittee exists and that it belongs to committee assigned to user
-      args[:subcommittee] = (!args[:subcommittee].nil? & Subcommittee.where(id: args[:subcommittee], committee: args[:committee]).take) ? args[:subcommittee] : nil
+      args[:subcommittee] = !args[:subcommittee].nil? & Subcommittee.where(id: args[:subcommittee], committee: args[:committee]).take ? args[:subcommittee] : nil
     end
     super
   end

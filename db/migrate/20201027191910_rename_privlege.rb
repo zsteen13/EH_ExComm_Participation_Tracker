@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# misspelled again... :(
 class RenamePrivlege < ActiveRecord::Migration[6.0]
   def change
     rename_table :privleges, :privileges

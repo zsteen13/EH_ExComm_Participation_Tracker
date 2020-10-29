@@ -12,7 +12,7 @@
   <div class="content" style="background:#500000;padding:0;width:60%;border:2px solid black">
     <div class="content" style="background:white;padding:0 2em;margin:20px;border:1px solid black">
 
-      <h1 style="text-align: center;color:#500000">Edit a Member</h1>
+      <h1 style="text-align: center;color:#500000">Edit Member</h1>
 
       <%= form_for(@member, :url => member_path(@member), :method =>'patch') do |f| %>
         <table id="formTable summary=" Subject form fields">
@@ -87,7 +87,7 @@
         $.ajax({
           dataType: "json",
           cache: false,
-          url: '/get_subcommittees_by_committee/' + id_value_string,
+          url: '/subcommittees_by_committee/' + id_value_string,
           timeout: 5000,
           error: function (XMLHttpRequest, errorTextStatus, error) {
             alert("Failed to submit : " + errorTextStatus + " ;" + error);

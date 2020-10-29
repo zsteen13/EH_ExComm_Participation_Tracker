@@ -76,7 +76,7 @@
         $.ajax({
           dataType: "json",
           cache: false,
-          url: '/get_subcommittees_by_committee/' + id_value_string,
+          url: '/subcommittees_by_committee/' + id_value_string,
           timeout: 5000,
           error: function (XMLHttpRequest, errorTextStatus, error) {
             alert("Failed to submit : " + errorTextStatus + " ;" + error);
