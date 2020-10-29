@@ -48,6 +48,11 @@ feature BulkAddUsersController do
       expect(page).to have_content 'Parsing Error'
       expect(page).to have_content 'the field email is invalid'
     end
+    scenario 'help page exists' do
+      visit '/bulk_add_users/help'
+      expect(page).to have_current_path '/bulk_add_users/help'
+      expect(page).to have_current_path 'Purpose'
+    end
   end
 
   feature 'Bulk Add User without auth' do

@@ -3,48 +3,44 @@
     <div class="header">
       <h1>Members</h1>
     </div>
-    <div class="content" style="text-align:center;">
-      <br>
-      <%= link_to("<< Back to Member page", members_path, :class => 'back-link') %>
-      <p>
-        Attach CSV file with new users.
-        <br>
-        <br>
-        This CSV file should be in the following format to ensure no parsing errors occur.
-        <br>
-        <br>
-        UIN | First Name | Last Name | Email | Committee | Subcommittee | Point Total | Meeting Point | Event Points | Misc Points | Admin
-        <br>
-        <br>
-        All fields after email are optional.
-      </p>
-      <%= form_with(url: {action: :create}, multipart: true) do %>
-        <div class="horz">
-          <label class="custom-file-upload">
-            <input class="file" type="file" name="new_users" id="new_users">
-            <a class="pure-button" >Select File</a>
-          </label>
-          <p id="file_name" style="margin:5px"></p>
-          <%= submit_tag "Upload", :class => "pure-button", :id => "upload_btn" %>
+    <div style="text-align: center;" >
+      <a class="btn pure-button pure-button-primary" href="/members/"> Back to Members Page </a>
+    </div>
+    <div class="pure-g" style="margin-right: 2em;">
+      <div class="pure-u-1">
+        <div class="profile-card">
+          <h1>Bulk Add Users</h1>
+          <div class="text">
+            <p>
+              Attach CSV file with new users.
+              <br>
+              <br>
+              This CSV file should be in the following format to ensure no parsing errors occur.
+              <br>
+              <br>
+              UIN | First Name | Last Name | Email | Committee | Subcommittee | Point Total | Meeting Point | Event Points | Misc Points | Admin
+              <br>
+              <br>
+              All fields after email are optional.
+            </p>
+          </div>
+          <%= form_with(url: {action: :create}, multipart: true) do %>
+            <div class="horz">
+              <label class="custom-file-upload">
+                <input class="file" type="file" name="new_users" id="new_users">
+                <a class="btn pure-button pure-button-primary" >Select File</a>
+              </label>
+              <p id="file_name" style="margin:5px"></p>
+              <%= submit_tag "Upload", :class => "btn pure-button pure-button-primary", :id => "upload_btn" %>
+            </div>
+          <% end %>
         </div>
-      <% end %>
+      </div>
+    </div>
+    <div class="center">
+      <a class="pure-button pure-button-primary" href="/bulk_add_users/help">Click Here for Help</a>
     </div>
   </div>
-  <style>
-    .horz{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    }
-    input[type="file"] {
-    display: none;
-    }
-    .custom-file-upload {
-    /* border: 1px solid #ccc; */
-    display: inline-block;
-    cursor: pointer;
-    }
-  </style>
   <script>
     var file_input = document.getElementById('new_users')
     var file_name = document.getElementById('file_name')
