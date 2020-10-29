@@ -23,7 +23,6 @@ Subcommittee.create(id: 1, subcommittee: 'Research and Technology', committee: 0
 Subcommittee.create(id: 2, subcommittee: 'Professional Development', committee: 1, point_threshold: 102)
 Subcommittee.create(id: 3, subcommittee: 'Service', committee: 1, point_threshold: 102)
 
-
 # Admin and non Admin users for rspec and capybara testing
 users1 = User.create!(uin: '111111111', password_digest: BCrypt::Password.create('Test'), first_name: 'Non Admin', last_name: 'Test', email: 'nonadmintest@gmail.com', committee: 0, admin: false, total_points: 0, event_points: 0, meeting_points: 0, misc_points: 0)
 
