@@ -29,19 +29,10 @@ class User < ApplicationRecord
       args[:meeting_points] = !args[:meeting_points].nil? ? args[:meeting_points] : 0
       args[:event_points] = !args[:event_points].nil? ? args[:event_points] : 0
       args[:misc_points] = !args[:misc_points].nil? ? args[:misc_points] : 0
-      args[:committee] = (Committee.where(committee: args[:committee]).take.committee_id if Committee.where(committee: args[:committee]).take)
-      args[:subcommittee] = (Subcommittee.where(subcommittee: args[:subcommittee]).take.subcommittee_id if Subcommittee.where(subcommittee: args[:subcommittee], committee: args[:committee]).take)
-      # sets threshold by priority, default > committee > subcommittee
-      # this logic does not work yet
-      # if !args[:point_threshold]
-      #   args[:point_threshold] = @@default_point_threshold
-      # end
-      # if args[:committee]
-      #   args[:point_threshold] = Committee.where(committee_id: args[:committee]).take.point_threshold || @@default_point_threshold
-      # end
-      # if args[:subcommittee]
-      #   args[:point_threshold] = Subcommittee.where(subcommittee_id: args[:subcommittee]).take.point_threshold || @@default_point_threshold
-      # end
+      # check that committee exists
+      args[:committee] = !args[:committee].nil? & Committee.where(id: args[:committee]).take ? args[:committee] : nil
+      # checks that subcommittee exists and that it belongs to committee assigned to user
+      args[:subcommittee] = !args[:subcommittee].nil? & Subcommittee.where(id: args[:subcommittee], committee: args[:committee]).take ? args[:subcommittee] : nil
     end
     super
   end
@@ -68,15 +59,15 @@ class User < ApplicationRecord
   end
 
   def display_committee
-    self[:committee].blank? ? 'No assigned committee' : Committee.where(committee_id: self[:committee]).take.committee
+    self[:committee].blank? ? 'None' : Committee.where(id: self[:committee]).take.committee
   end
 
   def display_subcommittee
-    self[:subcommittee].blank? ? 'No assigned subcommittee' : Subcommittee.where(subcommittee_id: self[:subcommittee]).take.subcommittee
+    self[:subcommittee].blank? ? 'None' : Subcommittee.where(id: self[:subcommittee]).take.subcommittee
   end
 
   def display_committee_email
-    self[:committee].blank? ? 'None' : Committee.where(committee_id: self[:committee]).take.email
+    self[:committee].blank? ? 'None' : Committee.where(id: self[:committee]).take.email
   end
 
   def to_s

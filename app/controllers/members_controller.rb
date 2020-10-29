@@ -67,6 +67,21 @@ class MembersController < ApplicationController
     redirect_to(members_path)
   end
 
+  def subcommittees_by_committee
+    @subcommittees = Subcommittee.where(committee: params[:committee_id])
+    respond_to do |format|
+      format.json { render json: @subcommittees }
+    end
+  end
+
+  def subcommittee_search
+    @subcommittees = if params[:committee_id].present? && params[:committee_id].strip != ''
+                       Subcommittee.where('committee = ?', params[:committee_id])
+                     else
+                       Subcommittee.all
+                     end
+  end
+
   private
 
   def member_params
