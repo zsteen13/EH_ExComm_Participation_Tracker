@@ -57,4 +57,7 @@ Rails.application.routes.draw do
       get 'show_threshold_points'
     end
   end
+
+  get 'get_subcommittees_by_committee/:committee_id', to: 'members#get_subcommittees_by_committee' 
+  get '/subcommittee_search' => 'members#subcommittee_search'
 end
