@@ -3,12 +3,12 @@
       <h1>Members</h1>
   </div>
   <%= link_to("<< Back to Member page", members_path, :class => 'back-link') %>
-    <div class="content" style="background:#500000;padding:0;width:60%;border:2px solid black">
-        <div class="content" style="background:white;padding:0 2em;margin:20px;border:1px solid black">
+    <div id="outer" class="content" style="margin-top:10px">
+        <div id="inner" class="content">
             <h1 style="text-align: center;color:#500000">Create a Member</h1>
             <br>
             <%= form_for(@member, :url => members_path, :method =>'post') do |f| %>
-              <table id="formTable" summary="Subject form fields">
+              <table id="formTable" class="bounded" summary="Subject form fields">
                   <tr>
                       <th>First Name</th>
                       <td><%= f.text_field :first_name , style: 'text-transform: capitalize;'%></td>
@@ -48,8 +48,8 @@
                   </tr>
 
                   <tr>
-                      <th>Admin</th>
-                      <td><%= f.check_box :admin %></td>
+                      <th id="noStyle">Admin</th>
+                      <td id="noStyle"><%= f.check_box :admin %></td>
                   </tr>
 
               </table>
@@ -69,7 +69,6 @@
     color: white;
   }
   th{
-
     background:none;
     color:#777;
     height:20%;
@@ -86,16 +85,27 @@
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   }
   .content {
-
     margin: 0 auto;
     padding: 0 2em;
-    max-width: 70%;
     margin-bottom: 50px;
     line-height: 1.6em;
     max-width: 90%;
     box-shadow: 0px 0px 38px -1px rgba(0,0,0,0.3);
     border-radius: 20px;
   }
+    #outer{
+      background:#500000;
+      padding:0;
+      width:90%;
+      border:2px solid black;
+    }
+    #inner{
+      background:white;
+      padding:0 2em;
+      margin:20px;
+      border:1px solid black;
+    }
+
   .pure-button {
     color: white;
     border-radius: 4px;
@@ -118,14 +128,13 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     line-height: .5em;
-
   }
   button{
     cursor:pointer;
 
   }
   #formTable{
-    width:70%;
+
     justify-content: center;
 
   }
@@ -145,4 +154,114 @@
     border-color: -internal-light-dark(rgb(118, 118, 118), rgb(195, 195, 195));
     border-image: initial;
 }
+
+@media 
+only screen and (max-width: 475px)  {
+
+  /* Force table to not be like tables anymore */
+  table, thead, tbody, th, td, tr { 
+    display: block; 
+  }
+  
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr { 
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  .act{
+    display:none;
+  }
+  .head{
+    width:100%;
+    content: "";
+    display: table;
+    clear: both;
+    border:none;
+    border-top-right-radius: 10px;
+    border-top-left-radius:10px;
+  }
+    .lhead{
+      float: left;
+      width: 46%;
+      text-align:center;
+      
+    }
+    .rhead{
+      float: right;
+      width: 46%;
+      text-align:center;
+    }
+
+
+  td { 
+    /* Behave  like a "row" */
+    border: none;
+    position: relative;
+    border-bottom: 3px solid #ddd;
+    border-left: 1px solid #ddd;
+  }
+  th{
+    border-left: 1px solid #ddd;
+    padding-left: 10px;
+  }
+  tr{
+    margin-bottom:15px;
+  }
+  #noStyle{
+    border-left:none;
+    border-bottom: none;
+    margin-bottom:none;
+  }
+
+}
+
+@media (max-width: 660px) {
+      /* for widths less than or equal to 660 pixels */
+      #outer{
+        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
+        -webkit-transition: width .5s ease-in-out, left .5s ease-in-out;
+        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
+        -o-transition: width .5s ease-in-out, left .5s ease-in-out;
+        transition: width .5s ease-in-out, left .5s ease-in-out;
+      }
+      #inner{
+        padding:0 1em;
+      }
+      input.pure-button{
+        width:100%;
+        max-width: none;
+        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
+        -webkit-transition: width .5s ease-in-out, left .5s ease-in-out;
+        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
+        -o-transition: width .5s ease-in-out, left .5s ease-in-out;
+        transition: width .5s ease-in-out, left .5s ease-in-out;
+      }
+      .content{
+        max-width:100%;
+      }   
+    }
+
+@media (min-width: 665px) {
+  #outer{
+        width:80%;
+        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
+        -webkit-transition: width .5s ease-in-out, left .5s ease-in-out;
+        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
+        -o-transition: width .5s ease-in-out, left .5s ease-in-out;
+        transition: width .5s ease-in-out, left .5s ease-in-out;
+      }
+}
+@media (min-width: 60em) {
+  #outer{
+        width:60%;
+        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
+        -webkit-transition: width .5s ease-in-out, left .5s ease-in-out;
+        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
+        -o-transition: width .5s ease-in-out, left .5s ease-in-out;
+        transition: width .5s ease-in-out, left .5s ease-in-out;
+  }
+}
+
+
 </style>

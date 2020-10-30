@@ -11,8 +11,8 @@
         </div>                
         <br>
         <div id="list" class="pure-u-1">
-            <table class="pure-table">
-                <tr>
+            <table class="table">
+                <tr class = "head">
                     <th>Name</th>
                     <th>Committee Head</th>
                     <th>Committee Contact</th>
@@ -21,7 +21,7 @@
                 </tr>
                 <% @committees.each do |committee| %>
                 <tr>
-                    <td><%= committee.committee %></td>
+                    <td class="right"><%= committee.committee %></td>
                     <td><%= committee.head_first_name || 'None' %> <%= committee.head_last_name || 'None'  %></td>
                     <td><%= committee.email || 'None'  %></td>
                     <td><%= committee.point_threshold || 'None' %></td>
@@ -48,6 +48,10 @@
   th{
     background:#500000;
     padding:8px;
+    border-right:1px solid #ccc;
+  }
+  td{
+    border-right:1px solid #ccc;
   }
   .table{
     border:2px solid black;
@@ -55,14 +59,6 @@
   #table{
     border-collapse: collapse;
     width:100%;
-  }
-  .table td a{
-    background-color: #0078E7;
-    color: white;
-    padding:.3em;
-    border-radius:10px;
-    text-decoration: none;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   }
 
   .content {
@@ -74,4 +70,57 @@
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   }
 
+  @media 
+only screen and (max-width: 760px)  {
+
+  /* Force table to not be like tables anymore */
+  table, thead, tbody, th, td, tr { 
+    display: block; 
+  }
+  
+
+
+
+  th { border:none; border-bottom:1px solid #ccc; }
+  th:nth-of-type(1){ border-top-left-radius:8px; }
+  th:nth-of-type(2){ border-top-right-radius:8px; }
+  tr { border: 1px solid #ccc; }
+  
+  td { 
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee; 
+    position: relative;
+    padding-left: 50%; 
+  }
+  
+  td:before { 
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 10px;
+    left: 6px;
+    width: 45%; 
+    padding-right: 10px; 
+    white-space: nowrap;
+    color:#500000;
+    font-weight: bold;
+  }
+  .head{
+    display:none;
+  }
+  td:nth-of-type(5){
+    padding-left:6px;
+  }
+
+  /*
+  Label the data
+  */
+  td:nth-of-type(1):before { content: "Name"; }
+  td:nth-of-type(2):before { content: "Committee Head"; }
+  td:nth-of-type(3):before { content: "Committee Contact"; }
+  td:nth-of-type(4):before { content: "Point Threshold"; }
+
+}
+  
 </style>
