@@ -29,7 +29,6 @@ class MembersController < ApplicationController
 
   def create
     @member = User.new(member_params)
-    @member.total_points = 0
     @member.meeting_points = 0
     @member.event_points = 0
     @member.misc_points = 0
