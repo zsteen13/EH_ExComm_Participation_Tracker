@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20_201_030_184_953) do
     t.string 'name'
     t.integer 'value'
   end
-  
+
   create_table 'privileges', force: :cascade do |t|
     t.string 'privilege'
     t.datetime 'created_at', precision: 6, null: false
