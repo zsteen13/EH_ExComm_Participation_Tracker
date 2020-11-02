@@ -12,10 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_201_020_225_454) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
-
+ActiveRecord::Schema.define(version: 20_201_027_191_910) do
   create_table 'activities', force: :cascade do |t|
     t.string 'name'
     t.string '_type'
@@ -28,7 +25,6 @@ ActiveRecord::Schema.define(version: 20_201_020_225_454) do
   end
 
   create_table 'committees', force: :cascade do |t|
-    t.integer 'committee_id'
     t.string 'committee'
     t.integer 'point_threshold'
     t.string 'head_first_name'
@@ -38,15 +34,13 @@ ActiveRecord::Schema.define(version: 20_201_020_225_454) do
     t.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table 'privleges', force: :cascade do |t|
-    t.integer 'privlege_id'
-    t.string 'privlege'
+  create_table 'privileges', force: :cascade do |t|
+    t.string 'privilege'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
   end
 
   create_table 'subcommittees', force: :cascade do |t|
-    t.integer 'subcommittee_id'
     t.string 'subcommittee'
     t.integer 'point_threshold'
     t.datetime 'created_at', precision: 6, null: false
@@ -56,7 +50,7 @@ ActiveRecord::Schema.define(version: 20_201_020_225_454) do
 
   create_table 'user_keys', force: :cascade do |t|
     t.string 'key', null: false
-    t.bigint 'user_id', null: false
+    t.integer 'user_id', null: false
     t.index ['user_id'], name: 'index_user_keys_on_user_id'
   end
 

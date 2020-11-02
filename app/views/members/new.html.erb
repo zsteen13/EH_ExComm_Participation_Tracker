@@ -1,101 +1,145 @@
 <div id="main">
   <div class="header">
-      <h1>Members</h1>
+    <h1>Members</h1>
   </div>
   <%= link_to("<< Back to Member page", members_path, :class => 'back-link') %>
-    <div class="content" style="background:#500000;padding:0;width:60%;border:2px solid black">
-        <div class="content" style="background:white;padding:0 2em;margin:20px;border:1px solid black">
-            <h1 style="text-align: center;color:#500000">Create a Member</h1>
-            <br>
-            <%= form_for(@member, :url => members_path, :method =>'post') do |f| %>
-              <table id="formTable" summary="Subject form fields">
-                  <tr>
-                      <th>First Name</th>
-                      <td><%= f.text_field :first_name , style: 'text-transform: capitalize;'%></td>
-                  </tr>
-        
-                  <tr>
-                      <th>Last Name</th>
-                      <td><%= f.text_field :last_name, style: 'text-transform: capitalize;' %></td>
-                  </tr>
+  <div class="content" style="background:#500000;padding:0;width:60%;border:2px solid black">
+    <div class="content" style="background:white;padding:0 2em;margin:20px;border:1px solid black">
+      <h1 style="text-align: center;color:#500000">Create a Member</h1>
+      <%= form_for(@member, :url => members_path, :method =>'post') do |f| %>
+      <table id="formTable" summary="Subject form fields">
+        <tr>
+          <th>First Name</th>
+          <td><%= f.text_field :first_name , style: 'text-transform: capitalize;'%></td>
+        </tr>
 
-                  <tr>
-                      <th>UIN</th>
-                      <td><%= f.text_field :uin %></td>
-                  </tr>
-                
-                  <tr>
-                      <th>Email</th>
-                      <td><%= f.text_field :email %></td>
-                  </tr>
-                
-                  <tr>
-                      <!--This should be a dropdown in the future-->
-                      <th>Committee</th>
-                      <td><%= f.text_field :committee %></td>
-                  </tr>
-                
-                  <tr>
-                      <!--This should be a dropdown in the future-->
-                      <th>Subcommittee</th>
-                      <td><%= f.text_field :subcommittee %></td>
-                  </tr>
-                
-                  <tr>
-                      <th>Total Points</th>
-                      <!--This should be a dropdown in the future-->
-                      <td><%= f.text_field :total_points %></td>
-                  </tr>
+        <tr>
+          <th>Last Name</th>
+          <td><%= f.text_field :last_name, style: 'text-transform: capitalize;' %></td>
+        </tr>
 
-                  <tr>
-                      <th>Admin</th>
-                      <td><%= f.check_box :admin %></td>
-                  </tr>
+        <tr>
+          <th>UIN</th>
+          <td><%= f.text_field :uin %></td>
+        </tr>
 
-              </table>
+        <tr>
+          <th>Email</th>
+          <td><%= f.text_field :email %></td>
+        </tr>
 
-              <%= f.submit 'Create New Member', :class => 'pure-button pure-button-primary' %>
-              <% end %>
-      
-          </div>
-      </div>
+        <tr>
+          <th>Committee</th>
+          <% committee_options = options_from_collection_for_select(Committee.all, 'id', 'committee') %>
+          <td><%= f.select :committee, committee_options, :include_blank => "None" %></td>
+        </tr>
+
+        <tr>
+          <th>Subcommittee</th>
+          <td><%= f.select :subcommittee, [], :include_blank => "None" %></td>
+        </tr>
+
+        <tr>
+          <th>Total Points</th>
+          <td><%= f.text_field :total_points %></td>
+        </tr>
+
+        <tr>
+          <th>Admin</th>
+          <td><%= f.check_box :admin %></td>
+        </tr>
+
+      </table>
+
+      <%= f.submit 'Create New Member', :class => 'pure-button pure-button-primary' %>
+      <% end %>
+    </div>
+  </div>
 </div>
+
+<script>
+  $(function () {
+
+    if ($("select#user_committee").val() == "") {
+      $("select#user_subcommittee option").remove();
+      var row = "<option value=\"" + "" + "\">" + "None" + "</option>";
+      $(row).appendTo("select#user_subcommittee");
+    }
+    $("select#user_committee").change(function () {
+      var id_value_string = $(this).val();
+      if (id_value_string == "") {
+        $("select#user_subcommittee option").remove();
+        var row = "<option value=\"" + "" + "\">" + "None" + "</option>";
+        $(row).appendTo("select#user_subcommittee");
+      } else {
+        // Send the request and update course dropdown
+        $.ajax({
+          dataType: "json",
+          cache: false,
+          url: '/subcommittees_by_committee/' + id_value_string,
+          timeout: 5000,
+          error: function (XMLHttpRequest, errorTextStatus, error) {
+            alert("Failed to submit : " + errorTextStatus + " ;" + error);
+          },
+          success: function (data) {
+            // Clear all options from course select
+            $("select#user_subcommittee option").remove();
+            //put in a empty default line
+            var row = "<option value=\"" + "" + "\">" + "None" + "</option>";
+            $(row).appendTo("select#user_subcommittee");
+            // Fill course select
+            $.each(data, function (i, j) {
+              row = "<option value=\"" + j.id + "\">" + j.subcommittee + "</option>";
+              $(row).appendTo("select#user_subcommittee");
+            });
+          }
+        });
+      }
+    });
+  });
+</script>
+
 <style>
-  a{
+  a {
     text-decoration: none;
     color: #1b98f8;
   }
-  .header a{
+
+  .header a {
     color: white;
   }
-  th{
 
-    background:none;
-    color:#777;
-    height:20%;
+  th {
+
+    background: none;
+    color: #777;
+    height: 20%;
   }
-  .table{
-    border:2px solid black;
+
+  .table {
+    border: 2px solid black;
   }
-  .table td a{
+
+  .table td a {
     background-color: #0078E7;
     color: white;
-    padding:.3em;
-    border-radius:10px;
+    padding: .3em;
+    border-radius: 10px;
     text-decoration: none;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   }
-  .content {
 
+  .content {
     margin: 0 auto;
     padding: 0 2em;
     max-width: 70%;
     margin-bottom: 50px;
     line-height: 1.6em;
     max-width: 90%;
-    box-shadow: 0px 0px 38px -1px rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 38px -1px rgba(0, 0, 0, 0.3);
     border-radius: 20px;
   }
+
   .pure-button {
     color: white;
     border-radius: 4px;
@@ -103,8 +147,9 @@
     margin-bottom: 10px;
   }
 
-  
-  input{
+
+  input,
+  select {
     font-family: inherit;
     font-size: 100%;
     margin: 0;
@@ -118,18 +163,20 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     line-height: .5em;
+  }
+
+  button {
+    cursor: pointer;
 
   }
-  button{
-    cursor:pointer;
 
-  }
-  #formTable{
-    width:70%;
+  #formTable {
+    width: 70%;
     justify-content: center;
 
   }
-  .input[type="submit" i] {
+
+  .input[type="submit"i] {
     appearance: push-button;
     user-select: none;
     white-space: pre;
@@ -144,5 +191,5 @@
     border-style: outset;
     border-color: -internal-light-dark(rgb(118, 118, 118), rgb(195, 195, 195));
     border-image: initial;
-}
+  }
 </style>

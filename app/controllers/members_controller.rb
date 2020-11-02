@@ -29,7 +29,6 @@ class MembersController < ApplicationController
 
   def create
     @member = User.new(member_params)
-    @member.total_points = 0
     @member.meeting_points = 0
     @member.event_points = 0
     @member.misc_points = 0
@@ -65,6 +64,21 @@ class MembersController < ApplicationController
     @member = User.find(params[:id])
     @member.destroy
     redirect_to(members_path)
+  end
+
+  def subcommittees_by_committee
+    @subcommittees = Subcommittee.where(committee: params[:committee_id])
+    respond_to do |format|
+      format.json { render json: @subcommittees }
+    end
+  end
+
+  def subcommittee_search
+    @subcommittees = if params[:committee_id].present? && params[:committee_id].strip != ''
+                       Subcommittee.where('committee = ?', params[:committee_id])
+                     else
+                       Subcommittee.all
+                     end
   end
 
   private
