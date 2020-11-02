@@ -19,22 +19,34 @@ class User < ApplicationRecord
     MemberMailer.with(user: self).signup_email.deliver_later
   end
 
-  # hardcoded for now
-  @default_point_threshold = 100
-
   def initialize(args = nil)
     unless args.nil?
       args[:admin] = args[:admin] == 'true' || args[:admin] == true ? true : false
-      args[:total_points] = !args[:total_points].nil? ? args[:total_points] : 0
-      args[:meeting_points] = !args[:meeting_points].nil? ? args[:meeting_points] : 0
-      args[:event_points] = !args[:event_points].nil? ? args[:event_points] : 0
-      args[:misc_points] = !args[:misc_points].nil? ? args[:misc_points] : 0
+      args = handle_args(args)
       # check that committee exists
-      args[:committee] = !args[:committee].nil? & Committee.where(id: args[:committee]).take ? args[:committee] : nil
+      args[:committee] = !args[:committee].nil? && Committee.where(id: args[:committee]).take ? args[:committee] : nil
       # checks that subcommittee exists and that it belongs to committee assigned to user
-      args[:subcommittee] = !args[:subcommittee].nil? & Subcommittee.where(id: args[:subcommittee], committee: args[:committee]).take ? args[:subcommittee] : nil
+      args[:subcommittee] = !args[:subcommittee].nil? && Subcommittee.where(id: args[:subcommittee], committee: args[:committee]).take ? args[:subcommittee] : nil
+      args[:point_threshold] = if args[:committee].nil? && args[:subcommittee].nil?
+                                 # set default threshold value
+                                 Constant.where(name: 'point_threshold_value').take.value
+                               elsif !args[:committee].nil?
+                                 # update point threshold if member is in a committee
+                                 Committee.where(id: args[:committee]).take.point_threshold
+                               else
+                                 # update point threshold if member is in a subcommittee
+                                 Subcommittee.where(id: args[:subcommittee]).take.point_threshold
+                               end
     end
     super
+  end
+
+  def handle_args(args)
+    args[:total_points] = args[:total_points].nil? ? 0 : args[:total_points]
+    args[:meeting_points] = args[:meeting_points].nil? ? 0 : args[:meeting_points]
+    args[:event_points] = args[:event_points].nil? ? 0 : args[:event_points]
+    args[:misc_points] = args[:misc_points].nil? ? 0 : args[:misc_points]
+    args
   end
 
   def email=(field)
@@ -59,15 +71,15 @@ class User < ApplicationRecord
   end
 
   def display_committee
-    self[:committee].nil? ? 'None' : Committee.where(id: self[:committee]).take.committee
+    self[:committee].blank? ? 'None' : Committee.where(id: self[:committee]).take.committee
   end
 
   def display_subcommittee
-    self[:subcommittee].nil? ? 'None' : Subcommittee.where(id: self[:subcommittee]).take.subcommittee
+    self[:subcommittee].blank? ? 'None' : Subcommittee.where(id: self[:subcommittee]).take.subcommittee
   end
 
   def display_committee_email
-    self[:committee].nil? ? 'None' : Committee.where(id: self[:committee]).take.email
+    self[:committee].blank? ? 'None' : Committee.where(id: self[:committee]).take.email
   end
 
   def to_s

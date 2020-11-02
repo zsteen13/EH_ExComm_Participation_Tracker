@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   get 'bulk_add_users/confirmed', to: 'bulk_add_users#confirmed'
   get '/activities/:id', to: 'activities#show'
   get 'profile/profile'
+  get 'members/point_threshold', to: 'members#point_threshold'
+  post 'members/point_threshold', to: 'members#update_point_threshold'
 
   resources :users, only: %i[new create]
   get 'login', to: 'sessions#new'
@@ -60,4 +62,7 @@ Rails.application.routes.draw do
       get 'show_threshold_points'
     end
   end
+
+  get 'subcommittees_by_committee/:committee_id', to: 'members#subcommittees_by_committee'
+  get '/subcommittee_search' => 'members#subcommittee_search'
 end

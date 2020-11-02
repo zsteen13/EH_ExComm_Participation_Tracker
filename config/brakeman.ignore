@@ -1,13 +1,53 @@
 {
   "ignored_warnings": [
     {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "137236af2499d4dc9e419f5dc66512092e667cee8e9c66ca34319c5c4f0aa9d8",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/members_controller.rb",
+      "line": 14,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "User.where(\"total_points <= ?\", params[:search]).order(\"#{sort_column} #{sort_direction}\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "MembersController",
+        "method": "index"
+      },
+      "user_input": "sort_column",
+      "confidence": "Medium",
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "3a994cb9fcf6debb1e566611ee471450f943eb66dc7ea3b1da1660826d1761d0",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/members_controller.rb",
+      "line": 16,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "User.where(\"total_points >= ?\", params[:search]).order(\"#{sort_column} #{sort_direction}\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "MembersController",
+        "method": "index"
+      },
+      "user_input": "sort_column",
+      "confidence": "Medium",
+      "note": ""
+    },
+    {
       "warning_type": "Mass Assignment",
       "warning_code": 105,
       "fingerprint": "80d0e93a4984cc107ae7f87f9afaabad093db88363b8a419cc153f9232393baa",
       "check_name": "PermitAttributes",
       "message": "Potentially dangerous key allowed for mass assignment",
       "file": "app/controllers/members_controller.rb",
-      "line": 68,
+      "line": 73,
       "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
       "code": "params.require(:user).permit(:first_name, :last_name, :uin, :email, :total_points, :committee, :subcommittee, :admin)",
       "render_path": null,
@@ -18,9 +58,29 @@
       },
       "user_input": ":admin",
       "confidence": "High",
-      "note": "This option is used during the automated creation of a user, and its inclusion is both by design and specified by the customer."
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "be889d58b5e6e660757822ea2443d0404c8bc4090a6dc79d2ee760c480201006",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/members_controller.rb",
+      "line": 18,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "User.order(\"#{sort_column} #{sort_direction}\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "MembersController",
+        "method": "index"
+      },
+      "user_input": "sort_column",
+      "confidence": "Medium",
+      "note": ""
     }
   ],
-  "updated": "2020-10-19 20:45:10 -0500",
+  "updated": "2020-10-27 21:11:23 -0500",
   "brakeman_version": "4.10.0"
 }

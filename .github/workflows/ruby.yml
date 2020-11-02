@@ -12,12 +12,11 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-      - name: start Chrome
+      - name: Install xvfb for Chrome
         run: |
           sudo apt-get install -y xvfb
           sudo apt-get -y install xorg xvfb gtk2-engines-pixbuf
           sudo apt-get -y install dbus-x11 xfonts-base xfonts-100dpi xfonts-75dpi xfonts-cyrillic xfonts-scalable
-          # /usr/bin/google-chrome
 
       - name: Checkout code
         uses: actions/checkout@v2
@@ -68,7 +67,14 @@ jobs:
           RAILS_ENV: test
         run: |
           bundle exec rails db:setup
-          bundle exec rake db:reset
+
+      - name: Security Test
+        run: |
+          sudo gem install bundler-audit
+          sudo gem install brakeman
+          export PATH=/home/runner/.rubies/ruby-2.7.1/bin:/home/runner/.rubies/ruby-2.7.1/lib/ruby/gems/2.7.0:/home/runner/.gem/ruby/2.7.0:$PATH
+          brakeman
+          bundler-audit
 
       - name: Robocop
         run: |

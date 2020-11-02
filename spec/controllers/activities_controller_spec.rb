@@ -14,7 +14,7 @@ feature ActivitiesController, type: :system do
       click_link 'Create Activity'
 
       expect(page).to have_current_path '/activities/new'
-      expect(page).to have_content 'Create Activites'
+      expect(page).to have_content 'Create Activities'
 
       activity_name = 'New Member Social'
       activity_type = 'Social'

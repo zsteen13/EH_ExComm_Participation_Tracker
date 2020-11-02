@@ -12,10 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_201_027_191_910) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
-
+ActiveRecord::Schema.define(version: 20_201_030_184_953) do
   create_table 'activities', force: :cascade do |t|
     t.string 'name'
     t.string '_type'
@@ -37,6 +34,11 @@ ActiveRecord::Schema.define(version: 20_201_027_191_910) do
     t.datetime 'updated_at', precision: 6, null: false
   end
 
+  create_table 'constants', force: :cascade do |t|
+    t.string 'name'
+    t.integer 'value'
+  end
+
   create_table 'privileges', force: :cascade do |t|
     t.string 'privilege'
     t.datetime 'created_at', precision: 6, null: false
@@ -53,7 +55,7 @@ ActiveRecord::Schema.define(version: 20_201_027_191_910) do
 
   create_table 'user_keys', force: :cascade do |t|
     t.string 'key', null: false
-    t.bigint 'user_id', null: false
+    t.integer 'user_id', null: false
     t.index ['user_id'], name: 'index_user_keys_on_user_id'
   end
 
