@@ -11,6 +11,7 @@ require 'simplecov'
 SimpleCov.start
 SimpleCov.add_filter 'spec/support'
 require 'capybara/rails'
+require 'capybara/email/rspec'
 require 'rails/test_help'
 
 require 'selenium-webdriver'
@@ -24,7 +25,7 @@ Capybara.javascript_driver = :chrome
 
 Capybara.default_max_wait_time = 10
 
-Rails.application.load_seed
+# Rails.application.load_seed
 
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
@@ -47,4 +48,6 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.filter_rails_from_backtrace!
+  Capybara.server_port = 3001
+  Capybara.app_host = 'http://localhost:3001'
 end
