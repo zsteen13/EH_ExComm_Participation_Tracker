@@ -48,6 +48,7 @@ class MembersController < ApplicationController
   def update
     @member = User.find(params[:id])
     if @member.update(member_params)
+      update_members_point_threshold(@member)
       redirect_to(member_path(@member))
     else
       flash.alert = "An Error occured. Please check your inputs and try again.\n"
@@ -79,6 +80,39 @@ class MembersController < ApplicationController
                      else
                        Subcommittee.all
                      end
+  end
+
+  def point_threshold
+    @current_point_threshold_value = Constant.where(name: 'point_threshold_value').take.value
+  end
+
+  def update_point_threshold
+    @threshold = Constant.where(name: 'point_threshold_value')
+    if !@threshold.update(value: params[:point_threshold_value])
+      flash.alert = "An Error occured.\n"
+      redirect_to '/members/point_threshold'
+    else
+      flash.alert = "Value Successfully Updated!\n"
+      redirect_to '/members/point_threshold'
+      update_member_point_thresholds(params[:point_threshold_value])
+    end
+  end
+
+  def update_member_point_thresholds(new_value)
+    User.where(committee: nil).update_all(point_threshold: new_value)
+  end
+
+  def update_members_point_threshold(member)
+    if member.committee.blank? && member.subcommittee.blank?
+      # reset to default
+      member.update(point_threshold: Constant.where(name: 'point_threshold_value').take.value)
+    elsif !member.subcommittee.blank?
+      # update point threshold if member is in a subcommittee
+      member.update(point_threshold: Subcommittee.where(id: member.subcommittee).take.point_threshold)
+    else
+      # update point threshold if member is in a committee
+      member.update(point_threshold: Committee.where(id: member.committee).take.point_threshold)
+    end
   end
 
   private

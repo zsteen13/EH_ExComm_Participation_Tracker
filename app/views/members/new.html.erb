@@ -41,7 +41,7 @@
 
         <tr>
           <th>Total Points</th>
-          <td><%= f.text_field :total_points %></td>
+          <td><%= f.number_field(:total_points, in: 0...1000) %></td>
         </tr>
 
         <tr>

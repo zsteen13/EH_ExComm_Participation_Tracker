@@ -10,6 +10,8 @@
 require 'date'
 
 # These seeds cannot be deleted/modified, they are necessary for reference operations
+Constant.create!(name: 'point_threshold_value', value: 100)
+
 Privilege.create!(id: 0, privilege: 'User')
 Privilege.create!(id: 1, privilege: 'Admin')
 Privilege.create!(id: 2, privilege: 'Super-Admin')
@@ -28,11 +30,11 @@ users1 = User.create!(uin: '111111111', password_digest: BCrypt::Password.create
 
 users2 = User.create!(uin: '222222222', password_digest: BCrypt::Password.create('Test'), first_name: 'Admin', last_name: 'Test', email: 'admintest@gmail.com', committee: 0, subcommittee: 0, admin: true, total_points: 0, event_points: 0, meeting_points: 0, misc_points: 0)
 
-users3 = User.create!(uin: '000000000', password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', email: 'zsteen13@gmail.com', committee: 1, total_points: 0, event_points: 0, meeting_points: 0, misc_points: 0, admin: true)
+users3 = User.create!(uin: '000000000', password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', email: 'zsteen133@gmail.com', committee: 1, total_points: 0, event_points: 0, meeting_points: 0, misc_points: 0, admin: true)
 
 users4 = User.create!(uin: '123456789', password_digest: BCrypt::Password.create('Test'), first_name: 'first', last_name: 'last', email: 'test@gmail.com', committee: 2, total_points: 0, event_points: 0, meeting_points: 0, misc_points: 0, admin: true)
 
-users5 = User.create!(uin: '000000001', password_digest: BCrypt::Password.create('Test'), first_name: 'trev', last_name: 'moore', email: 'zsteen13@gmail.com', committee: 0, total_points: 0, event_points: 0, meeting_points: 0, misc_points: 0, admin: true)
+users5 = User.create!(uin: '000000001', password_digest: BCrypt::Password.create('Test'), first_name: 'trev', last_name: 'moore', email: 'zsteen133@gmail.com', committee: 0, total_points: 0, event_points: 0, meeting_points: 0, misc_points: 0, admin: true)
 
 users6 = User.create!(uin: '777777777', password_digest: BCrypt::Password.create('Test'), first_name: 'David', last_name: 'Acosta', email: 'yoyoyo@aol.com', committee: 0, subcommittee: 1, total_points: 50, event_points: 10, meeting_points: 20, misc_points: 20, admin: true)
 

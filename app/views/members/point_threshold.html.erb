@@ -1,0 +1,28 @@
+<div class = "members index">
+  <div id="main">
+    <div class="header">
+      <h1>Members</h1>
+      <br>
+
+    </div>
+
+    <div class="content" style="text-align:center;">
+    <a class="pure-button pure-button-primary" href="/members"> Return to Members </a>
+    <br>
+    This value is the default threshold value that members must reach per school year.
+    <br>
+    <%= form_with(:url => "/members/point_threshold", :method => "post", :class => "pure-form") do %>
+        <%= label_tag(:point_threshold_value, "Point Threshold Value:") %>
+        <%= number_field_tag(:point_threshold_value, @current_point_threshold_value, in: 0...1000) %>
+        <%= submit_tag("Update") %>
+    <% end %>
+    <% flash.each do |type, msg| %>
+      <div>
+        <%= msg %>
+      </div>
+    <% end %>
+    
+
+    </div>
+  </div>
+</div>
