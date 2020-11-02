@@ -7,7 +7,7 @@
 <div class="content" style="text-align:center;">
     <div class="pure-button-group" role="group" aria-label="...">
         <p>
-        <%= link_to "Return to Committees", committees_path, class: "pure-button pure-button-primary", style: "margin-right: 10px;"%>
+        <%= link_to "Return to Committees", committees_path, class: "pure-button pure-button-primary", style: "margin-right: 10px;", id: "return_to_committees"%>
         <%= link_to "Add Subcommittee", new_committee_subcommittee_path, class: "pure-button pure-button-primary"%>
         </p>
     </div>   
@@ -25,7 +25,7 @@
             <td class="actions">
                 <%= link_to "Edit", edit_subcommittee_path(subcommittee), class: "pure-button pure-button-primary"%>
                 <a class="pure-button pure-button-primary" href="/subcommittees/<%= subcommittee.id%>/delete" > Delete </a>
-                <%= link_to "View Members", subcommittee_path(subcommittee), class: "pure-button pure-button-primary"%>
+                <%= link_to "Members", subcommittee_path(subcommittee), class: "pure-button pure-button-primary"%>
             </td>
         </tr>
         <% end %>

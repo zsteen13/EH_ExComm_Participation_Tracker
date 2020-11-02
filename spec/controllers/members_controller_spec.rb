@@ -20,7 +20,7 @@ describe MembersController, type: :system do
       fill_in 'user_last_name', with: 'test last'
       fill_in 'user_uin', with: '012123123'
       fill_in 'user_email', with: 'email@test.com'
-      select "Internal", :from => "user[committee]"
+      select 'Internal', from: 'user[committee]'
       fill_in 'user_total_points', with: 2
 
       click_button 'commit'
