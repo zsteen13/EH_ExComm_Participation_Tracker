@@ -24,6 +24,13 @@ Rails.application.routes.draw do
   get 'bulk_add_users/show', to: 'bulk_add_users#show'
   post 'bulk_add_users/create', to: 'bulk_add_users#create'
   get 'bulk_add_users/confirmed', to: 'bulk_add_users#confirmed'
+  get 'bulk_add_users/help', to: 'bulk_add_users#help'
+  get 'bulk_add_users/correct_csv_all_fields', to: 'bulk_add_users#correct_csv_all_fields'
+  get 'bulk_add_users/correct_csv_required_fields', to: 'bulk_add_users#correct_csv_required_fields'
+  get 'bulk_add_users/correct_csv_some_optional_fields', to: 'bulk_add_users#correct_csv_some_optional_fields'
+  get 'bulk_add_users/incorrect_csv_email_last_name_switched', to: 'bulk_add_users#incorrect_csv_email_last_name_switched'
+  get 'bulk_add_users/incorrect_csv_not_enough_columns', to: 'bulk_add_users#incorrect_csv_not_enough_columns'
+
   get '/activities/:id', to: 'activities#show'
   get 'profile/profile'
   get 'members/point_threshold', to: 'members#point_threshold'

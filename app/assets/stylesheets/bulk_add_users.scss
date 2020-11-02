@@ -1,0 +1,79 @@
+.horz {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+input[type="file"] {
+  display: none;
+}
+.custom-file-upload {
+  /* border: 1px solid #ccc; */
+  display: inline-block;
+  cursor: pointer;
+}
+.profile-card {
+  margin-right: 2em;
+  padding: 0;
+  background: #f6f6f6;
+  margin: 1em;
+  border: 3px solid #333333;
+  border-radius: 25px;
+  color: black;
+  content: "";
+  display: table;
+  clear: both;
+  width: 100%;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+}
+.profile-card h1 {
+  /*font-family: 'Roboto', Sans-Serif;*/
+  /*Font-Family: 'Lora', Serif;*/
+  /*font-family: 'Ruda', Sans-Serif;*/
+  /*font-family:'Arvo', Serif;*/
+  /*font-family:'Merriweather', Serif;*/
+  font-family: "Roboto", Sans-Serif;
+  color: white;
+  background: #500000;
+  margin: 0;
+  padding: 0.5em;
+  text-align: left;
+  border-radius: 20px 20px 0px 0px;
+  border-bottom: 2px solid #a7a7a7;
+}
+.text-style {
+  font-size: 30px;
+}
+.profile-boxes {
+  margin-right: 2em;
+}
+
+.btn {
+  margin: 5px;
+}
+
+.text{
+  margin-left: 2%;
+  margin-right: 2%;
+  font-size: 15px;
+}
+
+.text p{
+  font-size: 18px;
+
+}
+
+.text li{
+  font-size: 18px;
+
+}
+
+.center{
+  text-align: center;
+}
+
+.dark-text{
+  color: black;
+}

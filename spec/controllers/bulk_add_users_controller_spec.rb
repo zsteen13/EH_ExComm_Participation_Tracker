@@ -48,6 +48,40 @@ feature BulkAddUsersController do
       expect(page).to have_content 'Parsing Error'
       expect(page).to have_content 'the field email is invalid'
     end
+    scenario 'help page exists' do
+      visit '/bulk_add_users/help'
+      expect(page).to have_current_path '/bulk_add_users/help'
+      expect(page).to have_content 'Purpose'
+    end
+    scenario 'help page buttons work' do
+      visit '/bulk_add_users/help'
+      click_link 'correct_csv_all_fields-btn'
+      click_link 'correct_csv_required_fields-btn'
+      click_link 'correct_csv_some_optional_fields-btn'
+      click_link 'incorrect_csv_email_last_name_switched-btn'
+      click_link 'incorrect_csv_not_enough_columns-btn'
+      sleep 1
+
+      full_path = "#{DOWNLOAD_PATH}/correct_csv_all_fields.csv"
+      expect(File.exist?(full_path)).to be true
+      File.delete(full_path) if File.exist?(full_path)
+
+      full_path = "#{DOWNLOAD_PATH}/correct_csv_required_fields.csv"
+      expect(File.exist?(full_path)).to be true
+      File.delete(full_path) if File.exist?(full_path)
+
+      full_path = "#{DOWNLOAD_PATH}/correct_csv_some_optional_fields.csv"
+      expect(File.exist?(full_path)).to be true
+      File.delete(full_path) if File.exist?(full_path)
+
+      full_path = "#{DOWNLOAD_PATH}/incorrect_csv_email_last_name_switched.csv"
+      expect(File.exist?(full_path)).to be true
+      File.delete(full_path) if File.exist?(full_path)
+
+      full_path = "#{DOWNLOAD_PATH}/incorrect_csv_not_enough_columns.csv"
+      expect(File.exist?(full_path)).to be true
+      File.delete(full_path) if File.exist?(full_path)
+    end
   end
 
   feature 'Bulk Add User without auth' do
