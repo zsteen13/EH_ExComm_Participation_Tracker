@@ -21,7 +21,7 @@
       <div class="content pure-g">
         <div class="pure-u-1">
           <h2 class="center dark-text" >Is this correct?</h2>
-          <table class="table">
+          <table class="table dark-text">
             <thead>
               <tr class = "header">
                 <th>UIN</th>
@@ -44,8 +44,8 @@
                   <td><%= user.first_name %></td>
                   <td><%= user.last_name %></td>
                   <td><%= user.email %></td>
-                  <td><%= user.committee %></td>
-                  <td><%= user.subcommittee %></td>
+                  <td><%= user.display_committee %></td>
+                  <td><%= user.display_subcommittee %></td>
                   <td><%= user.total_points %></td>
                   <td><%= user.meeting_points %></td>
                   <td><%= user.event_points %></td>

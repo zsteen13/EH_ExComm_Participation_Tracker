@@ -82,6 +82,23 @@ feature BulkAddUsersController do
       expect(File.exist?(full_path)).to be true
       File.delete(full_path) if File.exist?(full_path)
     end
+
+    scenario 'should display none for committees and subcommittees' do
+      visit 'bulk_add_users'
+      filepath = Rails.root.join 'spec', 'data', 'bulk_add_users_correct_4.csv'
+      attach_file('new_users', filepath, make_visible: true)
+      click_button 'upload_btn'
+      expect(page).to have_content 'None'
+    end
+
+    scenario 'should display the proper committee and subcommitte' do
+      visit 'bulk_add_users'
+      filepath = Rails.root.join 'spec', 'data', 'bulk_add_users_correct_5.csv'
+      attach_file('new_users', filepath, make_visible: true)
+      click_button 'upload_btn'
+      expect(page).to have_content 'Internal'
+      expect(page).to have_content 'Community Building'
+    end
   end
 
   feature 'Bulk Add User without auth' do

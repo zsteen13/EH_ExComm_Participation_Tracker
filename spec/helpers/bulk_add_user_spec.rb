@@ -64,4 +64,38 @@ RSpec.describe BulkAddUsersHelper, type: :helper do
 
     expect(users[2].total_points).to eq 10
   end
+
+  it 'should be able to convert a committee name to the id' do
+    Committee.create!(id: 9999, committee: 'Temp Committee', head_first_name: 'Sample_First', head_last_name: 'Sample_Last', email: 'example_email@tamu.edu', point_threshold: 101)
+
+    id = BulkAddUsersHelper.committee_name_to_id 'Temp Committee'
+    expect(id).to eq(9999)
+
+    id = BulkAddUsersHelper.committee_name_to_id 'temp committee'
+    expect(id).to eq(9999)
+  end
+
+  it 'should be able to convert a committee name to the id' do
+    Subcommittee.create!(id: 9999, subcommittee: 'Temp Committee', committee: 1, point_threshold: 102)
+
+    id = BulkAddUsersHelper.subcommittee_name_to_id 'Temp Committee'
+    expect(id).to eq(9999)
+
+    id = BulkAddUsersHelper.subcommittee_name_to_id 'temp committee'
+    expect(id).to eq(9999)
+  end
+
+  it 'parsing should be able to convert committee and subcommittee name to id' do
+    Committee.create!(id: 9999, committee: 'Temp Committee', head_first_name: 'Sample_First', head_last_name: 'Sample_Last', email: 'example_email@tamu.edu', point_threshold: 101)
+    Subcommittee.create!(id: 9990, subcommittee: 'Temp Subcommittee', committee: 9999, point_threshold: 102)
+
+    filename = Rails.root.join('spec', 'data', 'bulk_add_users_correct_4.csv')
+    users, valid = BulkAddUsersHelper.parse_data(filename)
+    user = users[0]
+    puts
+
+    expect(valid).to be true
+    expect(user.committee).to eq('9999')
+    expect(user.subcommittee).to eq('9990')
+  end
 end

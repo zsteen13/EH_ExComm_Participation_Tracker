@@ -36,8 +36,8 @@ module BulkAddUsersHelper
         first_name: csv[i][FIRST_NAME_COL_CONST],
         last_name: csv[i][LAST_NAME_COL_CONST],
         email: csv[i][EMAIL_COL_CONST],
-        committee: csv[i][COMMITTEE_COL_CONST],
-        subcommittee: csv[i][SUBCOMMITTE_COL_CONST],
+        committee: committee_name_to_id(csv[i][COMMITTEE_COL_CONST]),
+        subcommittee: subcommittee_name_to_id(csv[i][SUBCOMMITTE_COL_CONST]),
         total_points: csv[i][TOTAL_POINTS_COL_CONST],
         meeting_points: csv[i][MEETING_POINTS_COL_CONST],
         event_points: csv[i][EVENT_POINTS_COL_CONST],
@@ -71,5 +71,23 @@ module BulkAddUsersHelper
     users.each do |user|
       UserKey.create(user_id: user.id, key: SecureRandom.base64(20)) if user.save
     end
+  end
+
+  def self.committee_name_to_id(committee_name)
+    return if committee_name.nil?
+
+    committee = Committee.where('LOWER(committee) = ?', committee_name.downcase).take
+    return nil if committee.nil?
+
+    committee.id
+  end
+
+  def self.subcommittee_name_to_id(subcommittee_name)
+    return if subcommittee_name.nil?
+
+    subcommittee = Subcommittee.where('LOWER(subcommittee) = ?', subcommittee_name.downcase).take
+    return nil if subcommittee.nil?
+
+    subcommittee.id
   end
 end
