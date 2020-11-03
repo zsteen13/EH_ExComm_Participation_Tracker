@@ -1,6 +1,6 @@
 <div id="main">
   <div class="header">
-      <h1>Members</h1>
+    <h1>Members</h1>
   </div>
   <% flash.each do |type, msg| %>
     <div style="color: red">
@@ -38,18 +38,21 @@
 
                   <tr>
                       <th>Committee</th>
-                      <td><%= f.text_field :committee %></td>
+                      <% committee_options = options_from_collection_for_select(Committee.all, 'id', 'committee', @member.committee) %>
+                      <td><%= f.select :committee, committee_options, :include_blank => "None" %></td>
                   </tr>
 
                   <tr>
                       <th>Subcommittee</th>
-                      <td><%= f.text_field :subcommittee %></td>
+                      <% subcommittee_options = (@member.committee.nil? ? [] : options_from_collection_for_select(Subcommittee.where(committee: @member.committee), 'id', 'subcommittee', @member.subcommittee)) %>
+                      <td><%= f.select :subcommittee, subcommittee_options, :include_blank => "None" %></td>
                   </tr>
 
                   <tr>
-                      <th>Total_points</th>
-                      <td><%= f.text_field :total_points %></td>
+                      <th>Total Points</th>
+                      <td><%= f.number_field(:total_points, in: 0...1000) %></td>
                   </tr>
+
 
 
 
@@ -69,42 +72,85 @@
           </div>
         </div>
     </div>
-
 </div>
 
+<script>
+  $(function () {
+
+    if ($("select#user_committee").val() == "") {
+      $("select#user_subcommittee option").remove();
+      var row = "<option value=\"" + "" + "\">" + "None" + "</option>";
+      $(row).appendTo("select#user_subcommittee");
+    }
+    $("select#user_committee").change(function () {
+      var id_value_string = $(this).val();
+      if (id_value_string == "") {
+        $("select#user_subcommittee option").remove();
+        var row = "<option value=\"" + "" + "\">" + "None" + "</option>";
+        $(row).appendTo("select#user_subcommittee");
+      } else {
+        // Send the request and update course dropdown
+        $.ajax({
+          dataType: "json",
+          cache: false,
+          url: '/subcommittees_by_committee/' + id_value_string,
+          timeout: 5000,
+          error: function (XMLHttpRequest, errorTextStatus, error) {
+            alert("Failed to submit : " + errorTextStatus + " ;" + error);
+          },
+          success: function (data) {
+            // Clear all options from course select
+            $("select#user_subcommittee option").remove();
+            //put in a empty default line
+            var row = "<option value=\"" + "" + "\">" + "None" + "</option>";
+            $(row).appendTo("select#user_subcommittee");
+            // Fill course select
+            $.each(data, function (i, j) {
+              row = "<option value=\"" + j.id + "\">" + j.subcommittee + "</option>";
+              $(row).appendTo("select#user_subcommittee");
+            });
+          }
+        });
+      }
+    });
+  });
+</script>
+
 <style>
-  a{
+  a {
     text-decoration: none;
     color: #1b98f8;
   }
-  .header a{
+
+  .header a {
     color: white;
   }
-  th{
 
+  th{
     background:none;
     color:#777;
     height:20%;
     width:20%;
     padding-right:1em;
   }
+
   table{
     width:auto;
-
-
   }
-  .table{
-    border:2px solid black;
 
+  .table {
+    border: 2px solid black;
   }
-  .table td a{
+
+  .table td a {
     background-color: #0078E7;
     color: white;
-    padding:.3em;
-    border-radius:10px;
+    padding: .3em;
+    border-radius: 10px;
     text-decoration: none;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   }
+
   .content {
     margin: 0 auto;
     padding: 0 2em;
@@ -126,6 +172,7 @@
       margin:20px;
       border:1px solid black;
     }
+
   .pure-button {
     color: white;
     border-radius: 4px;
@@ -133,8 +180,8 @@
     margin-bottom: 10px;
   }
 
-  
-  input{
+
+  input, select {
     font-family: inherit;
     font-size: 100%;
     margin: 0;
@@ -149,7 +196,7 @@
     box-sizing: border-box;
     line-height: .5em;
   }
-  button{
+button{
     cursor:pointer;
   }
   #mobile{
@@ -162,6 +209,29 @@
   }
   #rbody{
     float:left;
+  }
+
+#formTable {
+    width: 70%;
+    justify-content: center;
+
+  }
+
+  .input[type="submit"i] {
+    appearance: push-button;
+    user-select: none;
+    white-space: pre;
+    align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    color: -internal-light-dark(buttontext, rgb(170, 170, 170));
+    background-color: #0078E7;
+    box-sizing: border-box;
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(195, 195, 195));
+    border-image: initial;
   }
 
 
@@ -272,6 +342,5 @@ only screen and (max-width: 475px)  {
         transition: width .5s ease-in-out, left .5s ease-in-out;
   }
 }
+
 </style>
-
-

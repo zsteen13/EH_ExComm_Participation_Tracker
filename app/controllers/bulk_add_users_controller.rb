@@ -31,4 +31,29 @@ class BulkAddUsersController < ApplicationController
 
     redirect_to('/members')
   end
+
+  def correct_csv_all_fields
+    filename = Rails.root.join('public', 'data', 'correct_csv_all_fields.csv')
+    send_file(filename)
+  end
+
+  def correct_csv_required_fields
+    filename = Rails.root.join('public', 'data', 'correct_csv_required_fields.csv')
+    send_file(filename)
+  end
+
+  def correct_csv_some_optional_fields
+    filename = Rails.root.join('public', 'data', 'correct_csv_some_optional_fields.csv')
+    send_file(filename)
+  end
+
+  def incorrect_csv_email_last_name_switched
+    filename = Rails.root.join('public', 'data', 'incorrect_csv_email_last_name_switched.csv')
+    send_file(filename)
+  end
+
+  def incorrect_csv_not_enough_columns
+    filename = Rails.root.join('public', 'data', 'incorrect_csv_not_enough_columns.csv')
+    send_file(filename)
+  end
 end
