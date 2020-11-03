@@ -74,14 +74,13 @@ feature 'Edit Subommittee Information' do
 
   scenario 'back button test no changes' do
     visit('/committees/1/subcommittees')
-    find("a[href='/subcommittees/2/edit']").click
+    find("a[href='/subcommittees/3/edit']").click
     expect(page).to have_content 'Edit Subcommittee'
 
     find("a[href='/committees/1/subcommittees']").click
 
     expect(page).to have_current_path '/committees/1/subcommittees'
-    expect(page).to have_content 'External Subcommittees'
-    expect(page).to have_content 'Professional Development'
+    expect(page).to have_content 'Service'
 
     find("a[id='return_to_committees']").click
     expect(page).to have_current_path '/committees'
@@ -100,6 +99,7 @@ feature 'Edit Subommittee Information' do
     expect(page).to have_current_path '/committees/0/subcommittees'
     expect(page).to have_content 'Change Subcommittee'
     expect(page).to have_content 'Research and Technology'
+    expect(page).to have_content 'Professional Development'
     expect(page).to have_content '23'
 
     find("a[id='return_to_committees']").click
@@ -118,7 +118,6 @@ feature 'Edit Subommittee Information' do
 
     expect(page).to have_current_path '/committees/1/subcommittees'
     expect(page).to have_content 'Changing Service'
-    expect(page).to have_content 'Professional Development'
     expect(page).to have_content '290'
 
     find("a[id='return_to_committees']").click
@@ -181,13 +180,13 @@ feature 'Delete Subcommittee' do
 
   scenario 'delete a subcommittee from External' do
     visit('/committees/1/subcommittees')
-    find("a[href='/subcommittees/2/delete']").click
+    find("a[href='/subcommittees/3/delete']").click
     expect(page).to have_content 'Delete Subcommittee from External'
 
     click_button 'Delete Subcommittee'
 
     expect(page).to have_current_path '/committees/1/subcommittees'
-    expect(page).not_to have_content 'Professional Development'
+    expect(page).not_to have_content 'Service'
 
     find("a[id='return_to_committees']").click
     expect(page).to have_current_path '/committees'

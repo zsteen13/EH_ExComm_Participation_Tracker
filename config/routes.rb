@@ -71,5 +71,4 @@ Rails.application.routes.draw do
   end
 
   get 'subcommittees_by_committee/:committee_id', to: 'members#subcommittees_by_committee'
-  get '/subcommittee_search' => 'members#subcommittee_search'
 end

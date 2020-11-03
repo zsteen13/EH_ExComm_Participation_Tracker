@@ -92,13 +92,13 @@ feature 'View Subcommittee' do
     expect(page).to have_content 'Internal Subcommittees'
     expect(page).to have_content 'Community Building'
     expect(page).to have_content 'Research and Technology'
+    expect(page).to have_content 'Professional Development'
   end
 
   scenario 'view subcommittee for External' do
     visit('committees')
     find("a[href='/committees/1/subcommittees']").click
     expect(page).to have_content 'External Subcommittees'
-    expect(page).to have_content 'Professional Development'
     expect(page).to have_content 'Service'
 
     find("a[id='return_to_committees']").click

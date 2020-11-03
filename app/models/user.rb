@@ -30,7 +30,7 @@ class User < ApplicationRecord
       args[:point_threshold] = if args[:committee].nil? && args[:subcommittee].nil?
                                  # set default threshold value
                                  Constant.where(name: 'point_threshold_value').take.value
-                               elsif !args[:committee].nil?
+                               elsif args[:subcommittee].nil?
                                  # update point threshold if member is in a committee
                                  Committee.where(id: args[:committee]).take.point_threshold
                                else
