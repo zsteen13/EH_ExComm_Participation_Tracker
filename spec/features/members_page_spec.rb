@@ -13,19 +13,19 @@ feature 'Members Page'  do
 
   scenario 'view a member' do
     visit('/members')
-    find("a[href='/members/1']").click
+    find("a[href='/members/2']").click
     expect(page).to have_content 'General Info'
   end
 
   scenario 'edit a member' do
     visit('/members')
-    find("a[href='/members/1/edit']").click
+    find("a[href='/members/2/edit']").click
     expect(page).to have_content 'Edit Member'
   end
 
   scenario 'delete a member' do
     visit('/members')
-    find("a[href='/members/1/delete']").click
+    find("a[href='/members/2/delete']").click
     expect(page).to have_content 'Are you sure you want to permanently delete this member from the system?'
     click_button 'commit'
   end

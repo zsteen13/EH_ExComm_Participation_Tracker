@@ -14,7 +14,7 @@ describe MembersController, type: :system do
 
     scenario 'admin should be able to create a member' do
       visit '/members'
-      click_link 'Create New Member'
+      click_button 'Create New Member'
 
       fill_in 'user_first_name', with: 'test first'
       fill_in 'user_last_name', with: 'test last'
