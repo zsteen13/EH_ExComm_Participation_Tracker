@@ -52,6 +52,7 @@
   }
   td{
     border-right:1px solid #ccc;
+    color:black;
   }
   .table{
     border:2px solid black;
@@ -78,20 +79,28 @@ only screen and (max-width: 760px)  {
     display: block; 
   }
   
-
-
-
-  th { border:none; border-bottom:1px solid #ccc; }
-  th:nth-of-type(1){ border-top-left-radius:8px; }
-  th:nth-of-type(2){ border-top-right-radius:8px; }
-  tr { border: 1px solid #ccc; }
+  .table{
+    border:none;
+    border-bottom: 2px solid #ccc;
+  }
+  tr { border: 2px solid #ccc;border-bottom:none; }
   
   td { 
     /* Behave  like a "row" */
     border: none;
     border-bottom: 1px solid #eee; 
     position: relative;
-    padding-left: 50%; 
+    padding-left: 50%;
+  }
+
+  td:nth-of-type(3){
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+  }
+  td:nth-of-type(3):hover{
+    overflow: visible;
+    text-overflow: 
   }
   
   td:before { 

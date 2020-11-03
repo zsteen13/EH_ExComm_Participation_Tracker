@@ -103,6 +103,9 @@ td, th {
   border: 1px solid #ccc; 
   text-align: left; 
 }
+td{
+  color:black;
+}
 table th .current{
     padding-right: 0;
     background-repeat: no-repeat;
@@ -127,6 +130,12 @@ only screen and (max-width: 760px)  {
   /* Force table to not be like tables anymore */
   table, thead, tbody, th, td, tr { 
     display: block; 
+  }
+  .content{
+    width:100%;
+  }
+  .header{
+    width:100%;
   }
   
   /* Hide table headers (but not display: none;, for accessibility) */
@@ -169,7 +178,18 @@ only screen and (max-width: 760px)  {
     border: none;
     border-bottom: 1px solid #eee; 
     position: relative;
-    padding-left: 50%; 
+    padding-left: 50%;
+    max-width: 50%;
+  }
+
+  td:nth-of-type(5){
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+  }
+  td:nth-of-type(5):hover{
+    overflow: visible;
+    text-overflow: 
   }
   
   td:before { 
@@ -180,7 +200,7 @@ only screen and (max-width: 760px)  {
     left: 6px;
     width: 45%; 
     padding-right: 10px; 
-    white-space: nowrap;
+    
     color:#500000;
     font-weight: bold;
   }

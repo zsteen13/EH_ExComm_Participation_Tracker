@@ -21,7 +21,7 @@
                             <th>UIN</th>
                         </tr>
                         </thead>
-                        <tbody class="text-style" style="font-size:30px;color:black;">
+                        
                             <% @members_attended.each do |members_attended|%>
                             <tr>
                                 <td><%= User.find_by(uin: members_attended.uin).try(:first_name) %></td>
@@ -29,7 +29,7 @@
                                 <td><%= User.find_by(uin: members_attended.uin).try(:uin) %></td>
                             </tr>
                             <% end %>
-                        </tbody>
+                        
                     </table>
                 </div>
             </div>
@@ -48,7 +48,6 @@
         color: white;
         border-radius: 4px;
         text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-        font-size:1.2vw;
         left:0;
     }
     .pure-table th{
@@ -57,5 +56,61 @@
     }
     .pure-table td{
         background:#f6f6f6;
+        font-size:20px;color:black;
     }
+@media 
+only screen and (max-width: 760px)  {
+
+  /* Force table to not be like tables anymore */
+  table, thead, tbody, th, td, tr { 
+    display: block; 
+  }
+  
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr { 
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr { border: 2px solid #ccc;border-bottom:none;}
+
+  .pure-table{
+    border:none;
+    border-bottom:2px solid #ccc;
+  }
+
+  
+  .pure-table td { 
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee; 
+    position: relative;
+    padding-left: 50%;
+    overflow-wrap: auto; 
+  }
+  
+  .pure-table td:before { 
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 10px;
+    left: 6px;
+    width: 45%; 
+    white-space: nowrap;
+    color:#500000;
+    font-weight: bold;
+    margin-right:10px;
+  }
+  
+  /*
+  Label the data
+  */
+  td:nth-of-type(1):before { content: "First Name"; }
+  td:nth-of-type(2):before { content: "Last Name"; }
+  td:nth-of-type(3):before { content: "UIN"; }
+  .head{
+    display: none;
+  }
+}
 </style>
