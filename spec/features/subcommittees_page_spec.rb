@@ -193,7 +193,7 @@ feature 'Delete Subcommittee' do
     expect(page).to have_current_path '/committees'
   end
 
-  scenario 'delete a subcommittee from External' do
+  scenario 'delete a subcommittee from Internal' do
     visit('/committees/0/subcommittees')
     find("a[href='/subcommittees/1/delete']").click
     expect(page).to have_content 'Delete Subcommittee from Internal'
@@ -205,5 +205,8 @@ feature 'Delete Subcommittee' do
 
     find("a[id='return_to_committees']").click
     expect(page).to have_current_path '/committees'
+
+    visit('/members')
+    expect(page).not_to have_content 'Research and Technology'
   end
 end

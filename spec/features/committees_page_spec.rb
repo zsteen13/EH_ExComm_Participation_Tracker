@@ -138,7 +138,7 @@ feature 'View Members in a Committee' do
   end
 end
 
-feature 'Delete Committee Information' do
+feature 'Delete Committee' do
   include_context 'when authenticated as admin' # support context to log in a user
 
   scenario 'back button test no changes' do
@@ -150,6 +150,9 @@ feature 'Delete Committee Information' do
 
     expect(page).to have_current_path '/committees'
     expect(page).to have_content 'External'
+
+    visit('/members')
+    expect(page).to have_content 'External'
   end
 
   scenario 'delete a committee' do
@@ -160,6 +163,9 @@ feature 'Delete Committee Information' do
     click_button 'Delete Committee'
 
     expect(page).to have_current_path '/committees'
+    expect(page).not_to have_content 'Operations'
+
+    visit('/members')
     expect(page).not_to have_content 'Operations'
   end
 end
