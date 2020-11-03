@@ -11,13 +11,14 @@
       <br>
 
       <div class="pure-button-group" role="group" aria-label="...">
-        <a class="pure-button pure-button-primary" href= members/new> Create New Member</a>
-      <% if is_admin? %>
-            <a id="bulk_add_users_btn" class="pure-button pure-button-primary" href= /bulk_add_users>Bulk Add Users</a>
+        <a class="pure-button pure-button-primary" href= members/new>Create New Member</a>
 
+        <% if admin? %>
+          <a id="bulk_add_users_btn" class="pure-button pure-button-primary" href=/bulk_add_users >Bulk Add Users</a>
+          <a id="pointP_threshold_btn" class="pure-button pure-button-primary" href=members/point_threshold >Change Point Threshold</a>
         <% end %>
 
-        <%= form_tag href='members', :class => "pure-form pure-form-stacked", method: :get  do %>
+        <%= form_tag href='members', :class => "pure-form pure-form-stacked", method: :get do %>
           <%= text_field_tag :search, params[:search], :value=> params[:search],:pattern => "[0-9]+", :required => true %>
 
           <%= submit_tag 'Set Threshold Points Below', :class => "pure-button pure-button-primary", :name=>'below' %>
@@ -31,6 +32,7 @@
       <div class="table">
         <table summary="member detail view">
           <tr class = "header">
+
             <th><%= sortable "First name  ","first_name" %>
               <% if sort_column != 'first_name' %>
               <img src="sort.png" width="20px" heigh="30px" style="vertical-align:middle">
@@ -64,6 +66,7 @@
               <%  end %>
 
             </th>
+
             <th>Actions </th>
           </tr>
 
@@ -78,7 +81,7 @@
             <td class="actions">
               <%= link_to("Profile", member_path(member), :class => 'action show') %>
               <%= link_to("Edit", edit_member_path(member), :class => 'action edit') %>
-              <%= link_to("Delete",delete_member_path(member), :class => 'action delete') %>
+              <%= link_to("Delete", delete_member_path(member), :class => 'action delete') %>
             </td>
           </tr>
           <% end %>
@@ -88,9 +91,6 @@
     </div>
   </div>
 </div>
-<script>
-
-</script>
 
 <style>
   a{

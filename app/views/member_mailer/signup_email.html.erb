@@ -1,0 +1,11 @@
+<div class="content" style="font-size: 20px;width=100%
+        color: black;margin-left: 1rem;padding: 0;font-family: 'Lora', Serif;">
+  <h1 style="text-align: center; color: #003C71;border-bottom: 2px solid #a7a7a7;font-family: 'Roboto', Sans-Serif;">Howdy <%=@user.first_name%>!</h1>
+  <p style="text-align: left;">Welcome to the Engineering Honors Executive Committee Member Point Tracker.</p>
+  <p style="text-align: left;">You are receiving this email because your organization registered you.</p>
+  <p style="text-align: left;">Please click <%= link_to 'this link', @url, style: 'color:#006483, text-decoration:none;'%> to finalize the creation of your account.</p>
+  <p style="text-align: left;">Or, copy and paste this link into your browser: <%=@url%><p>
+  <br>
+  <p style="text-align: left;">The Member Point Tracker is your tool to learn about the events your organization has planned for you. The Events page shows you the currently planned events, when they occur, and how many points you will obtain by attending. Your Profile page shows you your information. Here, you can view how many points you have accumulated, the breakdown of the different point types, and the amount of points you need to reach your goal.</p>
+</div>
+</body>

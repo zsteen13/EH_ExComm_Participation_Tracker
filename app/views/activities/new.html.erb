@@ -7,7 +7,7 @@
     <a class="pure-button pure-button-primary" href="/activities/" > Return to Activities </a>
     <div class="content" style="background:#500000;padding:0;width:60%;border:2px solid black">
         <div class="content" style="background:white;padding:0 2em;margin:20px;border:1px solid black">
-            <h1 style="text-align: center;color:#500000">Create Activites</h1>
+            <h1 style="text-align: center;color:#500000">Create Activities</h1>
             <form action="/activities" method="POST" class="pure-form pure-form-stacked" enctype="application/json" onsubmit="return onSubmit">
                 <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
                 <fieldset>
@@ -38,4 +38,5 @@
         box-shadow: 0px 0px 38px -1px rgba(0,0,0,0.3);
         border-radius: 20px;
     }
+
 </style>

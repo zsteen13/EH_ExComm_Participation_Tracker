@@ -1,0 +1,4 @@
+uin,first name,last name,email,committee,subcommittee,point total,meeting point,event points,misc points,admin
+000000001,John,john@email.com,Doe,Internal,Community Building,0,0,0,0,false
+000000002,Jane,jane@email.com,Doe,Internal,Research and Technology,10,4,4,2,true
+000000003,Jackson,jackson@email.com,Doe,Internal,Community Building,0,0,0,0,false

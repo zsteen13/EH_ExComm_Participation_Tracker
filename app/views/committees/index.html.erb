@@ -1,0 +1,77 @@
+
+<div id="main">
+    <div class="header">
+      <h1>Committees</h1>
+    </div>
+
+    <div class="content" style="text-align:center;">
+        <br>
+        <div class="pure-button-group" role="group" aria-label="...">
+          <%= link_to "Add Committee", new_committee_path, class: "pure-button pure-button-primary"%>
+        </div>                
+        <br>
+        <div id="list" class="pure-u-1">
+            <table class="pure-table">
+                <tr>
+                    <th>Name</th>
+                    <th>Committee Head</th>
+                    <th>Committee Contact</th>
+                    <th>Point Threshold</th>
+                    <th>Actions</th>
+                </tr>
+                <% @committees.each do |committee| %>
+                <tr>
+                    <td><%= committee.committee %></td>
+                    <td><%= committee.head_first_name || 'None' %> <%= committee.head_last_name || 'None'  %></td>
+                    <td><%= committee.email || 'None'  %></td>
+                    <td><%= committee.point_threshold || 'None' %></td>
+                    <td class="actions">
+                        <%= link_to "Edit", edit_committee_path(committee), class: "pure-button pure-button-primary"%>
+                        <%= link_to "Delete", committee_delete_url(committee), class: "pure-button pure-button-primary", id: committee.id.to_s+"_delete"%>
+                        <%= link_to "Subcommittee", committee, class: "pure-button pure-button-primary"%>
+                    </td>
+                </tr>
+                <% end %>
+        </table>
+        </div>
+    </div>
+</div>
+
+<style>
+  a{
+    text-decoration: none;
+    color: #1b98f8;
+  }
+  .header a{
+    color: white;
+  }
+  th{
+    background:#500000;
+    padding:8px;
+  }
+  .table{
+    border:2px solid black;
+  }
+  #table{
+    border-collapse: collapse;
+    width:100%;
+  }
+  .table td a{
+    background-color: #0078E7;
+    color: white;
+    padding:.3em;
+    border-radius:10px;
+    text-decoration: none;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  .content {
+    max-width: 90%;
+  }
+  .pure-button {
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  }
+
+</style>
