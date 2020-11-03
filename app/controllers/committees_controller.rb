@@ -8,7 +8,7 @@ class CommitteesController < ApplicationController
 
   def show
     @committee = Committee.find(params[:id])
-    @subcommittees = Subcommittee.where(committee: @committee.id)
+    @users = User.where(committee: @committee.id)
   end
 
   def new
