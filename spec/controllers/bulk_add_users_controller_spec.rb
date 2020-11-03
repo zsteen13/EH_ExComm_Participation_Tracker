@@ -91,7 +91,7 @@ feature BulkAddUsersController do
       expect(page).to have_content 'None'
     end
 
-    scenario 'should display the proper committee and subcommitte' do
+    scenario 'should display the proper committee and subcommittee' do
       visit 'bulk_add_users'
       filepath = Rails.root.join 'spec', 'data', 'bulk_add_users_correct_5.csv'
       attach_file('new_users', filepath, make_visible: true)
