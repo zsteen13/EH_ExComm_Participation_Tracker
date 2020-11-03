@@ -7,7 +7,7 @@
 
     <div class="content" style="text-align:center;">
     <br>
-    <%= link_to("<< Back to Member page", members_path, :class => 'back-link') %>
+    <%= button_to("Back to Member page", members_path, :method => 'get', :class => 'back-link') %>
     <div class='center'>
       <h1>Bulk File Upload</h1>
       <p>Attach CSV file with new users.</p>

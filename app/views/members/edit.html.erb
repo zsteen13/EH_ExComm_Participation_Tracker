@@ -8,7 +8,7 @@
       </div>
       <%flash.alert = ""%>
     <% end %>
-    <%= link_to("<< Back to Member page", members_path, :class => 'back-link') %>
+    <%= button_to("Back to Member page", members_path, :method => 'get', :class => 'back-link') %>
     <div class="content new member">
       <h2>Edit Member information </h2>
 
@@ -116,7 +116,7 @@
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   }
 
-  
+
   input{
     font-family: inherit;
     font-size: 100%;
@@ -138,5 +138,3 @@
 
   }
 </style>
-
-
