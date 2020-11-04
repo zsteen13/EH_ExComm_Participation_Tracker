@@ -107,7 +107,7 @@ feature 'Members Page'  do
 
   scenario 'edit site point threshold' do
     visit('/members')
-    click_link 'pointP_threshold_btn'
+    click_link 'point_threshold_btn'
     expect(page).to have_content 'Point Threshold Value:'
     fill_in 'point_threshold_value', with: '99'
     click_button 'commit'
