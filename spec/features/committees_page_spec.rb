@@ -113,9 +113,9 @@ feature 'View Members in a Committee' do
     visit('committees')
     find("a[href='/committees/0']").click
     expect(page).to have_content 'Internal Members'
-    expect(page).to have_content 'Non Admin'
+    expect(page).to have_content 'Non admin'
     expect(page).to have_content 'nonadmintest@gmail.com'
-    expect(page).to have_content 'trev'
+    expect(page).to have_content 'Trev'
     expect(page).to have_content 'yoyoyo@aol.com'
 
     find("a[id='return_to_committees']").click
@@ -126,11 +126,11 @@ feature 'View Members in a Committee' do
     visit('committees')
     find("a[href='/committees/2']").click
     expect(page).to have_content 'Operations Members'
-    expect(page).to have_content 'first'
+    expect(page).to have_content 'First'
     expect(page).to have_content 'test@gmail.com'
 
     expect(page).not_to have_content 'Internal Members'
-    expect(page).not_to have_content 'Non Admin'
+    expect(page).not_to have_content 'Non admin'
     expect(page).not_to have_content 'nonadmintest@gmail.com'
 
     find("a[id='return_to_committees']").click
