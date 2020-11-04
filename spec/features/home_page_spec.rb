@@ -6,9 +6,9 @@ require 'pp' # pretty printer, outputs to console
 feature 'Log in correctly' do
   include_context 'when authenticated as member' # support context to log in a user
 
-  scenario 'shows welcome page' do
-    expect(page).to have_current_path '/welcome'
-    expect(page).to have_content 'Welcome to the Texas A&M EH ExCom Member Point Tracker'
+  scenario 'shows profile page' do
+    expect(page).to have_current_path root_path
+    expect(page).to have_content 'My Profile'
   end
 end
 
