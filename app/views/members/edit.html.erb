@@ -2,17 +2,17 @@
   <div class="header">
     <h1>Members</h1>
   </div>
-  <% flash.each do |type, msg| %>
-    <div style="color: red">
-        <%= msg %>
-      </div>
-      <%flash.alert = ""%>
-    <% end %>
     <%= link_to("<< Back to Member page", members_path, :class => 'back-link') %>
     <div id="outer" class="content" >
         <div id="inner" class="content">
           <div class=" new member">
             <h1 style="text-align: center;color:#500000">Edit Member Information</h1>
+              <% flash.each do |type, msg| %>
+                <div style="color: red">
+                  <%= msg %>
+                </div>
+                <%flash.alert = ""%>
+              <% end %>
             <br>
             <%= form_for(@member, :url => member_path(@member), :method =>'patch') do |f| %>
               <table summary="Subject form fields">
@@ -68,6 +68,7 @@
                   <%= f.submit "Update Member", :class => 'pure-button pure-button-primary'  %>
                </div>
               <% end %>
+
 
           </div>
         </div>

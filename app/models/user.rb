@@ -83,7 +83,7 @@ class User < ApplicationRecord
   end
 
   def display_committee_head
-    self[:commitee].blank? ? 'No name' : Committee.where(committee_id: self[:committee]).take.head_first_name
+    self[:commitee].blank? ? 'No name' : Committee.where(id: self[:committee]).take.head_first_name
   end
 
   def to_s
