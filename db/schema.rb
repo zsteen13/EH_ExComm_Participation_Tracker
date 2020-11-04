@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20_201_030_184_953) do
 
   create_table 'user_keys', force: :cascade do |t|
     t.string 'key', null: false
-    t.integer 'user_id', null: false
+    t.bigint 'user_id', null: false
     t.index ['user_id'], name: 'index_user_keys_on_user_id'
   end
 

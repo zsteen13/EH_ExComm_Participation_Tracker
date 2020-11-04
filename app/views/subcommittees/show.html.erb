@@ -1,12 +1,12 @@
 <div id="main">
 <div class="header">
-  <h1> <%= @committee.committee %> Members</h1>
+  <h1> <%= @subcommittee.subcommittee %> Members</h1>
 </div>
 
 <div class="content" style="text-align:center;">
     <div class="pure-button-group" role="group" aria-label="...">
         <p>
-        <%= link_to "Return to Committees", committees_path, class: "pure-button pure-button-primary", id: "return_to_committees"%>
+        <%= link_to "Return to Subcommittees", committee_subcommittees_path(@subcommittee.committee), class: "pure-button pure-button-primary"%>
         </p>
     </div>   
     <div id="list" class="pure-u-1">
@@ -41,9 +41,6 @@ color: white;
 th{
 background:#500000;
 padding:8px;
-}
-td{
-    color:black;
 }
 .table{
 border:2px solid black;

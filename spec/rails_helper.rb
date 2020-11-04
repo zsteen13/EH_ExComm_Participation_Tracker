@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# should resolve the db setup issue when trying to run rspec the first time
+system 'RAILS_ENV=test bin/rake db:reset'
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
