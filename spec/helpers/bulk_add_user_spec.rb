@@ -42,8 +42,8 @@ RSpec.describe BulkAddUsersHelper, type: :helper do
     users, valid = BulkAddUsersHelper.parse_data(filename)
     user = users[0]
     expect(user.uin).to eq '958285839'
-    expect(user.first_name).to eq 'trevor'
-    expect(user.last_name).to eq 'moore'
+    expect(user.first_name).to eq 'Trevor'
+    expect(user.last_name).to eq 'Moore'
     expect(user.email).to eq 'moore.trev@tamu.edu'
     expect(user.committee).to eq nil
     expect(user.subcommittee).to eq nil
