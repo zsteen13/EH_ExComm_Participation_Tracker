@@ -22,7 +22,7 @@ Committee.create!(id: 2, committee: 'Operations', head_first_name: 'Sample_First
 
 Subcommittee.create!(id: 0, subcommittee: 'Community Building', committee: 0, point_threshold: 102)
 Subcommittee.create!(id: 1, subcommittee: 'Research and Technology', committee: 0, point_threshold: 102)
-Subcommittee.create!(id: 2, subcommittee: 'Professional Development', committee: 1, point_threshold: 102)
+Subcommittee.create!(id: 2, subcommittee: 'Professional Development', committee: 0, point_threshold: 102)
 Subcommittee.create!(id: 3, subcommittee: 'Service', committee: 1, point_threshold: 102)
 
 # Admin and non Admin users for rspec and capybara testing
