@@ -80,6 +80,10 @@ class User < ApplicationRecord
     self[:subcommittee].blank? ? 'None' : Subcommittee.where(id: self[:subcommittee]).take.subcommittee
   end
 
+  def display_committee_head
+    self[:committee].blank? ? 'None' : "#{Committee.where(id: self[:committee]).take.head_first_name} #{Committee.where(id: self[:committee]).take.head_last_name}"
+  end
+
   def display_committee_email
     self[:committee].blank? ? 'None' : Committee.where(id: self[:committee]).take.email
   end
