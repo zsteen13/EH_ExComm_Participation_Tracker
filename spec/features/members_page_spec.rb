@@ -13,19 +13,19 @@ feature 'Members Page'  do
 
   scenario 'view a member' do
     visit('/members')
-    find(:xpath, "//a[@href='/members/2']").click
+    click_on("Profile")
     expect(page).to have_content 'General Info'
   end
 
   scenario 'edit a member' do
     visit('/members')
-    find(:xpath, "//a[@href='/members/2/edit']").click
+    click_on("Edit")
     expect(page).to have_content 'Edit Member'
   end
 
   scenario 'delete a member' do
     visit('/members')
-    find(:xpath, "//a[@href='/members/2/delete']").click
+    click_on("Delete")
     expect(page).to have_content 'Are you sure you want to permanently delete this member from the system?'
     click_button 'commit'
   end
