@@ -147,7 +147,7 @@ feature 'View Members in a Subcommittee' do
     visit('/committees/0/subcommittees')
     find("a[href='/subcommittees/1']").click
     expect(page).to have_content 'Research and Technology Members'
-    expect(page).to have_content 'David'
+    expect(page).to have_content 'Kylie'
     expect(page).to have_content 'yoyoyo@aol.com'
     expect(page).not_to have_content 'admintest@gmail.com'
     expect(page).not_to have_content 'nonadmintest@gmail.com'

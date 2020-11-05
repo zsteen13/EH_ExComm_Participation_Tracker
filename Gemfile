@@ -9,7 +9,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'rails', '~> 6.0.3', '>= 6.0.3.3'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
-# Use SQL for local dev, Zac's machine
+# Use SQL for local dev
 # gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
