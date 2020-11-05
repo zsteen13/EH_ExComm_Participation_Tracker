@@ -13,19 +13,23 @@ feature 'Members Page'  do
 
   scenario 'view a member' do
     visit('/members')
-    click_on("Profile")
+    expect(page).to have_current_path '/members'
+    expect(page).to have_content 'Profile'
+    click_on('Profile')
     expect(page).to have_content 'General Info'
   end
 
   scenario 'edit a member' do
     visit('/members')
-    click_on("Edit")
+    expect(page).to have_content 'Edit'
+    click_on('Edit')
     expect(page).to have_content 'Edit Member'
   end
 
   scenario 'delete a member' do
     visit('/members')
-    click_on("Delete")
+    expect(page).to have_content 'Delete'
+    click_on('Delete')
     expect(page).to have_content 'Are you sure you want to permanently delete this member from the system?'
     click_button 'commit'
   end
