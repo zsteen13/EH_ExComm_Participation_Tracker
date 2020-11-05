@@ -4,37 +4,46 @@
       <h2>Howdy <%= current_user.first_name %>, here you can view and edit members.</h2>
     </div>
     <%= link_to("<< Back to Member page", members_path, :class => 'back-link') %>
-    <div class="content" style="text-align:center;">
-      <div class="member delete">
-          <h2>Delete a member</h2>
-          <%= form_for(@member, :url => member_path(@member), :method => 'delete') do |f| %>
-              <p> Are you sure you want to permanently delete this member from the system? </p>
-              <table summary ="member delete information">
-                <tr class = "head">
-                  <th>First Name</th>
-                  <th>Last Name </th>
-                  <th>UIN</th>
-                  <th>Committee</th>
-                  <th>Subcommittee</th>
-                  <th>Email</th>
-                </tr>
-                <tr>
-                    <td><%= @member.first_name %></td>
-                    <td><%= @member.last_name %></td>
-                    <td><%= @member.uin %></td>
-                    <td id="Comm"><%= @member.committee %> &nbsp </td>
-                    <td id="Sub"><%= @member.subcommittee %> &nbsp </td>
-                    <td><%= @member.email %></td>
-                </tr>
+    <div class="l-content">
+      <div class="profile-boxes pure-g">
+        <div class="pure-u-1">
+          <div class="profile-box">
 
-              </table>
+          <div class="member delete">
+              <h2>Delete a member</h2>
+              <%= form_for(@member, :url => member_path(@member), :method => 'delete') do |f| %>
+                  <p> Are you sure you want to permanently delete this member from the system? </p>
+                  <table class="pure-table" style="width:100%;background-color:white;" summary ="member delete information">
+                    <tr class = "head">
+                      <th>First Name</th>
+                      <th>Last Name </th>
+                      <th>UIN</th>
+                      <th>Committee</th>
+                      <th>Subcommittee</th>
+                      <th>Email</th>
+                    </tr>
+                    <tr>
+                        <td><%= @member.first_name %></td>
+                        <td><%= @member.last_name %></td>
+                        <td><%= @member.uin %></td>
+                        <td id="Comm"><%= @member.committee %> &nbsp </td>
+                        <td id="Sub"><%= @member.subcommittee %> &nbsp </td>
+                        <td><%= @member.email %></td>
+                    </tr>
 
-              <div class="form-buttons"> 
-                <%= f.submit 'Delete member', :class => 'pure-button', :style => 'background: rgb(240,0,0)' %>
-              </div>
-           <% end %>
+                  </table>
+                  <br>
+                  <div class="form-buttons"> 
+                    <%= f.submit 'Delete member', :class => 'pure-button', :style => 'background: rgb(240,0,0)' %>
+                  </div>
+               <% end %>
+            </div>
+
+          </div>
         </div>
       </div>
+    </div>
+    
   </div>
 <style>
   a{
@@ -49,6 +58,29 @@
 
     padding:8px;
   }
+  .profile-box{
+        background:white;
+        border:none;
+        margin:2em 0;
+    }
+    .pure-table {
+        border: 2px solid #a7a7a7;
+    }
+    .pure-button {
+        color: white;
+        border-radius: 4px;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        left:0;
+    }
+    .pure-table th{
+        background:#500000;
+        border-right: 2px solid #a7a7a7;
+        padding:8px;
+    }
+    .pure-table td{
+        background:#f6f6f6;
+        color:black;
+    }
 
 
   }
@@ -86,36 +118,16 @@ only screen and (max-width: 760px)  {
     top: -9999px;
     left: -9999px;
   }
-  .act{
-    display:none;
-  }
-  .head{
-    width:100%;
-    content: "";
-    display: table;
-    clear: both;
-    border:none;
-    border-top-right-radius: 10px;
-    border-top-left-radius:10px;
-  }
-    .lhead{
-      float: left;
-      width: 46%;
-      text-align:center;
-      
-    }
-    .rhead{
-      float: right;
-      width: 46%;
-      text-align:center;
-    }
 
-  th { border:none; border-bottom:1px solid #ccc; }
-  th:nth-of-type(1){ border-top-left-radius:8px; }
-  th:nth-of-type(2){ border-top-right-radius:8px; }
-  tr { border: 2px solid #ccc; margin-bottom:10px; }
+  tr { border: 2px solid #ccc;border-bottom:none;}
+
+  .pure-table{
+    border:none;
+    border-bottom:2px solid #ccc;
+  }
+
   
-  td { 
+  .pure-table td { 
     /* Behave  like a "row" */
     border: none;
     border-bottom: 1px solid #eee; 
@@ -124,7 +136,7 @@ only screen and (max-width: 760px)  {
     overflow-wrap: auto; 
   }
   
-  td:before { 
+  .pure-table td:before { 
     /* Now like a table header */
     position: absolute;
     /* Top/left values mimic padding */
@@ -136,6 +148,16 @@ only screen and (max-width: 760px)  {
     font-weight: bold;
     margin-right:10px;
   }
+
+  td:nth-of-type(6){
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+  }
+  td:nth-of-type(6):hover{
+    overflow: visible;
+    text-overflow: 
+  }
   
   /*
   Label the data
@@ -146,7 +168,7 @@ only screen and (max-width: 760px)  {
   td:nth-of-type(4):before { content: "Committee"; }
   td:nth-of-type(5):before { content: "Subcommittee"; }
   td:nth-of-type(6):before { content: "Email"; }
-  td:nth-of-type(7):before { content: "Total Points"; }
+
   .head{
     display: none;
   }

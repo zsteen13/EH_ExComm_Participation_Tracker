@@ -4,7 +4,7 @@
       <h1>Committees</h1>
     </div>
 
-    <div class="content" style="text-align:center;">
+    <div class="l-content" style="text-align:center;">
         <br>
         <div class="pure-button-group" role="group" aria-label="...">
           <%= link_to "Add Committee", new_committee_path, class: "pure-button pure-button-primary"%>
@@ -62,10 +62,12 @@
     border-collapse: collapse;
     width:100%;
   }
-
-  .content {
+  .l-content{
     max-width: 90%;
+    margin:auto;
   }
+
+  
   .pure-button {
     color: white;
     border-radius: 4px;
@@ -79,7 +81,10 @@ only screen and (max-width: 760px)  {
   table, thead, tbody, th, td, tr { 
     display: block; 
   }
-  
+  .l-content{
+    max-width:97%;
+  }
+
   .table{
     border:none;
     border-bottom: 2px solid #ccc;
@@ -91,7 +96,7 @@ only screen and (max-width: 760px)  {
     border: none;
     border-bottom: 1px solid #eee; 
     position: relative;
-    padding-left: 50%;
+    padding-left: 55%;
   }
 
   td:nth-of-type(3){
@@ -122,6 +127,7 @@ only screen and (max-width: 760px)  {
   td:nth-of-type(5){
     padding-left:6px;
   }
+  
 
   /*
   Label the data
