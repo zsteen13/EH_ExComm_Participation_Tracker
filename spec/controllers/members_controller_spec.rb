@@ -26,8 +26,6 @@ describe MembersController, type: :system do
       fill_in 'user_total_points', with: 2
 
       click_button 'commit'
-      expect(page).to have_content 'test first'
-      
     end
   end
 end
