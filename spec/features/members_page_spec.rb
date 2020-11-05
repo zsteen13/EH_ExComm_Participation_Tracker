@@ -62,7 +62,6 @@ feature 'Members Page'  do
 
     find("a[href='/members/2/edit']").click
 
-
     # changing to external should change subcommitee options
     select 'Internal', from: 'user[committee]'
 
@@ -71,7 +70,6 @@ feature 'Members Page'  do
     visit('/members')
 
     find("a[href='/members/2/edit']").click
-
 
     # changing to external should change subcommitee options
     select 'None', from: 'user[committee]'
