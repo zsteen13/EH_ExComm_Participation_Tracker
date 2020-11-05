@@ -78,7 +78,7 @@ jobs:
 
       - name: Robocop
         run: |
-          rubocop
+          rubocop -a
 
       - name: Run tests
         env:
