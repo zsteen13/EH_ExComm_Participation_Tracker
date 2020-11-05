@@ -27,6 +27,7 @@ describe MembersController, type: :system do
 
       click_button 'commit'
       expect(page).to have_content 'test first'
+      
     end
   end
 end
