@@ -43,13 +43,13 @@
                 <%  end %>
               </th>
 
-              <th class="lhead"><%= sortable "Committee  ","committee" %>
+              <th class="lhead widthComm"><%= sortable "Committee  ","committee" %>
                 <% if sort_column != 'committee' %>
                 <%= image_tag( "/sort.png",  {:style => "width:20px; heigh:30px ;vertical-align:middle"} )%>
                 <%  end %>
               </th>
 
-              <th class="rhead"><%= sortable "Subcommittee  ","subcommittee" %>
+              <th class="rhead widthSubc"><%= sortable "Subcommittee  ","subcommittee" %>
                 <% if sort_column != 'subcommittee' %>
                 <%= image_tag( "/sort.png",  {:style => "width:20px; heigh:30px ;vertical-align:middle"} )%>
                 <%  end %>
@@ -61,7 +61,7 @@
                 <%  end %>
               </th>
 
-              <th class="rhead"><%=  sortable "Total points  ","total_points" %>
+              <th class="rhead widthPoint"><%=  sortable "Total points  ","total_points" %>
                 <% if sort_column != 'total_points' %>
               <%= image_tag( "/sort.png",  {:style => "width:20px; heigh:30px ;vertical-align:middle"} )%>
                 <%  end %>
@@ -119,6 +119,19 @@
   border: 2px solid black; 
   border-radius: 10px;
 }
+.widthComm{
+  min-width: 120px;
+}
+.widthSubc{
+  min-width: 150px;
+}
+.widthPoint{
+  min-width:60px;
+}
+.content{
+  max-width: none;
+}
+
 /* Zebra striping */
 tr:nth-of-type(odd) { 
   background: #eee; 
@@ -151,7 +164,7 @@ table th .current{
 
   .table th .desc{
   background-image: url(sort-descending.png);
-    background-size: 14px 14px;
+  background-size: 14px 14px;
   }
 
 @media 
