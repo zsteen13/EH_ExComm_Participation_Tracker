@@ -78,9 +78,9 @@
             <td><%= member.email %></td>
             <td><%= member.display_total_points %></td>
             <td class="actions">
-              <%= link_to("Profile", member_path(member), :class => 'action show') %>
-              <%= link_to("Edit", edit_member_path(member), :class => 'action edit') %>
-              <%= link_to("Delete", delete_member_path(member), :class => 'action delete') %>
+              <%= link_to("Profile", id: "show_#{member.id}", :class => 'action show') %>
+              <%= link_to("Edit", id: "edit_#{member.id}", :class => 'action edit') %>
+              <%= link_to("Delete", id: "delete_#{member.id}", :class => 'action delete') %>
             </td>
           </tr>
           <% end %>

@@ -14,6 +14,7 @@ describe MembersController, type: :system do
 
     scenario 'admin should be able to create a member' do
       visit '/members'
+      expect(page).to have_current_path '/members'
       expect(page).to have_content 'Create New Member'
       click_on('Create New Member')
 
@@ -25,6 +26,7 @@ describe MembersController, type: :system do
       fill_in 'user_total_points', with: 2
 
       click_button 'commit'
+      expect(page).to have_content 'test first'
     end
   end
 end
