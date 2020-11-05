@@ -74,6 +74,14 @@ class MembersController < ApplicationController
     end
   end
 
+  def subcommittee_search
+    @subcommittees = if params[:committee_id].present? && params[:committee_id].strip != ''
+                       Subcommittee.where('committee = ?', params[:committee_id])
+                     else
+                       Subcommittee.all
+                     end
+  end
+
   def point_threshold
     @current_point_threshold_value = Constant.where(name: 'point_threshold_value').take.value
   end

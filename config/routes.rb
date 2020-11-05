@@ -20,6 +20,13 @@ Rails.application.routes.draw do
   resources :activities
   get 'activities', to: 'activities#activities'
 
+  resources :members do
+    member do
+      get :delete
+    end
+  end
+
+
   get 'bulk_add_users', to: 'bulk_add_users#index'
   get 'bulk_add_users/show', to: 'bulk_add_users#show'
   post 'bulk_add_users/create', to: 'bulk_add_users#create'
@@ -59,16 +66,10 @@ Rails.application.routes.draw do
     resources :subcommittees
   end
 
+
   get '/subcommittees/:subcommittee_id/delete', to: 'subcommittees#delete'
 
-  resources :members do
-    member do
-      get :delete
-    end
-    collection do
-      get 'show_threshold_points'
-    end
-  end
+
 
   get 'subcommittees_by_committee/:committee_id', to: 'members#subcommittees_by_committee'
 end

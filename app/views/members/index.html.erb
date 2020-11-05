@@ -15,7 +15,7 @@
 
         <% if admin? %>
           <a id="bulk_add_users_btn" class="pure-button pure-button-primary" href=/bulk_add_users >Bulk Add Users</a>
-          <a id="point_threshold_btn" class="pure-button pure-button-primary" href=members/point_threshold >Change Point Threshold</a>
+          <a id="pointP_threshold_btn" class="pure-button pure-button-primary" href=members/point_threshold >Change Point Threshold</a>
         <% end %>
 
         <%= form_tag href='members', :class => "pure-form pure-form-stacked", method: :get do %>
@@ -32,12 +32,40 @@
       <div class="table">
         <table summary="member detail view">
           <tr class = "header">
-            <th><%= sortable "First name  ", "first_name" %></th>
-            <th><%= sortable "Last name  ", "last_name" %> </th>
-            <th><%= sortable "Committee  ", "committee" %> </th>
-            <th><%= sortable "Subcommittee  ", "subcommittee" %> </th>
-            <th><%= sortable "Email  ", "email" %></th>
-            <th><%= sortable "Total points  ", "total_points" %></th>
+            <th><%= sortable "First name  ","first_name" %>
+                <% if sort_column != 'first_name' %>
+                <%= image_tag( "/sort.png",  {:style => "width:20px; heigh:30px ;vertical-align:middle"} )%>
+                <%  end %>
+
+              </th>
+              <th><%= sortable "Last name  ","last_name" %>
+                <% if sort_column != 'last_name' %>
+              <%= image_tag( "/sort.png",  {:style => "width:20px; heigh:30px ;vertical-align:middle"} )%>
+                <%  end %>
+
+              </th>
+              <th><%= sortable "Committee  ","committee" %>
+                <% if sort_column != 'committee' %>
+              <%= image_tag( "/sort.png",  {:style => "width:20px; heigh:30px ;vertical-align:middle"} )%>
+                <%  end %>
+              </th>
+              <th><%= sortable "Subcommittee  ","subcommittee" %>
+                <% if sort_column != 'subcommittee' %>
+                <%= image_tag( "/sort.png",  {:style => "width:20px; heigh:30px ;vertical-align:middle"} )%>
+                <%  end %>
+              </th>
+              <th><%= sortable "Email  ","email" %>
+                <% if sort_column != 'email' %>
+                <%= image_tag( "/sort.png",  {:style => "width:20px; heigh:30px ;vertical-align:middle"} )%>
+                <%  end %>
+              </th>
+              <th><%=  sortable "Total points  ","total_points" %>
+                <% if sort_column != 'total_points' %>
+              <%= image_tag( "/sort.png",  {:style => "width:20px; heigh:30px ;vertical-align:middle"} )%>
+                <%  end %>
+
+              </th>
+
             <th>Actions </th>
           </tr>
 
@@ -93,7 +121,7 @@
   .table th .current{
     padding-right: 0;
     background-repeat: no-repeat;
-    background-position: right;
+    background-position: right center;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -101,13 +129,13 @@
 
   }
   .table th .asc{
-    background-image: url(up_arrow.gif);
-    background-size: 10px 10px;
+    background-image: url(sort-ascending.png);
+    background-size: 14px 14px;
   }
 
   .table th .desc{
-    background-image: url(down_arrow.gif);
-    background-size: 10px 10px;
+  background-image: url(sort-descending.png);
+    background-size: 14px 14px;
   }
 
   .content {

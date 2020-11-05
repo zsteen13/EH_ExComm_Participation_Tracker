@@ -6,7 +6,7 @@
   <div class="content" style="background:#500000;padding:0;width:60%;border:2px solid black">
     <div class="content" style="background:white;padding:0 2em;margin:20px;border:1px solid black">
       <h1 style="text-align: center;color:#500000">Create a Member</h1>
-      <%= form_for(@member, :url => members_path, :method =>'post') do |f| %>
+      <%= form_for(@member, :url => members_path, :method =>'post', params[:id] =>@member.id) do |f| %>
       <table id="formTable" summary="Subject form fields">
         <tr>
           <th>First Name</th>

@@ -8,3 +8,10 @@ module ApplicationHelper
     link_to column, request.query_parameters.merge({ sort: title, direction: direction }), { class: css_class }
   end
 end
+
+def arrow(column)
+  # as you're not sorting on the column, you don't want to see the arrow at
+  # all of the header is not for the sorted column
+  return  if params[:sort] != column
+  # ...
+end
