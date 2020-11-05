@@ -2,7 +2,7 @@
   <div class="header">
     <h1>Members</h1>
   </div>
-    <%= button_to("Return to Members", members_path, :method => "get", :class => 'back-link', :class=>"pure-button pure-button-primary") %>
+    <%= button_to("Return to Members", members_path, :method => "get", :class => 'back-link', :class=>"return-button pure-button-primary") %>
     <div id="outer" class="content" >
         <div id="inner" class="content">
           <div class=" new member">
@@ -175,6 +175,26 @@
     }
 
   .pure-button {
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+  }
+  .return-button{
+    display: inline-block;
+    line-height: normal;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    -webkit-user-drag: none;
+    user-select: none;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 100%;
+    padding: .5em 1em;
+    border: none transparent;
+    text-decoration: none;
     color: white;
     border-radius: 4px;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);

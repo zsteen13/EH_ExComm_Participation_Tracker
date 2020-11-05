@@ -3,7 +3,7 @@
     <h1>Members</h1>
   </div>
 
-<%= button_to("Return to Members ", members_path, :method => "get", :class => 'back-link', :class=>"pure-button pure-button-primary") %>
+<%= button_to("Return to Members ", members_path, :method => "get", :class => 'back-link', :class=>"return-button pure-button-primary") %>
     <div id="outer" class="content" style="margin-top:10px">
         <div id="inner" class="content">
             <h1 style="text-align: center;color:#500000">Create a Member</h1>
@@ -160,6 +160,27 @@
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     margin-bottom: 10px;
   }
+  .return-button{
+    display: inline-block;
+    line-height: normal;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    -webkit-user-drag: none;
+    user-select: none;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 100%;
+    padding: .5em 1em;
+    border: none transparent;
+    text-decoration: none;
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+  }
+
 
 
   input,
@@ -285,11 +306,6 @@ only screen and (max-width: 475px)  {
       input.pure-button{
         width:100%;
         max-width: none;
-        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
-        -webkit-transition: width .5s ease-in-out, left .5s ease-in-out;
-        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
-        -o-transition: width .5s ease-in-out, left .5s ease-in-out;
-        transition: width .5s ease-in-out, left .5s ease-in-out;
       }
       .content{
         max-width:100%;
