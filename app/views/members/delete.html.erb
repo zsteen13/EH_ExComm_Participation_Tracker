@@ -3,7 +3,7 @@
       <h1>Members</h1>
       <h2>Howdy <%= current_user.first_name %>, here you can view and edit members.</h2>
     </div>
-    <%= link_to("<< Back to Member page", members_path, :class => 'back-link') %>
+    <%= button_to("Return to members", members_path, :method => "get", :class => 'back-link', :class=>"pure-button pure-button-primary") %>
     <div class="content" style="text-align:center;">
       <div class="member delete">
           <h2>Delete a member</h2>
@@ -29,7 +29,7 @@
 
               </table>
 
-              <div class="form-buttons"> 
+              <div class="form-buttons">
                 <%= f.submit 'Delete member', :class => 'pure-button', :style => 'background: rgb(240,0,0)' %>
               </div>
            <% end %>
