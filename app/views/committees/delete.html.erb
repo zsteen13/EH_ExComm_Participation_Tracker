@@ -2,8 +2,11 @@
     <div class="header">
       <h1>Committees</h1>
     </div>
-    <a class="pure-button pure-button-primary" href="/committees/" > Return to Committees </a>
-
+    <div class="pure-button-group" role="group" aria-label="..." style="text-align:center;">
+        <p>
+        <%= link_to "Return to Committees", committees_path, class: "pure-button pure-button-primary", id: "return_to_committees"%>
+        </p>
+    </div> 
     <div class="content" style="background:#500000;padding:0;width:60%;border:2px solid black">
         <div class="content" style="background:white;padding:0 2em;margin:20px;border:1px solid black">
             <h1 style="text-align: center;color:#500000">Delete Committee Information</h1>
