@@ -34,34 +34,34 @@
           <tr class = "header">
             <th><%= sortable "First name  ","first_name" %>
                 <% if sort_column != 'first_name' %>
-                <img src="sort.png" width="20px" heigh="30px" style="vertical-align:middle">
+                <%= image_tag( "/sort.png",  {:style => "width:20px; heigh:30px ;vertical-align:middle"} )%>
                 <%  end %>
 
               </th>
               <th><%= sortable "Last name  ","last_name" %>
                 <% if sort_column != 'last_name' %>
-                <img src="sort.png" width="20px" heigh="20px" style="vertical-align:middle">
+                <%= image_tag( "/sort.png",  {:style => "width:20px; heigh:30px ;vertical-align:middle"} )%>
                 <%  end %>
 
               </th>
               <th><%= sortable "Committee  ","committee" %>
                 <% if sort_column != 'committee' %>
-                <img src="sort.png" width="20px" heigh="20px" style="vertical-align:middle">
+                <%= image_tag( "/sort.png",  {:style => "width:20px; heigh:30px ;vertical-align:middle"} )%>
                 <%  end %>
               </th>
               <th><%= sortable "Subcommittee  ","subcommittee" %>
                 <% if sort_column != 'subcommittee' %>
-                <img src="sort.png" width="20px" heigh="20px" style="vertical-align:middle">
+                <%= image_tag( "/sort.png",  {:style => "width:20px; heigh:30px ;vertical-align:middle"} )%>
                 <%  end %>
               </th>
               <th><%= sortable "Email  ","email" %>
                 <% if sort_column != 'email' %>
-                <img src="sort.png" width="20px" heigh="20px" style="vertical-align:middle">
+              <%= image_tag( "/sort.png",  {:style => "width:20px; heigh:30px ;vertical-align:middle"} )%>
                 <%  end %>
               </th>
               <th><%=  sortable "Total points  ","total_points" %>
                 <% if sort_column != 'total_points' %>
-                <img src="sort.png" width="20px" heigh="20px" style="vertical-align:middle">
+              <%= image_tag( "/sort.png",  {:style => "width:20px; heigh:30px ;vertical-align:middle"} )%>
                 <%  end %>
 
               </th>
