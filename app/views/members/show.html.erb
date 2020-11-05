@@ -12,14 +12,14 @@
     </div>
 
   <div class = "Member detail show">
-  <%= link_to("<<Back to member page",members_path, :class => 'back-link') %>
+  <%= button_to("Return to members", members_path, :method => "get", :class => 'back-link', :class=>"pure-button pure-button-primary") %>
       <h2 style="margin-left:2em;">Member Details </h2>
        <div class="profile-boxes pure-g">
           <div class="pure-u-1">
             <div class="profile-card">
                 <h1>
                   <%= @member.first_name %>
-                  <%= @member.last_name %> 
+                  <%= @member.last_name %>
                 </h1>
 
                 <div class="profile-info">
@@ -60,7 +60,7 @@
                       </p>
                     <p>
                       <label> <strong>Committee Head Contact: </strong></label>
-                      <a> <%=@member.display_committee_email%> </a> 
+                      <a> <%=@member.display_committee_email%> </a>
                       <i class='fas fa-envelope'></i>
                     </p>
                   </div>
@@ -84,10 +84,10 @@
                 </div>
 
                 <div class="meter">
-                  <div class="progress"> 
-                    <div id="mePts" class="progress-bar" style="border-top-left-radius: 20px;border-bottom-left-radius: 20px;"> </div> 
-                    <div id="evPts" class="progress-bar" style="background-color: #bf892d;"> </div> 
-                    <div id="miPts" class="progress-bar" style="background-color: #bf402d;"> </div> 
+                  <div class="progress">
+                    <div id="mePts" class="progress-bar" style="border-top-left-radius: 20px;border-bottom-left-radius: 20px;"> </div>
+                    <div id="evPts" class="progress-bar" style="background-color: #bf892d;"> </div>
+                    <div id="miPts" class="progress-bar" style="background-color: #bf402d;"> </div>
                   </div>
                 </div>
 
@@ -110,7 +110,7 @@
 </div>
 
 <script>
-  
+
   /*
     Searches for the points of the user in the html and converts them into the width of the progress bar components
   */
@@ -190,7 +190,7 @@
             border-radius: 20px 20px 0px 0px;
             border-bottom: 2px solid #a7a7a7;
         }
-        
+
         .profile-info{
             float: left;
             width: 50%;
@@ -262,7 +262,7 @@
             font-family: 'Roboto', Sans-Serif;
 
         }
-    .meter { 
+    .meter {
         height: 20px;  /* Can be anything */
         position: relative;
         background: #a7a7a7;

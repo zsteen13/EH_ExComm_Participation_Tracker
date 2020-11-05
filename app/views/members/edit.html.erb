@@ -2,7 +2,7 @@
   <div class="header">
     <h1>Members</h1>
   </div>
-    <%= link_to("<< Back to Member page", members_path, :class => 'back-link') %>
+    <%= button_to("Return to Members", members_path, :method => "get", :class => 'back-link', :class=>"pure-button pure-button-primary") %>
     <div id="outer" class="content" >
         <div id="inner" class="content">
           <div class=" new member">
@@ -346,5 +346,4 @@ only screen and (max-width: 475px)  {
         transition: width .5s ease-in-out, left .5s ease-in-out;
   }
 }
-
 </style>

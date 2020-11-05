@@ -4,7 +4,7 @@
       <h1>Members</h1>
     </div>
     <div style="text-align: center;" >
-      <a class="btn pure-button pure-button-primary" href="/members/"> Back to Members Page </a>
+      <%= button_to("Return to Members", members_path, :method => "get", :class => 'back-link', :class=>"pure-button pure-button-primary") %>
     </div>
     <div class="pure-g" style="margin-right: 2em;">
       <div class="pure-u-1">

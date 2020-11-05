@@ -3,12 +3,11 @@
       <h1>Members</h1>
       <h2>Howdy <%= current_user.first_name %>, here you can view and edit members.</h2>
     </div>
-    <%= link_to("<< Back to Member page", members_path, :class => 'back-link') %>
+    <%= button_to("Return to members", members_path, :method => "get", :class => 'back-link', :class=>"pure-button pure-button-primary") %>
     <div class="l-content">
       <div class="profile-boxes pure-g">
         <div class="pure-u-1">
           <div class="profile-box">
-
           <div class="member delete">
               <h2>Delete a member</h2>
               <%= form_for(@member, :url => member_path(@member), :method => 'delete') do |f| %>
@@ -30,7 +29,6 @@
                         <td id="Sub"><%= @member.subcommittee %> &nbsp </td>
                         <td><%= @member.email %></td>
                     </tr>
-
                   </table>
                   <br>
                   <div class="form-buttons"> 
