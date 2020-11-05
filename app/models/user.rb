@@ -10,8 +10,8 @@ class User < ApplicationRecord
   # supplied by email_validator gem
   validates :email, email: true
   validates :total_points, :event_points, :meeting_points, :misc_points, numericality: { only_integer: true }
-  validates :uin, :first_name, :last_name, presence: true
-  validate :valid_uin
+  validates :first_name, :last_name, presence: true
+  validate :valid_student_uin
 
   # First time creation of a user
   after_create do
@@ -91,13 +91,18 @@ class User < ApplicationRecord
   private
 
   # should make this confirm that uin in 9 digits
-  def valid_uin
-    if uin.nil?
-      return # dont report uin validity if its nil, thats another validators job
+  def valid_student_uin
+    if student && uin.blank?
+      errors.add(:uin, 'must be provided for students')
+      return
+    elsif !student && !uin.blank?
+      errors.add(:uin, 'cannot be supplied for non-students')
+      return
+    elsif !student && uin.blank?
+      return
     end
 
     errors.add(:uin, 'must only contain numbers') unless uin.split('').all? { |c| /^[0-9]$/.match?(c) }
-    # uncomment in the future, I know this is a messy change but i'm worried its having cascading effects
     errors.add(:uin, 'must be a length of 9') if uin.length != 9
   end
 end

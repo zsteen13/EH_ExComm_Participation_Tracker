@@ -11,10 +11,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    redirect_to welcome_path and return unless params[:uin].present?
+    redirect_to welcome_path and return unless params[:uin_email].present?
     redirect_to welcome_path and return unless params[:password].present?
 
-    @user = User.find_by(uin: params[:uin])
+    @user = User.find_by(uin: params[:uin_email]) || User.find_by(email: params[:uin_email])
     redirect_to welcome_path and return if @user.nil?
 
     session[:user_id] = @user.id if BCrypt::Password.new(@user.password_digest) == params[:password]
