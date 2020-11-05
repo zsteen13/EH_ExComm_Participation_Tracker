@@ -1,0 +1,47 @@
+<div id="main">
+    <div class="header">
+        <h1> <%= @committee.committee %> Subcommittees</h1>
+    </div>
+
+    <% flash.each do |type, msg| %>
+        <div style="color: red">
+            <%= msg %>
+          </div>
+          <%flash.alert = ""%>
+    <% end %>
+
+    <div class="pure-button-group" role="group" aria-label="..." style="text-align:center;">
+        <p>
+        <%= link_to "Return to Subcommittees", committee_subcommittees_path(@subcommittee.committee), class: "pure-button pure-button-primary"%>
+        </p>
+    </div> 
+
+    <div class="content" style="background:#500000;padding:0;width:60%;border:2px solid black">
+        <div class="content" style="background:white;padding:0 2em;margin:20px;border:1px solid black">
+            <h1 style="text-align: center;color:#500000">Delete Subcommittee from <%= @committee.committee %> </h1>
+            <%= form_for(@subcommittee, :url => subcommittee_path(@subcommittee.id), :method =>'delete') do |f| %>
+                <p>
+                <%= f.label "Subcommittee Name", style: 'text-transform: capitalize; font-weight:bold;'%>
+                <br>
+                <%= f.text_field :subcommittee , placeholder: @subcommittee.subcommittee, :disabled => true,style: 'text-transform: capitalize;'%>
+                </p> 
+                <p>   
+                <%= f.label "Point Threshold", style: 'text-transform: capitalize;font-weight:bold;'%>
+                <br>
+                <%= f.text_field :point_threshold, placeholder: @subcommittee.point_threshold, :disabled => true%>
+                </p> 
+                <p>
+                <%= f.submit 'Delete Subcommittee', :class => 'pure-button pure-button-primary' %>
+                </p>
+            <% end %>
+        
+        </div>
+    </div>
+</div>
+
+<style>
+    .content{
+        box-shadow: 0px 0px 38px -1px rgba(0,0,0,0.3);
+        border-radius: 20px;
+    }
+</style>

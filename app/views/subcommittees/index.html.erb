@@ -1,0 +1,74 @@
+
+<div id="main">
+<div class="header">
+  <h1> <%= @committee.committee %> Subcommittees</h1>
+</div>
+
+<div class="content" style="text-align:center;">
+    <div class="pure-button-group" role="group" aria-label="...">
+        <p>
+        <%= link_to "Return to Committees", committees_path, class: "pure-button pure-button-primary", style: "margin-right: 10px;", id: "return_to_committees"%>
+        <%= link_to "Add Subcommittee", new_committee_subcommittee_path, class: "pure-button pure-button-primary"%>
+        </p>
+    </div>   
+    <div id="list" class="pure-u-1">
+    <table class="pure-table">
+        <tr>
+            <th>Name</th>
+            <th>Point Threshold</th>
+            <th>Actions</th>
+        </tr>
+        <% @subcommittees.each do |subcommittee| %>
+        <tr>
+            <td><%= subcommittee.subcommittee %></td>
+            <td><%= subcommittee.point_threshold || 'None' %></td>
+            <td class="actions">
+                <%= link_to "Edit", edit_subcommittee_path(subcommittee), class: "pure-button pure-button-primary"%>
+                <a class="pure-button pure-button-primary" href="/subcommittees/<%= subcommittee.id%>/delete" > Delete </a>
+                <%= link_to "Members", subcommittee_path(subcommittee), class: "pure-button pure-button-primary"%>
+            </td>
+        </tr>
+        <% end %>
+    </table>
+    </div>
+</div>
+</div>
+
+<style>
+a{
+text-decoration: none;
+color: #1b98f8;
+}
+.header a{
+color: white;
+}
+th{
+background:#500000;
+padding:8px;
+}
+.table{
+border:2px solid black;
+}
+#table{
+border-collapse: collapse;
+width:100%;
+}
+.table td a{
+background-color: #0078E7;
+color: white;
+padding:.3em;
+border-radius:10px;
+text-decoration: none;
+text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.content {
+max-width: 90%;
+}
+.pure-button {
+color: white;
+border-radius: 4px;
+text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+</style>

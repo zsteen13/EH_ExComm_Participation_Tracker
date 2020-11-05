@@ -54,9 +54,12 @@ Rails.application.routes.draw do
   get 'profile/attendance'
   get 'activities', to: 'activities#activities'
 
-  resources :committees do
+  resources :committees, shallow: true do
     get :delete
+    resources :subcommittees
   end
+
+  get '/subcommittees/:subcommittee_id/delete', to: 'subcommittees#delete'
 
   resources :members do
     member do
@@ -68,5 +71,4 @@ Rails.application.routes.draw do
   end
 
   get 'subcommittees_by_committee/:committee_id', to: 'members#subcommittees_by_committee'
-  get '/subcommittee_search' => 'members#subcommittee_search'
 end
