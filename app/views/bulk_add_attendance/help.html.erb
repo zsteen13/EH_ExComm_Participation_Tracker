@@ -1,0 +1,84 @@
+<div class="header">
+  <h1>Bulk Add Attendees Help Page</h1>
+</div>
+<div class="center">
+  <a class="btn pure-button pure-button-primary" href=<%="/activities/#{@activity.id}/bulk_add"%>> Back to Bulk Add Attendees Page </a>
+</div>
+<div class="pure-g" style="margin-right: 2em;">
+  <div class="pure-u-1">
+    <div class="profile-card">
+      <h1>Purpose</h1>
+      <div class="text">
+        <p>
+          The purpose of this page is to help anyone using the bulk add attendees feature.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pure-g" style="margin-right: 2em;">
+  <div class="pure-u-1">
+    <div class="profile-card">
+      <h1>Correct CSV</h1>
+      <div class="text">
+        <h2>Format of CSV</h2>
+        <p>
+          In order for the bulk add attendees feature to work correctly, there needs to be only one column containing UINs, including a header.
+        </p>
+        <h2>Examples</h2>
+        <p>
+          Here is an example of a correct csv with some UINs inputted.
+        </p>
+        <table class="pure-table">
+          <tr>
+            <th>UIN</th>
+          </tr>
+          <tr>
+            <td>000000001</td>
+          </tr>
+          <tr>
+            <td>000000003</td>
+          </tr>
+          <tr>
+            <td>000000005</td>
+          </tr>
+          <tr>
+            <td>000000006</td>
+          </tr>
+          <tr>
+            <td>000000007</td>
+          </tr>
+        </table>
+        <div class="center">
+          <a id="correct_csv_all_fields-btn" class="pure-button pure-button-primary btn" target="_blank" href="/bulk_add_attendance/correct_csv">Download CSV</a>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pure-g" style="margin-right: 2em;">
+    <div class="pure-u-1">
+      <div class="profile-card">
+        <h1>Incorrect CSV</h1>
+        <div class="text">
+        <br>
+        If the CSV has any more than one column, or does not contain a column title, there will be parsing errors.
+        <br>
+        <br>
+        </div>
+      </div>
+    </div>
+  </div>
+  <style>
+    th{
+      background:#500000;
+      padding:8px;
+    }
+    .table{
+      border:2px solid black;
+    }
+    #table{
+      border-collapse: collapse;
+      width:100%;
+    }
+  </style>

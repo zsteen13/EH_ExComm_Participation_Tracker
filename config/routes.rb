@@ -21,9 +21,9 @@ Rails.application.routes.draw do
   get 'activities', to: 'activities#activities'
 
   get 'bulk_add_users', to: 'bulk_add_users#index'
-  get 'bulk_add_users/show', to: 'bulk_add_users#show'
-  post 'bulk_add_users/create', to: 'bulk_add_users#create'
-  get 'bulk_add_users/confirmed', to: 'bulk_add_users#confirmed'
+  get 'bulk_add_users/show/', to: 'bulk_add_users#show'
+  post 'bulk_add_users/create/', to: 'bulk_add_users#create'
+  get 'bulk_add_users/confirmed/', to: 'bulk_add_users#confirmed'
   get 'bulk_add_users/help', to: 'bulk_add_users#help'
   get 'bulk_add_users/correct_csv_all_fields', to: 'bulk_add_users#correct_csv_all_fields'
   get 'bulk_add_users/correct_csv_required_fields', to: 'bulk_add_users#correct_csv_required_fields'
@@ -31,7 +31,16 @@ Rails.application.routes.draw do
   get 'bulk_add_users/incorrect_csv_email_last_name_switched', to: 'bulk_add_users#incorrect_csv_email_last_name_switched'
   get 'bulk_add_users/incorrect_csv_not_enough_columns', to: 'bulk_add_users#incorrect_csv_not_enough_columns'
 
-  get '/activities/:id', to: 'activities#show'
+  get 'activities/:id', to: 'activities#show'
+
+  get 'activities/:id/bulk_add', to: 'bulk_add_attendance#index'
+  get 'bulk_add_attendance/:id/help', to: 'bulk_add_attendance#help'
+  get 'bulk_add_attendance/correct_csv', to: 'bulk_add_attendance#correct_csv'
+  get 'activities/:id/bulk_add/confirmed', to: 'bulk_add_attendance#confirmed'
+  get 'activitites/:id/bulk_add/show', to: 'bulk_add_attendance#show'
+  post 'activitites/:id/bulk_add/create', to: 'bulk_add_attendance#create'
+
+
   get 'profile/profile'
   get 'members/point_threshold', to: 'members#point_threshold'
   post 'members/point_threshold', to: 'members#update_point_threshold'
