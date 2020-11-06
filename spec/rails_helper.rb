@@ -33,7 +33,7 @@ end
 Capybara.default_driver = :chrome
 Capybara.javascript_driver = :chrome
 
-Capybara.default_max_wait_time = 10
+Capybara.default_max_wait_time = 1
 
 # Rails.application.load_seed
 
