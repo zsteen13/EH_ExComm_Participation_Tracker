@@ -38,6 +38,8 @@ users5 = User.create!(uin: '000000001', student: true, password_digest: BCrypt::
 
 users6 = User.create!(uin: '777777777', student: true, password_digest: BCrypt::Password.create('Test'), first_name: 'David', last_name: 'Acosta', email: 'yoyoyo@aol.com', committee: 0, subcommittee: 1, total_points: 50, event_points: 10, meeting_points: 20, misc_points: 20, admin: true)
 
+users7 = User.create!(student: false, password_digest: BCrypt::Password.create('Test'), first_name: 'Professor', last_name: 'X', email: 'ProfX@tamu.edu', committee: 0, subcommittee: 1, total_points: 50, event_points: 10, meeting_points: 20, misc_points: 20, admin: true)
+
 activity1 = Activity.create!(name: 'Meet and Greet', _type: 'Event', date: DateTime.new(2020, 8, 23, 11, 0, 0, Rational(-5, 24)), point_value: 4, description: 'Meet and greet for the new members', num_rsvp: 0)
 
 activity2 = Activity.create!(name: 'General Meeting', _type: 'Meeting', date: DateTime.new(2020, 9, 15, 7, 0, 0, Rational(-5, 24)), point_value: 10, description: 'First General Meeting', num_rsvp: 0)
@@ -46,6 +48,7 @@ activity3 = Activity.create!(name: 'Canes Profit Share', _type: 'Misc', date: Da
 
 UserToActivity.create!(uin: users1.uin, activity_id: activity1.id)
 UserToActivity.create!(uin: users2.uin, activity_id: activity1.id)
+UserToActivity.create!(uin: users7.uin, activity_id: activity1.id)
 
 UserToActivity.create!(uin: users1.uin, activity_id: activity2.id)
 UserToActivity.create!(uin: users3.uin, activity_id: activity2.id)
