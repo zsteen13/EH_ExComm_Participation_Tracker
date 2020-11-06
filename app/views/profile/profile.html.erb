@@ -53,6 +53,10 @@
                             <%= current_user.display_subcommittee %>
                             </p>
                             <p>
+                            <label> <strong>Committee Head: </strong></label>
+                            <%= current_user.display_committee_head %>
+                            </p>
+                            <p>
                             <label> <strong>Committee Head Contact <i class='fas fa-envelope'></i>: </strong></label>
                             <%= current_user.display_committee_email %>
                             </p>
@@ -65,7 +69,6 @@
                             <h2 class="lefto"> Points </h2>
                             <a class="pure-button pure-button-primary righto" href="/profile/attendance" > Activities Attended </a>
 
-
                             <div class="point-title" style="padding-top:20px;padding-bottom:20px;">
                                 <div class="left">
                                     <h2>Total points</h2>
@@ -73,7 +76,7 @@
                                 </div>
                                 <div class="right">
                                     <h2> Goal </h2>
-                                    <p style="text-align: center;font-size: 25px"> <%= current_user.point_threshold %> </p>
+                                    <p id="thresh" style="text-align: center;font-size: 25px"> <%= current_user.point_threshold %> </p>
                                 </div>
                             </div>
 
@@ -109,26 +112,37 @@
         function view_points(){
             document.getElementById("points").innerHTML = '<div class="point-title"> <h2 class="lefto" style="font-size:30px;font-family: "Roboto", Sans-Serif;color:#003C71;margin:0;padding:.5em;text-align: left;"> Points </h2> <a class="pure-button pure-button-primary righto" onclick="view_activities()" > View Activities Attended </a> <div class="left"> <h2>Total points</h2> <p style="text-align: center;font-size: 25px"> <%= current_user.total_points%></p> </div> <div class="right"> <h2> Goal </h2> <p style="text-align: center;font-size: 25px"> 200 </p> </div> </div> <div class="meter"> <span style="width: 50%">50%</span> </div> <div class="content"> <h3> Points Breakdown </h3> <p><label> <strong>Meeting points: </strong></label> <%= current_user.meeting_points%> </p> <p><label> <strong>Event points: </strong></label> <%= current_user.event_points%> </p> <p><label> <strong>Miscellaneous points: </strong></label> <%= current_user.misc_points%> </p> </div>';
         };
-
+        
+        /*
+            This function reads the point values for each of the three categories and determines the width, based on that value and the point threshold.
+        */
         $(document).ready(function(){
+            var pthresh =document.getElementById("thresh");
+            var pointTsh = pthresh.innerHTML;
+
+            /*Meeting points*/
             var meeting = document.getElementById("meeting");
             var containMPoints = meeting.innerHTML;
             var mmeter = document.getElementById("mePts");
-            mmeter.style.width=containMPoints+'%';
+            mmeter.style.width=(containMPoints/pointTsh)*100+'%';
             $("#mePts").html(function(){
                 return String(containMPoints);
             });
+
+            /*Event points*/
             var event = document.getElementById("event");
             var containEPoints = event.innerHTML;
             var emeter = document.getElementById("evPts");
-            emeter.style.width=containEPoints+'%';
+            emeter.style.width=(containEPoints/pointTsh)*100+'%';
             $("#evPts").html(function(){
                 return String(containEPoints);
             });
+
+            /*Miscellaneous points*/
             var misc = document.getElementById("misc");
             var containMiPoints = misc.innerHTML;
             var mimeter = document.getElementById("miPts");
-            mimeter.style.width=containMiPoints+'%';
+            mimeter.style.width=(containMiPoints/pointTsh)*100+'%';
             $("#miPts").html(function(){
                 return String(containMiPoints);
             });

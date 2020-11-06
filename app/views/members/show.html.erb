@@ -57,6 +57,10 @@
                       <%= @member.display_subcommittee %>
                     </p>
                     <p>
+                      <label> <strong>Committee Head: </strong></label>
+                      <%= @member.display_committee_head %>
+                      </p>
+                    <p>
                       <label> <strong>Committee Head Contact: </strong></label>
                       <a> <%=@member.display_committee_email%> </a>
                       <i class='fas fa-envelope'></i>
@@ -75,7 +79,9 @@
                   </div>
                   <div class="right">
                     <h2> Goal </h2>
-                    <p style="text-align: center;font-size: 25px"> <%= @member.point_threshold %> </p>
+
+                    <p id="thresh" style="text-align: center;font-size: 25px"> <%= @member.point_threshold %> </p>
+                    
                   </div>
                 </div>
 
@@ -111,11 +117,14 @@
     Searches for the points of the user in the html and converts them into the width of the progress bar components
   */
   $(document).ready(function(){
+    var pthresh =document.getElementById("thresh");
+    var pointTsh = pthresh.innerHTML;
+
     /*Meeting points*/
     var meeting = document.getElementById("meeting");
     var containMPoints = meeting.innerHTML;
     var mmeter = document.getElementById("mePts");
-    mmeter.style.width=containMPoints+'%';
+    mmeter.style.width=(containMPoints/pointTsh)*100+'%';
     $("#mePts").html(function(){
       return String(containMPoints);
     });
@@ -124,7 +133,7 @@
     var event = document.getElementById("event");
     var containEPoints = event.innerHTML;
     var emeter = document.getElementById("evPts");
-    emeter.style.width=containEPoints+'%';
+    emeter.style.width=(containEPoints/pointTsh)*100+'%';
     $("#evPts").html(function(){
       return String(containEPoints);
     });
@@ -133,7 +142,7 @@
     var misc = document.getElementById("misc");
     var containMiPoints = misc.innerHTML;
     var mimeter = document.getElementById("miPts");
-    mimeter.style.width=containMiPoints+'%';
+    mimeter.style.width=(containMiPoints/pointTsh)*100+'%';
     $("#miPts").html(function(){
       return String(containMiPoints);
     });
@@ -291,5 +300,18 @@
         -webkit-transition: width .6s ease;
         -o-transition: width .6s ease;
         transition: width .6s ease;
+    }
+    @media only screen and (max-width: 660px) {
+      /* for widths less than or equal to 565 pixels */
+      .profile-info{
+        float: none ;
+        width: 100% ;
+        border-right:none;
+      }
+      .profile-points {
+        float: none ;
+        width: 100% ;
+      }
+      
     }
 </style>
