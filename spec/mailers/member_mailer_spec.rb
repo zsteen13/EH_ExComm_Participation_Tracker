@@ -17,7 +17,7 @@ RSpec.describe MemberMailer, type: :mailer do
     scenario 'following link' do
       current_email.click_link 'this link'
       expect(page).to have_current_path(profile_change_password_path(key: UserKey.find_by(user_id: 1).key))
-      expect(page).to have_content 'Please enter a password'
+      expect(page).to have_content 'Change Password'
     end
   end
 end

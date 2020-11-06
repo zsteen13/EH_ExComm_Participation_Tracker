@@ -1,10 +1,11 @@
 
 <div id="main">
 <div class="header">
-  <h1> <%= @committee.committee %> Subcommittees</h1>
+  <h1> <%= @committee.committee %> </h1>
+  <h2>Subcommittees</h2>
 </div>
 
-<div class="content" style="text-align:center;">
+<div class="l-content" style="text-align:center;">
     <div class="pure-button-group" role="group" aria-label="...">
         <p>
         <%= link_to "Return to Committees", committees_path, class: "pure-button pure-button-primary", style: "margin-right: 10px;", id: "return_to_committees"%>
@@ -13,11 +14,13 @@
     </div>   
     <div id="list" class="pure-u-1">
     <table class="pure-table">
-        <tr>
+        <thead>
+        <tr class="head">
             <th>Name</th>
             <th>Point Threshold</th>
             <th>Actions</th>
         </tr>
+    </thead>
         <% @subcommittees.each do |subcommittee| %>
         <tr>
             <td><%= subcommittee.subcommittee %></td>
@@ -42,12 +45,20 @@ color: #1b98f8;
 .header a{
 color: white;
 }
+.header h2{
+    font-size:3em;
+    color:black;
+}
 th{
 background:#500000;
 padding:8px;
 }
-.table{
+tr:nth-of-type(even) { 
+  background: #eee; 
+}
+.pure-table{
 border:2px solid black;
+color:black;
 }
 #table{
 border-collapse: collapse;
@@ -62,13 +73,78 @@ text-decoration: none;
 text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
-.content {
-max-width: 90%;
-}
+.l-content{
+    max-width: 97%;
+    margin:auto;
+  }
 .pure-button {
 color: white;
 border-radius: 4px;
 text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+margin: 2px 0px;
+}
+.pure-button-group{
+    margin: 2px 0px;
+}
+@media 
+only screen and (max-width: 760px)  {
+
+  /* Force table to not be like tables anymore */
+  table, thead, tbody, th, td, tr { 
+    display: block; 
+  }
+  
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr { 
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  .header h2{
+    font-size:2em;
+    }
+
+  tr { border: 2px solid #ccc;border-bottom:none;}
+
+  .pure-table{
+    border:none;
+    border-bottom:2px solid #ccc;
+  }
+
+  
+  .pure-table td { 
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee; 
+    position: relative;
+    padding-left: 50%;
+    overflow-wrap: auto; 
+  }
+  
+  .pure-table td:before { 
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 10px;
+    left: 6px;
+    width: 45%; 
+    white-space: nowrap;
+    color:#500000;
+    font-weight: bold;
+    margin-right:10px;
+  }
+  
+  /*
+  Label the data
+  */
+  td:nth-of-type(1):before { content: "Name"; }
+  td:nth-of-type(2):before { content: "Point Threshold"; }
+  td:nth-of-type(3):before { content: "Actions"; }
+
+
+  .head{
+    display: none;
+  }
 }
 
 </style>
