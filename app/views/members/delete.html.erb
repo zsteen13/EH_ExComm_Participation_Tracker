@@ -1,9 +1,11 @@
 <div id="main">
     <div class="header">
       <h1>Members</h1>
-      <h2>Howdy <%= current_user.first_name %>, here you can view and edit members.</h2>
     </div>
-    <%= button_to("Return to members", members_path, :method => "get", :class => 'back-link', :class=>"pure-button pure-button-primary") %>
+    <br>
+    <div style="text-align: center;" >
+      <%= button_to("Return to members", members_path, :method => "get", :class => 'back-link', :class=>"pure-button pure-button-primary") %>
+    </div>
     <div class="l-content">
       <div class="profile-boxes pure-g">
         <div class="pure-u-1">
