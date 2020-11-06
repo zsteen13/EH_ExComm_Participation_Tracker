@@ -26,7 +26,7 @@ feature 'Add Committee Information' do
 
     find("a[id='return_to_committees']").click
 
-    expect(page).to have_current_path '/committees'
+    expect(page).to have_current_path committees_path
     expect(page).not_to have_content 'No Change'
   end
 
@@ -43,7 +43,7 @@ feature 'Add Committee Information' do
 
     click_button 'Add Committee'
 
-    expect(page).to have_current_path '/committees'
+    expect(page).to have_current_path committees_path
     expect(page).to have_content 'Rspec Committee'
     expect(page).to have_content 'rspec@tamu.edu'
   end
@@ -89,7 +89,8 @@ feature 'View Subcommittee' do
   scenario 'view subcommittee for Internal' do
     visit('committees')
     find("a[href='/committees/0/subcommittees']").click
-    expect(page).to have_content 'Internal Subcommittees'
+    expect(page).to have_content 'Internal'
+    expect(page).to have_content 'Subcommittees'
     expect(page).to have_content 'Community Building'
     expect(page).to have_content 'Research and Technology'
     expect(page).to have_content 'Professional Development'
@@ -98,7 +99,8 @@ feature 'View Subcommittee' do
   scenario 'view subcommittee for External' do
     visit('committees')
     find("a[href='/committees/1/subcommittees']").click
-    expect(page).to have_content 'External Subcommittees'
+    expect(page).to have_content 'External'
+    expect(page).to have_content 'Subcommittees'
     expect(page).to have_content 'Service'
 
     find("a[id='return_to_committees']").click

@@ -8,7 +8,8 @@ feature 'View SubCommmittees for Intenal' do
 
   scenario 'visit Subcommittee page for Internal' do
     visit('/committees/0/subcommittees')
-    expect(page).to have_content 'Internal Subcommittees'
+    expect(page).to have_content 'Internal'
+    expect(page).to have_content 'Subcommittees'
   end
 end
 
@@ -25,7 +26,8 @@ feature 'Add New Subcommittee' do
     find("a[href='/committees/1/subcommittees']").click
 
     expect(page).to have_current_path '/committees/1/subcommittees'
-    expect(page).to have_content 'External Subcommittees'
+    expect(page).to have_content 'External'
+    expect(page).to have_content 'Subcommittees'
     expect(page).not_to have_content 'Do not change'
 
     find("a[id='return_to_committees']").click
@@ -137,7 +139,8 @@ feature 'View Members in a Subcommittee' do
     expect(page).not_to have_content 'nonadmintest@gmail.com'
 
     find("a[href='/committees/0/subcommittees']").click
-    expect(page).to have_content 'Internal Subcommittees'
+    expect(page).to have_content 'Internal'
+    expect(page).to have_content 'Subcommittees'
 
     find("a[id='return_to_committees']").click
     expect(page).to have_current_path '/committees'
@@ -153,7 +156,8 @@ feature 'View Members in a Subcommittee' do
     expect(page).not_to have_content 'nonadmintest@gmail.com'
 
     find("a[href='/committees/0/subcommittees']").click
-    expect(page).to have_content 'Internal Subcommittees'
+    expect(page).to have_content 'Internal'
+    expect(page).to have_content 'Subcommittees'
 
     find("a[id='return_to_committees']").click
     expect(page).to have_current_path '/committees'
@@ -171,7 +175,8 @@ feature 'Delete Subcommittee' do
     find("a[href='/committees/0/subcommittees']").click
 
     expect(page).to have_current_path '/committees/0/subcommittees'
-    expect(page).to have_content 'Internal Subcommittees'
+    expect(page).to have_content 'Internal'
+    expect(page).to have_content 'Subcommittees'
     expect(page).to have_content 'Research and Technology'
 
     find("a[id='return_to_committees']").click

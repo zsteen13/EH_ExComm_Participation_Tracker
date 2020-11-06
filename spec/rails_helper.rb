@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# runs rubocop -a when test suite is run
+system 'rubocop -a'
+
 # should resolve the db setup issue when trying to run rspec the first time
 system 'RAILS_ENV=test bin/rake db:reset'
 
@@ -30,7 +33,7 @@ end
 Capybara.default_driver = :chrome
 Capybara.javascript_driver = :chrome
 
-Capybara.default_max_wait_time = 10
+Capybara.default_max_wait_time = 1
 
 # Rails.application.load_seed
 

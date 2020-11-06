@@ -2,70 +2,79 @@
   <div class="header">
     <h1>Members</h1>
   </div>
-  <% flash.each do |type, msg| %>
-    <div style="color: red">
-      <%= msg %>
-    </div>
-    <%flash.alert = ""%>
-  <% end %>
-  <%= button_to("Return to Members", members_path, :method => "get", :class => 'back-link', :class=>"pure-button pure-button-primary") %>
-  <div class="content" style="background:#500000;padding:0;width:60%;border:2px solid black">
-    <div class="content" style="background:white;padding:0 2em;margin:20px;border:1px solid black">
+    <%= button_to("Return to Members", members_path, :method => "get", :class => 'back-link', :class=>"return-button pure-button-primary") %>
+    <div id="outer" class="content" >
+        <div id="inner" class="content">
+          <div class=" new member">
+            <h1 style="text-align: center;color:#500000">Edit Member Information</h1>
+              <% flash.each do |type, msg| %>
+                <div style="color: red">
+                  <%= msg %>
+                </div>
+                <%flash.alert = ""%>
+              <% end %>
+            <br>
+            <%= form_for(@member, :url => member_path(@member), :method =>'patch') do |f| %>
+              <table summary="Subject form fields">
+                  <%if not @member.uin.blank?%>
+                    <tr>
+                      <th>UIN</th>
+                      <td><%= @member.uin %></td>
+                    </tr>
+                  <%end%>
 
-      <h1 style="text-align: center;color:#500000">Edit Member</h1>
+                  <tr>
+                      <th>First Name</th>
+                      <td><%= f.text_field :first_name ,style: 'text-transform: capitalize;'%></td>
+                  </tr>
 
-      <%= form_for(@member, :url => member_path(@member), :method =>'patch') do |f| %>
-        <table id="formTable summary=" Subject form fields">
-          <tr>
-            <th>UIN</th>
-            <td><%= @member.uin %></td>
-          </tr>
+                  <tr>
+                      <th>Last Name</th>
+                      <td><%= f.text_field :last_name,style: 'text-transform: capitalize;' %></td>
+                  </tr>
 
-          <tr>
-            <th>First Name</th>
-            <td><%= f.text_field :first_name, style: 'text-transform: capitalize;'%></td>
-          </tr>
+                  <tr>
+                      <th>Email</th>
+                      <td><%= f.text_field :email %></td>
+                  </tr>
 
-          <tr>
-            <th>Last Name</th>
-            <td><%= f.text_field :last_name, style: 'text-transform: capitalize;' %></td>
-          </tr>
+                  <tr>
+                      <th>Committee</th>
+                      <% committee_options = options_from_collection_for_select(Committee.all, 'id', 'committee', @member.committee) %>
+                      <td><%= f.select :committee, committee_options, :include_blank => "None" %></td>
+                  </tr>
 
-          <tr>
-            <th>Email</th>
-            <td><%= f.text_field :email %></td>
-          </tr>
+                  <tr>
+                      <th>Subcommittee</th>
+                      <% subcommittee_options = (@member.committee.nil? ? [] : options_from_collection_for_select(Subcommittee.where(committee: @member.committee), 'id', 'subcommittee', @member.subcommittee)) %>
+                      <td><%= f.select :subcommittee, subcommittee_options, :include_blank => "None" %></td>
+                  </tr>
 
-          <tr>
-            <th>Committee</th>
-            <% committee_options = options_from_collection_for_select(Committee.all, 'id', 'committee', @member.committee) %>
-            <td><%= f.select :committee, committee_options, :include_blank => "None" %></td>
-          </tr>
+                  <tr>
+                      <th>Total Points</th>
+                      <td><%= f.number_field(:total_points, in: 0...1000) %></td>
+                  </tr>
 
-          <tr>
-            <th>Subcommittee</th>
-            <% subcommittee_options = (@member.committee.nil? ? [] : options_from_collection_for_select(Subcommittee.where(committee: @member.committee), 'id', 'subcommittee', @member.subcommittee)) %>
-            <td><%= f.select :subcommittee, subcommittee_options, :include_blank => "None" %></td>
-          </tr>
 
-          <tr>
-            <th>Total Points</th>
-            <td><%= f.number_field(:total_points, in: 0...1000) %></td>
-          </tr>
 
-          <tr>
-            <th>Admin</th>
-            <% # An admin can't undo their admin status%>
-            <td><%= f.check_box :admin, disabled: (@member.id == session[:user_id] ? true : nil) %></td>
-          </tr>
 
-        </table>
-        <div class="form-buttons">
-          <%= f.submit "Update Member", :class => 'pure-button pure-button-primary' %>
+                  <tr>
+                      <th id="noStyle">Admin</th>
+                      <% # An admin can't undo their admin status%>
+                      <td id="noStyle"><%= f.check_box :admin, disabled: (@member.id == session[:user_id] ? true : nil) %></td>
+                  </tr>
+
+              </table>
+
+              <div class="form-buttons" style="margin-top:-5px; margin-bottom:10px;">
+                  <%= f.submit "Update Member", :class => 'pure-button pure-button-primary'  %>
+               </div>
+              <% end %>
+
+
+          </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+    </div>
 </div>
 
 <script>
@@ -120,11 +129,16 @@
     color: white;
   }
 
-  th {
+  th{
+    background:none;
+    color:#777;
+    height:20%;
+    width:20%;
+    padding-right:1em;
+  }
 
-    background: none;
-    color: #777;
-    height: 20%;
+  table{
+    width:auto;
   }
 
   .table {
@@ -143,15 +157,46 @@
   .content {
     margin: 0 auto;
     padding: 0 2em;
-    max-width: 70%;
     margin-bottom: 50px;
     line-height: 1.6em;
     max-width: 90%;
-    box-shadow: 0px 0px 38px -1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 38px -1px rgba(0,0,0,0.3);
     border-radius: 20px;
   }
+    #outer{
+      background:#500000;
+      padding:0;
+      width:90%;
+      border:2px solid black;
+    }
+    #inner{
+      background:white;
+      padding:0 2em;
+      margin:20px;
+      border:1px solid black;
+    }
 
   .pure-button {
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+  }
+  .return-button{
+    display: inline-block;
+    line-height: normal;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    -webkit-user-drag: none;
+    user-select: none;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 100%;
+    padding: .5em 1em;
+    border: none transparent;
+    text-decoration: none;
     color: white;
     border-radius: 4px;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
@@ -174,13 +219,22 @@
     box-sizing: border-box;
     line-height: .5em;
   }
-
-  button {
-    cursor: pointer;
-
+button{
+    cursor:pointer;
+  }
+  #mobile{
+    content: "";
+    display: table;
+    clear: both;
+  }
+  #lhead{
+    float:left;
+  }
+  #rbody{
+    float:left;
   }
 
-  #formTable {
+#formTable {
     width: 70%;
     justify-content: center;
 
@@ -202,4 +256,116 @@
     border-color: -internal-light-dark(rgb(118, 118, 118), rgb(195, 195, 195));
     border-image: initial;
   }
+
+
+@media 
+only screen and (max-width: 475px)  {
+
+  /* Force table to not be like tables anymore */
+  table, thead, tbody, th, td, tr { 
+    display: block; 
+  }
+  
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr { 
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  .act{
+    display:none;
+  }
+  #user_subcommittee{
+    max-width:190px;
+  }
+  .head{
+    width:100%;
+    content: "";
+    display: table;
+    clear: both;
+    border:none;
+    border-top-right-radius: 10px;
+    border-top-left-radius:10px;
+  }
+    .lhead{
+      float: left;
+      width: 46%;
+      text-align:center;
+      
+    }
+    .rhead{
+      float: right;
+      width: 46%;
+      text-align:center;
+    }
+
+
+  td { 
+    /* Behave  like a "row" */
+    border: none;
+    position: relative;
+    border-bottom: 3px solid #ddd;
+    border-left: 1px solid #ddd;
+  }
+  th{
+    border-left: 1px solid #ddd;
+    padding-left: 10px;
+  }
+  tr{
+    margin-bottom:15px;
+  }
+  #noStyle{
+    border-left:none;
+    border-bottom: none;
+    margin-bottom:none;
+  }
+
+}
+
+@media (max-width: 660px) {
+      /* for widths less than or equal to 660 pixels */
+      #outer{
+        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
+        -webkit-transition: width .5s ease-in-out, left .5s ease-in-out;
+        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
+        -o-transition: width .5s ease-in-out, left .5s ease-in-out;
+        transition: width .5s ease-in-out, left .5s ease-in-out;
+      }
+      #inner{
+        padding:0 1em;
+      }
+      input.pure-button{
+        width:100%;
+        max-width: none;
+        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
+        -webkit-transition: width .5s ease-in-out, left .5s ease-in-out;
+        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
+        -o-transition: width .5s ease-in-out, left .5s ease-in-out;
+        transition: width .5s ease-in-out, left .5s ease-in-out;
+      }
+      .content{
+        max-width:100%;
+      }   
+    }
+
+@media (min-width: 665px) {
+  #outer{
+        width:80%;
+        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
+        -webkit-transition: width .5s ease-in-out, left .5s ease-in-out;
+        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
+        -o-transition: width .5s ease-in-out, left .5s ease-in-out;
+        transition: width .5s ease-in-out, left .5s ease-in-out;
+      }
+}
+@media (min-width: 60em) {
+  #outer{
+        width:60%;
+        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
+        -webkit-transition: width .5s ease-in-out, left .5s ease-in-out;
+        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
+        -o-transition: width .5s ease-in-out, left .5s ease-in-out;
+        transition: width .5s ease-in-out, left .5s ease-in-out;
+  }
+}
 </style>

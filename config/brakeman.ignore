@@ -1,6 +1,26 @@
 {
   "ignored_warnings": [
     {
+      "warning_type": "Mass Assignment",
+      "warning_code": 105,
+      "fingerprint": "0c9e4a1141023e4a58dce3ca5d0edbf7d4f8ddaddfd8aa27aff38ac6b4871fd6",
+      "check_name": "PermitAttributes",
+      "message": "Potentially dangerous key allowed for mass assignment",
+      "file": "app/controllers/members_controller.rb",
+      "line": 119,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.require(:user).permit(:first_name, :last_name, :uin, :student, :email, :total_points, :committee, :subcommittee, :admin)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "MembersController",
+        "method": "member_params"
+      },
+      "user_input": ":admin",
+      "confidence": "High",
+      "note": ""
+    },
+    {
       "warning_type": "SQL Injection",
       "warning_code": 0,
       "fingerprint": "137236af2499d4dc9e419f5dc66512092e667cee8e9c66ca34319c5c4f0aa9d8",
@@ -43,13 +63,13 @@
     {
       "warning_type": "Mass Assignment",
       "warning_code": 105,
-      "fingerprint": "80d0e93a4984cc107ae7f87f9afaabad093db88363b8a419cc153f9232393baa",
+      "fingerprint": "acd9b649d0943e9fce376940839708798f97b97762805495ac304d8583f01740",
       "check_name": "PermitAttributes",
       "message": "Potentially dangerous key allowed for mass assignment",
       "file": "app/controllers/members_controller.rb",
-      "line": 73,
+      "line": 117,
       "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
-      "code": "params.require(:user).permit(:first_name, :last_name, :uin, :email, :total_points, :committee, :subcommittee, :admin)",
+      "code": "params.require(:user).permit(:first_name, :last_name, :email, :total_points, :committee, :subcommittee, :admin)",
       "render_path": null,
       "location": {
         "type": "method",
@@ -81,6 +101,6 @@
       "note": ""
     }
   ],
-  "updated": "2020-10-27 21:11:23 -0500",
+  "updated": "2020-11-05 22:18:37 -0600",
   "brakeman_version": "4.10.0"
 }

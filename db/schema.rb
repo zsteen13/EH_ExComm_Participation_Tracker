@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20_201_030_184_953) do
     t.integer 'event_points'
     t.integer 'misc_points'
     t.boolean 'admin'
+    t.boolean 'student'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.integer 'privlege_id'

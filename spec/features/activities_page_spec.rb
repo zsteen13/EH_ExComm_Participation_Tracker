@@ -20,7 +20,7 @@ feature 'View Attendance' do
     expect(page).to have_current_path '/activities'
     find_link('View Attendance', href: '/activities/1').click
     expect(page).to have_content 'Meet and Greet Attendence'
-    expect(page).to have_content 'First Name Last Name UIN'
+    expect(page).to have_content 'First Name Last Name UIN Email'
     click_link 'Return to Activities'
     expect(page).to have_current_path '/activities/'
   end
@@ -31,7 +31,18 @@ feature 'View Attendance' do
     find_link('View Attendance', href: '/activities/2').click
     expect(page).to have_current_path '/activities/2'
     expect(page).to have_content 'General Meeting Attendence'
-    expect(page).to have_content 'First Name Last Name UIN'
+    expect(page).to have_content 'First Name Last Name UIN Email'
+    click_link 'Return to Activities'
+    expect(page).to have_current_path '/activities/'
+  end
+
+  scenario 'Non-student member displays correctly' do
+    visit 'activities'
+    expect(page).to have_current_path '/activities'
+    find_link('View Attendance', href: '/activities/1').click
+    expect(page).to have_current_path '/activities/1'
+    expect(page).to have_content 'Meet and Greet Attendence'
+    expect(page).to have_content 'ProfX@tamu.edu'
     click_link 'Return to Activities'
     expect(page).to have_current_path '/activities/'
   end
