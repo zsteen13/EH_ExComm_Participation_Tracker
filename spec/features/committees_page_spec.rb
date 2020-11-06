@@ -117,7 +117,7 @@ feature 'View Members in a Committee' do
     expect(page).to have_content 'Internal Members'
     expect(page).to have_content 'Non admin'
     expect(page).to have_content 'nonadmintest@gmail.com'
-    expect(page).to have_content 'Trev'
+    expect(page).to have_content 'Kylie'
     expect(page).to have_content 'yoyoyo@aol.com'
 
     find("a[id='return_to_committees']").click

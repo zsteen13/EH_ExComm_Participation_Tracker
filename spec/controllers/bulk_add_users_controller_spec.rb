@@ -27,7 +27,7 @@ feature BulkAddUsersController do
       expect(page).to have_content 'Internal'
       expect(page).to have_content 'External'
 
-      open_email('moore.trev@tamu.edu')
+      open_email('john@tamu.edu')
       expect(current_email).to have_content 'Howdy'
     end
 
@@ -55,10 +55,15 @@ feature BulkAddUsersController do
     end
     scenario 'help page buttons work' do
       visit '/bulk_add_users/help'
+      sleep 1
       click_link 'correct_csv_all_fields-btn'
+      sleep 1
       click_link 'correct_csv_required_fields-btn'
+      sleep 1
       click_link 'correct_csv_some_optional_fields-btn'
+      sleep 1
       click_link 'incorrect_csv_email_last_name_switched-btn'
+      sleep 1
       click_link 'incorrect_csv_not_enough_columns-btn'
       sleep 1
 

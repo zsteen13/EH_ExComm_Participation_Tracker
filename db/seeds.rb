@@ -30,13 +30,13 @@ users1 = User.create!(uin: '111111111', student: true, password_digest: BCrypt::
 
 users2 = User.create!(uin: '222222222', student: true, password_digest: BCrypt::Password.create('Test'), first_name: 'Admin', last_name: 'Test', email: 'admintest@gmail.com', committee: 0, subcommittee: 0, admin: true, total_points: 0, event_points: 0, meeting_points: 0, misc_points: 0)
 
-users3 = User.create!(uin: '000000000', student: true, password_digest: BCrypt::Password.create('Test'), first_name: 'Zachary', last_name: 'Steen', email: 'zsteen133@gmail.com', committee: 1, total_points: 0, event_points: 0, meeting_points: 0, misc_points: 0, admin: true)
+users3 = User.create!(uin: '000000000', student: true, password_digest: BCrypt::Password.create('Test'), first_name: 'Johnson', last_name: 'Doe', email: 'johnson@fakeemail.com', committee: 1, total_points: 0, event_points: 0, meeting_points: 0, misc_points: 0, admin: true)
 
 users4 = User.create!(uin: '123456789', student: true, password_digest: BCrypt::Password.create('Test'), first_name: 'first', last_name: 'last', email: 'test@gmail.com', committee: 2, total_points: 0, event_points: 0, meeting_points: 0, misc_points: 0, admin: true)
 
-users5 = User.create!(uin: '000000001', student: true, password_digest: BCrypt::Password.create('Test'), first_name: 'trev', last_name: 'moore', email: 'zsteen133@gmail.com', committee: 0, total_points: 0, event_points: 0, meeting_points: 0, misc_points: 0, admin: true)
+users5 = User.create!(uin: '000000001', student: true, password_digest: BCrypt::Password.create('Test'), first_name: 'Will', last_name: 'Smith', email: 'will@fakeemail.com', committee: 0, total_points: 0, event_points: 0, meeting_points: 0, misc_points: 0, admin: true)
 
-users6 = User.create!(uin: '777777777', student: true, password_digest: BCrypt::Password.create('Test'), first_name: 'David', last_name: 'Acosta', email: 'yoyoyo@aol.com', committee: 0, subcommittee: 1, total_points: 50, event_points: 10, meeting_points: 20, misc_points: 20, admin: true)
+users6 = User.create!(uin: '777777777', student: true, password_digest: BCrypt::Password.create('Test'), first_name: 'Kylie', last_name: 'Jenner', email: 'yoyoyo@aol.com', committee: 0, subcommittee: 1, total_points: 50, event_points: 10, meeting_points: 20, misc_points: 20, admin: true)
 
 users7 = User.create!(student: false, password_digest: BCrypt::Password.create('Test'), first_name: 'Professor', last_name: 'X', email: 'ProfX@tamu.edu', committee: 0, subcommittee: 1, total_points: 50, event_points: 10, meeting_points: 20, misc_points: 20, admin: true)
 
