@@ -88,10 +88,6 @@ class User < ApplicationRecord
     self[:committee].blank? ? 'None' : Committee.where(id: self[:committee]).take.email
   end
 
-  def display_committee_head
-    self[:commitee].blank? ? 'No name' : Committee.where(id: self[:committee]).take.head_first_name
-  end
-
   def to_s
     "uin: #{self[:uin]} first_name: #{self[:first_name]} last_name #{self[:last_name]} email: #{self[:email]} committee: #{display_committee} subcommittee: #{display_subcommittee} total_point: #{self[:total_points]} meeting_points: #{self[:meeting_points]} event_points: #{self[:event_points]} misc_points #{self[:misc_points]} admin: #{self[:admin]}\n"
   end
