@@ -14,6 +14,7 @@ class ActivitiesController < ApplicationController
   end
 
   def show
+    admin_only
     @activity = Activity.find(params[:id])
     @members_attended = UserToActivity.where(activity_id: @activity.id)
   end

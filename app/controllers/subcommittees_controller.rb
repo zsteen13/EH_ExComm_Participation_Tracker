@@ -2,6 +2,7 @@
 
 # Subcommittees Controller
 class SubcommitteesController < ApplicationController
+  before_action :admin_only
   def index
     @committee = Committee.find(params[:committee_id])
     @subcommittees = Subcommittee.where(committee: @committee.id)
