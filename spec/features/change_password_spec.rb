@@ -38,7 +38,7 @@ feature 'change password'  do
 
     scenario 'visiting through profile change password button' do
       visit '/profile'
-      click_on 'Submit changes'
+      click_on 'Change Password'
       expect(page).to have_current_path '/profile/change_password'
     end
   end
@@ -61,7 +61,7 @@ feature 'change password'  do
     end
     scenario 'visiting through profile change password button' do
       visit '/profile'
-      click_on 'Submit changes'
+      click_on 'Change Password'
       expect(page).to have_current_path '/profile/change_password'
     end
   end
