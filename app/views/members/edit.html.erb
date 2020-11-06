@@ -16,10 +16,12 @@
 
       <%= form_for(@member, :url => member_path(@member), :method =>'patch') do |f| %>
         <table id="formTable summary=" Subject form fields">
+          <%if not @member.uin.blank?%>
           <tr>
             <th>UIN</th>
             <td><%= @member.uin %></td>
           </tr>
+          <%end%>
 
           <tr>
             <th>First Name</th>

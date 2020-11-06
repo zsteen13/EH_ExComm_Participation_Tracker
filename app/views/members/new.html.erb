@@ -71,6 +71,8 @@
 <script>
   $(function () {
     // default state
+    $('input#user_uin').attr("disabled", !$('#user_student').is(":checked"));
+
 
     if ($("select#user_committee").val() == "") {
       $("select#user_subcommittee option").remove();

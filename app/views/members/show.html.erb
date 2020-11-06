@@ -31,8 +31,10 @@
 
                   <div class="content">
                     <p>
+                    <% if not @member.uin.blank? %>
                       <label> <strong>UIN: </strong></label>
                       <%= @member.uin %>
+                      <% end %>
                     </p>
                     <p>
                       <label> <strong>Email: </strong></label>
