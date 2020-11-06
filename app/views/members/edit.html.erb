@@ -8,7 +8,7 @@
     </div>
     <%flash.alert = ""%>
   <% end %>
-  <%= link_to("<< Back to Member page", members_path, :class => 'back-link') %>
+  <%= button_to("Return to Members", members_path, :method => "get", :class => 'back-link', :class=>"pure-button pure-button-primary") %>
   <div class="content" style="background:#500000;padding:0;width:60%;border:2px solid black">
     <div class="content" style="background:white;padding:0 2em;margin:20px;border:1px solid black">
 
@@ -46,7 +46,7 @@
             <th>Subcommittee</th>
             <% subcommittee_options = (@member.committee.nil? ? [] : options_from_collection_for_select(Subcommittee.where(committee: @member.committee), 'id', 'subcommittee', @member.subcommittee)) %>
             <td><%= f.select :subcommittee, subcommittee_options, :include_blank => "None" %></td>
-          </tr> 
+          </tr>
 
           <tr>
             <th>Total Points</th>

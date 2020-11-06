@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
     redirect_to welcome_path and return if @user.nil?
 
     session[:user_id] = @user.id if BCrypt::Password.new(@user.password_digest) == params[:password]
-    redirect_to '/welcome'
+    redirect_to root_path
   end
 
   def login; end

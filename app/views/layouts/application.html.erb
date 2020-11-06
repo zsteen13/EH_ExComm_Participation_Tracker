@@ -26,14 +26,19 @@
 
     <div id="menu">
         <div class="pure-menu">
-            <a class="pure-menu-heading" href="/">EH</a>
+            <a class="pure-menu-heading" href="/welcome">EH</a>
             <% if logged_in? %>
             <ul class="pure-menu-list">
-                <li class="pure-menu-item"><a href="/profile" class="pure-menu-link">Profile</a></li>
-                <li class="pure-menu-item"><a href="/activities" class="pure-menu-link">Activities</a></li>
+                <%select_profile    = controller_name == 'profile'    ? 'pure-menu-selected' : nil%>
+                <%select_activities = controller_name == 'activities' ? 'pure-menu-selected' : nil%>
+                <%select_members    = controller_name == 'members'    ? 'pure-menu-selected' : nil%>
+                <%select_committees = controller_name == 'committees' ? 'pure-menu-selected' : nil%>
+                
+                <li class="pure-menu-item <%=select_profile%>"><a href="/profile" class="pure-menu-link">Profile</a></li>
+                <li class="pure-menu-item <%=select_activities%>"><a href="/activities" class="pure-menu-link">Activities</a></li>
                 <% if current_user.admin? %>
-                  <li class="pure-menu-item"><a href="/members" class="pure-menu-link">Members</a></li>
-                  <li class="pure-menu-item"><a href="/committees" class="pure-menu-link">Committees</a></li>
+                  <li class="pure-menu-item <%=select_members%>"><a href="/members" class="pure-menu-link">Members</a></li>
+                  <li class="pure-menu-item <%=select_committees%>"><a href="/committees" class="pure-menu-link">Committees</a></li>
                 <% end %>
             </ul>
             <% end %>

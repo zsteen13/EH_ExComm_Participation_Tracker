@@ -7,7 +7,7 @@
     </div>
 
     <div class="content" style="text-align:center;">
-    <a class="pure-button pure-button-primary" href="/members"> Return to Members </a>
+    <%= button_to("Return to Members", members_path, :method => "get", :class => 'back-link', :class=>"pure-button pure-button-primary") %>
     <br>
     This value is the default threshold value that members must reach per school year.
     <br>
@@ -21,7 +21,7 @@
         <%= msg %>
       </div>
     <% end %>
-    
+
 
     </div>
   </div>

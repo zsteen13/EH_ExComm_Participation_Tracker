@@ -13,7 +13,7 @@ feature 'Members Page'  do
 
   scenario 'view a member' do
     visit('/members')
-    find("a[href='/members/1']").click
+    find("a[href='/members/2']").click
     expect(page).to have_content 'General Info'
   end
 
@@ -34,7 +34,7 @@ feature 'Members Page'  do
 
   scenario 'edit a member' do
     visit('/members')
-    find("a[href='/members/1/edit']").click
+    find("a[href='/members/2/edit']").click
     expect(page).to have_content 'Edit Member'
 
     # internal committee should yield these subcommitee options
@@ -59,7 +59,8 @@ feature 'Members Page'  do
 
   scenario 'edit a member, again, for controller' do
     visit('/members')
-    find("a[href='/members/1/edit']").click
+
+    find("a[href='/members/2/edit']").click
 
     # changing to external should change subcommitee options
     select 'Internal', from: 'user[committee]'
@@ -67,7 +68,8 @@ feature 'Members Page'  do
     click_button 'commit'
 
     visit('/members')
-    find("a[href='/members/1/edit']").click
+
+    find("a[href='/members/2/edit']").click
 
     # changing to external should change subcommitee options
     select 'None', from: 'user[committee]'
@@ -77,7 +79,9 @@ feature 'Members Page'  do
 
   scenario 'edit a member error handling' do
     visit('/members')
-    find("a[href='/members/1/edit']").click
+
+    find("a[href='/members/2/edit']").click
+
     expect(page).to have_content 'Edit Member'
 
     # change to invalid email
