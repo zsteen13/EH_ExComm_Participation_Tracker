@@ -3,7 +3,7 @@
 # Committees Controller
 class CommitteesController < ApplicationController
   before_action :admin_only
-  
+
   def index
     @committees = Committee.all
   end
