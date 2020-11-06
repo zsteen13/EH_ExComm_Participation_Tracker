@@ -40,7 +40,6 @@ Rails.application.routes.draw do
   get 'activitites/:id/bulk_add/show', to: 'bulk_add_attendance#show'
   post 'activitites/:id/bulk_add/create', to: 'bulk_add_attendance#create'
 
-
   get 'profile/profile'
   get 'members/point_threshold', to: 'members#point_threshold'
   post 'members/point_threshold', to: 'members#update_point_threshold'
