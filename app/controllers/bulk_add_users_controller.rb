@@ -8,6 +8,7 @@ class BulkAddUsersController < ApplicationController
 
   def create
     uploaded_file = params[:new_users]
+    return if uploaded_file.nil?
     filename = Rails.root.join('public', 'uploads', uploaded_file.original_filename)
     BulkAddUsersHelper.create_file(uploaded_file, filename)
 
