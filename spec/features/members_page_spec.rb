@@ -20,14 +20,14 @@ feature 'Members Page'  do
   scenario 'sort members above' do
     visit('/members')
     fill_in 'search', with: '49'
-    click_button 'Set Threshold Points Above'
+    click_button 'Set Threshold Above'
     expect(page).to have_content '50'
   end
 
   scenario 'sort members below' do
     visit('/members')
     fill_in 'search', with: '49'
-    click_button 'Set Threshold Points Below'
+    click_button 'Set Threshold Below'
     expect(page).to have_content '0'
     expect(page).not_to have_content '50'
   end
