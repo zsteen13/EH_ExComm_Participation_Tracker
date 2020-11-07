@@ -15,7 +15,7 @@ feature BulkAddUsersController do
       expect(page).to have_current_path '/bulk_add_users'
       expect(page).to have_content 'Attach CSV file with new users.'
 
-      filepath = Rails.root.join 'spec', 'data', 'bulk_add_users_correct.csv'
+      filepath = Rails.root.join 'spec', 'data', 'bulk_add_users', 'bulk_add_users_correct.csv'
       attach_file('new_users', filepath, make_visible: true)
 
       click_button 'upload_btn'
@@ -40,7 +40,7 @@ feature BulkAddUsersController do
       expect(page).to have_current_path '/bulk_add_users'
       expect(page).to have_content 'Attach CSV file with new users.'
 
-      filepath = Rails.root.join 'spec', 'data', 'bulk_add_users_wrong_2.csv'
+      filepath = Rails.root.join 'spec', 'data', 'bulk_add_users', 'bulk_add_users_wrong_2.csv'
 
       attach_file('new_users', filepath, make_visible: true)
 
@@ -90,7 +90,7 @@ feature BulkAddUsersController do
 
     scenario 'should display none for committees and subcommittees' do
       visit 'bulk_add_users'
-      filepath = Rails.root.join 'spec', 'data', 'bulk_add_users_correct_4.csv'
+      filepath = Rails.root.join 'spec', 'data', 'bulk_add_users', 'bulk_add_users_correct_4.csv'
       attach_file('new_users', filepath, make_visible: true)
       click_button 'upload_btn'
       expect(page).to have_content 'None'
@@ -98,7 +98,7 @@ feature BulkAddUsersController do
 
     scenario 'should display the proper committee and subcommittee' do
       visit 'bulk_add_users'
-      filepath = Rails.root.join 'spec', 'data', 'bulk_add_users_correct_5.csv'
+      filepath = Rails.root.join 'spec', 'data', 'bulk_add_users', 'bulk_add_users_correct_5.csv'
       attach_file('new_users', filepath, make_visible: true)
       click_button 'upload_btn'
       expect(page).to have_content 'Internal'

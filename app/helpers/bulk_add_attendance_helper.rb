@@ -12,6 +12,9 @@ module BulkAddAttendanceHelper
 
   def self.parse_data(filename, activity_id)
     csv = CSV.read(filename)
+    # return if the csv doesn't have a title
+    return [[], false, [], []] if csv[0][0] != 'UIN'
+
     users = []
     reject = []
     already = []

@@ -24,7 +24,7 @@
             <div class="horz">
               <label class="custom-file-upload">
                 <input class="file" type="file" name="new_users" id="new_users">
-                <a class="btn pure-button pure-button-primary" >Select File</a>
+                <a id="select_file_btn" class="btn pure-button pure-button-primary" >Select File</a>
               </label>
               <p id="file_name" style="margin:5px"></p>
               <%= hidden_field :activity_id, :value => @activity.id %>

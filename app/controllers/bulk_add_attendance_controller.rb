@@ -24,7 +24,7 @@ class BulkAddAttendanceController < ApplicationController
     uploaded_file = params[:new_users]
     filename = Rails.root.join('public', 'uploads', uploaded_file.original_filename)
     BulkAddAttendanceHelper.create_file(uploaded_file, filename)
-    redirect_to("/activitites/#{params[:id]}/bulk_add/show?filename=#{uploaded_file.original_filename}")
+    redirect_to("/activities/#{params[:id]}/bulk_add/show?filename=#{uploaded_file.original_filename}")
   end
 
   def show

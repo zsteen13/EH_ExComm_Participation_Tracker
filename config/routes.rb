@@ -41,8 +41,8 @@ Rails.application.routes.draw do
   get 'bulk_add_attendance/:id/help', to: 'bulk_add_attendance#help'
   get 'bulk_add_attendance/correct_csv', to: 'bulk_add_attendance#correct_csv'
   get 'activities/:id/bulk_add/confirmed', to: 'bulk_add_attendance#confirmed'
-  get 'activitites/:id/bulk_add/show', to: 'bulk_add_attendance#show'
-  post 'activitites/:id/bulk_add/create', to: 'bulk_add_attendance#create'
+  get 'activities/:id/bulk_add/show', to: 'bulk_add_attendance#show'
+  post 'activities/:id/bulk_add/create', to: 'bulk_add_attendance#create'
 
   get 'profile/profile'
   get 'members/point_threshold', to: 'members#point_threshold'
