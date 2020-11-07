@@ -21,11 +21,17 @@ class ActivitiesController < ApplicationController
 
   def create
     admin_only
-    unless ActivitiesHelper.correct_num_field?(params)
-      @error_message = 'There were too many parameter or not enough parameters sumbitted'
+
+    params.each do |key, _item|
+      next unless params[key].blank?
+
+      puts "\n\n"
+      puts params
+      puts "\n\n"
+      @error_message = 'One or more input fields were left blank.'
       @prev_data = params
       render('/activities/new')
-      return
+      return 0
     end
 
     unless ActivitiesHelper.datetime_correct?(params)
@@ -35,9 +41,10 @@ class ActivitiesController < ApplicationController
       @error_message = 'The date or time input was not valid please check your input for date and time'
       @prev_data = params
       render('/activities/new')
-      return
+      return 0
     end
 
+    params.require(%i[activity_name activity_type date time point_value description])
     act = Activity.new
     act.name = params['activity_name']
     act._type = params['activity_type']
