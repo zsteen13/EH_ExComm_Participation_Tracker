@@ -34,12 +34,10 @@ class CommitteesController < ApplicationController
 
   def create
     @committee = Committee.new(committee_params)
-    @committee_prev = Committee.last
-    @committee.id = if !@committee_prev.nil?
-                      @committee_prev.id + 1
-                    else
-                      0
-                    end
+
+    # should auto increment in the future
+    @committee.id = Committee.last.nil? ? 0 : Committee.last.id + 1
+
     if @committee.save
       redirect_to(committees_path)
     else

@@ -69,6 +69,34 @@ feature 'Add New Subcommittee' do
     find("a[id='return_to_committees']").click
     expect(page).to have_current_path '/committees'
   end
+
+  scenario 'with non integer point threshold' do
+    visit('/committees/1/subcommittees')
+    find("a[href='/committees/1/subcommittees/new']").click
+    expect(page).to have_content 'Add Subcommittee to External'
+
+    fill_in 'subcommittee_subcommittee', with: 'A subcommittee name'
+    fill_in 'subcommittee_point_threshold', with: '100.5'
+
+    click_button 'Add Subcommittee'
+
+    expect(page).to have_current_path '/committees/1/subcommittees'
+    expect(page).to have_content 'point_threshold must be an integer'
+  end
+
+  scenario 'with non numeric point threshold' do
+    visit('/committees/1/subcommittees')
+    find("a[href='/committees/1/subcommittees/new']").click
+    expect(page).to have_content 'Add Subcommittee to External'
+
+    fill_in 'subcommittee_subcommittee', with: 'A subcommittee name'
+    fill_in 'subcommittee_point_threshold', with: 'not a number'
+
+    click_button 'Add Subcommittee'
+
+    expect(page).to have_current_path '/committees/1/subcommittees'
+    expect(page).to have_content 'point_threshold is not a number'
+  end
 end
 
 feature 'Edit Subommittee Information' do
@@ -124,6 +152,34 @@ feature 'Edit Subommittee Information' do
 
     find("a[id='return_to_committees']").click
     expect(page).to have_current_path '/committees'
+  end
+
+  scenario 'edit a subcommittee to have a non integer point threshold' do
+    visit('/committees/1/subcommittees')
+    find("a[href='/subcommittees/3/edit']").click
+    expect(page).to have_content 'Edit Subcommittee'
+
+    fill_in 'subcommittee_subcommittee', with: 'Changing Service'
+    fill_in 'subcommittee_point_threshold', with: '100.5'
+
+    click_button 'Edit Subcommittee'
+
+    expect(page).to have_current_path '/subcommittees/3'
+    expect(page).to have_content 'point_threshold must be an integer'
+  end
+
+  scenario 'edit a subcommittee to have a non numeric point threshold' do
+    visit('/committees/1/subcommittees')
+    find("a[href='/subcommittees/3/edit']").click
+    expect(page).to have_content 'Edit Subcommittee'
+
+    fill_in 'subcommittee_subcommittee', with: 'Changing Service'
+    fill_in 'subcommittee_point_threshold', with: 'bad number'
+
+    click_button 'Edit Subcommittee'
+
+    expect(page).to have_current_path '/subcommittees/3'
+    expect(page).to have_content 'point_threshold is not a number'
   end
 end
 
