@@ -28,11 +28,15 @@
         <div class="pure-menu">
             <a class="pure-menu-heading" href="/welcome">EH</a>
             <% if logged_in? %>
-            <ul class="pure-menu-list">
-                <%select_profile    = controller_name == 'profile'    ? 'pure-menu-selected' : nil%>
-                <%select_activities = controller_name == 'activities' ? 'pure-menu-selected' : nil%>
-                <%select_members    = controller_name == 'members'    ? 'pure-menu-selected' : nil%>
-                <%select_committees = controller_name == 'committees' ? 'pure-menu-selected' : nil%>
+              <ul class="pure-menu-list">
+                <% profile = [ 'profile' ] %>
+                <% activities = ['activities', 'bulk_add_attendance']%>
+                <% members = ['members', 'bulk_add_users']%>
+                <% committees = ['committees']%>
+                <%select_profile    = profile.include?(controller_name)     ? 'pure-menu-selected' : nil%>
+                <%select_activities = activities.include?(controller_name)  ? 'pure-menu-selected' : nil%>
+                <%select_members    = members.include?(controller_name)     ? 'pure-menu-selected' : nil%>
+                <%select_committees = committees.include?(controller_name)  ? 'pure-menu-selected' : nil%>
                 
                 <li class="pure-menu-item <%=select_profile%>"><a href="/profile" class="pure-menu-link">Profile</a></li>
                 <li class="pure-menu-item <%=select_activities%>"><a href="/activities" class="pure-menu-link">Activities</a></li>
