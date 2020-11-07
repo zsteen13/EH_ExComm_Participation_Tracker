@@ -4,6 +4,8 @@
 class Subcommittee < ApplicationRecord
   after_destroy :delete_members_subcommittees
 
+  validates :point_threshold, numericality: { only_integer: true }
+
   def delete_members_subcommittees
     users = User.all
     users.each do |user|
