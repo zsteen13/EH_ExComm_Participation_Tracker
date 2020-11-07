@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'points_helper'
+
 # BulkAddAttendanceHelper
 module BulkAddAttendanceHelper
   def self.create_file(uploaded_file, filename)
@@ -51,5 +53,8 @@ module BulkAddAttendanceHelper
 
   def self.save_users(users)
     users.each(&:save)
+    User.all.each do |user|
+      PointsHelper.update_points(user.uin)
+    end
   end
 end

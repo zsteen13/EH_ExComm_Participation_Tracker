@@ -21,7 +21,7 @@
                     <% if current_user.admin? %>
                         <%# <div class="compress"> %>
                             <%= link_to("View Attendance", activity_path(activity), :class => 'action show pure-button button-secondary') %>
-                            <%= link_to("Delete", "/activities/#{activity}/delete", :class => 'action show pure-button button-secondary') %>
+                            <%= link_to("Delete", "/activities/#{activity.id}/delete", :class => 'action show pure-button button-secondary') %>
                         <%# </div> %>
                     <% end%>
                 </div>
