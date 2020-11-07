@@ -32,7 +32,11 @@ Rails.application.routes.draw do
   get 'bulk_add_users/incorrect_csv_not_enough_columns', to: 'bulk_add_users#incorrect_csv_not_enough_columns'
 
   get 'activities/:id', to: 'activities#show'
+  get '/activities/:id/delete/:attendee', to: 'activities#delete_attendee'
 
+  get '/activities/:id/add', to: 'activities#add_user'
+
+  get '/activities/:id/delete', to: 'activities#delete'
   get 'activities/:id/bulk_add', to: 'bulk_add_attendance#index'
   get 'bulk_add_attendance/:id/help', to: 'bulk_add_attendance#help'
   get 'bulk_add_attendance/correct_csv', to: 'bulk_add_attendance#correct_csv'

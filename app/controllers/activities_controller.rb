@@ -19,6 +19,32 @@ class ActivitiesController < ApplicationController
     @members_attended = UserToActivity.where(activity_id: @activity.id)
   end
 
+  def delete_attendee
+    admin_only
+    @activity_id = params[:id]
+    @attendee = params[:attendee]
+    @record = UserToActivity.find_by(uin: @attendee, activity_id: @activity_id)
+    @record.destroy
+    redirect_to("/activities/#{@activity_id}")
+  end
+
+  def delete
+    @activity = Activity.find(params[:id])
+    @activity.destroy
+    redirect_to('/activities')
+  end
+
+  def add_user
+    @activity_id = params[:id]
+    @uin = params[:uin]
+    if User.where(uin: @uin).take
+      UserToActivity.create(uin: @uin, activity_id: @activity_id)
+    else
+      flash.alert = "Could not add attendee: Not a valid UIN.\n"
+    end
+    redirect_to("/activities/#{@activity_id}")
+  end
+
   def create
     admin_only
     unless ActivitiesHelper.correct_num_field?(params)

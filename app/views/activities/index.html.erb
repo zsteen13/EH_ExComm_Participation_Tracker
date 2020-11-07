@@ -19,9 +19,10 @@
                     </p> 
                     <h5 class="event-points"> Available Points: <%= activity.point_value%> </h5>
                     <% if current_user.admin? %>
-                        <div class="compress">
+                        <%# <div class="compress"> %>
                             <%= link_to("View Attendance", activity_path(activity), :class => 'action show pure-button button-secondary') %>
-                        </div>
+                            <%= link_to("Delete", "/activities/#{activity}/delete", :class => 'action show pure-button button-secondary') %>
+                        <%# </div> %>
                     <% end%>
                 </div>
             </div>
