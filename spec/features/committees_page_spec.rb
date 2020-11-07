@@ -47,6 +47,43 @@ feature 'Add Committee Information' do
     expect(page).to have_content 'Rspec Committee'
     expect(page).to have_content 'rspec@tamu.edu'
   end
+
+  scenario 'add the first committee' do
+    Committee.delete_all
+    visit('committees')
+    find("a[href='/committees/new']").click
+    expect(page).to have_content 'Add Committee'
+
+    fill_in 'committee_committee', with: 'Rspec Committee'
+    fill_in 'committee_point_threshold', with: '100'
+    fill_in 'committee_head_first_name', with: 'Rspec Testing First Name'
+    fill_in 'committee_head_last_name', with: 'Rspec Testing Last Name'
+    fill_in 'committee_email', with: 'rspec@tamu.edu'
+
+    click_button 'Add Committee'
+
+    expect(page).to have_current_path committees_path
+    expect(page).to have_content 'Rspec Committee'
+    expect(page).to have_content 'rspec@tamu.edu'
+    expect(Committee.first.id).to equal 0
+  end
+
+  scenario 'add a committee with a bad email' do
+    visit('committees')
+    find("a[href='/committees/new']").click
+    expect(page).to have_content 'Add Committee'
+
+    fill_in 'committee_committee', with: 'Rspec Committee'
+    fill_in 'committee_point_threshold', with: '100'
+    fill_in 'committee_head_first_name', with: 'Rspec Testing First Name'
+    fill_in 'committee_head_last_name', with: 'Rspec Testing Last Name'
+    fill_in 'committee_email', with: 'A bad email'
+
+    click_button 'Add Committee'
+
+    expect(page).to have_current_path committees_path
+    expect(page).to have_content 'email is invalid'
+  end
 end
 
 feature 'Edit Committee Information' do
@@ -80,6 +117,33 @@ feature 'Edit Committee Information' do
     expect(page).to have_current_path '/committees'
     expect(page).to have_content 'Rspec Testing First Name'
     expect(page).to have_content 'rspec@tamu.edu'
+  end
+
+  scenario 'with bad email' do
+    visit('committees')
+    find("a[href='/committees/0/edit']").click
+    expect(page).to have_content 'Edit Committee Information'
+
+    fill_in 'committee_head_first_name', with: 'Rspec Testing First Name'
+    fill_in 'committee_email', with: 'rspec.com'
+
+    click_button 'Edit Information'
+    expect(page).to have_current_path '/committees/0'
+    expect(page).to have_content 'email is invalid'
+  end
+
+  scenario 'with bad email' do
+    visit('committees')
+    find("a[href='/committees/0/edit']").click
+    expect(page).to have_content 'Edit Committee Information'
+
+    fill_in 'committee_head_first_name', with: 'Rspec Testing First Name'
+    fill_in 'committee_point_threshold', with: 'not a number!'
+    fill_in 'committee_email', with: 'rspec@tamu.com'
+
+    click_button 'Edit Information'
+    expect(page).to have_current_path '/committees/0'
+    expect(page).to have_content 'point_threshold is not a number'
   end
 end
 

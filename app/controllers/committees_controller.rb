@@ -14,7 +14,7 @@ class CommitteesController < ApplicationController
   end
 
   def new
-    @committee_new = Committee.new
+    @committee = Committee.new
   end
 
   def edit
@@ -28,7 +28,7 @@ class CommitteesController < ApplicationController
     else
       flash.alert = "An Error occured. Please check your inputs and try again.\n"
       @committee.errors.each { |attr, msg| flash.alert += "#{attr} \t\t #{msg}\n" }
-      render('edit')
+      render(:edit)
     end
   end
 
@@ -45,7 +45,7 @@ class CommitteesController < ApplicationController
     else
       flash.alert = "An Error occured. Please check your inputs and try again.\n"
       @committee.errors.each { |attr, msg| flash.alert += "#{attr} \t\t #{msg}\n" }
-      render('new')
+      render(:new)
     end
   end
 

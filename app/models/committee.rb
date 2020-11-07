@@ -3,6 +3,8 @@
 # Committee Model
 class Committee < ApplicationRecord
   validates :committee, :head_first_name, :head_last_name, :email, presence: true
+  validates :email, email: true
+  validates :point_threshold, numericality: { only_integer: true }
 
   before_save :point_threshold_validate
   before_update :point_threshold_validate
