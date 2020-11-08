@@ -94,7 +94,9 @@ You should run these commands in this order.
 7. $ `rspec`
 
 ##  Heroku Hosting
-This application can easily be deployed on Heroku. On a local machine, install the Heroku CLI, and then do $ `heroku login`. Navigate to this apps root and run $ `heroku create` the $ `git push heroku master`. After it finishes, run $ `heroku run rails db:migrate`. The webapp should now be running at the link provided by the terminal. Visit this page for more guidance https://devcenter.heroku.com/articles/getting-started-with-rails5.
+This application can easily be deployed on Heroku. On a local machine, install the Heroku CLI, and then do $ `heroku login`. Navigate to this apps root and run $ `heroku create` the $ `git push heroku master`. After it finishes, run $ `heroku run rails db:migrate`. The webapp should now be running at the link provided by the terminal. 
+
+Visit this page for more guidance https://devcenter.heroku.com/articles/getting-started-with-rails5.
 
 ## Remarks
 * The domain this app is hosted on must support https.
