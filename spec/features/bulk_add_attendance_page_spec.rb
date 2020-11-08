@@ -29,7 +29,7 @@ feature 'Bulk Add Attendance' do
       attach_file 'new_users', csv_file, make_visible: true
       expect(page).to have_content 'bulk_add_attendance_correct_6_users.csv'
       find(id: 'upload_btn').click
-      sleep 1
+      sleep 0.2
       expect(body).to have_selector 'p', text: 'Note: These UINs were rejected because the member is already listed as an attendee.'
       # already attended
       expect(body).to have_selector 'p', text: '111111111'
@@ -132,6 +132,18 @@ feature 'Bulk Add Attendance' do
       sleep 0.2
       expect(page).to have_content 'Parsing Error'
       expect(page).to have_selector 'p', text: "The provided csv does not have a proper header of 'UIN'."
+    end
+
+    scenario 'view help page' do
+      find("a[href='/bulk_add_attendance/1/help']").click
+      expect(page).to have_current_path '/bulk_add_attendance/1/help'
+      expect(page).to have_content 'Bulk Add Attendees Help Page'
+
+      click_link 'correct_csv_all_fields-btn'
+      sleep 0.2
+      full_path = "#{DOWNLOAD_PATH}/correct_attendance.csv"
+      expect(File.exist?(full_path)).to be true
+      File.delete(full_path) if File.exist?(full_path)
     end
   end
 end

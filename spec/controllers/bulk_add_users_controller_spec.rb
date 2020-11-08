@@ -55,17 +55,17 @@ feature BulkAddUsersController do
     end
     scenario 'help page buttons work' do
       visit '/bulk_add_users/help'
-      sleep 1
+      sleep 0.2
       click_link 'correct_csv_all_fields-btn'
-      sleep 1
+      sleep 0.2
       click_link 'correct_csv_required_fields-btn'
-      sleep 1
+      sleep 0.2
       click_link 'correct_csv_some_optional_fields-btn'
-      sleep 1
+      sleep 0.2
       click_link 'incorrect_csv_email_last_name_switched-btn'
-      sleep 1
+      sleep 0.2
       click_link 'incorrect_csv_not_enough_columns-btn'
-      sleep 1
+      sleep 0.2
 
       full_path = "#{DOWNLOAD_PATH}/correct_csv_all_fields.csv"
       expect(File.exist?(full_path)).to be true

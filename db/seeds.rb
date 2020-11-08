@@ -46,8 +46,6 @@ activity2 = Activity.create!(name: 'General Meeting', _type: 'Meeting', date: Da
 
 activity3 = Activity.create!(name: 'Canes Profit Share', _type: 'Misc', date: DateTime.new(2020, 10, 0o1, 5, 0, 0, Rational(-5, 24)), point_value: 8, description: 'Meet and greet for the new members', num_rsvp: 0)
 
-activity4 = Activity.create!(name: 'Future Peers Meeting', _type: 'Meeting', date: DateTime.new(2020, 11, 0o1, 5, 0, 0, Rational(-5, 24)), point_value: 5, description: 'Guidance and leadership from senior members', num_rsvp: 0)
-
 UserToActivity.create!(uin: users1.uin, activity_id: activity1.id)
 UserToActivity.create!(uin: users2.uin, activity_id: activity1.id)
 
