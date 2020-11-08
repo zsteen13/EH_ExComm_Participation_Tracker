@@ -4,10 +4,21 @@
       <h1>Members</h1>
     </div>
     <div class="center">
-      <a class="btn pure-button pure-button-primary" href="/bulk_add_users/"> Back to Bulk Add Users Page </a>
+      <a class="btn pure-button pure-button-primary" href=<%= "/activities/#{@activity_id}/bulk_add"%>> Back to Bulk Add Attendance Page </a>
     </div>
 
-    <% if !@correct_num_cols or !@valid %>
+    <% if !@valid %>
+      <div class="pure-g" style="margin-right: 2em;">
+        <div class="pure-u-1">
+          <div class="profile-card">
+            <h1>Parsing Error</h1>
+            <div class="text">
+              <p>The provided csv does not have a proper header of 'UIN'.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% elsif !@correct_num_cols%>
       <div class="pure-g" style="margin-right: 2em;">
         <div class="pure-u-1">
           <div class="profile-card">
