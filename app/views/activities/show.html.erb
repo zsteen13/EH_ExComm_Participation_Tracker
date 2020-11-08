@@ -9,8 +9,27 @@
         <h2><%= @activity.name %> Attendence</h2>
     </div>
     <br>
-    <div style="text-align: center;" >
+    <div class="pure-button-group" role="group" style="text-align: center;">
       <a class="pure-button pure-button-primary" href="/activities/"> Return to Activities </a>
+      <% if current_user.admin? %>
+      <a class="pure-button pure-button-primary" href=<%="/activities/#{@activity.id}/bulk_add"%>> Bulk Add Attendees </a>
+      <br>
+      <%= form_tag href="/activities/#{@activity.id}/add", :class => "pure-form", method: :get do %>
+        <br>
+        <div style="text-align: center;" >
+          <%= text_field_tag :uin, params[:add], :value=> params[:add], :pattern => "[0-9]+", :required => true, :placeholder => "UIN", :style => "text-align:center;" %>
+        </div>
+          <%= submit_tag 'Add Attendee', :class => "pure-button pure-button-primary" %>
+        <% end %>
+      <% end %>
+    </div>   
+    <div style="text-align: center;" >
+    <% flash.each do |type, msg| %>
+        <div style="color: red">
+          <%= msg %>
+        </div>
+        <%flash.alert = ""%>
+    <% end %>
     </div>
     <div class="l-content" >
         <div class="profile-boxes pure-g">
@@ -23,6 +42,7 @@
                             <th>Last Name</th>
                             <th>UIN</th>
                             <th>Email</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                             <% @members_attended.each do |member_attended|%>
@@ -32,6 +52,7 @@
                                 <td><%= member.try(:last_name) %></td>
                                 <td><%= member.try(:uin).blank? ? 'non-student' : member.uin %></td>
                                 <td><%= member.try(:email) %></td>
+                                <td><a class="pure-button pure-button-primary" href="/activities/<%=@activity.id%>/delete/<%=member.try(:uin)%>"> Delete </a></td>
                             </tr>
                             <% end %>
                         

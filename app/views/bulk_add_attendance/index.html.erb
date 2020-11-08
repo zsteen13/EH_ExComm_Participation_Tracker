@@ -1,0 +1,49 @@
+<div class>
+  <div id="main">
+    <div class="header">
+      <h1>Activities</h1>
+      <h2><%= @activity.name %> Attendence</h2>
+    </div>
+    <br>
+    <div style="text-align: center;" >
+    <%= link_to("Back to Attendance", activity_path(@activity), :class => 'pure-button pure-button-primary') %>
+    </div>
+    <div class="pure-g" style="margin-right: 2em;">
+      <div class="pure-u-1">
+        <div class="profile-card">
+          <h1>Bulk Add Attendees</h1>
+          <div class="text">
+            <p>
+              Attach CSV file with activity attendees.
+              <br>
+              <br>
+              The CSV should contain a column of UINs.
+            </p>
+          </div>
+          <%= form_with(url: {action: :create}, multipart: true) do %>
+            <div class="horz">
+              <label class="custom-file-upload">
+                <input class="file" type="file" name="new_users" id="new_users">
+                <a class="btn pure-button pure-button-primary" >Select File</a>
+              </label>
+              <p id="file_name" style="margin:5px"></p>
+              <%= hidden_field :activity_id, :value => @activity.id %>
+              <%= submit_tag "Upload", :class => "btn pure-button pure-button-primary", :id => "upload_btn" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="center">
+      <a class="pure-button pure-button-primary" href=<%="/bulk_add_attendance/#{@activity.id}/help"%>>Click Here for Help</a>
+    </div>
+  </div>
+
+  <script>
+    var file_input = document.getElementById('new_users')
+    var file_name = document.getElementById('file_name')
+    file_input.addEventListener('input', function (evt){
+    var list = this.value.split('\\')
+    file_name.innerText = list[list.length - 1]
+    })
+  </script>

@@ -35,15 +35,4 @@ feature 'View Attendance' do
     click_link 'Return to Activities'
     expect(page).to have_current_path '/activities/'
   end
-
-  scenario 'Non-student member displays correctly' do
-    visit 'activities'
-    expect(page).to have_current_path '/activities'
-    find_link('View Attendance', href: '/activities/1').click
-    expect(page).to have_current_path '/activities/1'
-    expect(page).to have_content 'Meet and Greet Attendence'
-    expect(page).to have_content 'ProfX@tamu.edu'
-    click_link 'Return to Activities'
-    expect(page).to have_current_path '/activities/'
-  end
 end
