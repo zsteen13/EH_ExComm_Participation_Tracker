@@ -92,5 +92,9 @@ You should run these commands in this order.
      3.1. On MacOS, linux, and windows subsystem for linux, add `PATH=$PATH:/your/path/to/your/bin` to your `~/.profile` file.
      3.2. On windows, hit the windows key, type "environment" and look for the option to change your environment variables. Once in that menu, find the PATH variable, click edit (or something), and add the path fro before to the list.
 7. $ `rspec`
+
+##  Heroku Hosting
+This application can easily be deployed on Heroku. On a local machine, install the Heroku CLI, and then do $ `heroku login`. Navigate to this apps root and run $ `heroku create` the $ `git push heroku master`. After it finishes, run $ `heroku run rails db:migrate`. The webapp should now be running at the link provided by the terminal. Visit this page for more guidance https://devcenter.heroku.com/articles/getting-started-with-rails5.
+
 ## Remarks
 * The domain this app is hosted on must support https.
