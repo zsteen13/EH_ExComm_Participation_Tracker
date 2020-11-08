@@ -9,8 +9,8 @@
         <div class="content" style="text-align:center;">
             <br>
             <%= form_tag '/login', :id => 'login' do %>
-                <label for="uin">UIN</label>
-                <%= text_field_tag :uin %>
+                <label for="uin_email">UIN or email</label>
+                <%= text_field_tag :uin_email %>
                 <br>
                 <%= label_tag "Password" %>
                 <%= text_field_tag :password, '', :type => 'password' %>

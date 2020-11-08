@@ -25,6 +25,7 @@ class MembersController < ApplicationController
 
   def new
     @member = User.new
+    @member.student = true
   end
 
   def create
@@ -37,6 +38,8 @@ class MembersController < ApplicationController
     if @member.save
       redirect_to(members_path)
     else
+      flash.alert = "An Error occured. Please check your inputs and try again.\n"
+      @member.errors.each { |attr, msg| flash.alert += "#{attr} \t\t #{msg}\n" }
       render('new')
     end
   end
@@ -110,7 +113,11 @@ class MembersController < ApplicationController
   private
 
   def member_params
-    params.require(:user).permit(:first_name, :last_name, :uin, :email, :total_points, :committee, :subcommittee, :admin)
+    if !params[:user][:student]
+      params.require(:user).permit(:first_name, :last_name, :email, :total_points, :committee, :subcommittee, :admin)
+    else
+      params.require(:user).permit(:first_name, :last_name, :uin, :student, :email, :total_points, :committee, :subcommittee, :admin)
+    end
   end
 
   def sort_column

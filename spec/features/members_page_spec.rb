@@ -20,14 +20,14 @@ feature 'Members Page'  do
   scenario 'sort members above' do
     visit('/members')
     fill_in 'search', with: '49'
-    click_button 'Set Threshold Points Above'
+    click_button 'Set Threshold Above'
     expect(page).to have_content '50'
   end
 
   scenario 'sort members below' do
     visit('/members')
     fill_in 'search', with: '49'
-    click_button 'Set Threshold Points Below'
+    click_button 'Set Threshold Below'
     expect(page).to have_content '0'
     expect(page).not_to have_content '50'
   end
@@ -59,7 +59,6 @@ feature 'Members Page'  do
 
   scenario 'edit a member, again, for controller' do
     visit('/members')
-
     find("a[href='/members/2/edit']").click
 
     # changing to external should change subcommitee options
@@ -68,7 +67,6 @@ feature 'Members Page'  do
     click_button 'commit'
 
     visit('/members')
-
     find("a[href='/members/2/edit']").click
 
     # changing to external should change subcommitee options
@@ -79,9 +77,7 @@ feature 'Members Page'  do
 
   scenario 'edit a member error handling' do
     visit('/members')
-
     find("a[href='/members/2/edit']").click
-
     expect(page).to have_content 'Edit Member'
 
     # change to invalid email

@@ -8,7 +8,8 @@ feature 'View SubCommmittees for Intenal' do
 
   scenario 'visit Subcommittee page for Internal' do
     visit('/committees/0/subcommittees')
-    expect(page).to have_content 'Internal Subcommittees'
+    expect(page).to have_content 'Internal'
+    expect(page).to have_content 'Subcommittees'
   end
 end
 
@@ -25,7 +26,8 @@ feature 'Add New Subcommittee' do
     find("a[href='/committees/1/subcommittees']").click
 
     expect(page).to have_current_path '/committees/1/subcommittees'
-    expect(page).to have_content 'External Subcommittees'
+    expect(page).to have_content 'External'
+    expect(page).to have_content 'Subcommittees'
     expect(page).not_to have_content 'Do not change'
 
     find("a[id='return_to_committees']").click
@@ -66,6 +68,34 @@ feature 'Add New Subcommittee' do
 
     find("a[id='return_to_committees']").click
     expect(page).to have_current_path '/committees'
+  end
+
+  scenario 'with non integer point threshold' do
+    visit('/committees/1/subcommittees')
+    find("a[href='/committees/1/subcommittees/new']").click
+    expect(page).to have_content 'Add Subcommittee to External'
+
+    fill_in 'subcommittee_subcommittee', with: 'A subcommittee name'
+    fill_in 'subcommittee_point_threshold', with: '100.5'
+
+    click_button 'Add Subcommittee'
+
+    expect(page).to have_current_path '/committees/1/subcommittees'
+    expect(page).to have_content 'point_threshold must be an integer'
+  end
+
+  scenario 'with non numeric point threshold' do
+    visit('/committees/1/subcommittees')
+    find("a[href='/committees/1/subcommittees/new']").click
+    expect(page).to have_content 'Add Subcommittee to External'
+
+    fill_in 'subcommittee_subcommittee', with: 'A subcommittee name'
+    fill_in 'subcommittee_point_threshold', with: 'not a number'
+
+    click_button 'Add Subcommittee'
+
+    expect(page).to have_current_path '/committees/1/subcommittees'
+    expect(page).to have_content 'point_threshold is not a number'
   end
 end
 
@@ -123,6 +153,34 @@ feature 'Edit Subommittee Information' do
     find("a[id='return_to_committees']").click
     expect(page).to have_current_path '/committees'
   end
+
+  scenario 'edit a subcommittee to have a non integer point threshold' do
+    visit('/committees/1/subcommittees')
+    find("a[href='/subcommittees/3/edit']").click
+    expect(page).to have_content 'Edit Subcommittee'
+
+    fill_in 'subcommittee_subcommittee', with: 'Changing Service'
+    fill_in 'subcommittee_point_threshold', with: '100.5'
+
+    click_button 'Edit Subcommittee'
+
+    expect(page).to have_current_path '/subcommittees/3'
+    expect(page).to have_content 'point_threshold must be an integer'
+  end
+
+  scenario 'edit a subcommittee to have a non numeric point threshold' do
+    visit('/committees/1/subcommittees')
+    find("a[href='/subcommittees/3/edit']").click
+    expect(page).to have_content 'Edit Subcommittee'
+
+    fill_in 'subcommittee_subcommittee', with: 'Changing Service'
+    fill_in 'subcommittee_point_threshold', with: 'bad number'
+
+    click_button 'Edit Subcommittee'
+
+    expect(page).to have_current_path '/subcommittees/3'
+    expect(page).to have_content 'point_threshold is not a number'
+  end
 end
 
 feature 'View Members in a Subcommittee' do
@@ -137,7 +195,8 @@ feature 'View Members in a Subcommittee' do
     expect(page).not_to have_content 'nonadmintest@gmail.com'
 
     find("a[href='/committees/0/subcommittees']").click
-    expect(page).to have_content 'Internal Subcommittees'
+    expect(page).to have_content 'Internal'
+    expect(page).to have_content 'Subcommittees'
 
     find("a[id='return_to_committees']").click
     expect(page).to have_current_path '/committees'
@@ -147,13 +206,14 @@ feature 'View Members in a Subcommittee' do
     visit('/committees/0/subcommittees')
     find("a[href='/subcommittees/1']").click
     expect(page).to have_content 'Research and Technology Members'
-    expect(page).to have_content 'David'
+    expect(page).to have_content 'Kylie'
     expect(page).to have_content 'yoyoyo@aol.com'
     expect(page).not_to have_content 'admintest@gmail.com'
     expect(page).not_to have_content 'nonadmintest@gmail.com'
 
     find("a[href='/committees/0/subcommittees']").click
-    expect(page).to have_content 'Internal Subcommittees'
+    expect(page).to have_content 'Internal'
+    expect(page).to have_content 'Subcommittees'
 
     find("a[id='return_to_committees']").click
     expect(page).to have_current_path '/committees'
@@ -171,7 +231,8 @@ feature 'Delete Subcommittee' do
     find("a[href='/committees/0/subcommittees']").click
 
     expect(page).to have_current_path '/committees/0/subcommittees'
-    expect(page).to have_content 'Internal Subcommittees'
+    expect(page).to have_content 'Internal'
+    expect(page).to have_content 'Subcommittees'
     expect(page).to have_content 'Research and Technology'
 
     find("a[id='return_to_committees']").click

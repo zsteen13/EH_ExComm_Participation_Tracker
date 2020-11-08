@@ -2,6 +2,7 @@
 
 # Subcommittees Controller
 class SubcommitteesController < ApplicationController
+  before_action :admin_only
   def index
     @committee = Committee.find(params[:committee_id])
     @subcommittees = Subcommittee.where(committee: @committee.id)
@@ -14,7 +15,7 @@ class SubcommitteesController < ApplicationController
 
   def new
     @committee = Committee.find(params[:committee_id])
-    @subcommittee_new = Subcommittee.new
+    @subcommittee = Subcommittee.new
   end
 
   def edit
@@ -35,16 +36,15 @@ class SubcommitteesController < ApplicationController
   def create
     @subcommittee = Subcommittee.new(subcommittee_params)
     @subcommittee.committee = params[:committee_id]
-    @subcommittee_prev = Subcommittee.last
-    if !@subcommittee_prev.nil?
-      @subcommittee.id = @subcommittee_prev.id + 1
-    else
-      0
-    end
+
+    # should auto increment in the future
+    @subcommittee.id = Subcommittee.last.nil? ? 0 : Subcommittee.last.id + 1
+
     if @subcommittee.save
       redirect_to(committee_subcommittees_path)
     else
       flash.alert = "An Error occured. Please check your inputs and try again.\n"
+      @committee = Committee.find(params[:committee_id])
       @subcommittee.errors.each { |attr, msg| flash.alert += "#{attr} \t\t #{msg}\n" }
       render('new')
     end

@@ -27,8 +27,10 @@
                         </div>
                         <div class="content">
                             <p>
-                            <label> <strong>UIN: </strong></label>
-                                <%= current_user.uin %>
+                            <% if not current_user.uin.blank? %>
+                              <label> <strong>UIN: </strong></label>
+                              <%= current_user.uin %>
+                            <% end %>
                             </p>
                             <p>
                             <label> <strong>Email: </strong></label>
@@ -37,9 +39,9 @@
                             <p>
                             <label> <strong>Member Type: </strong></label>
                             <% if current_user.admin? %>
-                                <label>Admin </label>
+                                <a>Admin</a>
                             <%else%>
-                                <label>Member </label>
+                                <a>Member</a>
                             <%end%>
                             </p>
                             <p>

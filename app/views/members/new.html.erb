@@ -1,9 +1,17 @@
 <div id="main">
   <div class="header">
     <h1>Members</h1>
+  <% flash.each do |type, msg| %>
+    <div style="color: red">
+      <%= msg %>
+    </div>
+    <%flash.alert = ""%>
+  <% end %>
   </div>
-
-<%= button_to("Return to Members ", members_path, :method => "get", :class => 'back-link', :class=>"return-button pure-button-primary") %>
+  <br>
+  <div style="text-align: center;" >
+    <%= button_to("Return to Members ", members_path, :method => "get", :class => 'back-link', :class=>"return-button pure-button-primary") %>
+  </div>
     <div id="outer" class="content" style="margin-top:10px">
         <div id="inner" class="content">
             <h1 style="text-align: center;color:#500000">Create a Member</h1>
@@ -20,6 +28,11 @@
                       <td><%= f.text_field :last_name, style: 'text-transform: capitalize;' %></td>
                   </tr>
 
+                  <tr>
+                    <th>Student</th>
+                    <td><%= f.check_box :student, checked: @member.student%></td>
+                  </tr>
+                  
                   <tr>
                       <th>UIN</th>
                       <td><%= f.text_field :uin %></td>
@@ -62,12 +75,17 @@
 
 <script>
   $(function () {
+    // default state
+    $('input#user_uin').attr("disabled", !$('#user_student').is(":checked"));
+
 
     if ($("select#user_committee").val() == "") {
       $("select#user_subcommittee option").remove();
       var row = "<option value=\"" + "" + "\">" + "None" + "</option>";
       $(row).appendTo("select#user_subcommittee");
     }
+
+    // on user_committee change
     $("select#user_committee").change(function () {
       var id_value_string = $(this).val();
       if (id_value_string == "") {
@@ -98,6 +116,11 @@
           }
         });
       }
+    });
+
+    // on user_student change
+    $("input#user_student").click(function () {
+      $('input#user_uin').attr("disabled", !$(this).is(":checked"));
     });
   });
 </script>

@@ -9,12 +9,14 @@
           </div>
           <%flash.alert = ""%>
     <% end %>
-
-    <a class="pure-button pure-button-primary" href="/committees/" > Return to Committees </a>
+    <br>
+    <div style="text-align: center;" >
+      <a id="return_to_committees" class="pure-button pure-button-primary" href="/committees" > Return to Committees </a>
+    </div>
     <div id="outer" class="content" >
         <div id="inner" class="content" >
             <h1 style="text-align: center;color:#500000">Add Committee</h1>
-            <%= form_for(@committee_new, :url => committees_path, :method =>'post') do |f| %>
+            <%= form_for(@committee, :url => committees_path, :method =>'post') do |f| %>
                 <p>
                 <%= f.label "Committee Name", style: 'text-transform: capitalize; font-weight:bold;'%>
                 <br>

@@ -2,7 +2,10 @@
   <div class="header">
     <h1>Members</h1>
   </div>
-    <%= button_to("Return to Members", members_path, :method => "get", :class => 'back-link', :class=>"return-button pure-button-primary") %>
+  <br>
+    <div style="text-align: center;" >
+      <%= button_to("Return to Members", members_path, :method => "get", :class => 'back-link', :class=>"return-button pure-button-primary") %>
+    </div>
     <div id="outer" class="content" >
         <div id="inner" class="content">
           <div class=" new member">
@@ -16,10 +19,12 @@
             <br>
             <%= form_for(@member, :url => member_path(@member), :method =>'patch') do |f| %>
               <table summary="Subject form fields">
-                  <tr>
-                      <th >UIN</th>
-                      <td ><%= @member.uin %></td>
-                  </tr>
+                  <%if not @member.uin.blank?%>
+                    <tr>
+                      <th>UIN</th>
+                      <td><%= @member.uin %></td>
+                    </tr>
+                  <%end%>
 
                   <tr>
                       <th>First Name</th>

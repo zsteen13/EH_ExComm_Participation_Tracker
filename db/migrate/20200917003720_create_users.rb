@@ -16,6 +16,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.integer :event_points
       t.integer :misc_points
       t.boolean :admin
+      t.boolean :student
 
       t.timestamps
     end

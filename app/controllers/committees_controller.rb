@@ -2,6 +2,8 @@
 
 # Committees Controller
 class CommitteesController < ApplicationController
+  before_action :admin_only
+
   def index
     @committees = Committee.all
   end
@@ -12,7 +14,7 @@ class CommitteesController < ApplicationController
   end
 
   def new
-    @committee_new = Committee.new
+    @committee = Committee.new
   end
 
   def edit
@@ -26,24 +28,22 @@ class CommitteesController < ApplicationController
     else
       flash.alert = "An Error occured. Please check your inputs and try again.\n"
       @committee.errors.each { |attr, msg| flash.alert += "#{attr} \t\t #{msg}\n" }
-      render('edit')
+      render(:edit)
     end
   end
 
   def create
     @committee = Committee.new(committee_params)
-    @committee_prev = Committee.last
-    @committee.id = if !@committee_prev.nil?
-                      @committee_prev.id + 1
-                    else
-                      0
-                    end
+
+    # should auto increment in the future
+    @committee.id = Committee.last.nil? ? 0 : Committee.last.id + 1
+
     if @committee.save
       redirect_to(committees_path)
     else
       flash.alert = "An Error occured. Please check your inputs and try again.\n"
       @committee.errors.each { |attr, msg| flash.alert += "#{attr} \t\t #{msg}\n" }
-      render('new')
+      render(:new)
     end
   end
 

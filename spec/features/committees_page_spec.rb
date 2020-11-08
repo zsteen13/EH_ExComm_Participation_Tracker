@@ -26,7 +26,7 @@ feature 'Add Committee Information' do
 
     find("a[id='return_to_committees']").click
 
-    expect(page).to have_current_path '/committees'
+    expect(page).to have_current_path committees_path
     expect(page).not_to have_content 'No Change'
   end
 
@@ -43,9 +43,46 @@ feature 'Add Committee Information' do
 
     click_button 'Add Committee'
 
-    expect(page).to have_current_path '/committees'
+    expect(page).to have_current_path committees_path
     expect(page).to have_content 'Rspec Committee'
     expect(page).to have_content 'rspec@tamu.edu'
+  end
+
+  scenario 'add the first committee' do
+    Committee.delete_all
+    visit('committees')
+    find("a[href='/committees/new']").click
+    expect(page).to have_content 'Add Committee'
+
+    fill_in 'committee_committee', with: 'Rspec Committee'
+    fill_in 'committee_point_threshold', with: '100'
+    fill_in 'committee_head_first_name', with: 'Rspec Testing First Name'
+    fill_in 'committee_head_last_name', with: 'Rspec Testing Last Name'
+    fill_in 'committee_email', with: 'rspec@tamu.edu'
+
+    click_button 'Add Committee'
+
+    expect(page).to have_current_path committees_path
+    expect(page).to have_content 'Rspec Committee'
+    expect(page).to have_content 'rspec@tamu.edu'
+    expect(Committee.first.id).to equal 0
+  end
+
+  scenario 'add a committee with a bad email' do
+    visit('committees')
+    find("a[href='/committees/new']").click
+    expect(page).to have_content 'Add Committee'
+
+    fill_in 'committee_committee', with: 'Rspec Committee'
+    fill_in 'committee_point_threshold', with: '100'
+    fill_in 'committee_head_first_name', with: 'Rspec Testing First Name'
+    fill_in 'committee_head_last_name', with: 'Rspec Testing Last Name'
+    fill_in 'committee_email', with: 'A bad email'
+
+    click_button 'Add Committee'
+
+    expect(page).to have_current_path committees_path
+    expect(page).to have_content 'email is invalid'
   end
 end
 
@@ -81,6 +118,33 @@ feature 'Edit Committee Information' do
     expect(page).to have_content 'Rspec Testing First Name'
     expect(page).to have_content 'rspec@tamu.edu'
   end
+
+  scenario 'with bad email' do
+    visit('committees')
+    find("a[href='/committees/0/edit']").click
+    expect(page).to have_content 'Edit Committee Information'
+
+    fill_in 'committee_head_first_name', with: 'Rspec Testing First Name'
+    fill_in 'committee_email', with: 'rspec.com'
+
+    click_button 'Edit Information'
+    expect(page).to have_current_path '/committees/0'
+    expect(page).to have_content 'email is invalid'
+  end
+
+  scenario 'with bad email' do
+    visit('committees')
+    find("a[href='/committees/0/edit']").click
+    expect(page).to have_content 'Edit Committee Information'
+
+    fill_in 'committee_head_first_name', with: 'Rspec Testing First Name'
+    fill_in 'committee_point_threshold', with: 'not a number!'
+    fill_in 'committee_email', with: 'rspec@tamu.com'
+
+    click_button 'Edit Information'
+    expect(page).to have_current_path '/committees/0'
+    expect(page).to have_content 'point_threshold is not a number'
+  end
 end
 
 feature 'View Subcommittee' do
@@ -89,7 +153,8 @@ feature 'View Subcommittee' do
   scenario 'view subcommittee for Internal' do
     visit('committees')
     find("a[href='/committees/0/subcommittees']").click
-    expect(page).to have_content 'Internal Subcommittees'
+    expect(page).to have_content 'Internal'
+    expect(page).to have_content 'Subcommittees'
     expect(page).to have_content 'Community Building'
     expect(page).to have_content 'Research and Technology'
     expect(page).to have_content 'Professional Development'
@@ -98,7 +163,8 @@ feature 'View Subcommittee' do
   scenario 'view subcommittee for External' do
     visit('committees')
     find("a[href='/committees/1/subcommittees']").click
-    expect(page).to have_content 'External Subcommittees'
+    expect(page).to have_content 'External'
+    expect(page).to have_content 'Subcommittees'
     expect(page).to have_content 'Service'
 
     find("a[id='return_to_committees']").click
@@ -115,7 +181,7 @@ feature 'View Members in a Committee' do
     expect(page).to have_content 'Internal Members'
     expect(page).to have_content 'Non admin'
     expect(page).to have_content 'nonadmintest@gmail.com'
-    expect(page).to have_content 'Trev'
+    expect(page).to have_content 'Kylie'
     expect(page).to have_content 'yoyoyo@aol.com'
 
     find("a[id='return_to_committees']").click

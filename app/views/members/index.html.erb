@@ -3,7 +3,6 @@
   <div id="main">
     <div class="header">
       <h1>Members</h1>
-      <br>
 
     </div>
 
@@ -18,11 +17,14 @@
           <a id="point_threshold_btn" class="pure-button pure-button-primary" href=members/point_threshold >Change Point Threshold</a>
         <% end %>
 
-        <%= form_tag href='members', :class => "pure-form pure-form-stacked", method: :get do %>
-          <%= text_field_tag :search, params[:search], :value=> params[:search],:pattern => "[0-9]+", :required => true %>
+        <%= form_tag href='members', :class => "pure-form", method: :get do %>
+        <br>
+        <div style="text-align: center;" >
+          <%= text_field_tag :search, params[:search], :value=> params[:search], :pattern => "[0-9]+", :required => true, :placeholder => "Enter a Value", :style => "text-align:center;" %>
+        </div>
 
-          <%= submit_tag 'Set Threshold Points Below', :class => "pure-button pure-button-primary", :name=>'below' %>
-          <%= submit_tag 'Set Threshold Points Above', :class => "pure-button pure-button-primary", :name=>'above' %>
+          <%= submit_tag 'Set Threshold Below', :class => "pure-button pure-button-primary", :name=>'below' %>
+          <%= submit_tag 'Set Threshold Above', :class => "pure-button pure-button-primary", :name=>'above' %>
         <% end %>
       </div>
 
@@ -79,9 +81,9 @@
               <td data-label="Email"><%= member.email %></td>
               <td data-label="Total Points"><%= member.display_total_points %></td>
               <td class="actions">
-                <%= link_to("Profile", member_path(member), id: "show_#{member.id}", :class => 'action show') %>
-                <%= link_to("Edit", edit_member_path(member), id: "edit_#{member.id}", :class => 'action edit') %>
-                <%= link_to("Delete", delete_member_path(member), id: "delete_#{member.id}", :class => 'action delete') %>
+                <%= link_to("Profile", member_path(member), id: "show_#{member.id}", :class => 'pure-button pure-button-primary') %>
+                <%= link_to("Edit", edit_member_path(member), id: "edit_#{member.id}", :class => 'pure-button pure-button-primary') %>
+                <%= link_to("Delete", delete_member_path(member), id: "delete_#{member.id}", :class => 'pure-button pure-button-primary') %>
               </td>
             </tr>
             <% end %>
@@ -91,15 +93,6 @@
   </div>
 </div>
 
-<script>
-  /*
-  $(window).on('resize', function(event){
-    var windowSize = $(window).width(); // Could've done $(this).width()
-      if(windowSize < 760){
-        $('#head').css('background-color', 'red');
-      }
-  });*/
-</script>
 
 <style>
   a{
