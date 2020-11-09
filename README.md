@@ -3,7 +3,7 @@ The Member Point Tracker is a website tool that allows for the management of mem
 
 # Setup
 
-## Preequisites
+## Prerequisites
 1. Create a Heroku account
    * This account will access your heroku dyno, from where the app will be served.
 2. Create a gmail account
@@ -15,10 +15,8 @@ The Member Point Tracker is a website tool that allows for the management of mem
 4. In order to host on heroku, you must install [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git/) and the [heroku-cli](https://devcenter.heroku.com/articles/heroku-cli#download-and-install).
 5. In order to host locally, you must also install [Postgres](https://www.postgresql.org/download/macosx/), [Node.js](https://nodejs.org/en/download/package-manager/#windows), [yarn](https://classic.yarnpkg.com/en/docs/install/#mac-stable), and [bundler](https://bundler.io/).
    
-
-## Host the Application
-1. Clone this repository
-2. You must overwrite the credentials file to contain your new google account's log in information.
+6. Clone this repository
+7. You must overwrite the credentials file to contain your new google account's log in information.
    
    Start by deleting the old credentials file, then opening and closing the credentials file.
    ``` bash
@@ -42,15 +40,42 @@ The Member Point Tracker is a website tool that allows for the management of mem
 
    Note that your secret_key_base is automatically generated, and should not be the one shown here. You do not need to worry about it, but it does need to remain.
 
-   Once you save this file (press esc, then SHIFT-ZZ or ':wq'-ENTER to save and exi the file in vim) this should create a new file in the config directory, called master.key. Store this value somewhere safe, but DO NOT commit it to the repository.
+   Once you save this file (press esc, then SHIFT-ZZ or ':wq'-ENTER to save and exi the file in vim) this should create a new file in the config directory, called master.key. Store this value somewhere safe, but DO NOT commit it to the repository. Instead, commit only your new credentials.yml.enc file.
 
    In order to test locally, you must store this master key in an environment variable. You can do this on MacOS, Linux, and WindowsSL by adding `export RAILS_MASTER_KEY=<your master key value>` to your `~/.profile` file.
+    
+## Host the Application
 
-   
+Now we can begin to actually serve the applicaiton. Run
 
-   Now that you are done using the master.key file you should delete it.
+$ `heroku login` and enter your login information.
 
-   
+From the apps root directory, run
+
+$ `heroku create`
+
+This will create a remote git repo stored on heroku. Heroku listens for pushes to this repo in order to build and serve the app.
+
+$ `git push heroku master`.
+
+This push, as stated, will containerize the app on heroku and serve it.
+
+Now, you must setup the postgres database. This process is quite personalized, but shouldn't require changes to this app's config/database.yml. You can learn more about setting up a postgres database [here](https://devcenter.heroku.com/articles/heroku-postgresql). This should involve adding a postgres addon, applying it to the dyno, and setting environment variables in heroku for the database's username and password.
+
+Once the postgres dyno has been steup, you can run 
+
+$ `heroku run rails db:reset`
+
+This will drop any present databases, recreate them, apply our schema, and populate the database.
+
+The last step is to set the RAILS_MASTER_KEY environment variable that you collected earlier. This can be done in the heroku web app or by running 
+
+$ `heroku config:set RAILS_MASTER_KEY=<your-master-key>`
+
+Now that you are done using the master.key file you should delete it.
+
+The webapp should now be running at the link provided by the `create` command. You can also navigate to your app by visiting your heroku projec and clicking 'Open App'.
+For further guidance, visit [this](https://devcenter.heroku.com/articles/getting-started-with-rails5).
 
 ## Running Locally and Testing
 
@@ -93,10 +118,6 @@ You should run these commands in this order.
      3.2. On windows, hit the windows key, type "environment" and look for the option to change your environment variables. Once in that menu, find the PATH variable, click edit (or something), and add the path fro before to the list.
 7. $ `rspec`
 
-##  Heroku Hosting
-This application can easily be deployed on Heroku. On a local machine, install the Heroku CLI, and then do $ `heroku login`. Navigate to this apps root and run $ `heroku create` the $ `git push heroku master`. After it finishes, run $ `heroku run rails db:migrate`. The webapp should now be running at the link provided by the terminal. 
-
-Visit this page for more guidance https://devcenter.heroku.com/articles/getting-started-with-rails5.
 
 ## Remarks
 * The domain this app is hosted on must support https.
