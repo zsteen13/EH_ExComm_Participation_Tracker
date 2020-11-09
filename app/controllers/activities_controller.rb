@@ -62,9 +62,6 @@ class ActivitiesController < ApplicationController
     params.each do |key, _item|
       next unless params[key].blank?
 
-      puts "\n\n"
-      puts params
-      puts "\n\n"
       @error_message = 'One or more input fields were left blank.'
       @prev_data = params
       render('/activities/new')
