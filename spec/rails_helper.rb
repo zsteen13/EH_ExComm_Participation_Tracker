@@ -3,6 +3,12 @@
 # runs rubocop -a when test suite is run
 system 'rubocop -a'
 
+# runs brakeman when test suite is run
+system 'brakeman'
+
+# runs bundler-audit when test suite is run
+system 'bundler-audit'
+
 # should resolve the db setup issue when trying to run rspec the first time
 system 'RAILS_ENV=test bin/rake db:reset'
 
