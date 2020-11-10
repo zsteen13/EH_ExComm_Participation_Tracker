@@ -65,7 +65,7 @@ RSpec.describe BulkAddUsersHelper, type: :helper do
     expect(users[0].committee).to eq nil
     expect(users[0].subcommittee).to eq nil
 
-    expect(users[2].total_points).to eq 10
+    expect(users[2].total_points).to eq 0
   end
 
   it 'should be able to convert a committee name to the id' do
