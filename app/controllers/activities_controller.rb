@@ -41,6 +41,11 @@ class ActivitiesController < ApplicationController
     redirect_to('/activities')
   end
 
+  def confirm_delete
+    admin_only
+    @activity = Activity.find(params[:id])
+  end
+
   def add_user
     admin_only
     @activity_id = params[:id]

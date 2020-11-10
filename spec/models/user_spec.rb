@@ -128,7 +128,7 @@ RSpec.describe User, type: :model do
   describe 'display points' do
     it 'returns value for all point types when methods called' do
       user = User.new(student: true, uin: '000000000', first_name: 'John', last_name: 'Doe', email: 'john@fake.com', committee: 'internal', subcommittee: 'something', total_points: 0, meeting_points: 1, event_points: 2, misc_points: 3, admin: true)
-      expect(user.display_total_points).to eq(0)
+      expect(user.display_total_points).to eq(6)
       expect(user.display_meeting_points).to eq(1)
       expect(user.display_event_points).to eq(2)
       expect(user.display_misc_points).to eq(3)

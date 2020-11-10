@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   get '/activities/:id/add', to: 'activities#add_user'
 
   get '/activities/:id/delete', to: 'activities#delete'
+  get '/activities/:id/confirm_delete', to: 'activities#confirm_delete'
   get 'activities/:id/bulk_add', to: 'bulk_add_attendance#index'
   get 'bulk_add_attendance/:id/help', to: 'bulk_add_attendance#help'
   get 'bulk_add_attendance/correct_csv', to: 'bulk_add_attendance#correct_csv'

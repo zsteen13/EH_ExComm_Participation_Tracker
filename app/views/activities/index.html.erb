@@ -19,10 +19,8 @@
                     </p> 
                     <h5 class="event-points"> Available Points: <%= activity.point_value%> </h5>
                     <% if current_user.admin? %>
-                        <%# <div class="compress"> %>
-                            <%= link_to("View Attendance", activity_path(activity), :class => 'action show pure-button button-secondary') %>
-                            <%= link_to("Delete", "/activities/#{activity.id}/delete", :class => 'action show pure-button button-secondary') %>
-                        <%# </div> %>
+                            <%= link_to("View Attendance", activity_path(activity), :class => ' pure-button button-secondary') %>
+                            <%= link_to("Delete", "/activities/#{activity.id}/confirm_delete", :class => ' pure-button cancel') %>
                     <% end%>
                 </div>
             </div>
@@ -30,7 +28,7 @@
 
         <!--Button to create activities -->
         <% if current_user.admin? %>
-            <a class="pure-button pure-button-primary" href="/activities/new"> Create Activity </a>
+            <a class="pure-button pure-button-primary stretch" href="/activities/new"> Create Activity </a>
         <% end %>
     </div>
     <!--This is where the info for the events will go-->
@@ -195,19 +193,26 @@ a {
     color: white;
     border-radius: 4px;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-    width: 100%;
 }
-.compress{
-    content: "";
-    display: table;
-    clear: both;
-    width:40%;
-    float: right;
-    margin-right:-40px;
-}
+.cancel{
+    background:none;
+    background-color: transparent;
+    color: #E4002B;
+    width:35%;
+    -webkit-box-shadow:inset 0px 0px 0px 2px #E4002B;
+    -moz-box-shadow:inset 0px 0px 0px 2px #E4002B;
+    box-shadow:inset 0px 0px 0px 2px #E4002B;
+  }
+  .cancel:hover{
+    background-color:#E4002B;
+    color:white;
+  }
 .button-secondary{
-    background: #500000; 
-
+    background: #500000;
+    width:63%;
+}
+.stretch{
+    width:100%;
 }
 /*
 .button-secondary:hover{
@@ -371,10 +376,9 @@ Might want this for some other thing
         border-bottom: 1px solid #ddd;
     }
     .pure-button {
-        color: white;
         border-radius: 4px;
         text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-        width: 100%;
+
     }
 
     #main {
@@ -418,7 +422,6 @@ Might want this for some other thing
     }
     
     .pure-button{
-        width: 100%;
     }
 }
 </style>
