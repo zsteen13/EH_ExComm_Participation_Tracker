@@ -18,7 +18,7 @@
 
     <div id="outer" class="content" >
         <div id="inner" class="content">
-            <h1 style="text-align: center;color:#500000">Delete Subcommittee from <%=Committee.where(id: @subcommittee.committee).name%> </h1>
+            <h1 style="text-align: center;color:#500000">Delete Subcommittee from <%=Committee.where(id: @subcommittee.committee).take.name%> </h1>
             <%= form_for(@subcommittee, :url => subcommittee_path(@subcommittee.id), :method =>'delete') do |f| %>
                 <p>
                 <%= f.label "Subcommittee Name", style: 'text-transform: capitalize; font-weight:bold;'%>
