@@ -17,7 +17,6 @@ feature ActivitiesController, type: :system do
       expect(page).to have_content 'Create Activities'
 
       activity_name = 'New Member Social'
-      activity_type = 'Misc'
       date = '12/31/2020'
       time = '03:30PM'
       point_value = 3
