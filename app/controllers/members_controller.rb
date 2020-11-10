@@ -113,6 +113,8 @@ class MembersController < ApplicationController
   private
 
   def member_params
+    params[:user][:admin] = !params[:user][:admin].to_i.zero?
+    params[:user][:student] = !params[:user][:student].to_i.zero?
     if !params[:user][:student]
       params.require(:user).permit(:first_name, :last_name, :email, :total_points, :committee, :subcommittee, :admin)
     else
