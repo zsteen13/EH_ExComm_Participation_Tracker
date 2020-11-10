@@ -1,104 +1,105 @@
-
 <div id="main">
-    <div class="header">
-      <h1>Activities</h1>
+  <div class="header">
+    <h1>Activities</h1>
+  </div>
+  <br>
+  <div style="text-align: center;" >
+    <a class="pure-button pure-button-primary" href="/activities/" > Return to Activities </a>
+  </div>
+  <div id="outer"class="content" >
+    <div id="inner" class="content" >
+      <h1 style="text-align: center;color:#500000">Create Activities</h1>
+      <form action="/activities" method="POST" class="pure-form pure-form-stacked" enctype="application/json" onsubmit="return onSubmit">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+        <fieldset>
+          <label>Activity Name</label>
+          <input id="name" name="activity_name" type="text" placeholder="Activity Name" value="<%= @prev_data["activity_name"]%>" required/>
+          <label >Activity Type</label>
+          <select name="activity_type" id="activity_type" class="pure-input-1-2">
+            <option>Event</option>
+            <option>Meeting</option>
+            <option>Misc</option>
+          </select>                    
+          <label >Date</label>
+          <input id='date_input' type="date" name="date" type="text" placeholder="Date (mm/dd/yyyy)" value="<%= @prev_data["date"]%>" required/>
+          <label >Time</label>
+          <input id='time_input' type="time" name="time" type="text" placeholder="Time (hh:mmAM)" value="<%= @prev_data["time"]%>" required/>
+          <label >Point Value</label>
+          <input name="point_value" type="text" placeholder="Point Value" pattern="[0-9]+" value="<%= @prev_data["point_value"]%>" required/>
+          <label >Description</label>
+          <textarea name="description" class="pure-input-1-2" style="width:100%;height: 100px" placeholder="Description" required><%= @prev_data["description"]%></textarea>
+          <% if @error_message%>
+            <p class="error-message"><%= @error_message%></p>
+          <% end %>
+          <button type="submit" class="pure-button pure-button-primary">Create</button>
+        </fieldset>
+      </form>
     </div>
-    <br>
-    <div style="text-align: center;" >
-      <a class="pure-button pure-button-primary" href="/activities/" > Return to Activities </a>
-    </div>
-    <div id="outer"class="content" >
-        <div id="inner" class="content" >
-            <h1 style="text-align: center;color:#500000">Create Activities</h1>
-            <form action="/activities" method="POST" class="pure-form pure-form-stacked" enctype="application/json" onsubmit="return onSubmit">
-                <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
-                <fieldset>
-                    <label>Activity Name</label>
-                    <input id="name" name="activity_name" type="text" placeholder="Activity Name" value="<%= @prev_data["activity_name"]%>" required/>
-                    <label >Activity Type</label>
-                    <input name="activity_type" type="text" placeholder="Activity Type" value="<%= @prev_data["activity_type"]%>" required/>
-                    <label >Date</label>
-                    <input id='date_input' type="date" name="date" type="text" placeholder="Date (mm/dd/yyyy)" value="<%= @prev_data["date"]%>" required/>
-                    <label >Time</label>
-                    <input id='time_input' type="time" name="time" type="text" placeholder="Time (hh:mmAM)" value="<%= @prev_data["time"]%>" required/>
-                    <label >Point Value</label>
-                    <input name="point_value" type="text" placeholder="Point Value" pattern="[0-9]+" value="<%= @prev_data["point_value"]%>" required/>
-                    <label >Description</label>
-                    <textarea name="description" class="pure-input-1-2" style="width:100%;height: 100px" placeholder="Description" required><%= @prev_data["description"]%></textarea>
-                    <% if @error_message%>
-                        <p class="error-message"><%= @error_message%></p>
-                    <% end %>
-                    <button type="submit" class="pure-button pure-button-primary">Create</button>
-                </fieldset>
-            </form>
-        </div>
-    </div>
+  </div>
 </div>
-
 <style>
-    .content{
-        box-shadow: 0px 0px 38px -1px rgba(0,0,0,0.3);
-        border-radius: 20px; 
-    }
-        #outer{
-          background:#500000;
-          padding:0;
-          width:90%;
-          border:2px solid black;
-          margin-top:10px;
-        }
-        #inner{
-          background:white;
-          padding:0 2em;
-          margin:20px;
-          border:1px solid black;
-        }
-    
-@media (max-width: 660px) {
-      /* for widths less than or equal to 660 pixels */
+  .content{
+      box-shadow: 0px 0px 38px -1px rgba(0,0,0,0.3);
+      border-radius: 20px;
+  }
       #outer{
-        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
-        -webkit-transition: width .5s ease-in-out, left .5s ease-in-out;
-        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
-        -o-transition: width .5s ease-in-out, left .5s ease-in-out;
-        transition: width .5s ease-in-out, left .5s ease-in-out;
+        background:#500000;
+        padding:0;
+        width:90%;
+        border:2px solid black;
+        margin-top:10px;
       }
       #inner{
-        padding:0 1em;
+        background:white;
+        padding:0 2em;
+        margin:20px;
+        border:1px solid black;
       }
-      input.pure-button{
-        width:100%;
-        max-width: none;
-        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
-        -webkit-transition: width .5s ease-in-out, left .5s ease-in-out;
-        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
-        -o-transition: width .5s ease-in-out, left .5s ease-in-out;
-        transition: width .5s ease-in-out, left .5s ease-in-out;
-      }
-      .content{
-        max-width:100%;
-      }   
+  
+  @media (max-width: 660px) {
+    /* for widths less than or equal to 660 pixels */
+    #outer{
+      -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
+      -webkit-transition: width .5s ease-in-out, left .5s ease-in-out;
+      -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
+      -o-transition: width .5s ease-in-out, left .5s ease-in-out;
+      transition: width .5s ease-in-out, left .5s ease-in-out;
     }
-
-@media (min-width: 665px) {
-  #outer{
-        width:80%;
-        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
-        -webkit-transition: width .5s ease-in-out, left .5s ease-in-out;
-        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
-        -o-transition: width .5s ease-in-out, left .5s ease-in-out;
-        transition: width .5s ease-in-out, left .5s ease-in-out;
-      }
-}
-@media (min-width: 60em) {
-  #outer{
-        width:60%;
-        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
-        -webkit-transition: width .5s ease-in-out, left .5s ease-in-out;
-        -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
-        -o-transition: width .5s ease-in-out, left .5s ease-in-out;
-        transition: width .5s ease-in-out, left .5s ease-in-out;
+    #inner{
+      padding:0 1em;
+    }
+    input.pure-button{
+      width:100%;
+      max-width: none;
+      -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
+      -webkit-transition: width .5s ease-in-out, left .5s ease-in-out;
+      -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
+      -o-transition: width .5s ease-in-out, left .5s ease-in-out;
+      transition: width .5s ease-in-out, left .5s ease-in-out;
+    }
+    .content{
+      max-width:100%;
+    }
   }
-}
-
+  
+  @media (min-width: 665px) {
+    #outer{
+      width:80%;
+      -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
+      -webkit-transition: width .5s ease-in-out, left .5s ease-in-out;
+      -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
+      -o-transition: width .5s ease-in-out, left .5s ease-in-out;
+      transition: width .5s ease-in-out, left .5s ease-in-out;
+    }
+  }
+  @media (min-width: 60em) {
+    #outer{
+      width:60%;
+      -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
+      -webkit-transition: width .5s ease-in-out, left .5s ease-in-out;
+      -moz-transition: width .5s ease-in-out, left .5s ease-in-out;
+      -o-transition: width .5s ease-in-out, left .5s ease-in-out;
+      transition: width .5s ease-in-out, left .5s ease-in-out;
+    }
+  }
 </style>

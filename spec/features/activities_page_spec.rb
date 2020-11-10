@@ -20,7 +20,7 @@ feature 'Create New Activity' do
     find("a[href='/activities/new']").click
 
     fill_in 'activity_name', with: 'Rspec Actvity'
-    fill_in 'activity_type', with: 'Event'
+    page.select 'Event', from: 'activity_type'
     fill_in 'date_input', with: '203904034'
     fill_in 'time_input', with: '3:44PM'
     fill_in 'point_value', with: '1'
@@ -36,7 +36,7 @@ feature 'Create New Activity' do
     find("a[href='/activities/new']").click
 
     fill_in 'activity_name', with: '  '
-    fill_in 'activity_type', with: 'Event'
+    page.select 'Event', from: 'activity_type'
     fill_in 'date_input', with: '11/12/2020'
     fill_in 'time_input', with: '3:44PM'
     fill_in 'point_value', with: '1'
@@ -52,7 +52,7 @@ feature 'Create New Activity' do
     find("a[href='/activities/new']").click
 
     fill_in 'activity_name', with: 'Rspec'
-    fill_in 'activity_type', with: 'Event'
+    page.select 'Event', from: 'activity_type'
     fill_in 'date_input', with: '11/12/2020'
     fill_in 'time_input', with: '3:44PM'
     fill_in 'point_value', with: '1'
