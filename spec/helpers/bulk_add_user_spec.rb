@@ -32,11 +32,13 @@ RSpec.describe BulkAddUsersHelper, type: :helper do
     _users, valid = BulkAddUsersHelper.parse_data(filename)
     expect(valid).to be true
   end
+
   it 'should be false' do
     filename = Rails.root.join('spec', 'data', 'bulk_add_users', 'bulk_add_users_wrong_6.csv')
     users, _valid = BulkAddUsersHelper.parse_data(filename)
     expect(users[0].admin).to be false
   end
+
   it 'should be able handle a csv without optional values' do
     filename = Rails.root.join('spec', 'data', 'bulk_add_users', 'bulk_add_users_correct_2.csv')
     users, valid = BulkAddUsersHelper.parse_data(filename)
@@ -54,6 +56,7 @@ RSpec.describe BulkAddUsersHelper, type: :helper do
     expect(user.admin).to be false
     expect(valid).to be true
   end
+
   it 'should be able to handle a csv with some optional values' do
     filename = Rails.root.join('spec', 'data', 'bulk_add_users', 'bulk_add_users_correct_3.csv')
     users, valid = BulkAddUsersHelper.parse_data(filename)

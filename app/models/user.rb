@@ -43,10 +43,10 @@ class User < ApplicationRecord
   end
 
   def handle_args(args)
-    args[:total_points] = args[:total_points].nil? ? 0 : args[:total_points]
     args[:meeting_points] = args[:meeting_points].nil? ? 0 : args[:meeting_points]
     args[:event_points] = args[:event_points].nil? ? 0 : args[:event_points]
     args[:misc_points] = args[:misc_points].nil? ? 0 : args[:misc_points]
+    args[:total_points] = args[:meeting_points].to_i + args[:event_points].to_i + args[:misc_points].to_i
     args[:first_name] = args[:first_name].capitalize unless args[:first_name].blank?
     args[:last_name] = args[:last_name].capitalize unless args[:last_name].blank?
     args

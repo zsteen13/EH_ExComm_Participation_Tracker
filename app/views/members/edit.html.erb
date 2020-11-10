@@ -54,14 +54,6 @@
                   </tr>
 
                   <tr>
-                      <th>Total Points</th>
-                      <td><%= f.number_field(:total_points, in: 0...1000) %></td>
-                  </tr>
-
-
-
-
-                  <tr>
                       <th id="noStyle">Admin</th>
                       <% # An admin can't undo their admin status%>
                       <td id="noStyle"><%= f.check_box :admin, disabled: (@member.id == session[:user_id] ? true : nil) %></td>
