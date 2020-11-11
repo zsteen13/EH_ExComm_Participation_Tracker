@@ -22,9 +22,7 @@ class User < ApplicationRecord
 
   def initialize(args = nil)
     unless args.nil?
-      print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', args[:admin], '!!!!!!!!!!!!!!!!!1')
       args[:admin] = (args[:admin] == 'true') || (args[:admin] == true) || (args[:admin] == 1) || (args[:admin] == '1') ? true : false
-      print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', args[:admin], '!!!!!!!!!!!!!!!!!1')
       args = handle_args(args)
       # check that committee exists
       args[:committee] = !args[:committee].nil? && Committee.where(id: args[:committee]).take ? args[:committee] : nil
