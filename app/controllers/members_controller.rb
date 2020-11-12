@@ -66,6 +66,7 @@ class MembersController < ApplicationController
 
   def destroy
     @member = User.find(params[:id])
+    UserToActivity.where(uin: params[:id]).all.each(&:destroy)
     @member.destroy
     redirect_to(members_path)
   end
