@@ -33,7 +33,39 @@ feature ActivitiesController, type: :system do
       expect(page).to have_content activity_name
       expect(page).to have_content point_value
       expect(page).to have_content description
-      sleep 4
+      sleep 0.3
+    end
+
+    scenario 'admin should be able to add/delete attendee' do
+      visit 'activities'
+      expect(page).to have_current_path '/activities'
+      expect(page).to have_content 'Meet and Greet'
+
+      find_link('View Attendance', href: '/activities/1').click
+      expect(page).to have_current_path '/activities/1'
+      expect(page).not_to have_content '000000000'
+
+      fill_in 'uin', with: '000000000'
+      click_button 'commit'
+      expect(page).to have_current_path '/activities/1'
+      expect(page).to have_content '000000000'
+
+      find_link('Delete', href: '/activities/1/delete/000000000').click
+      expect(page).to have_current_path '/activities/1'
+      expect(page).not_to have_content '000000000'
+    end
+
+    scenario 'admin should be able to delete activity' do
+      visit 'activities'
+      expect(page).to have_current_path '/activities'
+      expect(page).to have_content 'Meet and Greet'
+
+      find_link('Delete', href: '/activities/1/confirm_delete').click
+      expect(page).to have_current_path '/activities/1/confirm_delete'
+
+      find_link('Delete', href: '/activities/1/delete').click
+      expect(page).to have_current_path '/activities'
+      expect(page).not_to have_content 'Meet and Greet'
     end
   end
 end
