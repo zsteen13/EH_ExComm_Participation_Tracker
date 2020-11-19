@@ -6,7 +6,6 @@ require 'pp'
 # MembersController
 class MembersController < ApplicationController
   before_action :admin_only
-
   helper_method :sort_column, :sort_direction
 
   def index
@@ -50,6 +49,7 @@ class MembersController < ApplicationController
 
   def update
     @member = User.find(params[:id])
+
     if @member.update(member_params)
       update_members_point_threshold(@member)
       redirect_to(member_path(@member))

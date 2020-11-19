@@ -33,37 +33,37 @@
         <div class="table">
           <table class="center" width="100%" summary="member detail view">
             <tr class = "head">
-              <th class="lhead"><%= sortable "First name  ","first_name" %>
+              <th class="lhead"><%= sortable "First name  " ,"first_name" %>
                 <% if sort_column != 'first_name' %>
                 <%= image_tag( "/sort.png",  {:style => "width:20px; heigh:30px ;vertical-align:middle"} )%>
                 <%  end %>
               </th>
 
-              <th class="rhead"><%= sortable "Last name  ","last_name" %>
+              <th class="rhead"><%= sortable "Last name  " ,"last_name" %>
                 <% if sort_column != 'last_name' %>
                 <%= image_tag( "/sort.png",  {:style => "width:20px; heigh:30px ;vertical-align:middle"} )%>
                 <%  end %>
               </th>
 
-              <th class="lhead widthComm"><%= sortable "Committee  ","committee" %>
+              <th class="lhead widthComm"><%= sortable "Committee  " ,"committee" %>
                 <% if sort_column != 'committee' %>
                 <%= image_tag( "/sort.png",  {:style => "width:20px; heigh:30px ;vertical-align:middle"} )%>
                 <%  end %>
               </th>
 
-              <th class="rhead widthSubc"><%= sortable "Subcommittee  ","subcommittee" %>
+              <th class="rhead widthSubc"><%= sortable "Subcommittee  " ,"subcommittee" %>
                 <% if sort_column != 'subcommittee' %>
                 <%= image_tag( "/sort.png",  {:style => "width:20px; heigh:30px ;vertical-align:middle"} )%>
                 <%  end %>
               </th>
 
-              <th class="lhead"><%= sortable "Email  ","email" %>
+              <th class="lhead"><%= sortable "Email  " ,"email" %>
                 <% if sort_column != 'email' %>
               <%= image_tag( "/sort.png",  {:style => "width:20px; heigh:30px ;vertical-align:middle"} )%>
                 <%  end %>
               </th>
 
-              <th class="rhead widthPoint"><%=  sortable "Total points  ","total_points" %>
+              <th class="rhead widthPoint"><%=  sortable "Total points  " ,"total_points" %>
                 <% if sort_column != 'total_points' %>
               <%= image_tag( "/sort.png",  {:style => "width:20px; heigh:30px ;vertical-align:middle"} )%>
                 <%  end %>

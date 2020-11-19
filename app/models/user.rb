@@ -8,10 +8,9 @@ class User < ApplicationRecord
   has_secure_password
 
   # supplied by email_validator gem
-  validates :email, email: true
+  validates :email, email: true, uniqueness: true
   validates :total_points, :event_points, :meeting_points, :misc_points, numericality: { only_integer: true }
   validates :first_name, :last_name, presence: true
-  validates :email, uniqueness: true
   validate :valid_student_uin
 
   # First time creation of a user

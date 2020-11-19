@@ -25,7 +25,7 @@
           <label >Time</label>
           <input id='time_input' type="time" name="time" type="text" placeholder="Time (hh:mmAM)" value="<%= @prev_data["time"]%>" required/>
           <label >Point Value</label>
-          <input name="point_value" type="text" placeholder="Point Value" pattern="[0-9]+" value="<%= @prev_data["point_value"]%>" required/>
+          <input name="point_value" type="number" placeholder="Point Value" pattern="[0-9]+" value="<%= @prev_data["point_value"]%>" required/>
           <label >Description</label>
           <textarea name="description" class="pure-input-1-2" style="width:100%;height: 100px" placeholder="Description" required><%= @prev_data["description"]%></textarea>
           <% if @error_message%>
