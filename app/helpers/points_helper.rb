@@ -30,6 +30,6 @@ module PointsHelper
       meeting_points: sum_meeting_points,
       event_points: sum_event_points,
       misc_points: sum_misc_points
-      )
+    )
   end
 end
