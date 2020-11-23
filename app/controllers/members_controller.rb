@@ -2,6 +2,7 @@
 
 require 'securerandom'
 require 'pp'
+require_relative '../helpers/application_helper'
 
 # MembersController
 class MembersController < ApplicationController

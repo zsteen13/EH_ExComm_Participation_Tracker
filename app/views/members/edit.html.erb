@@ -28,12 +28,12 @@
 
                   <tr>
                       <th>First Name</th>
-                      <td><%= f.text_field :first_name ,style: 'text-transform: capitalize;'%></td>
+                      <td><%= f.text_field :first_name, style: 'text-transform: capitalize;', :value => f.object.first_name.capitalize %></td>
                   </tr>
 
                   <tr>
                       <th>Last Name</th>
-                      <td><%= f.text_field :last_name,style: 'text-transform: capitalize;' %></td>
+                      <td><%= f.text_field :last_name, style: 'text-transform: capitalize;', :value => f.object.last_name.capitalize %></td>
                   </tr>
 
                   <tr>
